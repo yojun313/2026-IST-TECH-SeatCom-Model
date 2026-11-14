@@ -4,70 +4,94 @@ from pathlib import Path
 
 
 class NameExtractor:
-    TIMESTAMP = (
+    TIME = (
         r"\d{4}년\s+\d{1,2}월\s+\d{1,2}일\s+"
         r"(?:오전|오후)\s+\d{1,2}:\d{2}"
     )
 
-    MESSAGE_PATTERN = re.compile(
-        rf"^{TIMESTAMP},\s*"
-        r"(?P<sender>.+?)\s+:\s"
-        r"(?P<message>.*)$"
+    MESSAGE = re.compile(
+        rf"^(?P<time>{TIME}),\s*"
+        r"(?P<name>.+?)\s+:\s"
+        r"(?P<text>.*)$"
     )
 
-    DATE_PATTERN = re.compile(
-        rf"^{TIMESTAMP}(?:,|$)"
+    DATE = re.compile(rf"^{TIME}$")
+
+    MEDIA = re.compile(
+        r"(?:사진(?:\s+\d+장)?|동영상|이모티콘|"
+        r"음성메시지|파일:.*|톡게시판.*)"
     )
 
-    MEDIA_PATTERN = re.compile(
-        r"사진(?:\s+\d+장)?|동영상|이모티콘|"
-        r"음성메시지|파일:.*|톡게시판.*"
-    )
+    def extract_records(
+        self, source: str | Path, name: str
+    ) -> list[dict[str, str]]:
 
-    def extract(self, source: str | Path, name: str) -> str:
         if isinstance(source, Path):
-            text = source.read_text(encoding="utf-8-sig")
+            data = source.read_bytes()
+
+            for encoding in ("utf-8-sig", "cp949"):
+                try:
+                    text = data.decode(encoding)
+                    break
+                except UnicodeDecodeError:
+                    continue
+            else:
+                raise UnicodeError(
+                    "지원하지 않는 TXT 인코딩입니다."
+                )
         else:
             text = source
 
-        messages = []
-        current_sender = None
-        current_lines = []
+        result = []
+        sender = None
+        timestamp = ""
+        body = []
+        message_no = 0
 
         def flush():
-            if current_sender != name:
-                return
+            content = "\n".join(body).strip()
 
-            message = "\n".join(current_lines).strip()
-
-            if message and not self.MEDIA_PATTERN.fullmatch(message):
-                messages.append(message)
+            if (
+                sender == name
+                and content
+                and not self.MEDIA.fullmatch(content)
+            ):
+                result.append({
+                    "message_id": f"msg_{message_no:06d}",
+                    "timestamp": timestamp,
+                    "text": content,
+                })
 
         for line in text.splitlines():
-            # Markdown 코드 블록 구분자 제외
-            if line.strip() == "```":
-                continue
-
-            match = self.MESSAGE_PATTERN.match(line)
+            match = self.MESSAGE.match(line)
 
             if match:
                 flush()
-
-                current_sender = match.group("sender")
-                current_lines = [match.group("message")]
+                message_no += 1
+                sender = match.group("name")
+                timestamp = match.group("time")
+                body = [match.group("text")]
 
             elif (
-                self.DATE_PATTERN.match(line)
-                or line.strip() == "메시지가 삭제되었습니다."
+                self.DATE.fullmatch(line.strip())
+                or line.strip()
+                == "메시지가 삭제되었습니다."
             ):
                 flush()
-                current_sender = None
-                current_lines = []
+                sender = None
+                timestamp = ""
+                body = []
 
-            elif current_sender is not None:
-                # 여러 줄에 걸친 메시지
-                current_lines.append(line)
+            elif sender is not None:
+                body.append(line)
 
         flush()
+        return result
 
-        return "\n".join(messages)
+    def extract(
+        self, source: str | Path, name: str
+    ) -> str:
+        records = self.extract_records(source, name)
+        return "\n".join(
+            record["text"] for record in records
+        )
