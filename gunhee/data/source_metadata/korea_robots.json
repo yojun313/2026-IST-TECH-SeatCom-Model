@@ -1,0 +1,7 @@
+{
+  "출처URL": "https://librsv.korea.ac.kr/robots.txt",
+  "데이터기준일자": "2026-11-14",
+  "robots.txt": "User-agent: *\r\nDisallow: /",
+  "수집허용": false,
+  "상태": "수집금지로 중단; 열람실/좌석 API 미호출"
+}
