@@ -1,0 +1,196 @@
+[
+  {
+    "facility_id": "yongin-bora:facility:toilet-01",
+    "library_id": "yongin-bora",
+    "map_id": "yongin-bora:map:floor-1f",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          187,
+          264
+        ],
+        [
+          258,
+          264
+        ],
+        [
+          258,
+          333
+        ],
+        [
+          187,
+          333
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실",
+      "position_note": "층별도 이미지 눈대중 근사(픽셀). 성별·공용·장애인 구분 미표기",
+      "floor_id": "1F"
+    },
+    "source_id": "yongin-bora:source:floor_f1_image",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-bora:facility:toilet-02",
+    "library_id": "yongin-bora",
+    "map_id": "yongin-bora:map:floor-1f",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          307,
+          264
+        ],
+        [
+          364,
+          264
+        ],
+        [
+          364,
+          333
+        ],
+        [
+          307,
+          333
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실",
+      "position_note": "층별도 이미지 눈대중 근사(픽셀). 성별·공용·장애인 구분 미표기",
+      "floor_id": "1F"
+    },
+    "source_id": "yongin-bora:source:floor_f1_image",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-bora:facility:elevator-01",
+    "library_id": "yongin-bora",
+    "map_id": "yongin-bora:map:floor-1f",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          390,
+          278
+        ],
+        [
+          425,
+          278
+        ],
+        [
+          425,
+          308
+        ],
+        [
+          390,
+          308
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "E.V",
+      "floor_id": "1F",
+      "position_note": "층별도 눈대중 근사"
+    },
+    "source_id": "yongin-bora:source:floor_f1_image",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-bora:facility:stairs-01",
+    "library_id": "yongin-bora",
+    "map_id": "yongin-bora:map:floor-1f",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          225,
+          95
+        ],
+        [
+          262,
+          110
+        ],
+        [
+          288,
+          160
+        ],
+        [
+          252,
+          158
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "floor_id": "1F",
+      "position_note": "층별도 눈대중 근사; 층간 연결 거리 미확인"
+    },
+    "source_id": "yongin-bora:source:floor_f1_image",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-bora:facility:entrance-main",
+    "library_id": "yongin-bora",
+    "map_id": "yongin-bora:map:floor-1f",
+    "type": "entrance",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          601,
+          112
+        ],
+        [
+          601,
+          205
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "출입문",
+      "floor_id": "1F",
+      "position_note": "층별도 눈대중 근사; 통행방향·출입제한 미확인"
+    },
+    "source_id": "yongin-bora:source:floor_f1_image",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-bora:facility:entrance-reading-room",
+    "library_id": "yongin-bora",
+    "map_id": "yongin-bora:map:floor-1f",
+    "type": "entrance",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          460,
+          106
+        ],
+        [
+          490,
+          106
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "열람실 출입구(벽 개구부)",
+      "floor_id": "1F",
+      "connects_room_id": "yongin-bora:room:reading-1f",
+      "position_note": "층별도 눈대중 근사; 문 형태 미확인"
+    },
+    "source_id": "yongin-bora:source:floor_f1_image",
+    "verification": "model_candidate"
+  }
+]

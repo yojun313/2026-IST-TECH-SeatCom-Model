@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+yongin-heungdeok,yongin-heungdeok:room:02,laptopAllowed,true,,"{""basis"":""열람실 명칭이 \""노트북실\""(공식 좌석현황 탭 라벨, 공공 CSV 열람실그룹명)"",""observed_on"":""2026-11-14"",""limitation"":""명칭 기반 값; 방 안 모든 좌석에 대한 현장 확인 없음""}",model_inference,yongin-heungdeok:source:seatmate_tab2,,model_candidate,,,,2026-11-14

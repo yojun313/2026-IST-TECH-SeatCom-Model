@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-giheung",
+    "name": "기흥도서관",
+    "address": "(우:16960) 경기도 용인시 기흥구 기흥로116번길 10(신갈동 산14)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "yongin-giheung:source:giheung-floor-page",
+    "verification": "model_candidate"
+  }
+]

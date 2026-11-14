@@ -1,0 +1,87 @@
+[
+  {
+    "room_id": "seongnam-bundang:room:01",
+    "library_id": "seongnam-bundang",
+    "name": "1열람실",
+    "floor_id": null,
+    "capacity": 222,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bundang:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-bundang:room:02",
+    "library_id": "seongnam-bundang",
+    "name": "1열람실(노트북겸용)",
+    "floor_id": null,
+    "capacity": 48,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bundang:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-bundang:room:03",
+    "library_id": "seongnam-bundang",
+    "name": "1열람실(노트북전용)",
+    "floor_id": null,
+    "capacity": 34,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bundang:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-bundang:room:04",
+    "library_id": "seongnam-bundang",
+    "name": "2열람실(노트북겸용)",
+    "floor_id": null,
+    "capacity": 90,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bundang:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-bundang:room:05",
+    "library_id": "seongnam-bundang",
+    "name": "3열람실(성인)",
+    "floor_id": null,
+    "capacity": 100,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bundang:source:datagokr-15032433",
+    "verification": "model_candidate"
+  }
+]

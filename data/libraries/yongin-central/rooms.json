@@ -1,0 +1,53 @@
+[
+  {
+    "room_id": "yongin-central:room:1",
+    "library_id": "yongin-central",
+    "name": "열람실 1(공식 열람실ID 1, 명칭 미확인)",
+    "floor_id": null,
+    "capacity": 132,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-central:source:datagokr-15154878",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-central:room:2",
+    "library_id": "yongin-central",
+    "name": "열람실 2(공식 열람실ID 2, 명칭 미확인)",
+    "floor_id": null,
+    "capacity": 82,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-central:source:datagokr-15154878",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-central:room:3",
+    "library_id": "yongin-central",
+    "name": "열람실 3(공식 열람실ID 3, 명칭 미확인)",
+    "floor_id": null,
+    "capacity": 130,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-central:source:datagokr-15154878",
+    "verification": "model_candidate"
+  }
+]

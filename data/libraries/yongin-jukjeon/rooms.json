@@ -1,0 +1,132 @@
+[
+  {
+    "room_id": "yongin-jukjeon:room:1",
+    "library_id": "yongin-jukjeon",
+    "name": "1열람실",
+    "floor_id": null,
+    "capacity": 180,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-jukjeon:source:public-seat-csv",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-jukjeon:room:2",
+    "library_id": "yongin-jukjeon",
+    "name": "2열람실",
+    "floor_id": null,
+    "capacity": 54,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-jukjeon:source:public-seat-csv",
+    "verification": "model_candidate"
+  }
+]

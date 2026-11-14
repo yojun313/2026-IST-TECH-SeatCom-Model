@@ -1,0 +1,53 @@
+[
+  {
+    "room_id": "seongnam-seohyeon:room:01",
+    "library_id": "seongnam-seohyeon",
+    "name": "제1열람실 (3층)",
+    "floor_id": "3F",
+    "capacity": 150,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-seohyeon:source:public-csv-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-seohyeon:room:02",
+    "library_id": "seongnam-seohyeon",
+    "name": "제2열람실 (4층)",
+    "floor_id": "4F",
+    "capacity": 52,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-seohyeon:source:public-csv-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-seohyeon:room:03",
+    "library_id": "seongnam-seohyeon",
+    "name": "노트북실 (4층)",
+    "floor_id": "4F",
+    "capacity": 51,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-seohyeon:source:public-csv-15032433",
+    "verification": "unverified"
+  }
+]

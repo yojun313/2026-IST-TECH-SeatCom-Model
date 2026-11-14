@@ -1,0 +1,624 @@
+{
+  "library_id": "yongin-giheung",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "scope_declared": "1열람실(공개 탭 classInfo=1)의 좌석 버튼 사각형 148개(좌표 후보)와 열람실·운영시간·주소 마스터. 좌석번호·공식ID·시설·특성·통로는 미구축. 층별도 6장의 화장실·엘리베이터·계단 13개(model_candidate, 육안 판독).",
+  "seat_inventory": {
+    "expected_count": 164,
+    "expected_count_source_id": "yongin-giheung:source:datagokr-15154878",
+    "extracted_count": 148,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0,
+    "notes": "공개 CSV 164석(열람실ID1=148, ID2=16). 좌석 사각형은 148개이며 CSV 열람실ID 1의 148과 개수만 일치(번호 대응 미검증). 열람실ID 2의 16석은 공개 좌석화면 탭이 없어 좌표 없음. 좌석 레코드는 좌표가 있는 148개만 생성. 사각형 148개를 현재 HTML과 재대조해 후보 좌표와 일치 확인했으나 렌더 중첩 육안 검수는 하지 않아 geometry_verified_count=0."
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 3,
+      "verification": "model_candidate",
+      "missing_reason": "본관1층 층별 안내도에서 어린이/여/남 화장실 3개 영역을 육안 판독(문 위치 없음). 장애인 화장실은 이미지에 표기 없어 미생성. 다른 층·별관은 화장실 표기 없음"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "층별 안내도에 출입구 표기 없음(미생성)"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "안내 일러스트의 벽선은 정밀 도면이 아니라 미생성"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "전기도 또는 현장 확인 필요"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "안내 일러스트의 벽선은 정밀 도면이 아니라 미생성"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "안내 일러스트의 벽선은 정밀 도면이 아니라 미생성"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 6,
+      "verification": "model_candidate",
+      "missing_reason": "층별 안내도에 표기된 엘리베이터만 판독(본관1~3층·별관1~3층 중 표기된 층). 전수 여부 미확인"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 4,
+      "verification": "model_candidate",
+      "missing_reason": "층별 안내도에 표기된 계단만 판독(본관1~3층·별관1~3층 중 표기된 층). 전수 여부 미확인"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "partition",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "brightness",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "airflow",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 148,
+      "missing_reason": "원본 없음, 추정 금지"
+    }
+  ],
+  "checks": [
+    {
+      "name": "target_schema_v1.1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "individual_arrays_match_bundle",
+      "passed": true,
+      "detail": "11 arrays"
+    },
+    {
+      "name": "no_duplicate_ids",
+      "passed": true,
+      "detail": "158 ids"
+    },
+    {
+      "name": "foreign_keys",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ids_prefixed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bbox_in_frame",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "csv_bom_and_json_equivalence",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_live_status_fields",
+      "passed": true,
+      "detail": ""
+    },
+    "dataset.json 배열과 개별 JSON 배열 11종 값/행 일치 확인",
+    "target_schema.json v1.1 Draft 2020-12 검증 통과"
+  ],
+  "blockers": [
+    "공식 좌석화면은 사용 중 좌석 번호를 \"배정\"으로 대체해 표시하여 표시번호 복원 불가(추정·다중 시간대 수집 금지). 공식 좌석ID도 확인 불가.",
+    "공개 탭이 classInfo=1(148석)뿐이라 CSV 열람실ID 2의 16석 원본 없음. 숨은 경로 추측하지 않음.",
+    "열람실ID(1,2)와 열람실그룹명(열람실, 노트북실)의 대응표 없음. ID 2의 명칭·노트북 허용 여부 미확정(room_features 비움).",
+    "기관 위경도 근거 자료 없음(null, 거리 추천 비활성). external_ids도 공식 근거 없어 null(제3자 후보 목록의 4146000000/PLR001은 미검토라 미사용).",
+    "운영시간 06:30~22:00은 2026-10-12 기준 CSV값. 휴관일·예외일은 미해결이므로 자동 운영중 판정 금지.",
+    "층별도 6장(본관1~3층, 별관1~3층)은 안내 일러스트(축척 없음)로 이용조건 미확인이라 assets 미포함. 좌석 버튼 지도(1000x700)와 층별도 사이 공통 기준점이 없어 map_transforms 미생성. 1열람실이 어느 층인지 미확인(별관2층 '열람실'이 후보이나 확정 근거 없음)이라 층별도 map의 room_id는 null.",
+    "target_schema facility.type에 열람실 구획 유형이 없어 열람실 구획은 facilities가 아니라 build_report.visible_room_zones에만 기록. 문 위치(access_point)와 장애인 화장실은 이미지에서 식별 불가."
+  ],
+  "next_actions": [
+    "번호가 모두 표시된 사용자 캡처·정적 번호도로 148개 표시번호와 공공 CSV 좌석명 대응",
+    "열람실ID 2(16석)의 원본 확보 및 열람실명 확인",
+    "층별도·설비도 원본 및 이용조건 확인 후 화장실·출입구·벽 정합",
+    "렌더 중첩 육안 검수로 geometry_verified 갱신",
+    "이용시간/휴관일 페이지(/giheung/menu/10788/contents/40312/contents.do)로 휴관일 확인",
+    "공식 근거 있는 도서관 위경도 확보",
+    "층별도 이용조건 확인 후 정밀 도면·문 위치·장애인 화장실·출입구 확보, 1열람실 층 확정 및 좌석지도 기준점 확보"
+  ],
+  "seat_geometry_object_ids": {
+    "yongin-giheung:seat:0001": "YI-bf981ed4f40b4a5f2edd",
+    "yongin-giheung:seat:0002": "YI-12b88a6023e0cfddec60",
+    "yongin-giheung:seat:0003": "YI-a0a0da86e77115e9a599",
+    "yongin-giheung:seat:0004": "YI-5b45e74923443a69f1e3",
+    "yongin-giheung:seat:0005": "YI-1ec0637c3b1bf241688e",
+    "yongin-giheung:seat:0006": "YI-d5c0dd58ad2db6edbb97",
+    "yongin-giheung:seat:0007": "YI-3dfbb22a3781f716cd96",
+    "yongin-giheung:seat:0008": "YI-05095b7d96472abd9681",
+    "yongin-giheung:seat:0009": "YI-694c583bc2545c979dcf",
+    "yongin-giheung:seat:0010": "YI-3aa95f6fedc60cc1afb6",
+    "yongin-giheung:seat:0011": "YI-c2111c45cdb76b0cdb6b",
+    "yongin-giheung:seat:0012": "YI-0b35be2cafde81fdc8d0",
+    "yongin-giheung:seat:0013": "YI-420d3cb4586bdd6d93f0",
+    "yongin-giheung:seat:0014": "YI-223c93798587632c23f8",
+    "yongin-giheung:seat:0015": "YI-61bf1c23d6fe519dab0f",
+    "yongin-giheung:seat:0016": "YI-1656e789f6300dc55e02",
+    "yongin-giheung:seat:0017": "YI-da1da779bd4032d420a5",
+    "yongin-giheung:seat:0018": "YI-8bcffa79413611887ac6",
+    "yongin-giheung:seat:0019": "YI-d9ab043c15cde580c668",
+    "yongin-giheung:seat:0020": "YI-7245d4c5eabc3df6ec35",
+    "yongin-giheung:seat:0021": "YI-5c8842710ee64bc370fd",
+    "yongin-giheung:seat:0022": "YI-6024ba7ae252c7855cec",
+    "yongin-giheung:seat:0023": "YI-18bb71ab529d0c8f7477",
+    "yongin-giheung:seat:0024": "YI-de7310b9b375cf23cf54",
+    "yongin-giheung:seat:0025": "YI-a3089581ce0ab71c3ef4",
+    "yongin-giheung:seat:0026": "YI-68d5929137201f5f453b",
+    "yongin-giheung:seat:0027": "YI-71cea3a5e755aee42637",
+    "yongin-giheung:seat:0028": "YI-55bf2762d1d59bf0d484",
+    "yongin-giheung:seat:0029": "YI-0ba346020463178e915f",
+    "yongin-giheung:seat:0030": "YI-c4aac82abfd3ccfe9693",
+    "yongin-giheung:seat:0031": "YI-e84654a796e7209b41f1",
+    "yongin-giheung:seat:0032": "YI-a35fe65bf041b3fe8b90",
+    "yongin-giheung:seat:0033": "YI-a628047e940fe0b2adf7",
+    "yongin-giheung:seat:0034": "YI-6cfde9bddd80ed8ffbbe",
+    "yongin-giheung:seat:0035": "YI-a773587ea0b0197e1e52",
+    "yongin-giheung:seat:0036": "YI-1045883c39f6f786d543",
+    "yongin-giheung:seat:0037": "YI-9ba4eb305b751e552c79",
+    "yongin-giheung:seat:0038": "YI-b27dfeb2fed1a2db3610",
+    "yongin-giheung:seat:0039": "YI-f47c0f8f5235e25e070a",
+    "yongin-giheung:seat:0040": "YI-0f35c40ae249918f5531",
+    "yongin-giheung:seat:0041": "YI-b0a39611fb29eb0f4aff",
+    "yongin-giheung:seat:0042": "YI-d9a3afb4bf2a9f4007b8",
+    "yongin-giheung:seat:0043": "YI-29db596b086b226f1ea2",
+    "yongin-giheung:seat:0044": "YI-cc35821c1bb517a85aec",
+    "yongin-giheung:seat:0045": "YI-642b93f8ac6c0defcee6",
+    "yongin-giheung:seat:0046": "YI-5ee4c8fd139bca9db8ff",
+    "yongin-giheung:seat:0047": "YI-9e34a333bc4a05d6c062",
+    "yongin-giheung:seat:0048": "YI-6d8359bf41f02dfd5dc0",
+    "yongin-giheung:seat:0049": "YI-ddfed2063853d432f877",
+    "yongin-giheung:seat:0050": "YI-6579d76c77ccd30ad527",
+    "yongin-giheung:seat:0051": "YI-731fe5bb7053bbc23fca",
+    "yongin-giheung:seat:0052": "YI-3357c8e69937033bd760",
+    "yongin-giheung:seat:0053": "YI-30a3ffa40b42814c3abb",
+    "yongin-giheung:seat:0054": "YI-aa59b74e2b2676b5d450",
+    "yongin-giheung:seat:0055": "YI-39878632f81b9802217f",
+    "yongin-giheung:seat:0056": "YI-4b8c7d043b75c6d31fb4",
+    "yongin-giheung:seat:0057": "YI-3ea382e3c49e58b23a99",
+    "yongin-giheung:seat:0058": "YI-a1050c7a4a1938a3daf2",
+    "yongin-giheung:seat:0059": "YI-e801d255cdbfa04dab8e",
+    "yongin-giheung:seat:0060": "YI-56d62e1a9d87d5e103cc",
+    "yongin-giheung:seat:0061": "YI-9af06529010889d5c5a1",
+    "yongin-giheung:seat:0062": "YI-d1cb0e227f82c67981b0",
+    "yongin-giheung:seat:0063": "YI-4c9e8cb33c10c2bd6fc4",
+    "yongin-giheung:seat:0064": "YI-6d79c910264471758339",
+    "yongin-giheung:seat:0065": "YI-a1b5026f1c60ac7751fb",
+    "yongin-giheung:seat:0066": "YI-91cb6b24f3359638d7b6",
+    "yongin-giheung:seat:0067": "YI-3627b866233182ec56a6",
+    "yongin-giheung:seat:0068": "YI-180910520fc8dad8838f",
+    "yongin-giheung:seat:0069": "YI-4bed7130fdb5d6c72399",
+    "yongin-giheung:seat:0070": "YI-caf119eb0e54241c3ccd",
+    "yongin-giheung:seat:0071": "YI-1ac7ae29643375aad859",
+    "yongin-giheung:seat:0072": "YI-495ada6b55126c6f3f6f",
+    "yongin-giheung:seat:0073": "YI-6cd049f923a9df0e7ae4",
+    "yongin-giheung:seat:0074": "YI-439ca247072187b3b9db",
+    "yongin-giheung:seat:0075": "YI-769207a9fadb35a1f806",
+    "yongin-giheung:seat:0076": "YI-2d604e9a5d6e7dd9f31c",
+    "yongin-giheung:seat:0077": "YI-aa694c5b1f0b9af25832",
+    "yongin-giheung:seat:0078": "YI-3019ed2ecc4d61f015c4",
+    "yongin-giheung:seat:0079": "YI-02185494ead6b0f62096",
+    "yongin-giheung:seat:0080": "YI-1122479b30b549442632",
+    "yongin-giheung:seat:0081": "YI-4f6d6bd4479ee835218c",
+    "yongin-giheung:seat:0082": "YI-435dee09d1a7f1f195b3",
+    "yongin-giheung:seat:0083": "YI-4958d7ebfcd8732aac85",
+    "yongin-giheung:seat:0084": "YI-405cd2fa6293ca310b15",
+    "yongin-giheung:seat:0085": "YI-f98361bb3f62a955ad9a",
+    "yongin-giheung:seat:0086": "YI-6c476378a5e50298786c",
+    "yongin-giheung:seat:0087": "YI-ec17305e8a61dedfc4b3",
+    "yongin-giheung:seat:0088": "YI-7b81c0be37de191cb56b",
+    "yongin-giheung:seat:0089": "YI-956fe80eee7e69bd05fe",
+    "yongin-giheung:seat:0090": "YI-5d63f4000abe18a9bcef",
+    "yongin-giheung:seat:0091": "YI-efa167ebe8cafdb19839",
+    "yongin-giheung:seat:0092": "YI-bd5d508d27fee026e3ce",
+    "yongin-giheung:seat:0093": "YI-e888666e9a3a714db0ce",
+    "yongin-giheung:seat:0094": "YI-e90115c7c9f999917de5",
+    "yongin-giheung:seat:0095": "YI-6036be709ba3dfd1b0d5",
+    "yongin-giheung:seat:0096": "YI-e55bcb779accb35e6e96",
+    "yongin-giheung:seat:0097": "YI-87009186d8b19ab08ed8",
+    "yongin-giheung:seat:0098": "YI-8194ec7a5b0ed40bbc24",
+    "yongin-giheung:seat:0099": "YI-06f51a2dbadd5ff6f5c8",
+    "yongin-giheung:seat:0100": "YI-3024426a6766b323f46b",
+    "yongin-giheung:seat:0101": "YI-d6fef9f8196283d6bf75",
+    "yongin-giheung:seat:0102": "YI-b880e585f360b1935dbc",
+    "yongin-giheung:seat:0103": "YI-63f6074c4a1036a84443",
+    "yongin-giheung:seat:0104": "YI-4ac3a6e643cd38be9ba6",
+    "yongin-giheung:seat:0105": "YI-2588f94e0775a796dc83",
+    "yongin-giheung:seat:0106": "YI-6818c9c6307acc5191a2",
+    "yongin-giheung:seat:0107": "YI-35ec93a8df898802fdff",
+    "yongin-giheung:seat:0108": "YI-8e05420b1c0c57b3eb5a",
+    "yongin-giheung:seat:0109": "YI-03db7566f050a0759da8",
+    "yongin-giheung:seat:0110": "YI-fa596eb16fcb1fa65ffc",
+    "yongin-giheung:seat:0111": "YI-df848510df50d2a7f7ef",
+    "yongin-giheung:seat:0112": "YI-8992b8f6975e38097425",
+    "yongin-giheung:seat:0113": "YI-05dbd448252abd762099",
+    "yongin-giheung:seat:0114": "YI-0335687e6050e1337ae9",
+    "yongin-giheung:seat:0115": "YI-f95d50126d356476a1e2",
+    "yongin-giheung:seat:0116": "YI-11c23f79132287990dff",
+    "yongin-giheung:seat:0117": "YI-039dc831ba297de3d9d3",
+    "yongin-giheung:seat:0118": "YI-bad4bbce1f945c3cbb98",
+    "yongin-giheung:seat:0119": "YI-3789a9801c6324cb932b",
+    "yongin-giheung:seat:0120": "YI-e6d1c9de1a0fd95ee099",
+    "yongin-giheung:seat:0121": "YI-5824939885ad819a3879",
+    "yongin-giheung:seat:0122": "YI-557d4b72e8ca00d0e984",
+    "yongin-giheung:seat:0123": "YI-19c496eba29fad4410a2",
+    "yongin-giheung:seat:0124": "YI-f85c7198a87101fd2906",
+    "yongin-giheung:seat:0125": "YI-4e269029946c12420c25",
+    "yongin-giheung:seat:0126": "YI-904774d9d8ad6e0d5003",
+    "yongin-giheung:seat:0127": "YI-c2978128ddefe9798c2c",
+    "yongin-giheung:seat:0128": "YI-48f7b1bba90c2cf6b605",
+    "yongin-giheung:seat:0129": "YI-6a8e6deb2d56ce9e0f2d",
+    "yongin-giheung:seat:0130": "YI-3ba409121049ab2be70c",
+    "yongin-giheung:seat:0131": "YI-e2a28319544bc8013c91",
+    "yongin-giheung:seat:0132": "YI-a6fff619d925abbaa9d9",
+    "yongin-giheung:seat:0133": "YI-fdd1bdfe8e735c1c00e6",
+    "yongin-giheung:seat:0134": "YI-5840315aa6e42de5000f",
+    "yongin-giheung:seat:0135": "YI-3c7ea932e797a2a6550f",
+    "yongin-giheung:seat:0136": "YI-d51eb5bf9f2b3c8699b2",
+    "yongin-giheung:seat:0137": "YI-5e05f86c50d3697b159d",
+    "yongin-giheung:seat:0138": "YI-ac1b8ff3605e2365aaab",
+    "yongin-giheung:seat:0139": "YI-162467cceab5c1f631b3",
+    "yongin-giheung:seat:0140": "YI-51ed8f705229ae3d4d9c",
+    "yongin-giheung:seat:0141": "YI-60ceaf0a016fed3d2f14",
+    "yongin-giheung:seat:0142": "YI-3de912c97e87efdaa1dd",
+    "yongin-giheung:seat:0143": "YI-35ee0fa6fb05f37518ef",
+    "yongin-giheung:seat:0144": "YI-b2b8842197b4de67506f",
+    "yongin-giheung:seat:0145": "YI-6388cdf968c2fd62ac7c",
+    "yongin-giheung:seat:0146": "YI-bd09e6e046da4dc650c0",
+    "yongin-giheung:seat:0147": "YI-87a2a3d0bea9534b325d",
+    "yongin-giheung:seat:0148": "YI-5cdc3c032165901b0e21"
+  },
+  "notes_schema": "target_schema.json이 레코드 additionalProperties:false라서 library_id 필드를 스키마에 없는 sources 등에 추가하지 않았다. 전역 유일성은 ID 접두사 `yongin-giheung:`로 보장.",
+  "visible_room_zones": [
+    {
+      "map_id": "yongin-giheung:map:floorplan-main-1f",
+      "label": "어린이자료실",
+      "polygon": [
+        [
+          103,
+          18
+        ],
+        [
+          223,
+          18
+        ],
+        [
+          223,
+          213
+        ],
+        [
+          192,
+          213
+        ],
+        [
+          192,
+          233
+        ],
+        [
+          147,
+          235
+        ],
+        [
+          145,
+          153
+        ],
+        [
+          103,
+          153
+        ]
+      ],
+      "verification": "model_candidate",
+      "coordinate_error_px": "약 ±3~5"
+    },
+    {
+      "map_id": "yongin-giheung:map:floorplan-main-2f",
+      "label": "제1종합자료실",
+      "polygon": [
+        [
+          138,
+          22
+        ],
+        [
+          230,
+          55
+        ],
+        [
+          230,
+          229
+        ],
+        [
+          160,
+          227
+        ],
+        [
+          159,
+          191
+        ],
+        [
+          125,
+          191
+        ],
+        [
+          83,
+          175
+        ]
+      ],
+      "verification": "model_candidate",
+      "coordinate_error_px": "약 ±3~5"
+    },
+    {
+      "map_id": "yongin-giheung:map:floorplan-main-2f",
+      "label": "디지털자료실",
+      "polygon": [
+        [
+          83,
+          175
+        ],
+        [
+          125,
+          191
+        ],
+        [
+          125,
+          275
+        ],
+        [
+          45,
+          275
+        ],
+        [
+          50,
+          248
+        ]
+      ],
+      "verification": "model_candidate",
+      "coordinate_error_px": "약 ±3~5"
+    },
+    {
+      "map_id": "yongin-giheung:map:floorplan-main-3f",
+      "label": "제2종합자료실",
+      "polygon": [
+        [
+          152,
+          12
+        ],
+        [
+          250,
+          49
+        ],
+        [
+          250,
+          219
+        ],
+        [
+          183,
+          219
+        ],
+        [
+          183,
+          193
+        ],
+        [
+          148,
+          193
+        ],
+        [
+          148,
+          208
+        ],
+        [
+          90,
+          208
+        ]
+      ],
+      "verification": "model_candidate",
+      "coordinate_error_px": "약 ±3~5"
+    },
+    {
+      "map_id": "yongin-giheung:map:floorplan-annex-1f",
+      "label": "시청각실",
+      "polygon": [
+        [
+          94,
+          85
+        ],
+        [
+          175,
+          83
+        ],
+        [
+          175,
+          68
+        ],
+        [
+          230,
+          81
+        ],
+        [
+          230,
+          184
+        ],
+        [
+          98,
+          184
+        ],
+        [
+          98,
+          138
+        ],
+        [
+          94,
+          138
+        ]
+      ],
+      "verification": "model_candidate",
+      "coordinate_error_px": "약 ±3~5"
+    },
+    {
+      "map_id": "yongin-giheung:map:floorplan-annex-2f",
+      "label": "열람실",
+      "polygon": [
+        [
+          55,
+          48
+        ],
+        [
+          175,
+          77
+        ],
+        [
+          175,
+          171
+        ],
+        [
+          108,
+          171
+        ],
+        [
+          108,
+          177
+        ],
+        [
+          39,
+          177
+        ],
+        [
+          39,
+          112
+        ],
+        [
+          55,
+          112
+        ]
+      ],
+      "verification": "model_candidate",
+      "coordinate_error_px": "약 ±3~5"
+    }
+  ],
+  "facility_floor_plan_extraction": {
+    "method": "공식 층별도 이미지를 내려받아(스크래치) 육안으로 판독, 좌표 오버레이 미리보기로 재확인",
+    "robots_checked": "lib.yongin.go.kr/robots.txt: 일반 UA 제한 규칙 없음, 요청 1초 간격, UA SeatComMetadata/1.0",
+    "facility_count": 13
+  }
+}

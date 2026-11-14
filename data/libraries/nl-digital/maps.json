@@ -1,0 +1,19 @@
+[
+  {
+    "map_id": "nl-digital:map:plan-2020",
+    "library_id": "nl-digital",
+    "floor_id": null,
+    "room_id": null,
+    "width": 1116,
+    "height": 780,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate",
+    "image_path": "assets/digital_library_plan_2020_BIN0007.png",
+    "map_kind": "floor_plan"
+  }
+]

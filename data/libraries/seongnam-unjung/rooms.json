@@ -1,0 +1,53 @@
+[
+  {
+    "room_id": "seongnam-unjung:room:01",
+    "library_id": "seongnam-unjung",
+    "name": "열람실1(성인전용)",
+    "floor_id": null,
+    "capacity": 32,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-unjung:room:02",
+    "library_id": "seongnam-unjung",
+    "name": "열람실1",
+    "floor_id": null,
+    "capacity": 72,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-unjung:room:03",
+    "library_id": "seongnam-unjung",
+    "name": "열람실2(노트북실)",
+    "floor_id": null,
+    "capacity": 39,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  }
+]

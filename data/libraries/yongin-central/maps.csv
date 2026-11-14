@@ -1,0 +1,4 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+yongin-central:map:floor-B1,yongin-central,B1,,750,478,pixel,top_left,right,down,,,floor_plan,yongin-central:source:floorplan-B1,model_candidate,2026-11-14
+yongin-central:map:floor-F1,yongin-central,F1,,750,478,pixel,top_left,right,down,,,floor_plan,yongin-central:source:floorplan-F1,model_candidate,2026-11-14
+yongin-central:map:floor-F2,yongin-central,F2,,750,478,pixel,top_left,right,down,,,floor_plan,yongin-central:source:floorplan-F2,model_candidate,2026-11-14

@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+seongnam-pangyo,seongnam-pangyo:room:02,laptopAllowed,true,,"{""basis"":""열람실명 '노트북전용실'에 직접 포함"",""observed_on"":""2026-05-19"",""currentness"":""2026-05-19 공개 CSV 기준; 현행 이용규정 미확인""}",user_report,seongnam-pangyo:source:public-csv-15032433,,unverified,true,,,2026-11-14

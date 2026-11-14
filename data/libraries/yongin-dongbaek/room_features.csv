@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+yongin-dongbaek,yongin-dongbaek:room:4,laptopAllowed,true,,"{""basis"":""공식 좌석현황 열람실명 \""노트북석\"""",""observed_on"":""2026-11-14"",""timezone"":""Asia/Seoul""}",model_inference,yongin-dongbaek:src:seatmate4,0.8,model_candidate,true,,,2026-11-14

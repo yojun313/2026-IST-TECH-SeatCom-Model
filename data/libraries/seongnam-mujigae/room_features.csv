@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+seongnam-mujigae,seongnam-mujigae:room:02,laptopAllowed,true,,"{""basis"":""열람실 명칭에 '노트북'이 직접 표기됨"",""observed_name"":""노트북열람실"",""data_date"":""2026-05-19"",""currency_limit"":""명칭 기반, 현장 규정 미확인""}",model_inference,seongnam-mujigae:source:datagokr-15032433,,model_candidate,,,,2026-11-14

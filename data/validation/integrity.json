@@ -3,6 +3,7 @@
   "checks": [
     "모든 JSON 구문 정상",
     "catalog/reference_room_candidates.csv: BOM/컬럼/전체값/JSON/날짜 일치",
+    "catalog/library_build_tasks.csv: BOM/컬럼/전체값/JSON/날짜 일치",
     "catalog/library_feasibility.csv: BOM/컬럼/전체값/JSON/날짜 일치",
     "catalog/reference_library_candidates.csv: BOM/컬럼/전체값/JSON/날짜 일치",
     "seats/seongnam_central_A.csv: BOM/컬럼/전체값/JSON/날짜 일치",
@@ -12,12 +13,27 @@
     "용인1318개: 고유객체ID/양수크기/미확인 공식ID null 유지",
     "도서관별 타당성27행/중복 없음",
     "참고 저장소 후보91기관/222열람실/205주소/복합키 중복 없음",
+    "도서관27관: schema 1.1/배열·개별JSON/일관된 CSV헤더·BOM·행수·library_id/상태필드 제외 확인",
+    "도서관27관: 좌석 bbox 범위, 시설 좌표 범위, 열람실·좌석·지도·출처 외래키 확인",
     "README/HANDOFF/참고 저장소 검토서 내부 링크 유효"
   ],
+  "library_dataset_counts": {
+    "libraries": 27,
+    "rooms": 94,
+    "maps": 34,
+    "seats": 2111,
+    "facilities": 73,
+    "room_features": 29,
+    "seat_features": 0,
+    "walkway_nodes": 6,
+    "walkway_edges": 0,
+    "map_transforms": 0,
+    "sources": 109
+  },
   "limitations": [
     "무결성 통과는 OCR 실제 정확도·물리 좌표 정합성·현행성·서비스 이미지 이용조건을 입증하지 않음.",
-    "169개 좌석 전수 눈검수와 용인1318개 공식ID 매핑은 미완료.",
-    "에어컨·화장실 등의 시설 좌표를 아직 생성하지 않음."
+    "모든 좌석 2111건과 시설 73건은 model_candidate이며 현장/사람 검수 완료가 아님.",
+    "일부 기관은 지도 이미지·좌석번호·시설도·위경도·실시간 좌석 공급이 미확보."
   ],
   "데이터기준일자": "2026-11-14"
 }

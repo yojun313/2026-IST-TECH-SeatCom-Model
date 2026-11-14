@@ -1,0 +1,36 @@
+[
+  {
+    "room_id": "incheon-gyeyang:room:02",
+    "name": "partition",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "official room table: 칸막이 유무 O",
+      "observed_on": "2026-11-14",
+      "note": "현재 운영 상황에 따라 변동될 수 있음"
+    },
+    "method": "diagram_extraction",
+    "source_id": "incheon-gyeyang:source:official-room-guide",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "incheon-gyeyang"
+  },
+  {
+    "room_id": "incheon-gyeyang:room:03",
+    "name": "partition",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "official room table: 칸막이 유무 O",
+      "observed_on": "2026-11-14",
+      "note": "현재 운영 상황에 따라 변동될 수 있음"
+    },
+    "method": "diagram_extraction",
+    "source_id": "incheon-gyeyang:source:official-room-guide",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "incheon-gyeyang"
+  }
+]

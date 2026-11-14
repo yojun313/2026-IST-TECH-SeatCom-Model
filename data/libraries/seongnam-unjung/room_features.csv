@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+seongnam-unjung,seongnam-unjung:room:03,laptopAllowed,true,,"{""basis"":""열람실명 '열람실2(노트북실)'에 노트북 명시"",""reference_date"":""2026-05-19"",""limit"":""공개 CSV 과거 스냅샷; 현행 규정 미확인"",""method_note"":""공개 CSV 열람실명 문구를 직접 읽음(스키마상 가장 가까운 enum)""}",model_inference,seongnam-unjung:source:data-go-kr-15032433,,model_candidate,,,,2026-11-14

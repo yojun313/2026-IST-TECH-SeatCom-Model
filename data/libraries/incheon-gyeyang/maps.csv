@@ -1,0 +1,2 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+incheon-gyeyang:map:3f-layout,incheon-gyeyang,3F,,663,463,pixel,top_left,right,down,,,floor_plan,incheon-gyeyang:source:official-facility-layout,model_candidate,2026-11-14

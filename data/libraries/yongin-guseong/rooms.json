@@ -1,0 +1,53 @@
+[
+  {
+    "room_id": "yongin-guseong:room:1",
+    "library_id": "yongin-guseong",
+    "name": "열람실 ID 1 (공식 명칭 미확인)",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-guseong:source:data-go-kr-15154878",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "yongin-guseong:room:2",
+    "library_id": "yongin-guseong",
+    "name": "열람실 ID 2 (공식 명칭 미확인)",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-guseong:source:data-go-kr-15154878",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "yongin-guseong:room:3",
+    "library_id": "yongin-guseong",
+    "name": "열람실 ID 3 (공식 명칭 미확인)",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-guseong:source:data-go-kr-15154878",
+    "verification": "unverified"
+  }
+]

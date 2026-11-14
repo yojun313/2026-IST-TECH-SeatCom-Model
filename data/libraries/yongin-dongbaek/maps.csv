@@ -1,0 +1,5 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+yongin-dongbaek:map:seat_layout:1,yongin-dongbaek,,yongin-dongbaek:room:1,1000,700,pixel,top_left,right,down,,,seat_button_layout,yongin-dongbaek:src:seatmate1,model_candidate,2026-11-14
+yongin-dongbaek:map:seat_layout:2,yongin-dongbaek,,yongin-dongbaek:room:2,1000,700,pixel,top_left,right,down,,,seat_button_layout,yongin-dongbaek:src:seatmate2,model_candidate,2026-11-14
+yongin-dongbaek:map:seat_layout:4,yongin-dongbaek,,yongin-dongbaek:room:4,1000,700,pixel,top_left,right,down,,,seat_button_layout,yongin-dongbaek:src:seatmate4,model_candidate,2026-11-14
+yongin-dongbaek:map:floor_plan:F3,yongin-dongbaek,3F,,375,463,pixel,top_left,right,down,,,floor_plan,yongin-dongbaek:src:floorplan,model_candidate,2026-11-14

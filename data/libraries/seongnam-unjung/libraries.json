@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "seongnam-unjung",
+    "name": "운중도서관",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  }
+]

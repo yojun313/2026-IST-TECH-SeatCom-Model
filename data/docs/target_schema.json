@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:seatcom:static-library-layout:1.0",
+  "$id": "urn:seatcom:static-library-layout:1.1",
   "title": "공공도서관 정적 좌석·시설 최종 번들 구조",
-  "description": "현재 추출 CSV의 형식이 아닌 다음 단계 목표 형식. null은 미확인이며 false와 다르다. 이용상태/성별/이용시각 제외. 실제 참조ID·좌표범위·좌표단위 정합은 별도 검증 필요.",
+  "description": "최종 구축 번들 v1.1. 기존 v1.0에 도서관/열람실 마스터·열람실 특성·이미지 경로를 보완. 수집 후보 CSV와 API camelCase는 별도 형식. null은 미확인이며 false/0과 다르다. 관계 ID·범위·측정단위는 별도 검증.",
   "type": "object",
   "properties": {
     "schema_version": {
-      "const": "1.0"
+      "const": "1.1"
     },
     "sources": {
       "type": "array",
@@ -55,6 +55,28 @@
       "items": {
         "$ref": "#/$defs/facility"
       }
+    },
+    "libraries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/library"
+      }
+    },
+    "rooms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/room"
+      }
+    },
+    "room_features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/room_feature"
+      }
+    },
+    "library_id": {
+      "type": "string",
+      "description": "번들 단일 도서관을 편리하게 식별하는 선택 필드. 배열 레코드의 library_id가 기본 기준."
     }
   },
   "required": [
@@ -66,7 +88,10 @@
     "map_transforms",
     "walkway_nodes",
     "walkway_edges",
-    "seat_features"
+    "seat_features",
+    "libraries",
+    "rooms",
+    "room_features"
   ],
   "additionalProperties": false,
   "$defs": {
@@ -117,6 +142,16 @@
             "string",
             "null"
           ]
+        },
+        "local_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "library_id": {
+          "type": "string",
+          "description": "도서관별 데이터 필터와 학습 분할을 위한 내부 ID"
         }
       },
       "required": [
@@ -195,6 +230,20 @@
             "human_checked",
             "field_verified"
           ]
+        },
+        "image_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "map_kind": {
+          "enum": [
+            "floor_plan",
+            "room_plan",
+            "seat_button_layout",
+            "perspective_illustration"
+          ]
         }
       },
       "required": [
@@ -210,7 +259,9 @@
         "y_direction",
         "meters_per_unit",
         "source_id",
-        "verification"
+        "verification",
+        "image_path",
+        "map_kind"
       ],
       "additionalProperties": false
     },
@@ -288,6 +339,13 @@
             "human_checked",
             "field_verified"
           ]
+        },
+        "geometry_object_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "좌석 geometry 추출 원본의 객체 ID. 공식 좌석 ID와 구분"
         }
       },
       "required": [
@@ -331,7 +389,8 @@
             "column",
             "water_dispenser",
             "elevator",
-            "stairs"
+            "stairs",
+            "wall"
           ]
         },
         "geometry": {
@@ -535,7 +594,28 @@
         "source_id",
         "verification"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "homography"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "control_points": {
+                "minItems": 4
+              }
+            }
+          }
+        }
+      ]
     },
     "walkway_node": {
       "type": "object",
@@ -582,6 +662,10 @@
             "human_checked",
             "field_verified"
           ]
+        },
+        "library_id": {
+          "type": "string",
+          "description": "도서관별 데이터 필터와 학습 분할을 위한 내부 ID"
         }
       },
       "required": [
@@ -702,6 +786,20 @@
             "human_checked",
             "field_verified"
           ]
+        },
+        "normalized_value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "normalization_version": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [
@@ -715,7 +813,388 @@
         "confidence",
         "verification"
       ],
+      "additionalProperties": false,
+      "description": "value+unit은 원시 관측값. normalized_value는 features-1 규칙으로 계산하고 버전을 명시한 경우만 제공."
+    },
+    "library": {
+      "type": "object",
+      "properties": {
+        "library_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "latitude": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": -180,
+          "maximum": 180
+        },
+        "timezone": {
+          "const": "Asia/Seoul"
+        },
+        "external_ids": {
+          "type": "object",
+          "properties": {
+            "stdg_cd": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "pblib_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "stdg_cd",
+            "pblib_id"
+          ],
+          "additionalProperties": false
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "library_id",
+        "name",
+        "address",
+        "latitude",
+        "longitude",
+        "timezone",
+        "external_ids",
+        "source_id",
+        "verification"
+      ],
       "additionalProperties": false
+    },
+    "room": {
+      "type": "object",
+      "properties": {
+        "room_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "library_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "floor_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "capacity": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "assignment": {
+          "enum": [
+            "assigned",
+            "free",
+            "unknown"
+          ]
+        },
+        "usage_rules": {
+          "type": "object",
+          "properties": {
+            "laptop_allowed": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "keyboard_allowed": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "minimum_age": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "maximum_age": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "laptop_allowed",
+            "keyboard_allowed",
+            "minimum_age",
+            "maximum_age"
+          ],
+          "additionalProperties": false
+        },
+        "opening_hours": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "timezone": {
+                  "const": "Asia/Seoul"
+                },
+                "weekly": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "day": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 6
+                      },
+                      "opens": {
+                        "type": "string",
+                        "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+                      },
+                      "closes": {
+                        "type": "string",
+                        "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+                      },
+                      "ends_next_day": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "day",
+                      "opens",
+                      "closes",
+                      "ends_next_day"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "effective_from": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                },
+                "effective_until": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                }
+              },
+              "required": [
+                "timezone",
+                "weekly",
+                "effective_from",
+                "effective_until"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        },
+        "external_room_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "원본 기관/서비스의 열람실 ID"
+        },
+        "official_room_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "공식 원본에서 확인한 열람실 식별자"
+        },
+        "external_room_id_source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "opening_hours_source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "capacity_sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "room_id",
+        "library_id",
+        "name",
+        "floor_id",
+        "capacity",
+        "assignment",
+        "usage_rules",
+        "opening_hours",
+        "source_id",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "room_feature": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": [
+            "number",
+            "string",
+            "boolean",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "context": {
+          "type": "object"
+        },
+        "method": {
+          "enum": [
+            "diagram_extraction",
+            "field_measurement",
+            "sensor",
+            "user_report",
+            "model_inference"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        },
+        "normalized_value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "normalization_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "room_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applies_to_all_seats": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "library_id": {
+          "type": "string",
+          "description": "도서관별 데이터 필터와 학습 분할을 위한 내부 ID"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "unit",
+        "context",
+        "method",
+        "source_id",
+        "confidence",
+        "verification",
+        "room_id",
+        "applies_to_all_seats"
+      ],
+      "additionalProperties": false,
+      "description": "value+unit은 원시 관측값. normalized_value는 features-1 규칙으로 계산하고 버전을 명시한 경우만 제공."
     }
   }
 }

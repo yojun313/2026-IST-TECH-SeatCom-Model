@@ -1,0 +1,36 @@
+[
+  {
+    "room_id": "seongnam-haeoreum:room:01",
+    "library_id": "seongnam-haeoreum",
+    "name": "일반열람실",
+    "floor_id": null,
+    "capacity": 182,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-haeoreum:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-haeoreum:room:02",
+    "library_id": "seongnam-haeoreum",
+    "name": "노트북실",
+    "floor_id": null,
+    "capacity": 42,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-haeoreum:source:datagokr-15032433",
+    "verification": "model_candidate"
+  }
+]

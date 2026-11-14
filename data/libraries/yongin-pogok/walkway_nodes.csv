@@ -1,0 +1,3 @@
+﻿도서관ID,노드ID,지도ID,좌표,노드종류,대상ID,출처ID,검수상태,데이터기준일자
+yongin-pogok,yongin-pogok:node:door-r1,yongin-pogok:map:room1,"[92.0,663.5]",door,yongin-pogok:facility:entrance-r1,yongin-pogok:source:room1_image,model_candidate,2026-11-14
+yongin-pogok,yongin-pogok:node:door-r2,yongin-pogok:map:room2,"[939.5,782.0]",door,yongin-pogok:facility:entrance-r2,yongin-pogok:source:room2_image,model_candidate,2026-11-14

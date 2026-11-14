@@ -1,0 +1,179 @@
+[
+  {
+    "room_id": "incheon-gyeyang:room:01",
+    "library_id": "incheon-gyeyang",
+    "name": "제1열람실(스마트열람실)",
+    "floor_id": "3F",
+    "capacity": 264,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "incheon-gyeyang:source:official-room-guide",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "incheon-gyeyang:room:02",
+    "library_id": "incheon-gyeyang",
+    "name": "제2열람실",
+    "floor_id": "3F",
+    "capacity": 192,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "incheon-gyeyang:source:official-room-guide",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "incheon-gyeyang:room:03",
+    "library_id": "incheon-gyeyang",
+    "name": "제3열람실",
+    "floor_id": "3F",
+    "capacity": 150,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "incheon-gyeyang:source:official-room-guide",
+    "verification": "model_candidate"
+  }
+]

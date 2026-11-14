@@ -1,0 +1,28 @@
+[
+  {
+    "node_id": "yongin-pogok:node:door-r1",
+    "map_id": "yongin-pogok:map:room1",
+    "point": [
+      92.0,
+      663.5
+    ],
+    "kind": "door",
+    "target_id": "yongin-pogok:facility:entrance-r1",
+    "source_id": "yongin-pogok:source:room1_image",
+    "verification": "model_candidate",
+    "library_id": "yongin-pogok"
+  },
+  {
+    "node_id": "yongin-pogok:node:door-r2",
+    "map_id": "yongin-pogok:map:room2",
+    "point": [
+      939.5,
+      782.0
+    ],
+    "kind": "door",
+    "target_id": "yongin-pogok:facility:entrance-r2",
+    "source_id": "yongin-pogok:source:room2_image",
+    "verification": "model_candidate",
+    "library_id": "yongin-pogok"
+  }
+]

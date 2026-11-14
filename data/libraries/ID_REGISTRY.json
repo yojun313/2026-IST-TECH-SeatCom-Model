@@ -1,0 +1,137 @@
+[
+ {
+  "task_id": "LIB-BUILD-001",
+  "library_id": "yongin-central",
+  "name": "중앙도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-002",
+  "library_id": "yongin-bora",
+  "name": "보라도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-003",
+  "library_id": "yongin-dongbaek",
+  "name": "동백도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-004",
+  "library_id": "yongin-giheung",
+  "name": "기흥도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-005",
+  "library_id": "yongin-guseong",
+  "name": "구성도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-006",
+  "library_id": "yongin-heungdeok",
+  "name": "흥덕도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-007",
+  "library_id": "yongin-jukjeon",
+  "name": "죽전도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-008",
+  "library_id": "yongin-pogok",
+  "name": "포곡도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-009",
+  "library_id": "yongin-sanghyeon",
+  "name": "상현도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-010",
+  "library_id": "yongin-suji",
+  "name": "수지도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-011",
+  "library_id": "yongin-seonong",
+  "name": "서농도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-012",
+  "library_id": "seongnam-central",
+  "name": "성남중앙도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-013",
+  "library_id": "seongnam-gumi",
+  "name": "성남구미도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-014",
+  "library_id": "seongnam-mujigae",
+  "name": "성남무지개도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-015",
+  "library_id": "seongnam-bundang",
+  "name": "성남시분당도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-016",
+  "library_id": "seongnam-sujeong",
+  "name": "성남수정도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-017",
+  "library_id": "seongnam-jungwon",
+  "name": "성남중원도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-018",
+  "library_id": "seongnam-unjung",
+  "name": "운중도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-019",
+  "library_id": "seongnam-pangyo",
+  "name": "판교도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-020",
+  "library_id": "seongnam-pangyo-kids",
+  "name": "판교어린이도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-021",
+  "library_id": "seongnam-haeoreum",
+  "name": "해오름도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-022",
+  "library_id": "seongnam-seohyeon",
+  "name": "서현도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-023",
+  "library_id": "seongnam-bokjeong",
+  "name": "복정도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-024",
+  "library_id": "seongnam-wirye",
+  "name": "위례도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-025",
+  "library_id": "nl-digital",
+  "name": "국립중앙도서관 디지털도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-026",
+  "library_id": "busan-haeundae",
+  "name": "부산광역시립해운대도서관"
+ },
+ {
+  "task_id": "LIB-BUILD-027",
+  "library_id": "incheon-gyeyang",
+  "name": "인천광역시교육청계양도서관"
+ }
+]

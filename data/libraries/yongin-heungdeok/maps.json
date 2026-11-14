@@ -1,0 +1,36 @@
+[
+  {
+    "map_id": "yongin-heungdeok:map:room01",
+    "library_id": "yongin-heungdeok",
+    "floor_id": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "width": 1000,
+    "height": 700,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "image_path": null,
+    "map_kind": "seat_button_layout",
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "map_id": "yongin-heungdeok:map:room02",
+    "library_id": "yongin-heungdeok",
+    "floor_id": "3F",
+    "room_id": "yongin-heungdeok:room:02",
+    "width": 1000,
+    "height": 700,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "image_path": null,
+    "map_kind": "seat_button_layout",
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  }
+]

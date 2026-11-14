@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+seongnam-haeoreum,seongnam-haeoreum:room:02,laptopAllowed,true,,"{""basis"":""열람실 명칭에 '노트북'이 직접 표기됨"",""room_name"":""노트북실"",""reference_date"":""2026-05-19"",""limitation"":""명칭 기반. 규정 원문·현장 미확인""}",model_inference,seongnam-haeoreum:source:datagokr-15032433,0.7,model_candidate,,,,2026-11-14

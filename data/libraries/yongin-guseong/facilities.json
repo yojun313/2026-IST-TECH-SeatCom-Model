@@ -1,0 +1,972 @@
+[
+  {
+    "facility_id": "yongin-guseong:facility:F3-toilet-01",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F3",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          500,
+          297
+        ],
+        [
+          531,
+          297
+        ],
+        [
+          531,
+          338
+        ],
+        [
+          500,
+          338
+        ]
+      ]
+    },
+    "access_point": [
+      523,
+      338
+    ],
+    "attributes": {
+      "label": "장애인화장실",
+      "gender": "accessible",
+      "door_note": "하단 벽 틈(얇은 선)을 문으로 읽음, 불확실",
+      "floor_id": "F3",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F3",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F3-toilet-02",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F3",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          531,
+          297
+        ],
+        [
+          617,
+          297
+        ],
+        [
+          617,
+          348
+        ],
+        [
+          580,
+          348
+        ],
+        [
+          580,
+          338
+        ],
+        [
+          531,
+          338
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(남)",
+      "gender": "male",
+      "floor_id": "F3",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F3",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F3-toilet-03",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F3",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          549,
+          368
+        ],
+        [
+          617,
+          368
+        ],
+        [
+          617,
+          432
+        ],
+        [
+          549,
+          432
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(여)",
+      "gender": "female",
+      "floor_id": "F3",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F3",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F3-elevator-01",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F3",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          499,
+          358
+        ],
+        [
+          549,
+          358
+        ],
+        [
+          549,
+          410
+        ],
+        [
+          499,
+          410
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "E.V",
+      "floor_id": "F3",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F3",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F3-stairs-01",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F3",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          100,
+          190
+        ],
+        [
+          165,
+          190
+        ],
+        [
+          165,
+          236
+        ],
+        [
+          100,
+          236
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(좌측, 이미지에 이름 없음)",
+      "floor_id": "F3",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F3",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F3-stairs-02",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F3",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          393,
+          395
+        ],
+        [
+          462,
+          395
+        ],
+        [
+          462,
+          482
+        ],
+        [
+          393,
+          482
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(중앙 하단, 이름 없음)",
+      "floor_id": "F3",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F3",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F2-toilet-04",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F2",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          500,
+          297
+        ],
+        [
+          531,
+          297
+        ],
+        [
+          531,
+          338
+        ],
+        [
+          500,
+          338
+        ]
+      ]
+    },
+    "access_point": [
+      523,
+      338
+    ],
+    "attributes": {
+      "label": "장애인화장실",
+      "gender": "accessible",
+      "door_note": "하단 벽 틈(얇은 선)을 문으로 읽음, 불확실",
+      "floor_id": "F2",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F2-toilet-05",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F2",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          531,
+          297
+        ],
+        [
+          617,
+          297
+        ],
+        [
+          617,
+          348
+        ],
+        [
+          580,
+          348
+        ],
+        [
+          580,
+          338
+        ],
+        [
+          531,
+          338
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(남)",
+      "gender": "male",
+      "floor_id": "F2",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F2-toilet-06",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F2",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          549,
+          368
+        ],
+        [
+          617,
+          368
+        ],
+        [
+          617,
+          432
+        ],
+        [
+          549,
+          432
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(여)",
+      "gender": "female",
+      "floor_id": "F2",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F2-elevator-02",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F2",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          499,
+          358
+        ],
+        [
+          549,
+          358
+        ],
+        [
+          549,
+          410
+        ],
+        [
+          499,
+          410
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "E.V",
+      "floor_id": "F2",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F2-stairs-03",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F2",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          100,
+          190
+        ],
+        [
+          165,
+          190
+        ],
+        [
+          165,
+          236
+        ],
+        [
+          100,
+          236
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(좌측, 이미지에 이름 없음)",
+      "floor_id": "F2",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F2-stairs-04",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F2",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          393,
+          395
+        ],
+        [
+          462,
+          395
+        ],
+        [
+          462,
+          482
+        ],
+        [
+          393,
+          482
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(중앙 하단, 이름 없음)",
+      "floor_id": "F2",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-toilet-07",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          500,
+          297
+        ],
+        [
+          531,
+          297
+        ],
+        [
+          531,
+          338
+        ],
+        [
+          500,
+          338
+        ]
+      ]
+    },
+    "access_point": [
+      523,
+      338
+    ],
+    "attributes": {
+      "label": "장애인화장실",
+      "gender": "accessible",
+      "door_note": "하단 벽 틈(얇은 선)을 문으로 읽음, 불확실",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-toilet-08",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          531,
+          297
+        ],
+        [
+          617,
+          297
+        ],
+        [
+          617,
+          348
+        ],
+        [
+          580,
+          348
+        ],
+        [
+          580,
+          338
+        ],
+        [
+          531,
+          338
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(남)",
+      "gender": "male",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-toilet-09",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          549,
+          368
+        ],
+        [
+          617,
+          368
+        ],
+        [
+          617,
+          432
+        ],
+        [
+          549,
+          432
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(여)",
+      "gender": "female",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-elevator-03",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          499,
+          358
+        ],
+        [
+          549,
+          358
+        ],
+        [
+          549,
+          410
+        ],
+        [
+          499,
+          410
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "E.V",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-stairs-05",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          100,
+          190
+        ],
+        [
+          165,
+          190
+        ],
+        [
+          165,
+          236
+        ],
+        [
+          100,
+          236
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(좌측, 이미지에 이름 없음)",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-stairs-06",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          393,
+          395
+        ],
+        [
+          462,
+          395
+        ],
+        [
+          462,
+          482
+        ],
+        [
+          393,
+          482
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(중앙 하단, 이름 없음)",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-entrance-01",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "entrance",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        365,
+        268
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "정문",
+      "note": "정문 글자가 가리키는 팔각 출입홀 중심, 문 위치는 불명확",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:F1-entrance-02",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-F1",
+    "type": "entrance",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        463,
+        436
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "부출입구",
+      "note": "라벨 옆 외벽 개구부",
+      "floor_id": "F1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:B1-toilet-10",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-B1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          500,
+          297
+        ],
+        [
+          531,
+          297
+        ],
+        [
+          531,
+          338
+        ],
+        [
+          500,
+          338
+        ]
+      ]
+    },
+    "access_point": [
+      523,
+      338
+    ],
+    "attributes": {
+      "label": "장애인화장실",
+      "gender": "accessible",
+      "door_note": "하단 벽 틈(얇은 선)을 문으로 읽음, 불확실",
+      "floor_id": "B1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-B1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:B1-toilet-11",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-B1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          531,
+          297
+        ],
+        [
+          617,
+          297
+        ],
+        [
+          617,
+          348
+        ],
+        [
+          580,
+          348
+        ],
+        [
+          580,
+          338
+        ],
+        [
+          531,
+          338
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(남)",
+      "gender": "male",
+      "floor_id": "B1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-B1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:B1-toilet-12",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-B1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          549,
+          368
+        ],
+        [
+          617,
+          368
+        ],
+        [
+          617,
+          432
+        ],
+        [
+          549,
+          432
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "화장실(여)",
+      "gender": "female",
+      "floor_id": "B1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-B1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:B1-elevator-04",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-B1",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          499,
+          358
+        ],
+        [
+          549,
+          358
+        ],
+        [
+          549,
+          410
+        ],
+        [
+          499,
+          410
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "E.V",
+      "floor_id": "B1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-B1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:B1-stairs-07",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-B1",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          100,
+          190
+        ],
+        [
+          165,
+          190
+        ],
+        [
+          165,
+          236
+        ],
+        [
+          100,
+          236
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(좌측, 이미지에 이름 없음)",
+      "floor_id": "B1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-B1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-guseong:facility:B1-stairs-08",
+    "library_id": "yongin-guseong",
+    "map_id": "yongin-guseong:map:floor-B1",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          393,
+          395
+        ],
+        [
+          462,
+          395
+        ],
+        [
+          462,
+          482
+        ],
+        [
+          393,
+          482
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label": "계단(중앙 하단, 이름 없음)",
+      "floor_id": "B1",
+      "coord_error_px": "약 ±8px(접힌 선·두꺼운 벽 경계 기준, 출입구 점은 ±25px)",
+      "basis": "층별 안내 일러스트를 눈으로 읽음(층별도 인쇄 라벨)"
+    },
+    "source_id": "yongin-guseong:source:floor-image-B1",
+    "verification": "model_candidate"
+  }
+]

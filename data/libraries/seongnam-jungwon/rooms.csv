@@ -1,0 +1,4 @@
+﻿열람실ID,도서관ID,도서관명,층ID,정원,좌석배정방식,이용규칙,운영시간,출처ID,검수상태,원본열람실ID,공식열람실ID,원본열람실ID출처ID,운영시간출처ID,정원출처ID목록,데이터기준일자
+seongnam-jungwon:room:01,seongnam-jungwon,일반열람실,,264,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-jungwon:source:data-go-kr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-jungwon:room:02,seongnam-jungwon,e-러닝실,,58,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-jungwon:source:data-go-kr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-jungwon:room:03,seongnam-jungwon,e-러닝실(키보드작업가능),,24,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":true,""minimum_age"":null,""maximum_age"":null}",,seongnam-jungwon:source:data-go-kr-15032433,model_candidate,,,,,,2026-11-14

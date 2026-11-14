@@ -1,0 +1,410 @@
+[
+  {
+    "room_id": "nl-digital:room:wonmun-db",
+    "library_id": "nl-digital",
+    "name": "원문DB석",
+    "floor_id": null,
+    "capacity": 20,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:media-data",
+    "library_id": "nl-digital",
+    "name": "미디어자료이용석",
+    "floor_id": null,
+    "capacity": 36,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:digital-left",
+    "library_id": "nl-digital",
+    "name": "디지털열람석 1~84구역",
+    "floor_id": null,
+    "capacity": 84,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:digital-top-right",
+    "library_id": "nl-digital",
+    "name": "상단 우측 85~170구역",
+    "floor_id": null,
+    "capacity": 86,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:curved-desks",
+    "library_id": "nl-digital",
+    "name": "곡선 책상 171~200구역",
+    "floor_id": null,
+    "capacity": 30,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:media-edit",
+    "library_id": "nl-digital",
+    "name": "미디어편집석",
+    "floor_id": null,
+    "capacity": 12,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:laptop-bottom",
+    "library_id": "nl-digital",
+    "name": "노트북·모바일이용석(하단)",
+    "floor_id": null,
+    "capacity": 85,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:seminar-1",
+    "library_id": "nl-digital",
+    "name": "세미나실 1",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:seminar-2",
+    "library_id": "nl-digital",
+    "name": "세미나실 2",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:seminar-3",
+    "library_id": "nl-digital",
+    "name": "세미나실 3",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:seminar-4",
+    "library_id": "nl-digital",
+    "name": "세미나실 4",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:seminar-5",
+    "library_id": "nl-digital",
+    "name": "세미나실 5",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-1",
+    "library_id": "nl-digital",
+    "name": "스튜디오 1",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-2",
+    "library_id": "nl-digital",
+    "name": "스튜디오 2",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-3",
+    "library_id": "nl-digital",
+    "name": "스튜디오 3",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-4",
+    "library_id": "nl-digital",
+    "name": "스튜디오 4",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-5",
+    "library_id": "nl-digital",
+    "name": "스튜디오 5",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-6",
+    "library_id": "nl-digital",
+    "name": "스튜디오 6",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-7",
+    "library_id": "nl-digital",
+    "name": "스튜디오 7",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-8",
+    "library_id": "nl-digital",
+    "name": "스튜디오 8",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-9",
+    "library_id": "nl-digital",
+    "name": "스튜디오 9",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:studio-10",
+    "library_id": "nl-digital",
+    "name": "스튜디오 10",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:media-edu",
+    "library_id": "nl-digital",
+    "name": "미디어교육실",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "nl-digital:room:culture-hall",
+    "library_id": "nl-digital",
+    "name": "문화소강당",
+    "floor_id": null,
+    "capacity": null,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate"
+  }
+]

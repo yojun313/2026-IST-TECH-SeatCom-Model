@@ -1,0 +1,256 @@
+{
+  "library_id": "incheon-gyeyang",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 606,
+    "expected_count_source_id": "incheon-gyeyang:source:official-room-guide",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": 3,
+      "mapped_count": 3,
+      "verification": "model_candidate",
+      "missing_reason": "3층 배치도의 남/여/장애인 화장실 3개를 육안으로 폴리곤화. 문(access_point) 위치 미표시라 null. 다른 층 화장실은 미포함"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "3층 배치도에 출입문 표시 없음"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음. 설비도 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 없음"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 없음"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "방 외곽만 있고 벽 두께·통행 정보 없음"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "3층 배치도에 표시 없음"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "3층 배치도에 표시 없음"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "partition",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 2,
+      "missing_reason": "제2·3열람실(342석)만 열람실 단위 true. 제1열람실은 칸막이 없음 198석/있음 66석 혼재로 좌석 단위 원본 필요"
+    },
+    {
+      "name": "laptopAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null) (안내문에 스마트열람실 무소음 키보드/마우스 권고가 있으나 허용 여부로 단정하지 않음)"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "brightness",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "airflow",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "desk_shape",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "desk_depth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 606,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    }
+  ],
+  "checks": [
+    {
+      "name": "schema 1.1 통과(jsonschema)",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "개별 배열=dataset",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "CSV BOM 및 행 수=JSON",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "전역 ID 중복 없음",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "외래키(source/map/room) 무결성",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "시설 좌표가 map 프레임(663x463) 범위 이내",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "seats 0건: bbox 검사 대상 없음",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    }
+  ],
+  "blockers": [
+    "공식 좌석 배치도/현황 https://seat14.ice.go.kr/web-view/ 가 timeout(연결 응답 없음, robots 포함 2회 요청 모두 실패): 숨은 경로 추측 없이 중단",
+    "3층 배치도 이미지의 서비스 재이용조건 미확인: assets 미복제, 좌표는 육안 후보값",
+    "도서관 위경도 근거 자료 없음: null (거리 추천 비활성)",
+    "stdg_cd/pblib_id 확인 자료 없음: null"
+  ],
+  "next_actions": [
+    "seat14 좌석 현황 화면이 응답하면 정적 좌석 번호·배치만 확보(상태 색 제외)",
+    "제1열람실 칸막이 66석 구역 대응",
+    "화장실 문 위치 라벨링, 출입구·계단·엘리베이터 원본 확보",
+    "배치도 이미지 이용조건 확인 후 assets 반영 여부 결정",
+    "공식 자료에서 도서관 위경도 확보"
+  ]
+}

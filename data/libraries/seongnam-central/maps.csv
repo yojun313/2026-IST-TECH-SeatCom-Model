@@ -1,0 +1,2 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+seongnam-central:map:3f-1-A:seat-buttons,seongnam-central,3F,seongnam-central:room:3f-1-A,3772,1786,pixel,top_left,right,down,,assets/seat_layout_A.svg,seat_button_layout,seongnam-central:source:user-capture-A-76e3778271ac,model_candidate,2026-11-14

@@ -1,0 +1,36 @@
+[
+  {
+    "room_id": "seongnam-sujeong:room:future",
+    "library_id": "seongnam-sujeong",
+    "name": "미래열람실(4층)",
+    "floor_id": "4F",
+    "capacity": 200,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-sujeong:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-sujeong:room:jihye",
+    "library_id": "seongnam-sujeong",
+    "name": "지혜열람실(2층)",
+    "floor_id": "2F",
+    "capacity": 64,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-sujeong:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  }
+]

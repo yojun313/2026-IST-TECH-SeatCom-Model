@@ -1,0 +1,111 @@
+[
+  {
+    "facility_id": "yongin-dongbaek:fac:toilet:F3:female",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          8,
+          4
+        ],
+        [
+          70,
+          4
+        ],
+        [
+          70,
+          48
+        ],
+        [
+          8,
+          48
+        ]
+      ]
+    },
+    "attributes": {
+      "floor": "3F",
+      "gender": "female",
+      "label": "화장실(여)",
+      "geometry_precision": "도면 라벨 영역의 시각적 근사 사각형",
+      "door_location": null
+    },
+    "library_id": "yongin-dongbaek",
+    "map_id": "yongin-dongbaek:map:floor_plan:F3",
+    "access_point": null,
+    "source_id": "yongin-dongbaek:src:floorplan",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-dongbaek:fac:toilet:F3:male",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          18,
+          52
+        ],
+        [
+          84,
+          52
+        ],
+        [
+          84,
+          93
+        ],
+        [
+          18,
+          93
+        ]
+      ]
+    },
+    "attributes": {
+      "floor": "3F",
+      "gender": "male",
+      "label": "화장실(남)",
+      "geometry_precision": "도면 라벨 영역의 시각적 근사 사각형",
+      "door_location": null
+    },
+    "library_id": "yongin-dongbaek",
+    "map_id": "yongin-dongbaek:map:floor_plan:F3",
+    "access_point": null,
+    "source_id": "yongin-dongbaek:src:floorplan",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-dongbaek:fac:elevator:F3:1",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          168,
+          76
+        ],
+        [
+          200,
+          76
+        ],
+        [
+          200,
+          112
+        ],
+        [
+          168,
+          112
+        ]
+      ]
+    },
+    "attributes": {
+      "floor": "3F",
+      "label": "E.V",
+      "geometry_precision": "도면 라벨 영역의 시각적 근사 사각형"
+    },
+    "library_id": "yongin-dongbaek",
+    "map_id": "yongin-dongbaek:map:floor_plan:F3",
+    "access_point": null,
+    "source_id": "yongin-dongbaek:src:floorplan",
+    "verification": "model_candidate"
+  }
+]

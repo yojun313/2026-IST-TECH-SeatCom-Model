@@ -1,0 +1,213 @@
+{
+  "library_id": "busan-haeundae",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "scope": "공식 본관 시설·이용 안내에서 열람 관련 실 4개와 정원/예약 규칙을 구조화. 좌석·지도·시설 위치는 미구축.",
+  "seat_inventory": {
+    "expected_count": 417,
+    "expected_count_source_id": "busan-haeundae:source:official-facility-guide",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 페이지에는 실 배치 이미지 링크만 확인됨. robots disallow upload 경로로 도면 수집하지 않았으며 정확한 좌표 원본 없음."
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "partition",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "windowProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "brightness",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "airflow",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "deskHeight",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "deskWidth",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "viewQuality",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "desk_shape",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    },
+    {
+      "name": "desk_depth",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": null,
+      "missing_reason": "좌석·설비 위치 자료 없음. 이용규정은 노트북 허용 여부나 좌석별 환경 특성을 확정하지 않음."
+    }
+  ],
+  "checks": [
+    {
+      "name": "공식 시설안내 4개 좌석공간 정원 합계 417",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "좌석·위치·현황 데이터 미생성(근거 없음)",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    }
+  ],
+  "blockers": [
+    "home.pen.go.kr/robots.txt (User-agent: *)가 /*/upload/*, /*/na/ntt/selectNttInfo.do* 를 Disallow. 도면 PDF(/upload/haeundaelib/...)와 이를 링크하는 게시글 상세 페이지는 수집하지 않음(문자열 매칭상 경계 사례이나 보수적으로 제외).",
+    "공식 내비게이션을 통해 PDF가 링크된 공개 경로임을 허용된 페이지에서 확인하지 못함. 이용조건 불명.",
+    "기존 HANDOFF 기재 PDF는 2022-10-31 콘센트 증설 조사·교체 예정 자료의 1127x624 래스터이며 좌석번호 판독 불확실, 현행 배치 근거 아님.",
+    "좌석 위치·번호·시설 좌표를 포함한 허용 가능한 정적 원본을 확보하지 못함. 홈페이지의 층별 이미지 파일 경로는 robots의 /upload 제한 및 이미지 재이용조건 미확인으로 내려받지 않음.",
+    "시설안내는 본관/우동분관을 별도 주소로 기재. 본 패키지 busan-haeundae는 본관 주소와 실만 포함하고 우동분관은 별도 기관 ID 부여 전 제외.",
+    "도서관 위경도·stdg_cd·pblib_id는 검증된 공식 근거를 이 작업에서 추가 확보하지 않아 null."
+  ],
+  "next_actions": [
+    "도면의 수집 및 재이용 허가를 확인한 뒤 현행 본관 열람실 배치도를 확보하고 좌석·시설 좌표화.",
+    "전기/설비 도면 또는 현장 측정으로 콘센트·조명·공조 위치와 좌석 특성을 보충.",
+    "우동분관은 독립 library_id로 데이터셋을 분리하고 공식 자료를 별도 연결.",
+    "공식 도서관 위치 좌표와 표준도서관 식별자를 확인해 거리 추천 활성화."
+  ],
+  "room_inventory": {
+    "extracted_count": 4,
+    "capacity_total": 417,
+    "source_ids": [
+      "busan-haeundae:source:official-facility-guide",
+      "busan-haeundae:source:official-use-rules"
+    ]
+  }
+}

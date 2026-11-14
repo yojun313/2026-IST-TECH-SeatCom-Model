@@ -1,0 +1,221 @@
+{
+  "library_id": "seongnam-bundang",
+  "status": "discovery",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 494,
+    "expected_count_source_id": "seongnam-bundang:source:datagokr-15032433",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "water_dispenser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비 원본 미확보(snlib robots 금지, 사용자 제공 캡처 없음)"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "feature": "laptopAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "room_level_records": 3,
+      "missing_reason": "열람실명에 노트북 명시된 3개 실(1열람실 노트북겸용/전용, 2열람실 노트북겸용)만 room_features에 후보로 기록, applies_to_all_seats=null. 나머지(1열람실, 3열람실(성인))는 null"
+    },
+    {
+      "feature": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "partition",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "brightness",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "airflow",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "deskHeight",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "deskWidth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 494,
+      "missing_reason": "원본 없음"
+    }
+  ],
+  "checks": [
+    {
+      "name": "schema_v1.1",
+      "result": "pass"
+    },
+    {
+      "name": "individual_arrays_match_dataset",
+      "result": "pass"
+    },
+    {
+      "name": "foreign_keys_and_unique_ids",
+      "result": "pass"
+    },
+    {
+      "name": "csv_bom_and_row_counts",
+      "result": "pass"
+    },
+    {
+      "name": "capacity_sum",
+      "result": "pass",
+      "detail": "494 == 494(작업표 기존공개정원합)"
+    }
+  ],
+  "blockers": [
+    "snlib.go.kr robots.txt 전경로 금지로 좌석번호·도면 직접 수집 불가(수집 시도하지 않음)",
+    "사용자 제공 분당도서관 캡처/PDF 없음",
+    "도서관 주소·위경도·stdg_cd·pblib_id의 근거 있는 공식 자료를 이번 작업에서 확인하지 못해 null (거리 추천 비활성)",
+    "운영시간·층·좌석배정 방식 미확인",
+    "열람실명 '(성인)'은 minimum_age 수치 근거가 없어 null"
+  ],
+  "next_actions": [
+    "사용자 제공 5개 구역(1열람실, 1열람실 노트북겸용/전용, 2열람실 노트북겸용, 3열람실 성인) 번호도 캡처 및 층별도 확보 후 좌석·시설 추출",
+    "전국도서관표준데이터(data.go.kr 15013109) 등 공식 자료에서 주소·위경도·운영시간 확인",
+    "공식 좌석 ID/표시번호 대응 확인"
+  ]
+}

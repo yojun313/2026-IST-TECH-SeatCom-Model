@@ -1,0 +1,19 @@
+[
+  {
+    "room_id": "nl-digital:room:laptop-bottom",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "도면의 구역 제목 \"노트북·모바일이용석\"",
+      "observed_in": "2020-07 배치도",
+      "currentness": "현행 규정 미확인; 예약·이용 규정 별도 확인 필요"
+    },
+    "method": "diagram_extraction",
+    "source_id": "nl-digital:source:plan-bin0007",
+    "confidence": 0.7,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "nl-digital"
+  }
+]

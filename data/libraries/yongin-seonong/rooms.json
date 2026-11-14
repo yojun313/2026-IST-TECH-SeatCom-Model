@@ -1,0 +1,132 @@
+[
+  {
+    "room_id": "yongin-seonong:room:1",
+    "library_id": "yongin-seonong",
+    "name": "열람실",
+    "floor_id": "2F",
+    "capacity": 80,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-seonong:source:room_csv",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-seonong:room:2",
+    "library_id": "yongin-seonong",
+    "name": "노트북실",
+    "floor_id": "2F",
+    "capacity": 32,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": 101
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-seonong:source:room_csv",
+    "verification": "model_candidate"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-bora",
+    "name": "보라도서관",
+    "address": "경기도 용인시 기흥구 한보라2로 116(보라동 619)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "yongin-bora:source:facility_page",
+    "verification": "model_candidate"
+  }
+]

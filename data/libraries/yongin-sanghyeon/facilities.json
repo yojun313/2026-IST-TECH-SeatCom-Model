@@ -1,0 +1,60 @@
+[
+  {
+    "facility_id": "yongin-sanghyeon:facility:entrance_room1",
+    "library_id": "yongin-sanghyeon",
+    "map_id": "yongin-sanghyeon:map:room1",
+    "type": "entrance",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          465,
+          528
+        ],
+        [
+          465,
+          584
+        ]
+      ]
+    },
+    "access_point": [
+      465,
+      556.0
+    ],
+    "attributes": {
+      "label": "출입문",
+      "extraction": "배경 이미지의 출입문 표시를 시각 판독한 픽셀 좌표(전수 검수 전)"
+    },
+    "source_id": "yongin-sanghyeon:src:bg_room1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-sanghyeon:facility:entrance_room2",
+    "library_id": "yongin-sanghyeon",
+    "map_id": "yongin-sanghyeon:map:room2",
+    "type": "entrance",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          277,
+          471
+        ],
+        [
+          277,
+          527
+        ]
+      ]
+    },
+    "access_point": [
+      277,
+      499.0
+    ],
+    "attributes": {
+      "label": "출입문",
+      "extraction": "배경 이미지의 출입문 표시를 시각 판독한 픽셀 좌표(전수 검수 전)"
+    },
+    "source_id": "yongin-sanghyeon:src:bg_room2",
+    "verification": "model_candidate"
+  }
+]

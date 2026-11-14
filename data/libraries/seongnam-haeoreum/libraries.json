@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "seongnam-haeoreum",
+    "name": "해오름도서관",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "seongnam-haeoreum:source:datagokr-15032433",
+    "verification": "model_candidate"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "room_id": "seongnam-mujigae:room:02",
+    "library_id": "seongnam-mujigae",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실 명칭에 '노트북'이 직접 표기됨",
+      "observed_name": "노트북열람실",
+      "data_date": "2026-05-19",
+      "currency_limit": "명칭 기반, 현장 규정 미확인"
+    },
+    "method": "model_inference",
+    "source_id": "seongnam-mujigae:source:datagokr-15032433",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": null
+  }
+]

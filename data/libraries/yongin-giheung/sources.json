@@ -1,0 +1,143 @@
+[
+  {
+    "source_id": "yongin-giheung:source:datagokr-15154878",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15154878/fileData.do",
+    "sha256": "b8fa6f68b3bbc745ceac09615ebffde9f04b9bd29f191159f1f2bb9c63820b74",
+    "document_date": "2025-11-27",
+    "collected_on": "2026-11-14",
+    "license_status": "공공데이터포털 파일데이터 이용제한 없음(작업표 기재)",
+    "notes": "용인 좌석 ID/열람실 ID/좌석명 CSV 중 기흥도서관 164행(열람실ID 1=148, 2=16). 열람실ID와 열람실명의 대응표는 이 파일에 없음. local_path는 저장소 Data/ 하위 정리본_UTF8.",
+    "local_path": "Data/열람실_좌석추천_데이터/정리본_UTF8/15154878.csv",
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:datagokr-15171450",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15171450/fileData.do",
+    "sha256": "4bc24f565a38f051e700cb6b014b984a3ca652f9cc9fe45123978018e5d23c5c",
+    "document_date": "2026-10-12",
+    "collected_on": "2026-11-14",
+    "license_status": "공공데이터포털 파일데이터(이용조건은 데이터셋 페이지에서 재확인 필요)",
+    "notes": "열람실 그룹별 운영시각·이용연령. 기흥도서관 2행(열람실, 노트북실). 그룹명과 열람실ID의 대응은 미확인.",
+    "local_path": "Data/열람실_좌석추천_데이터/정리본_UTF8/15171450_1.csv",
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:seatmate-gh-classinfo1",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/seatmate_gh/seatmate.php",
+    "sha256": "946d9056c908379e4d0b84b653a40e56f8960a493242fc2013de33e39bcfdd33",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "서비스 이용조건 미확인; 공식 메뉴(열람실 좌석현황)에서 공개 연결. robots.txt에서 해당 경로 제한 없음. 현황(배정/사용) 값은 저장하지 않음",
+    "notes": "공개 탭은 classInfo=1(\"1열람실\") 하나뿐이며 전체 148석. 인코딩 CP949. 좌석 사각형은 background-size 1000x700 컨테이너 안 CSS left/top, 35x34. 사용 중 좌석 번호가 \"배정\"으로 대체되어 번호 복원 불가. HTML 원본은 보관하지 않음(현황 포함).",
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:giheung-floor-page",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/giheung/menu/10898/contents/40076/contents.do",
+    "sha256": "8b866f3053508e17514e05f956352837181ae8faaca7f4ee46411299726be85e",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "층별 안내 이미지의 이용조건 미확인으로 assets에 복제하지 않음",
+    "notes": "주소(우:16960 경기도 용인시 기흥구 기흥로116번길 10(신갈동 산14))와 층별 안내 이미지 6장(본관1~3층, 별관1~3층) 확인. 좌표·축척 없음, 이미지는 내려받지 않음. 별관2층 alt 설명: 홀과 열람실. 본관1층: 남/여 화장실, 어린이 화장실, 수유실.",
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:seatmate-gh-map1-jpg",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/seatmate_gh/images/map/1.jpg",
+    "sha256": "1712d4387a17145cde88d95ff90afbbba6cf5278c136698306f7b92cb9564c0b",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 미확인; assets 미포함",
+    "notes": "좌석화면 배경 1500x1050 JPEG. 페이지는 1000x700으로 축소 표시(배율 1.5). 해시·크기 확인용으로만 사용.",
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:local-yongin-geometry-candidates",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/seatmate_gh/seatmate.php?classInfo=1",
+    "sha256": "87ab98ff804952d0fb8b9c621e1e715c99e4a81ea0785250dfd2259b6ecacac6",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "기존 후보 파일(상태 제거). 원 출처 이용조건은 S_SM과 동일",
+    "notes": "data/candidates/yongin_geometry.json의 기흥도서관 148행. 2026-11-14 현재 공개 HTML을 다시 파싱해 148개 사각형 좌표가 후보와 완전히 일치함을 확인.",
+    "local_path": "data/candidates/yongin_geometry.json",
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:floorplan-main-1f",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F1.png",
+    "sha256": "18c96f46652a9e0a32d0c5027adef126ec012e9cc39c563c8b793d5c1a05816a",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 미확인; assets 미포함(해시·좌표 판독용). robots.txt에서 해당 경로 제한 없음",
+    "notes": "공식 층별 안내 이미지(본관 1층) 275x402px. 안내도 일러스트이며 축척·실측 없음. 육안 판독 좌표 오차 약 ±3~5px.",
+    "local_path": null,
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:floorplan-main-2f",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F2.png",
+    "sha256": "5beac7ba40bdb68b85b718233bf0b97963954f657071344a16af885dea5e8745",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 미확인; assets 미포함(해시·좌표 판독용). robots.txt에서 해당 경로 제한 없음",
+    "notes": "공식 층별 안내 이미지(본관 2층) 260x396px. 안내도 일러스트이며 축척·실측 없음. 육안 판독 좌표 오차 약 ±3~5px.",
+    "local_path": null,
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:floorplan-main-3f",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F3.png",
+    "sha256": "1e7812772448977638e3b86380894f434f7b2f67feb3cbd3b9a3dd8248d1aa9f",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 미확인; assets 미포함(해시·좌표 판독용). robots.txt에서 해당 경로 제한 없음",
+    "notes": "공식 층별 안내 이미지(본관 3층) 391x387px. 안내도 일러스트이며 축척·실측 없음. 육안 판독 좌표 오차 약 ±3~5px.",
+    "local_path": null,
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:floorplan-annex-1f",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F1_annex.png",
+    "sha256": "971af57a5fd606dbeeb2d2e86e74df4dab1935862ac878291db0d223a1a45d2b",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 미확인; assets 미포함(해시·좌표 판독용). robots.txt에서 해당 경로 제한 없음",
+    "notes": "공식 층별 안내 이미지(별관 1층) 290x222px. 안내도 일러스트이며 축척·실측 없음. 육안 판독 좌표 오차 약 ±3~5px.",
+    "local_path": null,
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:floorplan-annex-2f",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F2_annex.png",
+    "sha256": "341bc53d6aa93d3ac3e9baeb125d3355f470dad60dcc4f161cd4d5e03ad82d18",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 미확인; assets 미포함(해시·좌표 판독용). robots.txt에서 해당 경로 제한 없음",
+    "notes": "공식 층별 안내 이미지(별관 2층) 240x200px. 안내도 일러스트이며 축척·실측 없음. 육안 판독 좌표 오차 약 ±3~5px.",
+    "local_path": null,
+    "library_id": "yongin-giheung"
+  },
+  {
+    "source_id": "yongin-giheung:source:floorplan-annex-3f",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F3_annex.png",
+    "sha256": "c09bc52088ab908040f1b51b4ada5bc6fbd9ce987f6d7152ba755b0e2717ed81",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 미확인; assets 미포함(해시·좌표 판독용). robots.txt에서 해당 경로 제한 없음",
+    "notes": "공식 층별 안내 이미지(별관 3층) 318x213px. 안내도 일러스트이며 축척·실측 없음. 육안 판독 좌표 오차 약 ±3~5px.",
+    "local_path": null,
+    "library_id": "yongin-giheung"
+  }
+]

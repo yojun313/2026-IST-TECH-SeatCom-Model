@@ -1,0 +1,53 @@
+[
+  {
+    "room_id": "seongnam-bokjeong:room:r1",
+    "library_id": "seongnam-bokjeong",
+    "name": "제1열람실",
+    "floor_id": null,
+    "capacity": 97,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bokjeong:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-bokjeong:room:r2",
+    "library_id": "seongnam-bokjeong",
+    "name": "제2열람실(칸막이석)",
+    "floor_id": null,
+    "capacity": 103,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bokjeong:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-bokjeong:room:notebook",
+    "library_id": "seongnam-bokjeong",
+    "name": "노트북실",
+    "floor_id": null,
+    "capacity": 92,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-bokjeong:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  }
+]

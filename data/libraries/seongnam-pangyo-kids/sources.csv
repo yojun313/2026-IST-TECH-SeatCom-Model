@@ -1,0 +1,2 @@
+﻿도서관ID,출처ID,출처유형,URL,SHA256,자료기준일,수집일,이용조건,비고,로컬경로,데이터기준일자
+seongnam-pangyo-kids,seongnam-pangyo-kids:source:datagokr-15032433,public_dataset,https://www.data.go.kr/data/15032433/fileData.do,ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b,2026-05-19,2026-11-14,이용제한없음(data.go.kr 파일데이터),성남시 도서관 열람실 CSV 중 판교어린이도서관 4행. 좌석 ID·좌표 없음. sha256은 UTF-8 정리본 기준.,Data/열람실_좌석추천_데이터/정리본_UTF8/15032433.csv,2026-11-14

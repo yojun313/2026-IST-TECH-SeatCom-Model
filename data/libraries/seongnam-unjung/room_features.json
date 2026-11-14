@@ -1,0 +1,20 @@
+[
+  {
+    "room_id": "seongnam-unjung:room:03",
+    "library_id": "seongnam-unjung",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실명 '열람실2(노트북실)'에 노트북 명시",
+      "reference_date": "2026-05-19",
+      "limit": "공개 CSV 과거 스냅샷; 현행 규정 미확인",
+      "method_note": "공개 CSV 열람실명 문구를 직접 읽음(스키마상 가장 가까운 enum)"
+    },
+    "method": "model_inference",
+    "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": null
+  }
+]

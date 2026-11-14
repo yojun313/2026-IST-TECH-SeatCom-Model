@@ -1,0 +1,18 @@
+[
+  {
+    "room_id": "seongnam-jungwon:room:03",
+    "name": "keyboardAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실명에 '키보드작업가능'이 명시됨",
+      "reference_date": "2026-05-19"
+    },
+    "method": "diagram_extraction",
+    "source_id": "seongnam-jungwon:source:data-go-kr-15032433",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": null,
+    "library_id": "seongnam-jungwon"
+  }
+]

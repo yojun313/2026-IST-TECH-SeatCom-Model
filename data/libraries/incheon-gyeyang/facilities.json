@@ -1,0 +1,107 @@
+[
+  {
+    "facility_id": "incheon-gyeyang:facility:toilet-male",
+    "library_id": "incheon-gyeyang",
+    "map_id": "incheon-gyeyang:map:3f-layout",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          125,
+          398
+        ],
+        [
+          174,
+          398
+        ],
+        [
+          174,
+          433
+        ],
+        [
+          125,
+          433
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "male",
+      "label": "남자화장실",
+      "floor_id": "3F"
+    },
+    "source_id": "incheon-gyeyang:source:official-facility-layout",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "incheon-gyeyang:facility:toilet-female",
+    "library_id": "incheon-gyeyang",
+    "map_id": "incheon-gyeyang:map:3f-layout",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          174,
+          379
+        ],
+        [
+          220,
+          379
+        ],
+        [
+          220,
+          433
+        ],
+        [
+          174,
+          433
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "female",
+      "label": "여자화장실",
+      "floor_id": "3F"
+    },
+    "source_id": "incheon-gyeyang:source:official-facility-layout",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "incheon-gyeyang:facility:toilet-accessible",
+    "library_id": "incheon-gyeyang",
+    "map_id": "incheon-gyeyang:map:3f-layout",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          125,
+          379
+        ],
+        [
+          151,
+          379
+        ],
+        [
+          151,
+          398
+        ],
+        [
+          125,
+          398
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "accessible": true,
+      "label": "장애인화장실",
+      "floor_id": "3F"
+    },
+    "source_id": "incheon-gyeyang:source:official-facility-layout",
+    "verification": "model_candidate"
+  }
+]

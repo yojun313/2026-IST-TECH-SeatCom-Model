@@ -1,0 +1,70 @@
+[
+  {
+    "room_id": "seongnam-pangyo:room:01",
+    "library_id": "seongnam-pangyo",
+    "name": "제1일반열람실",
+    "floor_id": null,
+    "capacity": 176,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo:source:public-csv-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-pangyo:room:02",
+    "library_id": "seongnam-pangyo",
+    "name": "노트북전용실",
+    "floor_id": null,
+    "capacity": 99,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo:source:public-csv-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-pangyo:room:03",
+    "library_id": "seongnam-pangyo",
+    "name": "제2일반열람실",
+    "floor_id": null,
+    "capacity": 140,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo:source:public-csv-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-pangyo:room:04",
+    "library_id": "seongnam-pangyo",
+    "name": "성인열람실",
+    "floor_id": null,
+    "capacity": 108,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo:source:public-csv-15032433",
+    "verification": "unverified"
+  }
+]

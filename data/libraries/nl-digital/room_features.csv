@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+nl-digital,nl-digital:room:laptop-bottom,laptopAllowed,true,,"{""basis"":""도면의 구역 제목 \""노트북·모바일이용석\"""",""observed_in"":""2020-07 배치도"",""currentness"":""현행 규정 미확인; 예약·이용 규정 별도 확인 필요""}",diagram_extraction,nl-digital:source:plan-bin0007,0.7,model_candidate,true,,,2026-11-14

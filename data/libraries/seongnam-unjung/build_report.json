@@ -1,0 +1,207 @@
+{
+  "library_id": "seongnam-unjung",
+  "status": "discovery",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "scope": "열람실 마스터(3개)·이용규정(명칭 근거)만 구축. 좌석·지도·시설·통로·특성(좌석)은 원본 없어 빈 배열.",
+  "seat_inventory": {
+    "expected_count": 143,
+    "expected_count_source_id": "seongnam-unjung:source:data-go-kr-15032433",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면·설비도 원본 미확보"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지(열람실 단위 laptopAllowed는 room_features에 1건: 노트북실 명칭)"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "partition",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "brightness",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "airflow",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 143,
+      "missing_reason": "좌석 원본·특성 근거 없음; 추정 금지"
+    }
+  ],
+  "checks": [
+    {
+      "name": "schema_v1.1_with_library_id_extension",
+      "result": "pass"
+    },
+    {
+      "name": "strict_schema_additionalProperties",
+      "result": "expected_fail_only_library_id_extra",
+      "detail": [
+        "Additional properties are not allowed ('library_id' was unexpected)"
+      ]
+    },
+    {
+      "name": "individual_arrays_match_dataset",
+      "result": "pass"
+    },
+    {
+      "name": "csv_bom_and_row_counts",
+      "result": "pass"
+    },
+    {
+      "name": "foreign_keys_and_unique_ids",
+      "result": "pass"
+    },
+    {
+      "name": "capacity_sum",
+      "result": "pass",
+      "detail": "143 == 143(작업표)"
+    }
+  ],
+  "blockers": [
+    "snlib.go.kr robots.txt 전경로 금지로 좌석번호·도면 직접 수집 불가(접근 시도 안 함)",
+    "사용자 제공 운중도서관 캡처/PDF 없음(/home/stadium/.univdash/uploads/에는 운중 자료 없음)",
+    "도서관 주소·위경도·stdg_cd·pblib_id의 공식 근거 자료 미확인으로 null (거리 추천 비활성). 제3자 목록의 PLR010/4113000000은 공식 확인 전이라 사용하지 않음",
+    "운영시간·층·좌석배정 방식 미확인",
+    "열람실명 '(성인전용)'은 minimum_age 수치 근거가 없어 null"
+  ],
+  "next_actions": [
+    "사용자 제공 3개 구역(열람실1(성인전용), 열람실1, 열람실2(노트북실)) 번호 포함 캡처와 층별도 확보 후 좌석·시설 추출",
+    "전국도서관표준데이터 등 공식 자료에서 주소·위경도·운영시간 확인",
+    "공식 좌석 ID/표시번호 대응 확인"
+  ]
+}

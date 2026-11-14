@@ -1,0 +1,19 @@
+[
+  {
+    "room_id": "yongin-pogok:room:2",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "공식 앱 열람실 선택 목록의 명칭 \"노트북실\"",
+      "observed_on": "2026-11-14",
+      "limitation": "명칭 근거만; 키보드·소음 규정 미확인"
+    },
+    "method": "diagram_extraction",
+    "source_id": "yongin-pogok:source:app_render",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "yongin-pogok"
+  }
+]

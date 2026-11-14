@@ -1,0 +1,10 @@
+﻿시설ID,도서관ID,지도ID,시설유형,기하,접근점,속성,출처ID,검수상태,데이터기준일자
+yongin-central:facility:001,yongin-central,yongin-central:map:floor-F2,toilet,"{""type"":""Point"",""coordinates"":[340,94]}",,"{""gender"":""male"",""note"":""아이콘 위치(문 위치 아님)""}",yongin-central:source:floorplan-F2,model_candidate,2026-11-14
+yongin-central:facility:002,yongin-central,yongin-central:map:floor-F2,toilet,"{""type"":""Point"",""coordinates"":[445,94]}",,"{""gender"":""female"",""note"":""아이콘 위치(문 위치 아님)""}",yongin-central:source:floorplan-F2,model_candidate,2026-11-14
+yongin-central:facility:003,yongin-central,yongin-central:map:floor-F2,elevator,"{""type"":""Point"",""coordinates"":[498,108]}",,{},yongin-central:source:floorplan-F2,model_candidate,2026-11-14
+yongin-central:facility:004,yongin-central,yongin-central:map:floor-F1,toilet,"{""type"":""Point"",""coordinates"":[270,72]}",,"{""gender"":""female"",""accessible"":true,""note"":""아이콘 위치(문 위치 아님)""}",yongin-central:source:floorplan-F1,model_candidate,2026-11-14
+yongin-central:facility:005,yongin-central,yongin-central:map:floor-F1,toilet,"{""type"":""Point"",""coordinates"":[270,106]}",,"{""gender"":""male"",""accessible"":true,""note"":""아이콘 위치(문 위치 아님)""}",yongin-central:source:floorplan-F1,model_candidate,2026-11-14
+yongin-central:facility:006,yongin-central,yongin-central:map:floor-F1,toilet,"{""type"":""Point"",""coordinates"":[340,92]}",,"{""gender"":""male"",""note"":""아이콘 위치(문 위치 아님)""}",yongin-central:source:floorplan-F1,model_candidate,2026-11-14
+yongin-central:facility:007,yongin-central,yongin-central:map:floor-F1,toilet,"{""type"":""Point"",""coordinates"":[445,92]}",,"{""gender"":""female"",""note"":""아이콘 위치(문 위치 아님)""}",yongin-central:source:floorplan-F1,model_candidate,2026-11-14
+yongin-central:facility:008,yongin-central,yongin-central:map:floor-F1,elevator,"{""type"":""Point"",""coordinates"":[498,104]}",,{},yongin-central:source:floorplan-F1,model_candidate,2026-11-14
+yongin-central:facility:009,yongin-central,yongin-central:map:floor-B1,elevator,"{""type"":""Point"",""coordinates"":[487,102]}",,{},yongin-central:source:floorplan-B1,model_candidate,2026-11-14

@@ -1,0 +1,3 @@
+﻿열람실ID,도서관ID,도서관명,층ID,정원,좌석배정방식,이용규칙,운영시간,출처ID,검수상태,원본열람실ID,공식열람실ID,원본열람실ID출처ID,운영시간출처ID,정원출처ID목록,데이터기준일자
+seongnam-mujigae:room:01,seongnam-mujigae,일반열람실,,46,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-mujigae:source:datagokr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-mujigae:room:02,seongnam-mujigae,노트북열람실,,24,unknown,"{""laptop_allowed"":true,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-mujigae:source:datagokr-15032433,model_candidate,,,,,,2026-11-14

@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+yongin-suji,yongin-suji:room:1,laptopAllowed,true,,"{""basis"":""공개 CSV 열람실그룹명 \""2층노트북석\""에 직접 명시"",""observed_on"":""2026-10-12""}",diagram_extraction,yongin-suji:source:data_go_15171450,,model_candidate,true,,,2026-11-14

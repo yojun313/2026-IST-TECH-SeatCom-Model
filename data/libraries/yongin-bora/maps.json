@@ -1,0 +1,36 @@
+[
+  {
+    "map_id": "yongin-bora:map:seat-layout-1f",
+    "library_id": "yongin-bora",
+    "floor_id": "1F",
+    "room_id": "yongin-bora:room:reading-1f",
+    "width": 1000,
+    "height": 700,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "image_path": null,
+    "map_kind": "seat_button_layout",
+    "source_id": "yongin-bora:source:seatmate_page",
+    "verification": "model_candidate"
+  },
+  {
+    "map_id": "yongin-bora:map:floor-1f",
+    "library_id": "yongin-bora",
+    "floor_id": "1F",
+    "room_id": null,
+    "width": 735,
+    "height": 437,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "image_path": null,
+    "map_kind": "floor_plan",
+    "source_id": "yongin-bora:source:floor_f1_image",
+    "verification": "model_candidate"
+  }
+]

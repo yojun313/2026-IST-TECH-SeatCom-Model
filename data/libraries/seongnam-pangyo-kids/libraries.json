@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "seongnam-pangyo-kids",
+    "name": "판교어린이도서관",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": "4113000000",
+      "pblib_id": "PLR013"
+    },
+    "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+    "verification": "unverified"
+  }
+]

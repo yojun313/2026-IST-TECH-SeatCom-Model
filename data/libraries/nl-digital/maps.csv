@@ -1,0 +1,2 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+nl-digital:map:plan-2020,nl-digital,,,1116,780,pixel,top_left,right,down,,assets/digital_library_plan_2020_BIN0007.png,floor_plan,nl-digital:source:plan-bin0007,model_candidate,2026-11-14

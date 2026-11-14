@@ -1,0 +1,28 @@
+[
+  {
+    "node_id": "nl-digital:node:entrance-out",
+    "map_id": "nl-digital:map:plan-2020",
+    "point": [
+      450,
+      579
+    ],
+    "kind": "door",
+    "target_id": "nl-digital:facility:entrance-out",
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate",
+    "library_id": "nl-digital"
+  },
+  {
+    "node_id": "nl-digital:node:entrance-in",
+    "map_id": "nl-digital:map:plan-2020",
+    "point": [
+      562,
+      579
+    ],
+    "kind": "door",
+    "target_id": "nl-digital:facility:entrance-in",
+    "source_id": "nl-digital:source:plan-bin0007",
+    "verification": "model_candidate",
+    "library_id": "nl-digital"
+  }
+]

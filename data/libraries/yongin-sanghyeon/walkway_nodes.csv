@@ -1,0 +1,3 @@
+﻿도서관ID,노드ID,지도ID,좌표,노드종류,대상ID,출처ID,검수상태,데이터기준일자
+yongin-sanghyeon,yongin-sanghyeon:node:door_room1,yongin-sanghyeon:map:room1,"[465,556.0]",door,yongin-sanghyeon:facility:entrance_room1,yongin-sanghyeon:src:bg_room1,model_candidate,2026-11-14
+yongin-sanghyeon,yongin-sanghyeon:node:door_room2,yongin-sanghyeon:map:room2,"[277,499.0]",door,yongin-sanghyeon:facility:entrance_room2,yongin-sanghyeon:src:bg_room2,model_candidate,2026-11-14

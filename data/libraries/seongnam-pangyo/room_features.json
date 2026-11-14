@@ -1,0 +1,19 @@
+[
+  {
+    "room_id": "seongnam-pangyo:room:02",
+    "library_id": "seongnam-pangyo",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실명 '노트북전용실'에 직접 포함",
+      "observed_on": "2026-05-19",
+      "currentness": "2026-05-19 공개 CSV 기준; 현행 이용규정 미확인"
+    },
+    "method": "user_report",
+    "source_id": "seongnam-pangyo:source:public-csv-15032433",
+    "confidence": null,
+    "verification": "unverified",
+    "applies_to_all_seats": true
+  }
+]

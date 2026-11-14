@@ -1,0 +1,4014 @@
+[
+  {
+    "seat_id": "yongin-heungdeok:seat:0001",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 147.2,
+      "y": 276.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0002",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 147.2,
+      "y": 301.85,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0003",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 147.2,
+      "y": 347.44,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0004",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 147.2,
+      "y": 370.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0005",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 177.2,
+      "y": 215.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0006",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 177.2,
+      "y": 276.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0007",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 177.2,
+      "y": 301.85,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0008",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 177.2,
+      "y": 347.44,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0009",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 177.2,
+      "y": 370.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0010",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 207.2,
+      "y": 215.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0011",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 207.2,
+      "y": 276.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0012",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 207.2,
+      "y": 301.85,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0013",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 207.2,
+      "y": 347.44,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0014",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 207.2,
+      "y": 370.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0015",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 237.2,
+      "y": 276.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0016",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 237.2,
+      "y": 301.85,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0017",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 237.2,
+      "y": 347.44,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0018",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 237.2,
+      "y": 370.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0019",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 267.2,
+      "y": 27.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0020",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 267.2,
+      "y": 51.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0021",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 327.2,
+      "y": 269.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0022",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 342.2,
+      "y": 293.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0023",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 357.2,
+      "y": 27.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0024",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 357.2,
+      "y": 51.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0025",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 357.2,
+      "y": 189.99,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0026",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 357.2,
+      "y": 267.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0027",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 357.2,
+      "y": 335.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0028",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 372.2,
+      "y": 213.49,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0029",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 372.2,
+      "y": 291.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0030",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 372.2,
+      "y": 359.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0031",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 387.2,
+      "y": 27.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0032",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 387.2,
+      "y": 51.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0033",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 387.2,
+      "y": 114.79,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0034",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 387.2,
+      "y": 187.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0035",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 387.2,
+      "y": 265.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0036",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 387.2,
+      "y": 333.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0037",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 402.2,
+      "y": 138.29,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0038",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 402.2,
+      "y": 211.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0039",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 402.2,
+      "y": 288.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0040",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 402.2,
+      "y": 356.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0041",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 417.2,
+      "y": 112.44,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0042",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 417.2,
+      "y": 262.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0043",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 417.2,
+      "y": 330.99,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0044",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 417.2,
+      "y": 476.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0045",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 432.2,
+      "y": 135.94,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0046",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 432.2,
+      "y": 286.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0047",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 432.2,
+      "y": 354.49,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0048",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 432.2,
+      "y": 500.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0049",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 447.2,
+      "y": 27.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0050",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 447.2,
+      "y": 51.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0051",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 447.2,
+      "y": 110.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0052",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 447.2,
+      "y": 328.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0053",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 447.2,
+      "y": 401.49,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0054",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 447.2,
+      "y": 474.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0055",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 447.2,
+      "y": 547.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0056",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 462.2,
+      "y": 133.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0057",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 462.2,
+      "y": 352.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0058",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 462.2,
+      "y": 424.99,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0059",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 462.2,
+      "y": 497.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0060",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 462.2,
+      "y": 570.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0061",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 27.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0062",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 51.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0063",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 107.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0064",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 180.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0065",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 399.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0066",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 471.99,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0067",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 544.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0068",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 477.2,
+      "y": 617.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0069",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 492.2,
+      "y": 131.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0070",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 492.2,
+      "y": 204.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0071",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 492.2,
+      "y": 422.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0072",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 492.2,
+      "y": 495.49,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0073",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 492.2,
+      "y": 568.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0074",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 492.2,
+      "y": 641.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0075",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 507.2,
+      "y": 105.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0076",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 507.2,
+      "y": 178.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0077",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 507.2,
+      "y": 251.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0078",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 507.2,
+      "y": 469.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0079",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 507.2,
+      "y": 542.49,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0080",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 507.2,
+      "y": 615.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0081",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 522.2,
+      "y": 128.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0082",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 522.2,
+      "y": 201.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0083",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 522.2,
+      "y": 274.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0084",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 522.2,
+      "y": 493.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0085",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 522.2,
+      "y": 565.99,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0086",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 522.2,
+      "y": 638.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0087",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 27.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0088",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 51.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0089",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 103.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0090",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 175.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0091",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 248.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0092",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 321.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0093",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 540.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0094",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 537.2,
+      "y": 612.99,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0095",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 552.2,
+      "y": 126.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0096",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 552.2,
+      "y": 199.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0097",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 552.2,
+      "y": 272.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0098",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 552.2,
+      "y": 345.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0099",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 552.2,
+      "y": 563.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0100",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 552.2,
+      "y": 636.49,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0101",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 27.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0102",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 51.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0103",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 100.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0104",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 173.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0105",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 246.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0106",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 319.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0107",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 392.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0108",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 567.2,
+      "y": 610.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0109",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 582.2,
+      "y": 124.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0110",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 582.2,
+      "y": 197.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0111",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 582.2,
+      "y": 269.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0112",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 582.2,
+      "y": 342.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0113",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 582.2,
+      "y": 415.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0114",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 582.2,
+      "y": 634.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0115",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 597.2,
+      "y": 98.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0116",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 597.2,
+      "y": 171.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0117",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 597.2,
+      "y": 244.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0118",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 597.2,
+      "y": 316.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0119",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 597.2,
+      "y": 389.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0120",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 597.2,
+      "y": 462.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0121",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 612.2,
+      "y": 121.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0122",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 612.2,
+      "y": 194.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0123",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 612.2,
+      "y": 267.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0124",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 612.2,
+      "y": 340.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0125",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 612.2,
+      "y": 413.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0126",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 612.2,
+      "y": 486.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0127",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 627.2,
+      "y": 168.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0128",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 627.2,
+      "y": 241.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0129",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 627.2,
+      "y": 314.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0130",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 627.2,
+      "y": 387.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0131",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 627.2,
+      "y": 460.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0132",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 627.2,
+      "y": 533.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0133",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 642.2,
+      "y": 192.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0134",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 642.2,
+      "y": 265.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0135",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 642.2,
+      "y": 338.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0136",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 642.2,
+      "y": 410.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0137",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 642.2,
+      "y": 483.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0138",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 642.2,
+      "y": 556.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0139",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 657.2,
+      "y": 239.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0140",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 657.2,
+      "y": 312.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0141",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 657.2,
+      "y": 385.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0142",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 657.2,
+      "y": 457.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0143",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 657.2,
+      "y": 530.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0144",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 657.2,
+      "y": 603.59,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0145",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 672.2,
+      "y": 262.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0146",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 672.2,
+      "y": 335.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0147",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 672.2,
+      "y": 408.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0148",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 672.2,
+      "y": 481.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0149",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 672.2,
+      "y": 554.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0150",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 672.2,
+      "y": 627.09,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0151",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 687.2,
+      "y": 309.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0152",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 687.2,
+      "y": 382.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0153",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 687.2,
+      "y": 455.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0154",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 687.2,
+      "y": 528.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0155",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 687.2,
+      "y": 601.24,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0156",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 702.2,
+      "y": 333.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0157",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 702.2,
+      "y": 406.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0158",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 702.2,
+      "y": 479.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0159",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 702.2,
+      "y": 551.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0160",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 702.2,
+      "y": 624.74,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0161",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 717.2,
+      "y": 380.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0162",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 717.2,
+      "y": 453.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0163",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 717.2,
+      "y": 526.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0164",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 717.2,
+      "y": 598.89,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0165",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 732.2,
+      "y": 403.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0166",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 732.2,
+      "y": 476.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0167",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 732.2,
+      "y": 549.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0168",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 732.2,
+      "y": 622.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0169",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 747.2,
+      "y": 450.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0170",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 747.2,
+      "y": 523.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0171",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 747.2,
+      "y": 596.54,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0172",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 762.2,
+      "y": 474.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0173",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 762.2,
+      "y": 547.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0174",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 762.2,
+      "y": 620.04,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0175",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 777.2,
+      "y": 521.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0176",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 777.2,
+      "y": 594.19,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0177",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 792.2,
+      "y": 544.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0178",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 792.2,
+      "y": 617.69,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0179",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 807.2,
+      "y": 591.84,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0180",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:01",
+    "map_id": "yongin-heungdeok:map:room01",
+    "bbox": {
+      "x": 822.2,
+      "y": 615.34,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab1",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0181",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 310.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0182",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 370.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0183",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 400.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0184",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 400.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0185",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 430.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0186",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 460.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0187",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 460.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0188",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 490.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0189",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 520.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0190",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 520.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0191",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 541.0,
+      "y": 328.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0192",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 541.0,
+      "y": 375.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0193",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 541.0,
+      "y": 422.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0194",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 541.0,
+      "y": 469.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0195",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 541.0,
+      "y": 516.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0196",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 541.0,
+      "y": 563.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0197",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 541.0,
+      "y": 610.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0198",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 550.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0199",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 571.0,
+      "y": 669.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0200",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 610.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0201",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 631.0,
+      "y": 669.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0202",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0203",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0204",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 234.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0205",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 305.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0206",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 375.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0207",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 446.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0208",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 516.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0209",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 640.0,
+      "y": 587.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0210",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 670.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0211",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 691.0,
+      "y": 669.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0212",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0213",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0214",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 234.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0215",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 305.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0216",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 375.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0217",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 446.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0218",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 516.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0219",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 700.0,
+      "y": 587.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0220",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 730.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0221",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 751.0,
+      "y": 669.39,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0222",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0223",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0224",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 234.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0225",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 305.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0226",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 375.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0227",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 446.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0228",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 516.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0229",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 760.0,
+      "y": 587.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0230",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 790.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0231",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 820.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0232",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 820.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0233",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 850.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0234",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 880.0,
+      "y": 93.64,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0235",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 880.0,
+      "y": 164.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  },
+  {
+    "seat_id": "yongin-heungdeok:seat:0236",
+    "library_id": "yongin-heungdeok",
+    "external_seat_id": null,
+    "seat_label": null,
+    "room_id": "yongin-heungdeok:room:02",
+    "map_id": "yongin-heungdeok:map:room02",
+    "bbox": {
+      "x": 910.0,
+      "y": 23.14,
+      "width": 32.0,
+      "height": 30.0
+    },
+    "orientation_degrees": null,
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "verification": "model_candidate"
+  }
+]

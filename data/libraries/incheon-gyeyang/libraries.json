@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "incheon-gyeyang",
+    "name": "인천광역시교육청계양도서관",
+    "address": "(우)21030 인천 계양구 계양산로134번길 18 (계산동)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "incheon-gyeyang:source:official-facility-page",
+    "verification": "model_candidate"
+  }
+]

@@ -1,0 +1,112 @@
+{
+ "library_id": "seongnam-jungwon",
+ "status": "discovery",
+ "dataset_version": "draft-1",
+ "reference_date": "2026-11-14",
+ "seat_inventory": {
+  "expected_count": 346,
+  "expected_count_source_id": "seongnam-jungwon:source:data-go-kr-15032433",
+  "extracted_count": 0,
+  "identity_verified_count": 0,
+  "geometry_verified_count": 0
+ },
+ "facility_coverage": [
+  {
+   "type": "toilet",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "entrance",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "air_conditioner",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "air_diffuser",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "light",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "window",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "outlet",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "column",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  },
+  {
+   "type": "wall",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "좌석도·층별도·설비도 원본 미확보(snlib 직접 수집 금지)"
+  }
+ ],
+ "feature_coverage": [
+  {
+   "name": "keyboardAllowed",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "target_seat_count": 346,
+   "missing_reason": "열람실명 근거 1개 실(24석)만 room_features에 기록, 좌석 단위·전실 적용 미확정"
+  },
+  {
+   "name": "laptopAllowed/partition/outletAvailable/windowProximity/toiletProximity/entranceProximity/brightness/airflow/deskHeight/deskWidth/viewQuality",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "target_seat_count": 346,
+   "missing_reason": "원본·측정 없음, 추정 금지"
+  }
+ ],
+ "checks": [
+  "target_schema v1.1 jsonschema 통과",
+  "개별 JSON과 dataset.json 일치",
+  "CSV UTF-8 BOM 확인",
+  "room/source 외래키 무결성, ID 중복 없음",
+  "좌석·지도·시설 0건이므로 bbox·그래프 검사는 해당 없음"
+ ],
+ "blockers": [
+  "snlib.go.kr robots.txt 전경로 금지로 좌석현황 페이지(http://www.snlib.go.kr/jw/contents/roomStatus.do) 수집 안 함",
+  "성남중원 좌석번호도·층별도 사용자 제공 캡처/PDF 없음(업로드 폴더 파일은 성남중앙용)",
+  "도서관 주소·위경도·운영시간·법정동코드·도서관ID 공식 근거 미확보 -> null (거리 추천 비활성)",
+  "정원 합계는 2026-05-19 공개 CSV 값이며 현재 정원 확정값 아님"
+ ],
+ "next_actions": [
+  "성남중원 3개 구역 번호 포함 좌석도/층별도 캡처 또는 PDF 확보 후 구조화",
+  "공개 자료에서 주소·위경도·pblib_id 확인",
+  "설비도 확보 후 화장실·출입구·콘센트 등 시설 매핑"
+ ]
+}

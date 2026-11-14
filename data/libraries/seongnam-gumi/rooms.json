@@ -1,0 +1,70 @@
+[
+  {
+    "room_id": "seongnam-gumi:room:01",
+    "library_id": "seongnam-gumi",
+    "name": "제1열람실(성인)",
+    "floor_id": null,
+    "capacity": 146,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-gumi:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-gumi:room:02",
+    "library_id": "seongnam-gumi",
+    "name": "제2열람실(노트북겸용)",
+    "floor_id": null,
+    "capacity": 120,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-gumi:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-gumi:room:03",
+    "library_id": "seongnam-gumi",
+    "name": "노트북코너(3층)",
+    "floor_id": "3F",
+    "capacity": 14,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-gumi:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-gumi:room:04",
+    "library_id": "seongnam-gumi",
+    "name": "노트북코너(4층)",
+    "floor_id": "4F",
+    "capacity": 90,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-gumi:source:datagokr-15032433",
+    "verification": "model_candidate"
+  }
+]

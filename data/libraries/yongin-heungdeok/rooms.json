@@ -1,0 +1,132 @@
+[
+  {
+    "room_id": "yongin-heungdeok:room:01",
+    "library_id": "yongin-heungdeok",
+    "name": "열람실",
+    "floor_id": null,
+    "capacity": 180,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-heungdeok:source:data_15154878",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-heungdeok:room:02",
+    "library_id": "yongin-heungdeok",
+    "name": "노트북실",
+    "floor_id": "3F",
+    "capacity": 56,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-heungdeok:source:data_15154878",
+    "verification": "model_candidate"
+  }
+]

@@ -1,0 +1,3 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+incheon-gyeyang,incheon-gyeyang:room:02,partition,true,,"{""basis"":""official room table: 칸막이 유무 O"",""observed_on"":""2026-11-14"",""note"":""현재 운영 상황에 따라 변동될 수 있음""}",diagram_extraction,incheon-gyeyang:source:official-room-guide,,model_candidate,true,,,2026-11-14
+incheon-gyeyang,incheon-gyeyang:room:03,partition,true,,"{""basis"":""official room table: 칸막이 유무 O"",""observed_on"":""2026-11-14"",""note"":""현재 운영 상황에 따라 변동될 수 있음""}",diagram_extraction,incheon-gyeyang:source:official-room-guide,,model_candidate,true,,,2026-11-14

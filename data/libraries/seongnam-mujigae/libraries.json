@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "seongnam-mujigae",
+    "name": "성남무지개도서관",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "seongnam-mujigae:source:datagokr-15032433",
+    "verification": "model_candidate"
+  }
+]

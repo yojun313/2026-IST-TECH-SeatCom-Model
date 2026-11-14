@@ -1,0 +1,5 @@
+﻿열람실ID,도서관ID,도서관명,층ID,정원,좌석배정방식,이용규칙,운영시간,출처ID,검수상태,원본열람실ID,공식열람실ID,원본열람실ID출처ID,운영시간출처ID,정원출처ID목록,데이터기준일자
+busan-haeundae:room:digital-materials,busan-haeundae,디지털자료실,3F,54,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,busan-haeundae:source:official-facility-guide,human_checked,,,,,,2026-11-14
+busan-haeundae:room:youth-self-study,busan-haeundae,청소년자기주도학습실,3F,54,assigned,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,busan-haeundae:source:official-use-rules,human_checked,,,,,,2026-11-14
+busan-haeundae:room:online-group,busan-haeundae,온라인모둠실,3F,8,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,busan-haeundae:source:official-facility-guide,human_checked,,,,,,2026-11-14
+busan-haeundae:room:reading-room,busan-haeundae,열람실,4F,301,assigned,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,busan-haeundae:source:official-use-rules,human_checked,,,,,,2026-11-14

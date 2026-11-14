@@ -1,0 +1,36 @@
+[
+  {
+    "room_id": "seongnam-mujigae:room:01",
+    "library_id": "seongnam-mujigae",
+    "name": "일반열람실",
+    "floor_id": null,
+    "capacity": 46,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-mujigae:source:datagokr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-mujigae:room:02",
+    "library_id": "seongnam-mujigae",
+    "name": "노트북열람실",
+    "floor_id": null,
+    "capacity": 24,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-mujigae:source:datagokr-15032433",
+    "verification": "model_candidate"
+  }
+]

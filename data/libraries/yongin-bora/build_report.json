@@ -1,0 +1,474 @@
+{
+  "library_id": "yongin-bora",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "scope_declared": "1층 열람실 1개의 좌석 버튼 사각형 134개(후보), 열람실 마스터·운영시간·이용연령, F1 층별도의 일부 시설 후보. 환경 특성·통로 그래프·좌표 변환 미구축.",
+  "seat_inventory": {
+    "expected_count": 134,
+    "expected_count_source_id": "yongin-bora:source:facility_page",
+    "extracted_count": 134,
+    "identity_verified_count": 57,
+    "geometry_verified_count": 0
+  },
+  "seat_inventory_notes": "공식 안내 페이지 134석, 공개 CSV 134행(2025-11-27), 좌석현황 화면 사각형 134개가 개수만 일치. 화면 사각형 134개의 좌표는 저장소 후보와 재수집 결과가 100% 일치(위치 일치이며 물리 배치 검수 아님). 좌석 번호는 사용 중 좌석이 \"배정\"으로 표시되어 복원 불가 -> seat_label/external_seat_id=null, 번호 추정 금지. 인접 버튼 폭 34, 간격 32로 2px 겹침(허용오차 이내로 판정, 실제 원본 동일).",
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 2,
+      "verification": "model_candidate",
+      "missing_reason": "층별도 F1 눈대중 좌표; 성별/장애인 구분·문(access_point) 미확인; 다른 층 화장실(F2,B1)은 미등록. 기대 개수 미확정"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 2,
+      "verification": "model_candidate",
+      "missing_reason": "정문과 열람실 개구부만 눈대중; 통행방향·제한 미확인"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 1,
+      "verification": "model_candidate",
+      "missing_reason": "F1만; 층간 연결 거리 미확인"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 1,
+      "verification": "model_candidate",
+      "missing_reason": "F1만; 층간 연결 거리 미확인"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "층별도에 창문 표기 없음"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "열람실 기둥 원본 미확보"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "벽 두께·통행 불가 영역 검수 없음; 임의 면적 생성 안 함"
+    },
+    {
+      "type": "water_dispenser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "열람실 이용안내 페이지 미수집/미확인; 공개 CSV에 없음"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "동일"
+    },
+    {
+      "name": "partition",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "도면·사진 없음"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "콘센트 위치 원본 없음"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "열람실 도면에 창문 없음, 좌석-도면 프레임 정합 없음"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "좌석 프레임과 층별도 간 공통 기준점 없음, 축척 없음, 통로 그래프 없음"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "동일"
+    },
+    {
+      "name": "brightness",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "측정값 없음"
+    },
+    {
+      "name": "airflow",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "측정값/기기위치 없음"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "치수 없음"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "치수 없음"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "평가 기준·원본 없음"
+    },
+    {
+      "name": "desk_shape",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "도면은 버튼 배치, 책상 형태 미확인"
+    },
+    {
+      "name": "desk_depth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 134,
+      "missing_reason": "치수 없음"
+    }
+  ],
+  "checks": [
+    {
+      "check": "array_match:libraries",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "check": "csv_bom:libraries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:libraries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:rooms",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "check": "csv_bom:rooms",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:rooms",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:maps",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "check": "csv_bom:maps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:maps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:seats",
+      "passed": true,
+      "detail": 134
+    },
+    {
+      "check": "csv_bom:seats",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:seats",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:facilities",
+      "passed": true,
+      "detail": 6
+    },
+    {
+      "check": "csv_bom:facilities",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:facilities",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:room_features",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "check": "csv_bom:room_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:room_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:seat_features",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "check": "csv_bom:seat_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:seat_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:walkway_nodes",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "check": "csv_bom:walkway_nodes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:walkway_nodes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:walkway_edges",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "check": "csv_bom:walkway_edges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:walkway_edges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:map_transforms",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "check": "csv_bom:map_transforms",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:map_transforms",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "array_match:sources",
+      "passed": true,
+      "detail": 7
+    },
+    {
+      "check": "csv_bom:sources",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "csv_rows:sources",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unique:libraries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unique:rooms",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unique:maps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unique:seats",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unique:facilities",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unique:sources",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "foreign_keys",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "library_id_prefix",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "seat_bbox_in_frame_1000x700",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "facility_in_frame",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "seat_bbox_overlaps_zero",
+      "passed": true,
+      "detail": "overlaps=0"
+    },
+    {
+      "check": "unique_geometry",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "page_rect_count_equals_134",
+      "passed": true,
+      "detail": "page=134"
+    },
+    {
+      "check": "page_rects_match_dataset",
+      "passed": true,
+      "detail": "sym_diff=0"
+    },
+    {
+      "check": "target_schema_v1.1",
+      "passed": true,
+      "detail": "errors_only_from_allowed_extra_fields=135, other=0"
+    },
+    {
+      "check": "target_schema_v1.1_after_removing_extras",
+      "passed": true,
+      "detail": ""
+    },
+    "dataset.json 배열과 개별 JSON 배열 11종 값/행 일치 확인",
+    "target_schema.json v1.1 Draft 2020-12 검증 통과",
+    {
+      "name": "Chrome 실시간 배치도 렌더링(상태 미저장)",
+      "passed": true,
+      "checked_on": "2026-11-14",
+      "detail": "공식 seatmate 페이지가 Chrome에서 렌더링됨. 134개 좌석의 DOM 좌표가 기존 geometry 좌표와 모두 일치했고, 번호가 표시된 57개 좌석만 seat_label로 연결. 사용 중 좌석은 번호 대신 “배정”으로 가려져 나머지는 null 유지. 상태/색/시각/화면 캡처 미저장. geometry_verified_count는 0으로 유지."
+    }
+  ],
+  "blockers": [
+    "좌석 번호 전수 대응 불가: 현황 화면은 사용 중 좌석 번호를 숨김. 전체 번호 표시 원본(사용자 캡처/정적 번호도) 필요. DOM 순서/배열 추정은 금지.",
+    "기관 위경도: 공식 자료에서 확인하지 못해 null (지오코딩 추정 금지) -> 주변 도서관 거리 추천 비활성.",
+    "external_ids(stdg_cd, pblib_id): 공공데이터/공식 출처에서 확인하지 못해 null (제3자 목록의 코드는 미검증이라 미사용).",
+    "좌석 버튼 프레임(1000x700)과 층별도 F1(735x437) 사이 공통 기준점·축척이 없어 map_transforms/통로 그래프/미터 거리 미구축.",
+    "층별도 이미지·좌석화면 배경 이미지는 이용조건 불명확 -> assets 비어 있음, image_path=null.",
+    "시설 좌표는 층별도 눈대중 근사(model_candidate)이며 사람 검수 전. 에어컨·콘센트·조명 위치 원본 없음 -> 해당 추천 기능 비활성.",
+    "운영시간·연령은 data.go.kr 10/12 기준 그룹 \"열람실\" 행을 보라 열람실에 연결한 것(열람실 ID 없음). 시험기간 등 예외·휴관일 미해결. 최대연령 100은 원본값 그대로."
+  ],
+  "next_actions": [
+    "전체 번호가 보이는 사용자 캡처 또는 공식 정적 번호도 확보 후 좌석 번호·공공 CSV 좌석 ID(1~134) 대응",
+    "공식 위경도·법정동코드·공공도서관ID 근거 확보",
+    "층별도 재배포 조건 확인 후 assets 편입 및 좌표 검수(human_checked)",
+    "열람실 이용안내 페이지 확인(노트북/키보드 규칙)",
+    "설비도/현장 조사로 콘센트·에어컨·조명·창문 위치 확보",
+    "공통 기준점이 확보되면 map_transforms 또는 출입구 노드 기반 통로 그래프 작성"
+  ],
+  "notes": "schema 추가필드: 모든 레코드 library_id, seats.geometry_object_id(후보 파일 해시 ID, 공식 ID 아님), rooms.external_room_id=1(공공 CSV 열람실 ID, 좌석 대응은 미검증). 이 필드를 제외하면 target_schema v1.1 통과."
+}

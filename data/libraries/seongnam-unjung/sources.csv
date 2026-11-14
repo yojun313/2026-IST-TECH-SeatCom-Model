@@ -1,0 +1,2 @@
+﻿도서관ID,출처ID,출처유형,URL,SHA256,자료기준일,수집일,이용조건,비고,로컬경로,데이터기준일자
+seongnam-unjung,seongnam-unjung:source:data-go-kr-15032433,public_dataset,https://www.data.go.kr/data/15032433/fileData.do,ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b,2026-05-19,2026-11-14,CSV 이용제한 없음(data.go.kr 표기),성남시 열람실 마스터. 운중도서관 3행. 총좌석수는 과거(2026-05-19) 값이며 현재 정원이 아님. snlib.go.kr은 robots.txt 전경로 금지로 접근하지 않음.,Data/열람실_좌석추천_데이터/정리본_UTF8/15032433.csv,2026-11-14

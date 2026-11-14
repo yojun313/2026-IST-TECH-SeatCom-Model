@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.1",
+  "sources": [
+    {
+      "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+      "library_id": "seongnam-unjung",
+      "source_type": "public_dataset",
+      "url": "https://www.data.go.kr/data/15032433/fileData.do",
+      "sha256": "ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b",
+      "document_date": "2026-05-19",
+      "collected_on": "2026-11-14",
+      "license_status": "CSV 이용제한 없음(data.go.kr 표기)",
+      "notes": "성남시 열람실 마스터. 운중도서관 3행. 총좌석수는 과거(2026-05-19) 값이며 현재 정원이 아님. snlib.go.kr은 robots.txt 전경로 금지로 접근하지 않음.",
+      "local_path": "Data/열람실_좌석추천_데이터/정리본_UTF8/15032433.csv"
+    }
+  ],
+  "maps": [],
+  "seats": [],
+  "map_transforms": [],
+  "walkway_nodes": [],
+  "walkway_edges": [],
+  "seat_features": [],
+  "facilities": [],
+  "libraries": [
+    {
+      "library_id": "seongnam-unjung",
+      "name": "운중도서관",
+      "address": null,
+      "latitude": null,
+      "longitude": null,
+      "timezone": "Asia/Seoul",
+      "external_ids": {
+        "stdg_cd": null,
+        "pblib_id": null
+      },
+      "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+      "verification": "model_candidate"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "seongnam-unjung:room:01",
+      "library_id": "seongnam-unjung",
+      "name": "열람실1(성인전용)",
+      "floor_id": null,
+      "capacity": 32,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": null,
+      "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+      "verification": "model_candidate"
+    },
+    {
+      "room_id": "seongnam-unjung:room:02",
+      "library_id": "seongnam-unjung",
+      "name": "열람실1",
+      "floor_id": null,
+      "capacity": 72,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": null,
+      "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+      "verification": "model_candidate"
+    },
+    {
+      "room_id": "seongnam-unjung:room:03",
+      "library_id": "seongnam-unjung",
+      "name": "열람실2(노트북실)",
+      "floor_id": null,
+      "capacity": 39,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": true,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": null,
+      "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+      "verification": "model_candidate"
+    }
+  ],
+  "room_features": [
+    {
+      "room_id": "seongnam-unjung:room:03",
+      "library_id": "seongnam-unjung",
+      "name": "laptopAllowed",
+      "value": true,
+      "unit": null,
+      "context": {
+        "basis": "열람실명 '열람실2(노트북실)'에 노트북 명시",
+        "reference_date": "2026-05-19",
+        "limit": "공개 CSV 과거 스냅샷; 현행 규정 미확인",
+        "method_note": "공개 CSV 열람실명 문구를 직접 읽음(스키마상 가장 가까운 enum)"
+      },
+      "method": "model_inference",
+      "source_id": "seongnam-unjung:source:data-go-kr-15032433",
+      "confidence": null,
+      "verification": "model_candidate",
+      "applies_to_all_seats": null
+    }
+  ]
+}

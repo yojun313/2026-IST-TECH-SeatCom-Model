@@ -1,0 +1,539 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "SeatCom 백엔드 좌석 좌표 목록 API",
+    "version": "1.0.0-design",
+    "description": "구현 전 계약. 내부 모델이 아니라 백엔드의 정적 데이터 조회 책임. 기존 명세 B11에 대응. 나머지 사용자 API는 상세 Markdown 참조."
+  },
+  "servers": [
+    {
+      "url": "http://backend-api:3000",
+      "description": "개발 예시 주소"
+    }
+  ],
+  "security": [
+    {
+      "userBearer": []
+    }
+  ],
+  "paths": {
+    "/api/v1/rooms/{roomId}/seats": {
+      "get": {
+        "operationId": "listRoomSeatCoordinates",
+        "summary": "열람실별 좌석번호·좌표·크기·검수 상태 목록",
+        "description": "실제 DB의 안정적 ID로 조회. live는 검수된 좌석만, preview는 미검수 표기. 픽셀과 정규화 좌표를 같은 map 프레임에서 제공. 이용 상태·성별·시간은 없음. current preview169와 live0을 구분.",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "live",
+                "preview"
+              ],
+              "default": "live"
+            },
+            "description": "preview는 별도 권한/환경 허용 시만. 미검수 자료는 선택 불가."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "백엔드가 발급한 불투명 커서. room/view/filter/dataset/mapVersion과 결합. 버전 변경 시409."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "검수 상태와 뷰로 필터링한 좌석목록. 페이지의items수와전체total을구분.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeatListResponse"
+                },
+                "examples": {
+                  "preview": {
+                    "summary": "현재 A93 추출 좌표와 합성 서비스 ID를 사용한 미리보기 1건 페이지",
+                    "value": {
+                      "data": {
+                        "roomId": "DEMO-SN-CENTRAL-A",
+                        "datasetVersion": "screenshot-20261114-unreviewed",
+                        "map": {
+                          "mapId": "DEMO-SN-CENTRAL-A-MAP",
+                          "mapVersion": "screenshot-20261114-v1",
+                          "width": 3772,
+                          "height": 1786,
+                          "coordinateUnit": "pixel",
+                          "origin": "topLeft"
+                        },
+                        "view": "preview",
+                        "items": [
+                          {
+                            "seatId": "preview:SN-CT-A-G001",
+                            "externalSeatId": null,
+                            "label": "A93",
+                            "geometry": {
+                              "pixel": {
+                                "x": 2112,
+                                "y": 117,
+                                "width": 66,
+                                "height": 56
+                              },
+                              "normalized": {
+                                "x": 0.55991516,
+                                "y": 0.06550952,
+                                "width": 0.01749735,
+                                "height": 0.03135498
+                              }
+                            },
+                            "verificationStatus": "unverified",
+                            "selectable": false
+                          }
+                        ],
+                        "total": 169,
+                        "nextCursor": "DEMO-OPAQUE-CURSOR-FOR-NEXT-PAGE"
+                      },
+                      "meta": {
+                        "requestId": "req-demo-seat-list"
+                      }
+                    }
+                  },
+                  "noVerifiedSeats": {
+                    "summary": "현재 자료의 운영 적격 좌석이 없는 경우. 빈자리를 뜻하지 않음.",
+                    "value": {
+                      "data": {
+                        "roomId": "DEMO-SN-CENTRAL-A",
+                        "datasetVersion": "screenshot-20261114-unreviewed",
+                        "map": null,
+                        "view": "live",
+                        "items": [],
+                        "total": 0,
+                        "nextCursor": null
+                      },
+                      "meta": {
+                        "requestId": "req-demo-seat-list"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "UNAUTHENTICATED",
+                    "message": "UNAUTHENTICATED",
+                    "requestId": "req-demo-error",
+                    "details": []
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "FORBIDDEN",
+                    "message": "FORBIDDEN",
+                    "requestId": "req-demo-error",
+                    "details": []
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "NOT_FOUND",
+                    "message": "NOT_FOUND",
+                    "requestId": "req-demo-error",
+                    "details": []
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "CURSOR_VERSION_CHANGED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "CURSOR_VERSION_CHANGED",
+                    "message": "CURSOR_VERSION_CHANGED",
+                    "requestId": "req-demo-error",
+                    "details": []
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "INVALID_INPUT",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "INVALID_INPUT",
+                    "message": "INVALID_INPUT",
+                    "requestId": "req-demo-error",
+                    "details": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "userBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "Map": {
+        "type": "object",
+        "properties": {
+          "mapId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mapVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "width": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "height": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "coordinateUnit": {
+            "const": "pixel"
+          },
+          "origin": {
+            "const": "topLeft"
+          }
+        },
+        "required": [
+          "mapId",
+          "mapVersion",
+          "width",
+          "height",
+          "coordinateUnit",
+          "origin"
+        ],
+        "additionalProperties": false
+      },
+      "SeatCoordinate": {
+        "type": "object",
+        "properties": {
+          "seatId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "externalSeatId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "geometry": {
+            "type": "object",
+            "properties": {
+              "pixel": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "width": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "height": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height"
+                ],
+                "additionalProperties": false
+              },
+              "normalized": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "width": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  },
+                  "height": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "pixel",
+              "normalized"
+            ],
+            "additionalProperties": false
+          },
+          "verificationStatus": {
+            "enum": [
+              "unverified",
+              "verified"
+            ]
+          },
+          "selectable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "seatId",
+          "externalSeatId",
+          "label",
+          "geometry",
+          "verificationStatus",
+          "selectable"
+        ],
+        "additionalProperties": false
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "message": {
+                "type": "string"
+              },
+              "requestId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "reason": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0,
+                "maxItems": 100
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "requestId",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "additionalProperties": false
+      },
+      "SeatListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "roomId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "datasetVersion": {
+                "type": "string",
+                "minLength": 1
+              },
+              "map": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/Map"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "view": {
+                "enum": [
+                  "live",
+                  "preview"
+                ]
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SeatCoordinate"
+                },
+                "maxItems": 500
+              },
+              "total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "nextCursor": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "roomId",
+              "datasetVersion",
+              "map",
+              "view",
+              "items",
+              "total",
+              "nextCursor"
+            ],
+            "additionalProperties": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "requestId": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "requestId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "x-semantic-invariants": [
+    "map은 모든 items의 공통 프레임이다. 서로 다른 mapVersion을 한 페이지에 섞지 않음.",
+    "preview는 모든 selectable=false. live도 빈자리/예약을 보장하지 않음.",
+    "total은 해당view에서 반환 가능한 전체 레코드 수이며 현재 공석 수가 아님.",
+    "pixel bbox는 지도 표시 프레임 기준. normalized는 같은 프레임 크기로 나눈 값.",
+    "x+width 및 y+height는 각각 map 경계 이내. normalized의 합은1 이내.",
+    "다른 추천 API의preview모드로 받은 좌표는 정상 운영좌석으로 승격하지 않음."
+  ]
+}

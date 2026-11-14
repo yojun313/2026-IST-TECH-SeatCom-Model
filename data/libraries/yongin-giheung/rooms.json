@@ -1,0 +1,132 @@
+[
+  {
+    "room_id": "yongin-giheung:room:1",
+    "library_id": "yongin-giheung",
+    "name": "1열람실",
+    "floor_id": null,
+    "capacity": 148,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 0,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-giheung:source:datagokr-15154878",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-giheung:room:2",
+    "library_id": "yongin-giheung",
+    "name": "열람실ID 2 (공식 명칭 미확인)",
+    "floor_id": null,
+    "capacity": 16,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 0,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:30",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-giheung:source:datagokr-15154878",
+    "verification": "unverified"
+  }
+]

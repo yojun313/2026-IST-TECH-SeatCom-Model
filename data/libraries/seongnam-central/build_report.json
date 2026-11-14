@@ -1,0 +1,194 @@
+{
+  "library_id": "seongnam-central",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 169,
+    "expected_count_source_id": "seongnam-central:source:user-capture-A-76e3778271ac",
+    "extracted_count": 169,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "scope": "3층 제1열람실(A구역) 후보 좌석 169석만. B구역·4층 2/3열람실 좌석은 미구축(rooms만 있음).",
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면·설비도 미확보(캡처에 시설 없음)"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "partition",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "brightness",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "airflow",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 169,
+      "missing_reason": "원본 근거 없음; 추정 금지"
+    }
+  ],
+  "checks": [
+    "schema OK",
+    "개별 JSON=dataset 일치",
+    "CSV BOM·행수 일치",
+    "seat_id 169 고유",
+    "외래키(room/map/source) 무결성",
+    "bbox 범위 이내",
+    {
+      "check": "capacity_source_conflict",
+      "status": "warning",
+      "message": "A구역 화면 캡처의 번호 좌석 수 169를 정원으로 기록. 2026-05-19 공공 CSV의 A구역 정원 106과 불일치하므로 현행 원본 재확인 필요."
+    }
+  ],
+  "blockers": [
+    "snlib.go.kr robots.txt 전 경로 금지: 직접 수집 안 함. 사용자 제공 캡처(A구역)만 처리.",
+    "B구역 70석·4층 2열람실 216석·3열람실 216석의 번호 포함 캡처 미확보 -> seats 미구축.",
+    "정원 충돌: 공개 CSV(2026-05-19) A구역 106석·중앙 전체 608석 vs 사용자 캡처 A구역 169석·전체 671석. A구역 정원은 사용자 캡처 값 169로 기록하고 CSV와의 차이는 미해결 경고로 유지.",
+    "도서관 주소·위경도·pblib_id·stdg_cd, 운영시간, 이용규정 근거 자료 없음 -> null (거리 추천 비활성).",
+    "시설·벽·통로·축척 근거 없음 -> facilities/walkway/map_transforms 빈 배열, 거리 특성 비활성.",
+    "공식 좌석ID 없음 -> external_seat_id null. 좌석번호 A27~A29, A94~A100은 캡처에 없으며 채우지 않음. 169석 육안 전수검수 미완(OCR 신뢰도 0.98 미만 8석 우선 검수: A156,A144,A138,A137,A66,A122,A53,A106).",
+    "지도는 좌석 버튼 화면 배치(seat_button_layout)이며 건축 평면도 아님. 원본 캡처는 현황 색상 때문에 assets에 복제하지 않음."
+  ],
+  "next_actions": [
+    "A구역 169석 전수 육안 검수 후 human_checked 전환",
+    "B구역·4층 캡처 확보 및 구조화",
+    "공식 자료로 주소·위경도·운영시간 확보",
+    "층별 시설·설비도 확보",
+    "정원 671 vs 608 차이 원인 확인"
+  ]
+}

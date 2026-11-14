@@ -1,0 +1,5 @@
+﻿열람실ID,도서관ID,도서관명,층ID,정원,좌석배정방식,이용규칙,운영시간,출처ID,검수상태,원본열람실ID,공식열람실ID,원본열람실ID출처ID,운영시간출처ID,정원출처ID목록,데이터기준일자
+seongnam-central:room:3f-1-A,seongnam-central,3층1열람실(A구역),3F,169,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-central:source:user-capture-A-76e3778271ac,model_candidate,,,,,,2026-11-14
+seongnam-central:room:3f-1-B,seongnam-central,3층1열람실(B구역),3F,70,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-central:source:data-go-kr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-central:room:4f-2,seongnam-central,2열람실4층(성인),4F,216,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-central:source:data-go-kr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-central:room:4f-3,seongnam-central,3열람실4층,4F,216,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-central:source:data-go-kr-15032433,model_candidate,,,,,,2026-11-14

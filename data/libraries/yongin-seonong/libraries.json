@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-seonong",
+    "name": "서농도서관",
+    "address": "경기도 용인시 기흥구 서천서로 83(서천동 748)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": "4146000000",
+      "pblib_id": "PLR004"
+    },
+    "source_id": "yongin-seonong:source:official_facility_page",
+    "verification": "model_candidate"
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "room_id": "busan-haeundae:room:digital-materials",
+    "library_id": "busan-haeundae",
+    "name": "디지털자료실",
+    "floor_id": "3F",
+    "capacity": 54,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "busan-haeundae:source:official-facility-guide",
+    "verification": "human_checked"
+  },
+  {
+    "room_id": "busan-haeundae:room:youth-self-study",
+    "library_id": "busan-haeundae",
+    "name": "청소년자기주도학습실",
+    "floor_id": "3F",
+    "capacity": 54,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "busan-haeundae:source:official-use-rules",
+    "verification": "human_checked"
+  },
+  {
+    "room_id": "busan-haeundae:room:online-group",
+    "library_id": "busan-haeundae",
+    "name": "온라인모둠실",
+    "floor_id": "3F",
+    "capacity": 8,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "busan-haeundae:source:official-facility-guide",
+    "verification": "human_checked"
+  },
+  {
+    "room_id": "busan-haeundae:room:reading-room",
+    "library_id": "busan-haeundae",
+    "name": "열람실",
+    "floor_id": "4F",
+    "capacity": 301,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "busan-haeundae:source:official-use-rules",
+    "verification": "human_checked"
+  }
+]

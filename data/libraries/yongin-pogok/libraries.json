@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-pogok",
+    "name": "포곡도서관",
+    "address": "경기도 용인시 처인구 포곡읍 포곡로278번길 8(삼계리 556-2)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "yongin-pogok:source:floor_page",
+    "verification": "model_candidate"
+  }
+]

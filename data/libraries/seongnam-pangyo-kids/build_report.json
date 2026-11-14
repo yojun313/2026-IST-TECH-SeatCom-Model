@@ -1,0 +1,221 @@
+{
+  "library_id": "seongnam-pangyo-kids",
+  "status": "discovery",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 394,
+    "expected_count_source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "좌석·도면 원본 미확보(snlib.go.kr robots 전경로 금지, 제공 캡처/PDF 없음)"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "partition",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 2,
+      "missing_reason": "좌석 단위 원본 없음. 열람실 단위는 명칭에 직접 표기된 것만 기록(verification=unverified)"
+    },
+    {
+      "name": "laptopAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 1,
+      "missing_reason": "좌석 단위 원본 없음. 열람실 단위는 명칭에 직접 표기된 것만 기록(verification=unverified)"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "brightness",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "airflow",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 394,
+      "room_level_records": 0,
+      "missing_reason": "원본 없음, 미기록(null)"
+    }
+  ],
+  "checks": [
+    {
+      "name": "schema 1.1 통과",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "개별 배열=dataset",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "CSV BOM",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "room FK",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "ID 중복 없음",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    },
+    {
+      "name": "정원합",
+      "passed": true,
+      "checked_on": "2026-11-14"
+    }
+  ],
+  "blockers": [
+    "좌석원본 snlib.go.kr은 robots.txt 전경로 금지이므로 수집하지 않음",
+    "사용자 제공 판교어린이 캡처/PDF 없음(uploads의 이미지 2개는 성남중앙용)",
+    "도서관 주소·위경도 공식 근거 미확보 -> null(거리 추천 비활성)",
+    "운영시간·성인/중고생 연령 수치 근거 없음 -> null",
+    "pblib_id PLR013은 제3자 목록(Dev-zeno/opendata_plr) 출처, 공식 확인 전",
+    "정원합 394는 2026-05-19 기준 CSV 표기값(현재 정원 확정 아님)"
+  ],
+  "next_actions": [
+    "판교어린이도서관 좌석 번호도 캡처/PDF를 사용자로부터 제공받아 maps/seats 구축",
+    "공식 자료로 주소·위경도·운영시간 확인",
+    "화장실·출입구·설비 위치 원본 확보"
+  ]
+}

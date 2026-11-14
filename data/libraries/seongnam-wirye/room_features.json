@@ -1,0 +1,20 @@
+[
+  {
+    "room_id": "seongnam-wirye:room:01",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실 명칭에 '노트북'이 직접 표기됨",
+      "room_name": "노트북실",
+      "reference_date": "2026-05-19",
+      "limitation": "명칭 기반. 규정 원문·현장 미확인"
+    },
+    "method": "model_inference",
+    "source_id": "seongnam-wirye:source:datagokr-15032433",
+    "confidence": 0.7,
+    "verification": "model_candidate",
+    "applies_to_all_seats": null,
+    "library_id": "seongnam-wirye"
+  }
+]

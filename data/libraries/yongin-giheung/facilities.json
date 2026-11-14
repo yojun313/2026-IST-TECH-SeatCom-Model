@@ -1,0 +1,463 @@
+[
+  {
+    "facility_id": "yongin-giheung:facility:0001",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-1f",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          121,
+          153
+        ],
+        [
+          143,
+          153
+        ],
+        [
+          143,
+          168
+        ],
+        [
+          121,
+          168
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "어린이 화장실",
+      "floor_label": "본관 1층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading",
+      "toilet_kind": "children",
+      "door_position": "이미지에서 문 위치 식별 불가"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-1f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0002",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-1f",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          103,
+          320
+        ],
+        [
+          144,
+          320
+        ],
+        [
+          144,
+          348
+        ],
+        [
+          103,
+          348
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "화장실(여)",
+      "floor_label": "본관 1층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading",
+      "toilet_kind": "female_labeled",
+      "door_position": "이미지에서 문 위치 식별 불가"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-1f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0003",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-1f",
+    "type": "toilet",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          103,
+          349
+        ],
+        [
+          144,
+          349
+        ],
+        [
+          144,
+          358
+        ],
+        [
+          103,
+          358
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "화장실(남)",
+      "floor_label": "본관 1층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading",
+      "toilet_kind": "male_labeled",
+      "door_position": "이미지에서 문 위치 식별 불가"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-1f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0004",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-1f",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          127,
+          225
+        ],
+        [
+          143,
+          225
+        ],
+        [
+          143,
+          249
+        ],
+        [
+          127,
+          249
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "엘리베이터",
+      "floor_label": "본관 1층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-1f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0005",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-1f",
+    "type": "stairs",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        210,
+        222
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "계단",
+      "floor_label": "본관 1층",
+      "coordinate_error_px": "약 ±8",
+      "extraction": "floor_plan_image_visual_reading",
+      "note": "이미지에 라벨 '계단'만 표시된 위치의 중심점(영역 경계 불명확)"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-1f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0006",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-2f",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          144,
+          257
+        ],
+        [
+          158,
+          257
+        ],
+        [
+          158,
+          278
+        ],
+        [
+          144,
+          278
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "엘리베이터",
+      "floor_label": "본관 2층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-2f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0007",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-2f",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          201,
+          230
+        ],
+        [
+          229,
+          230
+        ],
+        [
+          229,
+          265
+        ],
+        [
+          201,
+          265
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "계단",
+      "floor_label": "본관 2층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-2f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0008",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-3f",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          168,
+          250
+        ],
+        [
+          183,
+          250
+        ],
+        [
+          183,
+          267
+        ],
+        [
+          168,
+          267
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "엘리베이터",
+      "floor_label": "본관 3층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-3f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0009",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-main-3f",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          223,
+          221
+        ],
+        [
+          250,
+          221
+        ],
+        [
+          250,
+          253
+        ],
+        [
+          223,
+          253
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "계단",
+      "floor_label": "본관 3층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-main-3f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0010",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-annex-1f",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          76,
+          40
+        ],
+        [
+          97,
+          40
+        ],
+        [
+          97,
+          59
+        ],
+        [
+          76,
+          59
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "엘리베이터",
+      "floor_label": "별관 1층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-annex-1f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0011",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-annex-2f",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          38,
+          41
+        ],
+        [
+          55,
+          41
+        ],
+        [
+          55,
+          59
+        ],
+        [
+          38,
+          59
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "엘리베이터",
+      "floor_label": "별관 2층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-annex-2f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0012",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-annex-3f",
+    "type": "elevator",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          157,
+          57
+        ],
+        [
+          175,
+          57
+        ],
+        [
+          175,
+          70
+        ],
+        [
+          157,
+          70
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "엘리베이터",
+      "floor_label": "별관 3층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-annex-3f",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-giheung:facility:0013",
+    "library_id": "yongin-giheung",
+    "map_id": "yongin-giheung:map:floorplan-annex-3f",
+    "type": "stairs",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          135,
+          48
+        ],
+        [
+          157,
+          48
+        ],
+        [
+          157,
+          82
+        ],
+        [
+          135,
+          82
+        ]
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "label_on_image": "계단",
+      "floor_label": "별관 3층",
+      "coordinate_error_px": "약 ±3~5 (육안 판독, 이미지 픽셀)",
+      "extraction": "floor_plan_image_visual_reading"
+    },
+    "source_id": "yongin-giheung:source:floorplan-annex-3f",
+    "verification": "model_candidate"
+  }
+]

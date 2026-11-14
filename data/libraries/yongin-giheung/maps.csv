@@ -1,0 +1,8 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+yongin-giheung:map:room1-seat-button-layout,yongin-giheung,,yongin-giheung:room:1,1000,700,pixel,top_left,right,down,,,seat_button_layout,yongin-giheung:source:seatmate-gh-classinfo1,model_candidate,2026-11-14
+yongin-giheung:map:floorplan-main-1f,yongin-giheung,main-1f,,275,402,pixel,top_left,right,down,,,floor_plan,yongin-giheung:source:floorplan-main-1f,model_candidate,2026-11-14
+yongin-giheung:map:floorplan-main-2f,yongin-giheung,main-2f,,260,396,pixel,top_left,right,down,,,floor_plan,yongin-giheung:source:floorplan-main-2f,model_candidate,2026-11-14
+yongin-giheung:map:floorplan-main-3f,yongin-giheung,main-3f,,391,387,pixel,top_left,right,down,,,floor_plan,yongin-giheung:source:floorplan-main-3f,model_candidate,2026-11-14
+yongin-giheung:map:floorplan-annex-1f,yongin-giheung,annex-1f,,290,222,pixel,top_left,right,down,,,floor_plan,yongin-giheung:source:floorplan-annex-1f,model_candidate,2026-11-14
+yongin-giheung:map:floorplan-annex-2f,yongin-giheung,annex-2f,,240,200,pixel,top_left,right,down,,,floor_plan,yongin-giheung:source:floorplan-annex-2f,model_candidate,2026-11-14
+yongin-giheung:map:floorplan-annex-3f,yongin-giheung,annex-3f,,318,213,pixel,top_left,right,down,,,floor_plan,yongin-giheung:source:floorplan-annex-3f,model_candidate,2026-11-14

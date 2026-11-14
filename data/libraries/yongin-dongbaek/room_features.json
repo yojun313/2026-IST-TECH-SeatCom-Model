@@ -1,0 +1,19 @@
+[
+  {
+    "room_id": "yongin-dongbaek:room:4",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "공식 좌석현황 열람실명 \"노트북석\"",
+      "observed_on": "2026-11-14",
+      "timezone": "Asia/Seoul"
+    },
+    "method": "model_inference",
+    "source_id": "yongin-dongbaek:src:seatmate4",
+    "confidence": 0.8,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "yongin-dongbaek"
+  }
+]

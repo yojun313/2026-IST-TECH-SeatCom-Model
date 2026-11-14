@@ -1,0 +1,36 @@
+[
+  {
+    "room_id": "yongin-pogok:room:1",
+    "library_id": "yongin-pogok",
+    "name": "열람실",
+    "floor_id": null,
+    "capacity": 140,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-pogok:source:app_render",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-pogok:room:2",
+    "library_id": "yongin-pogok",
+    "name": "노트북실",
+    "floor_id": null,
+    "capacity": 19,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-pogok:source:app_render",
+    "verification": "model_candidate"
+  }
+]

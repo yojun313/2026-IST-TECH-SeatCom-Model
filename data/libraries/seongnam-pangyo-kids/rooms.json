@@ -1,0 +1,70 @@
+[
+  {
+    "room_id": "seongnam-pangyo-kids:room:01",
+    "library_id": "seongnam-pangyo-kids",
+    "name": "제1열람실(성인전용/칸막이)",
+    "floor_id": null,
+    "capacity": 80,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-pangyo-kids:room:02",
+    "library_id": "seongnam-pangyo-kids",
+    "name": "제1열람실(성인-중고생/칸막이)",
+    "floor_id": null,
+    "capacity": 147,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-pangyo-kids:room:03",
+    "library_id": "seongnam-pangyo-kids",
+    "name": "제2열람실(성인-중고생/오픈석)",
+    "floor_id": null,
+    "capacity": 122,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+    "verification": "unverified"
+  },
+  {
+    "room_id": "seongnam-pangyo-kids:room:04",
+    "library_id": "seongnam-pangyo-kids",
+    "name": "노트북실(성인-중고생/오픈석)",
+    "floor_id": null,
+    "capacity": 45,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+    "verification": "unverified"
+  }
+]

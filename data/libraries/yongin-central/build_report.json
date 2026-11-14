@@ -1,0 +1,271 @@
+{
+  "library_id": "yongin-central",
+  "status": "discovery",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 344,
+    "expected_count_source_id": "yongin-central:source:datagokr-15154878",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0,
+    "notes": "공식 CSV의 344개 좌석 ID/좌석명(열람실 1:132, 2:82, 3:130)은 assets/official_seat_roster_2025-11-27.csv에 보관. 좌표·열람실 명칭이 없어 seats.json은 빈 배열(좌표 없는 좌석은 스키마 bbox/map_id 요건을 충족 못함). 기준일 2025-11-27, 현재 정원 미확정."
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 6,
+      "verification": "model_candidate",
+      "missing_reason": "F1·F2 층별도 아이콘 시각 판독(문 위치 미확인); B1은 화장실 아이콘 없음"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 3,
+      "verification": "model_candidate",
+      "missing_reason": "층별도 아이콘 판독"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에서 출입구 표기 미확인"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 창 표기 없음"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면 기반 추출 미실시"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "통행 그래프 미구축"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 계단 그림 있으나 폴리곤 미추출"
+    },
+    {
+      "type": "water_dispenser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "partition",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "brightness",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "airflow",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "desk_shape",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    },
+    {
+      "name": "desk_depth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 344,
+      "missing_reason": "원본(규정·실측·설비도) 미확보"
+    }
+  ],
+  "checks": [
+    {
+      "check": "개별 배열과 dataset.json 일치",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target_schema v1.1 통과",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "check": "ID 중복 없음",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "source 외래키",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "facility map 외래키",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "library_id 전 레코드 일치",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "시설 좌표가 지도 범위 이내",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "좌석 수 0 / 방 capacity 합 344",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "CSV UTF-8 BOM",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "CSV 행수=JSON 행수",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "CSV 마지막 컬럼 기준일자",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "facilities CSV geometry JSON 문자열",
+      "passed": true,
+      "detail": ""
+    },
+    "dataset.json 배열과 개별 JSON 배열 11종 값/행 일치 확인",
+    "target_schema.json v1.1 Draft 2020-12 검증 통과"
+  ],
+  "blockers": [
+    "공식 층별안내 페이지에 좌석 번호·좌석 위치 도면 없음; 통합 좌석현황 링크 미확인(숨은 경로 추측 안 함)",
+    "열람실ID 1/2/3과 층·열람실 명칭 대응 자료 없음",
+    "도서관 위경도 근거 자료 없음(지오코딩 금지)",
+    "층별도 이미지 이용조건 불명확으로 assets 미포함",
+    "운영시간·이용규정(노트북 등) 원본 미확인"
+  ],
+  "next_actions": [
+    "번호 포함 좌석 배치 원본(사용자 제공 캡처 또는 허용된 공식 화면) 확보 후 seats.json 구축 및 공식 좌석 ID 대응",
+    "열람실 ID와 층/명칭 대응 확인(제1·제2종합자료실 등 도면 구역과 연결 여부)",
+    "화장실 문 위치·출입구·설비 원본 확보",
+    "공식 위경도 근거 확보",
+    "층별도 이미지 이용조건 확인"
+  ]
+}

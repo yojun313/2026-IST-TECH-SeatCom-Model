@@ -1,0 +1,70 @@
+[
+  {
+    "room_id": "seongnam-central:room:3f-1-A",
+    "library_id": "seongnam-central",
+    "name": "3층1열람실(A구역)",
+    "floor_id": "3F",
+    "capacity": 169,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-central:source:user-capture-A-76e3778271ac",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-central:room:3f-1-B",
+    "library_id": "seongnam-central",
+    "name": "3층1열람실(B구역)",
+    "floor_id": "3F",
+    "capacity": 70,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-central:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-central:room:4f-2",
+    "library_id": "seongnam-central",
+    "name": "2열람실4층(성인)",
+    "floor_id": "4F",
+    "capacity": 216,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-central:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-central:room:4f-3",
+    "library_id": "seongnam-central",
+    "name": "3열람실4층",
+    "floor_id": "4F",
+    "capacity": 216,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-central:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  }
+]

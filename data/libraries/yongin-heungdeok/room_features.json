@@ -1,0 +1,21 @@
+[
+  {
+    "room_id": "yongin-heungdeok:room:02",
+    "library_id": "yongin-heungdeok",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실 명칭이 \"노트북실\"(공식 좌석현황 탭 라벨, 공공 CSV 열람실그룹명)",
+      "observed_on": "2026-11-14",
+      "limitation": "명칭 기반 값; 방 안 모든 좌석에 대한 현장 확인 없음"
+    },
+    "method": "model_inference",
+    "source_id": "yongin-heungdeok:source:seatmate_tab2",
+    "confidence": null,
+    "verification": "model_candidate",
+    "normalized_value": null,
+    "normalization_version": null,
+    "applies_to_all_seats": null
+  }
+]

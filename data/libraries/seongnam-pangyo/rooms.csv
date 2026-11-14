@@ -1,0 +1,5 @@
+﻿열람실ID,도서관ID,도서관명,층ID,정원,좌석배정방식,이용규칙,운영시간,출처ID,검수상태,원본열람실ID,공식열람실ID,원본열람실ID출처ID,운영시간출처ID,정원출처ID목록,데이터기준일자
+seongnam-pangyo:room:01,seongnam-pangyo,제1일반열람실,,176,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-pangyo:source:public-csv-15032433,unverified,,,,,,2026-11-14
+seongnam-pangyo:room:02,seongnam-pangyo,노트북전용실,,99,unknown,"{""laptop_allowed"":true,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-pangyo:source:public-csv-15032433,unverified,,,,,,2026-11-14
+seongnam-pangyo:room:03,seongnam-pangyo,제2일반열람실,,140,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-pangyo:source:public-csv-15032433,unverified,,,,,,2026-11-14
+seongnam-pangyo:room:04,seongnam-pangyo,성인열람실,,108,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-pangyo:source:public-csv-15032433,unverified,,,,,,2026-11-14

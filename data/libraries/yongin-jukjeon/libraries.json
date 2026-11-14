@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-jukjeon",
+    "name": "죽전도서관",
+    "address": "경기도 용인시 수지구 대지로 89(죽전동 1212)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "yongin-jukjeon:source:official-floor-page",
+    "verification": "model_candidate"
+  }
+]

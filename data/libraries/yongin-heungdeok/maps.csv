@@ -1,0 +1,3 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+yongin-heungdeok:map:room01,yongin-heungdeok,,yongin-heungdeok:room:01,1000,700,pixel,top_left,right,down,,,seat_button_layout,yongin-heungdeok:source:seatmate_tab1,model_candidate,2026-11-14
+yongin-heungdeok:map:room02,yongin-heungdeok,3F,yongin-heungdeok:room:02,1000,700,pixel,top_left,right,down,,,seat_button_layout,yongin-heungdeok:source:seatmate_tab2,model_candidate,2026-11-14

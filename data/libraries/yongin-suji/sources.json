@@ -1,0 +1,62 @@
+[
+  {
+    "source_id": "yongin-suji:source:data_go_15154878",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15154878/fileData.do",
+    "sha256": "5e4a4478e8eced1d21e5828ef66c71e3208089c3a9c9394d93361ee055b61d0a",
+    "document_date": "2025-11-27",
+    "collected_on": "2026-11-14",
+    "license_status": "CSV는 이용제한 없음(작업표 기재)",
+    "notes": "용인시 도서관 좌석 CSV 수지도서관 69행: 좌석ID 1-69, 열람실ID 1, 좌석명 1-69. 원본은 cp949.",
+    "local_path": "Data/열람실_좌석추천_데이터/원본/15154878.csv",
+    "library_id": "yongin-suji"
+  },
+  {
+    "source_id": "yongin-suji:source:data_go_15171450",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15171450/fileData.do",
+    "sha256": "4bc24f565a38f051e700cb6b014b984a3ca652f9cc9fe45123978018e5d23c5c",
+    "document_date": "2026-10-12",
+    "collected_on": "2026-11-14",
+    "license_status": "CSV는 이용제한 없음(작업표 기재)",
+    "notes": "열람실그룹 운영정보 연번15 수지도서관 2층노트북석: 평일 09:00-22:00, 주말 09:00-17:00, 나이 0-100, 예약사용 예. 정리본 UTF-8 해시.",
+    "local_path": "Data/열람실_좌석추천_데이터/정리본_UTF8/15171450_1.csv",
+    "library_id": "yongin-suji"
+  },
+  {
+    "source_id": "yongin-suji:source:official_seatmate_sj",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/seatmate_sj/seatmate.php?classInfo=1",
+    "sha256": "b17f6f22fbef78d17001598db70f9bea31771a585e8235765bf61429705e8d6c",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "공식 공개 웹페이지. 배경 이미지(note.jpg, 1000x701)는 재배포 조건 미확인이므로 assets에 복제하지 않음. 상태(색/이미지)는 저장하지 않음.",
+    "notes": "좌석 69개의 left/top/width/height와 좌석번호(alt·본문)를 추출. robots.txt 확인(일반 경로 제한 없음). 배경 이미지 sha256=4d1e2458a0e5fd2e388ac200eee1b6344b8816a8016677a7fb9582a82566060a.",
+    "local_path": null,
+    "library_id": "yongin-suji"
+  },
+  {
+    "source_id": "yongin-suji:source:official_floor_page",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/suji/menu/12475/contents/40172/contents.do",
+    "sha256": "6cf953a8577bbfeaf65a0897a1c0ba2b4defff9acd2a709874f4d73825e4625f",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "공식 공개 웹페이지. 층별도 이미지 재배포 조건 미확인으로 assets 미포함.",
+    "notes": "층별안내(3층/2층/1층/지하1층) 이미지 alt 텍스트 확인. 이 단계에서 좌표 추출 없음.",
+    "local_path": null,
+    "library_id": "yongin-suji"
+  },
+  {
+    "source_id": "yongin-suji:source:official_facility_page",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/suji/menu/12474/contents/40171/contents.do",
+    "sha256": "3491e3a25ee2f91c478d900100eb6c71af6782039ae4d642285bfc2d04c0480d",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "공식 공개 웹페이지",
+    "notes": "하단 주소 표기 경기도 용인시 수지구 문정로7번길 23(풍덕천동 1088) 확인.",
+    "local_path": null,
+    "library_id": "yongin-suji"
+  }
+]

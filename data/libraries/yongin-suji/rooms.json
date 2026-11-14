@@ -1,0 +1,67 @@
+[
+  {
+    "room_id": "yongin-suji:room:1",
+    "library_id": "yongin-suji",
+    "name": "2층노트북석",
+    "floor_id": "2F",
+    "capacity": 69,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": 0,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "09:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "09:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "09:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "09:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "09:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "09:00",
+          "closes": "17:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "09:00",
+          "closes": "17:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-suji:source:data_go_15171450",
+    "verification": "model_candidate"
+  }
+]

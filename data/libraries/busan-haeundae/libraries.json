@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "busan-haeundae",
+    "name": "부산광역시립해운대도서관",
+    "address": "부산광역시 해운대구 양운로 183(좌동)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "busan-haeundae:source:official-facility-guide",
+    "verification": "human_checked"
+  }
+]

@@ -1,0 +1,230 @@
+{
+  "library_id": "yongin-seonong",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 112,
+    "expected_count_source_id": "yongin-seonong:source:official_facility_page",
+    "extracted_count": 112,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "공식 시설안내에 화장실 도면·위치 없음"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면 미확보"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면 미확보"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "feature": "laptopAllowed",
+      "scope": "room",
+      "observed_rooms": 1,
+      "verified_rooms": 0,
+      "target_rooms": 2,
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "노트북실 명칭에서만 후보값; 열람실은 명칭 근거 없어 null"
+    },
+    {
+      "feature": "keyboardAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "partition",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "outletAvailable",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "windowProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "toiletProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "entranceProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "brightness",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "airflow",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "deskHeight",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "deskWidth",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    },
+    {
+      "feature": "viewQuality",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 112,
+      "missing_reason": "원본·측정 없음"
+    }
+  ],
+  "data_present": {
+    "libraries": 1,
+    "rooms": 2,
+    "room_features": 1,
+    "sources": 7,
+    "seats": 112,
+    "maps": 2,
+    "facilities": 0
+  },
+  "checks": [
+    {
+      "name": "target_schema v1.1 jsonschema",
+      "result": "pass"
+    },
+    {
+      "name": "개별 배열=dataset.json",
+      "result": "pass"
+    },
+    {
+      "name": "외래키(source/room) 무결성",
+      "result": "pass"
+    },
+    {
+      "name": "CSV UTF-8 BOM",
+      "result": "pass"
+    },
+    {
+      "name": "정원합=좌석 CSV 112행",
+      "result": "pass"
+    },
+    {
+      "name": "bbox/그래프/변환 검사",
+      "result": "pass(112석 bbox가 1520x871 프레임 안, seat_id·외부ID 112개 중복 없음; 그래프/변환 해당 없음)"
+    },
+    {
+      "name": "렌더 스크린샷 위에 bbox 겹쳐 육안 대조(열람실 80, 노트북실 32)",
+      "result": "pass"
+    },
+    "dataset.json 배열과 개별 JSON 배열 11종 값/행 일치 확인",
+    "target_schema.json v1.1 Draft 2020-12 검증 통과"
+  ],
+  "blockers": [
+    "공식 좌석 앱 https://lib.yongin.go.kr/sn/ 는 Angular 렌더 필요. 렌더 도구 없이 초기 HTML에 좌표 없음; 숨은 API 추측 금지에 따라 중단",
+    "층별현황 페이지에는 텍스트(2층 열람실 및 노트북실 112석)만 있고 도면 이미지·화장실 위치 없음",
+    "좌석 좌표 0건이라 seats/maps는 빈 배열(스키마상 bbox 필수). 공공 CSV 좌석 112행은 좌표 없는 ID 목록이라 seats에 넣지 않음",
+    "도서관 위경도: 공식 근거 자료 미확보로 null (주변 도서관 거리 추천 비활성)",
+    "열람실ID 1=열람실/2=노트북실 대응은 제3자 목록 기준이며, 공공 좌석 CSV의 1~80=열람실ID 1, 81~112=열람실ID 2 와 정원 80/32는 CSV 행수 기반 후보",
+    "휴관일·예외일 미확인(운영시간은 공공 CSV 2026-10-12 기준 상시값 후보)",
+    "스키마가 추가 필드를 금지하므로 모든 레코드에 library_id를 넣지 못함: sources/room_features는 ID 접두사 `yongin-seonong:`로 소속 표현, rooms.json·libraries.json은 library_id 보유"
+  ],
+  "next_actions": [
+    "층별 도면·화장실·출입구 원본 확보",
+    "공식 위경도 출처 확보",
+    "열람실 1/2 의 공식 명칭 대응 확인",
+    "열람실ID 1/2의 공식 명칭 대응 확인",
+    "층별 도면·화장실·출입구(배경 이미지 개구부) 좌표 확보"
+  ],
+  "notes": [
+    "공식 좌석앱(/sn/)을 헤드리스 Chrome으로 렌더해 좌석 112개(열람실 1~80, 노트북실 81~112) 사각형 비율(%) 추출. 좌표 프레임은 렌더 프레임 1520x871(앱은 1905x863 배경을 늘려 표시). 사용중/수리/색은 저장하지 않음",
+    "external_seat_id는 공공 CSV 15154878의 (열람실ID, 좌석명)으로 연결(112/112). 단 CSV 열람실ID 1/2와 앱 열람실/노트북실의 대응은 문서 근거 없이 좌석수(80/32)와 좌석명 범위(1~80, 81~112) 일치로 추정한 것",
+    "좌석 verification=model_candidate; 배경 이미지·출입문·벽·시설 좌표는 이미지 재배포 조건 미확인으로 assets에 복제하지 않음, 미구축"
+  ]
+}

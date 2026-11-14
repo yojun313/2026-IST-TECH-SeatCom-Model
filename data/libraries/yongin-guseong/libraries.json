@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-guseong",
+    "name": "구성도서관",
+    "address": "경기도 용인시 기흥구 구성로77번길 17(언남동 342-1)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "yongin-guseong:source:official-floor-page",
+    "verification": "model_candidate"
+  }
+]

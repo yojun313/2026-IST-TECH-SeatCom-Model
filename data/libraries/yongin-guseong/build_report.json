@@ -1,0 +1,755 @@
+{
+  "library_id": "yongin-guseong",
+  "status": "discovery",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 291,
+    "expected_count_source_id": "yongin-guseong:source:data-go-kr-15154878",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "seat_identity_registry": {
+    "source_id": "yongin-guseong:source:data-go-kr-15154878",
+    "rows": 291,
+    "by_public_room_id": {
+      "1": 227,
+      "2": 54,
+      "3": 10
+    },
+    "unique_seat_ids": 291,
+    "unique_seat_names": 237,
+    "note": "공개 CSV에는 좌석 ID 1~291과 좌석명만 있고 좌표가 없어 seats.json에 넣지 않음(bbox 필수). 좌석명은 방 안에서 중복/문자(A~J) 포함 가능, 번호 추정 금지."
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 12,
+      "verification": "model_candidate",
+      "missing_reason": "층별도 4장(710x510) 일러스트를 눈으로 읽은 후보 좌표. 건물 전체 기대 수량 미확인(expected null), 계단·출입구는 라벨/형태가 보이는 것만"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 2,
+      "verification": "model_candidate",
+      "missing_reason": "층별도 4장(710x510) 일러스트를 눈으로 읽은 후보 좌표. 건물 전체 기대 수량 미확인(expected null), 계단·출입구는 라벨/형태가 보이는 것만"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 4,
+      "verification": "model_candidate",
+      "missing_reason": "층별도 4장(710x510) 일러스트를 눈으로 읽은 후보 좌표. 건물 전체 기대 수량 미확인(expected null), 계단·출입구는 라벨/형태가 보이는 것만"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 8,
+      "verification": "model_candidate",
+      "missing_reason": "층별도 4장(710x510) 일러스트를 눈으로 읽은 후보 좌표. 건물 전체 기대 수량 미확인(expected null), 계단·출입구는 라벨/형태가 보이는 것만"
+    },
+    {
+      "type": "water_dispenser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·현장 확인 필요"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "partition",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "brightness",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "airflow",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 291,
+      "missing_reason": "원본·측정 없음, null/미구축"
+    }
+  ],
+  "checks": [
+    {
+      "name": "target_schema v1.1 (additionalProperties 완화)",
+      "result": "pass",
+      "note": "0 errors"
+    },
+    {
+      "name": "target_schema v1.1 엄격",
+      "result": "fail_expected",
+      "note": "sources 7행에 brief 지시로 추가한 library_id 필드만 additionalProperties 위반(7건)"
+    },
+    {
+      "name": "개별 JSON = dataset.json 배열, CSV BOM·행 수 일치",
+      "result": "pass"
+    },
+    {
+      "name": "외래키/ID 중복",
+      "result": "pass",
+      "note": "seat/facility/graph 레코드가 없어 해당 FK는 해당 없음"
+    },
+    {
+      "name": "robots.txt",
+      "result": "pass",
+      "note": "lib.yongin.go.kr: Googlebot 일부 경로만 Disallow, 층별안내 페이지 허용"
+    },
+    {
+      "name": "층별도 시설 눈 판독 + 오버레이 대조",
+      "result": "pass",
+      "note": "26건 {'toilet': 12, 'elevator': 4, 'stairs': 8, 'entrance': 2}; 미리보기 2배 확대 오버레이로 대조 후 남자화장실 L자 형태·EV 높이 수정. 공식 층 이미지 4장 sha256이 sources 기록과 일치. robots.txt 확인, 1초 간격 다운로드, 이미지는 assets 미복제"
+    },
+    "dataset.json 배열과 개별 JSON 배열 11종 값/행 일치 확인",
+    "target_schema.json v1.1 Draft 2020-12 검증 통과"
+  ],
+  "blockers": [
+    "개별 좌석 위치·번호 원본 없음(구성도서관 공개 좌석현황 링크를 공식 내비게이션에서 확인하지 못함; 숨은 경로 추측 안 함).",
+    "공개 CSV의 열람실 ID 1/2/3(227/54/10석)에 대응하는 열람실 명칭·층 미확인. 운영시간 CSV는 방 ID 없이 그룹 \"열람실\" 1행뿐이라 조인 불가.",
+    "층별 이미지(710x510, 4장)는 이용조건 불명확, assets 미복제. 시설 후보 좌표는 눈 판독(model_candidate)이며 축척 없음(meters_per_unit null).",
+    "도서관 위경도 공식 근거 없음: null (거리 추천 비활성). stdg_cd/pblib_id 미확인 null."
+  ],
+  "next_actions": [
+    "번호가 표시된 공식 정적 좌석도 또는 사용자 제공 캡처 확보 후 CSV 좌석 ID와 대응.",
+    "열람실 ID 1~3의 명칭·층 확인(공식 이용안내/시설현황 menu/10700).",
+    "층별 이미지 이용조건 확인 후 시설 후보를 사람 검수(human_checked)로 승격. 문 위치·성별 화장실 출입구 현장 확인.",
+    "공식 위경도 확보."
+  ],
+  "visible_room_zones": {
+    "note": "facility type enum에 방 구획이 없어 facilities에 넣지 않고 참고용으로만 기록. 열람실 ID와 연결 안 됨. 이미지에 라벨이 있는 색칠 구획. 오차 약 ±8px(원호 구간은 다각형 근사). 큰 구역 안의 작은 방은 겹침.",
+    "items": [
+      {
+        "floor_id": "F3",
+        "map_id": "yongin-guseong:map:floor-F3",
+        "label": "사무실",
+        "polygon": [
+          [
+            88,
+            24
+          ],
+          [
+            203,
+            24
+          ],
+          [
+            203,
+            187
+          ],
+          [
+            88,
+            187
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F3",
+        "map_id": "yongin-guseong:map:floor-F3",
+        "label": "제2종합자료실",
+        "polygon": [
+          [
+            203,
+            24
+          ],
+          [
+            500,
+            24
+          ],
+          [
+            520,
+            10
+          ],
+          [
+            560,
+            3
+          ],
+          [
+            600,
+            10
+          ],
+          [
+            630,
+            40
+          ],
+          [
+            640,
+            80
+          ],
+          [
+            625,
+            125
+          ],
+          [
+            615,
+            297
+          ],
+          [
+            531,
+            297
+          ],
+          [
+            531,
+            232
+          ],
+          [
+            461,
+            232
+          ],
+          [
+            461,
+            297
+          ],
+          [
+            388,
+            297
+          ],
+          [
+            335,
+            243
+          ],
+          [
+            270,
+            243
+          ],
+          [
+            270,
+            237
+          ],
+          [
+            203,
+            237
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F3",
+        "map_id": "yongin-guseong:map:floor-F3",
+        "label": "도서정리실",
+        "polygon": [
+          [
+            461,
+            232
+          ],
+          [
+            531,
+            232
+          ],
+          [
+            531,
+            297
+          ],
+          [
+            461,
+            297
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F2",
+        "map_id": "yongin-guseong:map:floor-F2",
+        "label": "소모임실",
+        "polygon": [
+          [
+            88,
+            24
+          ],
+          [
+            205,
+            24
+          ],
+          [
+            205,
+            78
+          ],
+          [
+            88,
+            78
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F2",
+        "map_id": "yongin-guseong:map:floor-F2",
+        "label": "제1종합자료실",
+        "polygon": [
+          [
+            88,
+            24
+          ],
+          [
+            500,
+            24
+          ],
+          [
+            520,
+            10
+          ],
+          [
+            560,
+            3
+          ],
+          [
+            600,
+            10
+          ],
+          [
+            630,
+            40
+          ],
+          [
+            640,
+            80
+          ],
+          [
+            625,
+            125
+          ],
+          [
+            615,
+            138
+          ],
+          [
+            498,
+            138
+          ],
+          [
+            498,
+            297
+          ],
+          [
+            388,
+            297
+          ],
+          [
+            335,
+            243
+          ],
+          [
+            270,
+            243
+          ],
+          [
+            270,
+            237
+          ],
+          [
+            205,
+            237
+          ],
+          [
+            205,
+            187
+          ],
+          [
+            88,
+            187
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F2",
+        "map_id": "yongin-guseong:map:floor-F2",
+        "label": "시니어존",
+        "polygon": [
+          [
+            498,
+            138
+          ],
+          [
+            615,
+            138
+          ],
+          [
+            615,
+            297
+          ],
+          [
+            498,
+            297
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F1",
+        "map_id": "yongin-guseong:map:floor-F1",
+        "label": "책놀이터",
+        "polygon": [
+          [
+            88,
+            24
+          ],
+          [
+            207,
+            24
+          ],
+          [
+            207,
+            187
+          ],
+          [
+            88,
+            187
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F1",
+        "map_id": "yongin-guseong:map:floor-F1",
+        "label": "수유실",
+        "polygon": [
+          [
+            142,
+            152
+          ],
+          [
+            207,
+            152
+          ],
+          [
+            207,
+            187
+          ],
+          [
+            142,
+            187
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F1",
+        "map_id": "yongin-guseong:map:floor-F1",
+        "label": "어린이자료실",
+        "polygon": [
+          [
+            207,
+            24
+          ],
+          [
+            500,
+            24
+          ],
+          [
+            520,
+            10
+          ],
+          [
+            560,
+            3
+          ],
+          [
+            600,
+            10
+          ],
+          [
+            630,
+            40
+          ],
+          [
+            640,
+            80
+          ],
+          [
+            625,
+            125
+          ],
+          [
+            585,
+            160
+          ],
+          [
+            572,
+            187
+          ],
+          [
+            207,
+            187
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "F1",
+        "map_id": "yongin-guseong:map:floor-F1",
+        "label": "통합안내데스크",
+        "polygon": [
+          [
+            545,
+            176
+          ],
+          [
+            575,
+            166
+          ],
+          [
+            575,
+            248
+          ],
+          [
+            520,
+            272
+          ],
+          [
+            500,
+            272
+          ],
+          [
+            500,
+            205
+          ],
+          [
+            520,
+            195
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "B1",
+        "map_id": "yongin-guseong:map:floor-B1",
+        "label": "보존서고",
+        "polygon": [
+          [
+            88,
+            24
+          ],
+          [
+            398,
+            24
+          ],
+          [
+            398,
+            187
+          ],
+          [
+            88,
+            187
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "B1",
+        "map_id": "yongin-guseong:map:floor-B1",
+        "label": "커뮤니티실",
+        "polygon": [
+          [
+            400,
+            26
+          ],
+          [
+            497,
+            26
+          ],
+          [
+            497,
+            150
+          ],
+          [
+            400,
+            150
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "B1",
+        "map_id": "yongin-guseong:map:floor-B1",
+        "label": "세미나실",
+        "polygon": [
+          [
+            498,
+            24
+          ],
+          [
+            520,
+            10
+          ],
+          [
+            560,
+            3
+          ],
+          [
+            600,
+            10
+          ],
+          [
+            630,
+            40
+          ],
+          [
+            640,
+            80
+          ],
+          [
+            625,
+            125
+          ],
+          [
+            615,
+            183
+          ],
+          [
+            498,
+            183
+          ]
+        ],
+        "verification": "model_candidate"
+      },
+      {
+        "floor_id": "B1",
+        "map_id": "yongin-guseong:map:floor-B1",
+        "label": "휴게실",
+        "polygon": [
+          [
+            340,
+            238
+          ],
+          [
+            460,
+            238
+          ],
+          [
+            460,
+            305
+          ],
+          [
+            395,
+            297
+          ]
+        ],
+        "verification": "model_candidate"
+      }
+    ]
+  }
+}

@@ -1,0 +1,403 @@
+{
+  "schema_version": "1.1",
+  "libraries": [
+    {
+      "library_id": "incheon-gyeyang",
+      "name": "인천광역시교육청계양도서관",
+      "address": "(우)21030 인천 계양구 계양산로134번길 18 (계산동)",
+      "latitude": null,
+      "longitude": null,
+      "timezone": "Asia/Seoul",
+      "external_ids": {
+        "stdg_cd": null,
+        "pblib_id": null
+      },
+      "source_id": "incheon-gyeyang:source:official-facility-page",
+      "verification": "model_candidate"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "incheon-gyeyang:room:01",
+      "library_id": "incheon-gyeyang",
+      "name": "제1열람실(스마트열람실)",
+      "floor_id": "3F",
+      "capacity": 264,
+      "assignment": "assigned",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": {
+        "timezone": "Asia/Seoul",
+        "weekly": [
+          {
+            "day": 0,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 2,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 3,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 4,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 5,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 6,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          }
+        ],
+        "effective_from": null,
+        "effective_until": null
+      },
+      "source_id": "incheon-gyeyang:source:official-room-guide",
+      "verification": "model_candidate"
+    },
+    {
+      "room_id": "incheon-gyeyang:room:02",
+      "library_id": "incheon-gyeyang",
+      "name": "제2열람실",
+      "floor_id": "3F",
+      "capacity": 192,
+      "assignment": "assigned",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": {
+        "timezone": "Asia/Seoul",
+        "weekly": [
+          {
+            "day": 0,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 2,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 3,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 4,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 5,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 6,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          }
+        ],
+        "effective_from": null,
+        "effective_until": null
+      },
+      "source_id": "incheon-gyeyang:source:official-room-guide",
+      "verification": "model_candidate"
+    },
+    {
+      "room_id": "incheon-gyeyang:room:03",
+      "library_id": "incheon-gyeyang",
+      "name": "제3열람실",
+      "floor_id": "3F",
+      "capacity": 150,
+      "assignment": "assigned",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": {
+        "timezone": "Asia/Seoul",
+        "weekly": [
+          {
+            "day": 0,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 2,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 3,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 4,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 5,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 6,
+            "opens": "06:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          }
+        ],
+        "effective_from": null,
+        "effective_until": null
+      },
+      "source_id": "incheon-gyeyang:source:official-room-guide",
+      "verification": "model_candidate"
+    }
+  ],
+  "maps": [
+    {
+      "map_id": "incheon-gyeyang:map:3f-layout",
+      "library_id": "incheon-gyeyang",
+      "floor_id": "3F",
+      "room_id": null,
+      "width": 663,
+      "height": 463,
+      "unit": "pixel",
+      "origin": "top_left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "meters_per_unit": null,
+      "source_id": "incheon-gyeyang:source:official-facility-layout",
+      "verification": "model_candidate",
+      "image_path": null,
+      "map_kind": "floor_plan"
+    }
+  ],
+  "seats": [],
+  "facilities": [
+    {
+      "facility_id": "incheon-gyeyang:facility:toilet-male",
+      "library_id": "incheon-gyeyang",
+      "map_id": "incheon-gyeyang:map:3f-layout",
+      "type": "toilet",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            125,
+            398
+          ],
+          [
+            174,
+            398
+          ],
+          [
+            174,
+            433
+          ],
+          [
+            125,
+            433
+          ]
+        ]
+      },
+      "access_point": null,
+      "attributes": {
+        "gender": "male",
+        "label": "남자화장실",
+        "floor_id": "3F"
+      },
+      "source_id": "incheon-gyeyang:source:official-facility-layout",
+      "verification": "model_candidate"
+    },
+    {
+      "facility_id": "incheon-gyeyang:facility:toilet-female",
+      "library_id": "incheon-gyeyang",
+      "map_id": "incheon-gyeyang:map:3f-layout",
+      "type": "toilet",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            174,
+            379
+          ],
+          [
+            220,
+            379
+          ],
+          [
+            220,
+            433
+          ],
+          [
+            174,
+            433
+          ]
+        ]
+      },
+      "access_point": null,
+      "attributes": {
+        "gender": "female",
+        "label": "여자화장실",
+        "floor_id": "3F"
+      },
+      "source_id": "incheon-gyeyang:source:official-facility-layout",
+      "verification": "model_candidate"
+    },
+    {
+      "facility_id": "incheon-gyeyang:facility:toilet-accessible",
+      "library_id": "incheon-gyeyang",
+      "map_id": "incheon-gyeyang:map:3f-layout",
+      "type": "toilet",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            125,
+            379
+          ],
+          [
+            151,
+            379
+          ],
+          [
+            151,
+            398
+          ],
+          [
+            125,
+            398
+          ]
+        ]
+      },
+      "access_point": null,
+      "attributes": {
+        "accessible": true,
+        "label": "장애인화장실",
+        "floor_id": "3F"
+      },
+      "source_id": "incheon-gyeyang:source:official-facility-layout",
+      "verification": "model_candidate"
+    }
+  ],
+  "room_features": [
+    {
+      "room_id": "incheon-gyeyang:room:02",
+      "name": "partition",
+      "value": true,
+      "unit": null,
+      "context": {
+        "basis": "official room table: 칸막이 유무 O",
+        "observed_on": "2026-11-14",
+        "note": "현재 운영 상황에 따라 변동될 수 있음"
+      },
+      "method": "diagram_extraction",
+      "source_id": "incheon-gyeyang:source:official-room-guide",
+      "confidence": null,
+      "verification": "model_candidate",
+      "applies_to_all_seats": true,
+      "library_id": "incheon-gyeyang"
+    },
+    {
+      "room_id": "incheon-gyeyang:room:03",
+      "name": "partition",
+      "value": true,
+      "unit": null,
+      "context": {
+        "basis": "official room table: 칸막이 유무 O",
+        "observed_on": "2026-11-14",
+        "note": "현재 운영 상황에 따라 변동될 수 있음"
+      },
+      "method": "diagram_extraction",
+      "source_id": "incheon-gyeyang:source:official-room-guide",
+      "confidence": null,
+      "verification": "model_candidate",
+      "applies_to_all_seats": true,
+      "library_id": "incheon-gyeyang"
+    }
+  ],
+  "seat_features": [],
+  "walkway_nodes": [],
+  "walkway_edges": [],
+  "map_transforms": [],
+  "sources": [
+    {
+      "source_id": "incheon-gyeyang:source:official-room-guide",
+      "source_type": "official_web",
+      "url": "https://lib.ice.go.kr/gyeyang/html.do?menu_idx=40",
+      "sha256": "282512f9c55e01ac9009b0daf431e238b8e45c7d34008977d2855995dd6f380f",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "공개 안내 페이지. 별도 이용조건 미확인(사실 정보만 사용, 이미지 미복제). robots.txt: Disallow /cms/ 만 있음.",
+      "notes": "일반열람실 안내: 위치 3층, 좌석 606석, 열람실별 면적·좌석·칸막이, 휴관일(화요일·공휴일), 이용시간 06:00-22:00.",
+      "local_path": null,
+      "library_id": "incheon-gyeyang"
+    },
+    {
+      "source_id": "incheon-gyeyang:source:official-facility-page",
+      "source_type": "official_web",
+      "url": "https://lib.ice.go.kr/gyeyang/html.do?menu_idx=106",
+      "sha256": "0acece19208cb6fc31c205e4ac63efe397317060b1f412ba6577dd21643e1688",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "공개 안내 페이지. 별도 이용조건 미확인(사실 정보만 사용).",
+      "notes": "시설현황: 층별 면적·좌석 표, 주소 (우)21030 인천 계양구 계양산로134번길 18 (계산동). 위경도 표기 없음.",
+      "local_path": null,
+      "library_id": "incheon-gyeyang"
+    },
+    {
+      "source_id": "incheon-gyeyang:source:official-facility-layout",
+      "source_type": "official_web",
+      "url": "https://lib.ice.go.kr/data/menuResources/h7/106/202402151141_E34Lfle.jpg",
+      "sha256": "2189e04a6a07bba7f06128a80fdb24079b4bbbbcfcf5ca60106c61b6cb4dff9e",
+      "document_date": "2024-02-15",
+      "collected_on": "2026-11-14",
+      "license_status": "서비스 재이용조건 미확인: 이미지는 assets에 복제하지 않음. 좌표는 육안으로 읽은 후보값(663x463 px 프레임).",
+      "notes": "3층 배치도(663x463 JPEG). 방 3개·독서문화과·로비·남/여/장애인 화장실만 표시. 개별 좌석·번호·에어컨·출입문 없음. 파일명 날짜 기반 문서일.",
+      "local_path": null,
+      "library_id": "incheon-gyeyang"
+    }
+  ]
+}

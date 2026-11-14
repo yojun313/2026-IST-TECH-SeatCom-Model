@@ -1,0 +1,227 @@
+{
+  "library_id": "seongnam-pangyo",
+  "status": "discovery",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 523,
+    "expected_count_source_id": "seongnam-pangyo:source:public-csv-15032433",
+    "extracted_count": 0,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면 미확보"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면 미확보"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면 미확보"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면 미확보"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·사진·현장 확인 필요"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도·사진·현장 확인 필요"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 도면 미확보"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "feature": "laptopAllowed",
+      "observed_room_count": 1,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "열람실 단위로 노트북전용실 이름에서만 확인(좌석 단위 아님). 나머지 방은 이름에 근거 없어 null"
+    },
+    {
+      "feature": "keyboardAllowed",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "partition",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "outletAvailable",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "windowProximity",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "toiletProximity",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "entranceProximity",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "brightness",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "airflow",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "deskHeight",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "deskWidth",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "viewQuality",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "desk_shape",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "feature": "desk_depth",
+      "observed_room_count": 0,
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 523,
+      "missing_reason": "원본 없음"
+    }
+  ],
+  "checks": [
+    {
+      "name": "개별 배열=dataset.json",
+      "result": "pass"
+    },
+    {
+      "name": "외래키(room/source) 무결성, ID 중복 없음",
+      "result": "pass"
+    },
+    {
+      "name": "target_schema v1.1 (additionalProperties 완화판, library_id 추가 필드 때문)",
+      "result": "pass"
+    },
+    {
+      "name": "CSV UTF-8 BOM 및 행 수 일치",
+      "result": "pass"
+    },
+    {
+      "name": "열람실 정원 합계 523 = 공개 CSV 4행 합",
+      "result": "pass"
+    }
+  ],
+  "blockers": [
+    "snlib.go.kr robots.txt가 전 경로 Disallow이므로 좌석현황·도면 페이지를 수집하지 않음",
+    "판교도서관 좌석 캡처/PDF 등 사용자 제공 원본이 로컬에 없음(성남중앙 업로드만 존재)",
+    "도서관 주소·위경도의 공식 근거 자료 미확보(지오코딩 추정 금지) -> 거리 추천 비활성",
+    "운영시간·연령 규정 미확인; 성인열람실 연령 기준을 숫자로 추정하지 않음",
+    "스키마 additionalProperties=false이므로 지시된 library_id 추가 필드는 엄격 스키마에서 거부됨(완화 스키마로만 검증)"
+  ],
+  "next_actions": [
+    "판교도서관 4개 열람실 번호 포함 좌석 캡처 또는 허용된 배포 도면 확보 후 좌석·좌표 추출",
+    "공식 위경도·주소(data.go.kr 15142580 plr_v2 info_v2 등 공개 API 승인키 필요 여부 확인)",
+    "층별 시설·설비도 확보",
+    "CSV 정원 523석(2026-05-19)과 현재 좌석도 총수 대조(성남중앙처럼 차이 가능)"
+  ]
+}

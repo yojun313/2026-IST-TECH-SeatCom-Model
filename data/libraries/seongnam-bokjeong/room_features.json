@@ -1,0 +1,36 @@
+[
+  {
+    "room_id": "seongnam-bokjeong:room:r2",
+    "library_id": "seongnam-bokjeong",
+    "name": "partition",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실명 '칸막이석'에 직접 포함",
+      "observed_on": "2026-05-19",
+      "currentness": "2026-05-19 공개 CSV 기준; 현행 이용규정 미확인"
+    },
+    "method": "user_report",
+    "source_id": "seongnam-bokjeong:source:data-go-kr-15032433",
+    "confidence": null,
+    "verification": "unverified",
+    "applies_to_all_seats": true
+  },
+  {
+    "room_id": "seongnam-bokjeong:room:notebook",
+    "library_id": "seongnam-bokjeong",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실명 '노트북실'에 직접 포함",
+      "observed_on": "2026-05-19",
+      "currentness": "2026-05-19 공개 CSV 기준; 현행 이용규정 미확인"
+    },
+    "method": "user_report",
+    "source_id": "seongnam-bokjeong:source:data-go-kr-15032433",
+    "confidence": null,
+    "verification": "unverified",
+    "applies_to_all_seats": true
+  }
+]

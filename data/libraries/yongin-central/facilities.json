@@ -1,0 +1,175 @@
+[
+  {
+    "facility_id": "yongin-central:facility:001",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F2",
+    "type": "toilet",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        340,
+        94
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "male",
+      "note": "아이콘 위치(문 위치 아님)"
+    },
+    "source_id": "yongin-central:source:floorplan-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:002",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F2",
+    "type": "toilet",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        445,
+        94
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "female",
+      "note": "아이콘 위치(문 위치 아님)"
+    },
+    "source_id": "yongin-central:source:floorplan-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:003",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F2",
+    "type": "elevator",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        498,
+        108
+      ]
+    },
+    "access_point": null,
+    "attributes": {},
+    "source_id": "yongin-central:source:floorplan-F2",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:004",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        270,
+        72
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "female",
+      "accessible": true,
+      "note": "아이콘 위치(문 위치 아님)"
+    },
+    "source_id": "yongin-central:source:floorplan-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:005",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        270,
+        106
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "male",
+      "accessible": true,
+      "note": "아이콘 위치(문 위치 아님)"
+    },
+    "source_id": "yongin-central:source:floorplan-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:006",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        340,
+        92
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "male",
+      "note": "아이콘 위치(문 위치 아님)"
+    },
+    "source_id": "yongin-central:source:floorplan-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:007",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F1",
+    "type": "toilet",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        445,
+        92
+      ]
+    },
+    "access_point": null,
+    "attributes": {
+      "gender": "female",
+      "note": "아이콘 위치(문 위치 아님)"
+    },
+    "source_id": "yongin-central:source:floorplan-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:008",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-F1",
+    "type": "elevator",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        498,
+        104
+      ]
+    },
+    "access_point": null,
+    "attributes": {},
+    "source_id": "yongin-central:source:floorplan-F1",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-central:facility:009",
+    "library_id": "yongin-central",
+    "map_id": "yongin-central:map:floor-B1",
+    "type": "elevator",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        487,
+        102
+      ]
+    },
+    "access_point": null,
+    "attributes": {},
+    "source_id": "yongin-central:source:floorplan-B1",
+    "verification": "model_candidate"
+  }
+]

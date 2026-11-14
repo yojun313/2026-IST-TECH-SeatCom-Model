@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "nl-digital",
+    "name": "국립중앙도서관 디지털도서관",
+    "address": "서울특별시 서초구 반포대로 201 (반포동)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "nl-digital:source:press-release-200721",
+    "verification": "model_candidate"
+  }
+]

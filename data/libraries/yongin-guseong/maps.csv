@@ -1,0 +1,5 @@
+﻿지도ID,도서관ID,층ID,열람실ID,가로,세로,단위,원점,X방향,Y방향,단위당미터,이미지경로,지도종류,출처ID,검수상태,데이터기준일자
+yongin-guseong:map:floor-F3,yongin-guseong,F3,,710,510,pixel,top_left,right,down,,,perspective_illustration,yongin-guseong:source:floor-image-F3,unverified,2026-11-14
+yongin-guseong:map:floor-F2,yongin-guseong,F2,,710,510,pixel,top_left,right,down,,,perspective_illustration,yongin-guseong:source:floor-image-F2,unverified,2026-11-14
+yongin-guseong:map:floor-F1,yongin-guseong,F1,,710,510,pixel,top_left,right,down,,,perspective_illustration,yongin-guseong:source:floor-image-F1,unverified,2026-11-14
+yongin-guseong:map:floor-B1,yongin-guseong,B1,,710,510,pixel,top_left,right,down,,,perspective_illustration,yongin-guseong:source:floor-image-B1,unverified,2026-11-14

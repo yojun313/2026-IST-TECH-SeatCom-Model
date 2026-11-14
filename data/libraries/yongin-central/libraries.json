@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-central",
+    "name": "중앙도서관",
+    "address": "경기도 용인시 처인구 명지로 27(역북동 504-1)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "yongin-central:source:official-floor-page",
+    "verification": "model_candidate"
+  }
+]

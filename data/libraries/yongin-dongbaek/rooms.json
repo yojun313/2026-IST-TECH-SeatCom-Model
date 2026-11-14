@@ -1,0 +1,215 @@
+[
+  {
+    "room_id": "yongin-dongbaek:room:1",
+    "library_id": "yongin-dongbaek",
+    "name": "열람실(일반)",
+    "floor_id": null,
+    "capacity": 156,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": "2026-10-12",
+      "effective_until": null
+    },
+    "source_id": "yongin-dongbaek:src:seatmate1",
+    "verification": "model_candidate",
+    "official_room_id": "1",
+    "capacity_sources": [
+      "yongin-dongbaek:src:data15154878",
+      "yongin-dongbaek:src:seatmate1"
+    ],
+    "opening_hours_source_id": "yongin-dongbaek:src:data15171450"
+  },
+  {
+    "room_id": "yongin-dongbaek:room:2",
+    "library_id": "yongin-dongbaek",
+    "name": "열람실(청소년)",
+    "floor_id": null,
+    "capacity": 102,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": "2026-10-12",
+      "effective_until": null
+    },
+    "source_id": "yongin-dongbaek:src:seatmate2",
+    "verification": "model_candidate",
+    "official_room_id": "2",
+    "capacity_sources": [
+      "yongin-dongbaek:src:data15154878",
+      "yongin-dongbaek:src:seatmate2"
+    ],
+    "opening_hours_source_id": "yongin-dongbaek:src:data15171450"
+  },
+  {
+    "room_id": "yongin-dongbaek:room:4",
+    "library_id": "yongin-dongbaek",
+    "name": "노트북석",
+    "floor_id": null,
+    "capacity": 29,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:55",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": "2026-10-12",
+      "effective_until": null
+    },
+    "source_id": "yongin-dongbaek:src:seatmate4",
+    "verification": "model_candidate",
+    "official_room_id": "4",
+    "capacity_sources": [
+      "yongin-dongbaek:src:data15154878",
+      "yongin-dongbaek:src:seatmate4"
+    ],
+    "opening_hours_source_id": "yongin-dongbaek:src:data15171450"
+  }
+]

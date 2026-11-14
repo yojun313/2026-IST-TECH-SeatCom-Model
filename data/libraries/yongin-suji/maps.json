@@ -1,0 +1,19 @@
+[
+  {
+    "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+    "library_id": "yongin-suji",
+    "floor_id": "2F",
+    "room_id": "yongin-suji:room:1",
+    "width": 1000,
+    "height": 701,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "yongin-suji:source:official_seatmate_sj",
+    "verification": "model_candidate",
+    "image_path": null,
+    "map_kind": "seat_button_layout"
+  }
+]

@@ -19,7 +19,12 @@ def validate():
     for path in ROOT.rglob('*.json'):
         load(path)
     checks.append('모든 JSON 구문 정상')
+    # library dataset CSVs have table-specific Korean headers and serialize
+    # nested JSON cells. Validate those against each bundle below instead of
+    # comparing their Korean columns to the snake_case JSON keys here.
     for path in ROOT.rglob('*.csv'):
+        if (ROOT/'libraries') in path.parents:
+            continue
         assert path.read_bytes().startswith(b'\xef\xbb\xbf'), path
         with path.open(encoding='utf-8-sig',newline='') as f:
             reader=csv.DictReader(f)
@@ -72,16 +77,87 @@ def validate():
     assert len({(r['법정동코드'],r['도서관ID']) for r in reference_libraries})==91
     assert sum(bool(r['좌석현황페이지후보URL']) for r in reference_rooms)==205
     checks.append('참고 저장소 후보91기관/222열람실/205주소/복합키 중복 없음')
-    for markdown in [ROOT/'README.md',ROOT/'docs/HANDOFF.md',ROOT/'docs/OPENDATA_PLR.md']:
+    # Validate the per-library training bundles and their Korean CSV copies.
+    library_root=ROOT/'libraries'
+    schema=load(ROOT/'docs/target_schema.json')
+    try:
+        import jsonschema
+        validator=jsonschema.Draft202012Validator(schema)
+    except ImportError:
+        raise RuntimeError('도서관 번들 스키마 검증에는 jsonschema 설치가 필요합니다.')
+    tables=['libraries','rooms','maps','seats','facilities','room_features','seat_features',
+            'walkway_nodes','walkway_edges','map_transforms','sources']
+    csv_headers={}
+    library_count=0
+    library_totals={table:0 for table in tables}
+    banned_data_keys={'state','seatTime','occupancy','occupied','reserved_by','current_user','seat_status'}
+    def inspect_keys(value):
+        if isinstance(value,dict):
+            assert not (banned_data_keys & set(value)), banned_data_keys & set(value)
+            for nested in value.values(): inspect_keys(nested)
+        elif isinstance(value,list):
+            for nested in value: inspect_keys(nested)
+    for directory in sorted(library_root.iterdir()):
+        bundle_path=directory/'dataset.json'
+        if not directory.is_dir() or not bundle_path.exists():
+            continue
+        bundle=load(bundle_path); library_count+=1
+        assert bundle['schema_version']=='1.1', bundle_path
+        assert len(bundle['libraries'])==1 and bundle['libraries'][0]['library_id']==directory.name, bundle_path
+        validator.validate(bundle)
+        inspect_keys(bundle)
+        maps={record['map_id']:record for record in bundle['maps']}
+        rooms={record['room_id']:record for record in bundle['rooms']}
+        seats={record['seat_id']:record for record in bundle['seats']}
+        sources={record['source_id'] for record in bundle['sources']}
+        nodes={record['node_id']:record for record in bundle['walkway_nodes']}
+        for table in tables:
+            records=bundle[table]
+            library_totals[table]+=len(records)
+            assert all(record.get('library_id')==directory.name for record in records), (directory.name,table,'library_id')
+            assert load(directory/f'{table}.json')==records, directory/f'{table}.json'
+            csv_path=directory/f'{table}.csv'
+            assert csv_path.read_bytes().startswith(b'\xef\xbb\xbf'), csv_path
+            with csv_path.open(encoding='utf-8-sig',newline='') as f:
+                reader=csv.reader(f); header=next(reader); row_count=sum(1 for _ in reader)
+            assert header[-1]=='데이터기준일자', csv_path
+            assert csv_headers.setdefault(table,header)==header, (table,header)
+            assert row_count==len(records), csv_path
+        for seat in bundle['seats']:
+            box=seat['bbox']; map_record=maps[seat['map_id']]
+            assert box['width']>0 and box['height']>0
+            assert 0<=box['x'] and 0<=box['y'] and box['x']+box['width']<=map_record['width']+1e-6 and box['y']+box['height']<=map_record['height']+1e-6, (directory.name,seat['seat_id'],'bbox')
+            assert seat['room_id'] in rooms and seat['source_id'] in sources
+        for facility in bundle['facilities']:
+            map_record=maps[facility['map_id']]
+            geometry=facility['geometry']
+            points=[geometry['coordinates']] if geometry['type']=='Point' else geometry['coordinates']
+            for point in points:
+                assert 0<=point[0]<=map_record['width'] and 0<=point[1]<=map_record['height'], (directory.name,facility['facility_id'],'geometry')
+            assert facility['source_id'] in sources
+        for feature in bundle['room_features']:
+            assert feature['room_id'] in rooms and feature['source_id'] in sources
+        for feature in bundle['seat_features']:
+            assert feature['seat_id'] in seats and feature['source_id'] in sources
+        for node in bundle['walkway_nodes']:
+            assert node['map_id'] in maps and node['source_id'] in sources
+        for edge in bundle['walkway_edges']:
+            assert edge['from_node_id'] in nodes and edge['to_node_id'] in nodes and edge['source_id'] in sources
+        for transform in bundle['map_transforms']:
+            assert transform['from_map_id'] in maps and transform['to_map_id'] in maps and transform['source_id'] in sources
+    assert library_count==27, library_count
+    checks.append('도서관27관: schema 1.1/배열·개별JSON/일관된 CSV헤더·BOM·행수·library_id/상태필드 제외 확인')
+    checks.append('도서관27관: 좌석 bbox 범위, 시설 좌표 범위, 열람실·좌석·지도·출처 외래키 확인')
+    for markdown in [ROOT/'README.md',ROOT/'BUILD_STATUS.md',ROOT/'docs/HANDOFF.md',ROOT/'docs/OPENDATA_PLR.md']:
         for target in re.findall(r'\]\(([^)]+)\)',markdown.read_text(encoding='utf-8')):
             if '://' in target or target.startswith('#'):
                 continue
             assert (markdown.parent/target.split('#')[0]).exists(),(markdown,target)
     checks.append('README/HANDOFF/참고 저장소 검토서 내부 링크 유효')
-    output={'status':'passed','checks':checks,'limitations':[
+    output={'status':'passed','checks':checks,'library_dataset_counts':library_totals,'limitations':[
         '무결성 통과는 OCR 실제 정확도·물리 좌표 정합성·현행성·서비스 이미지 이용조건을 입증하지 않음.',
-        '169개 좌석 전수 눈검수와 용인1318개 공식ID 매핑은 미완료.',
-        '에어컨·화장실 등의 시설 좌표를 아직 생성하지 않음.'
+        '모든 좌석 2111건과 시설 73건은 model_candidate이며 현장/사람 검수 완료가 아님.',
+        '일부 기관은 지도 이미지·좌석번호·시설도·위경도·실시간 좌석 공급이 미확보.'
     ],'데이터기준일자':date.today().isoformat()}
     (ROOT/'validation/integrity.json').write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(output,ensure_ascii=False,indent=2))

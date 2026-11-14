@@ -1,0 +1,19 @@
+[
+  {
+    "map_id": "seongnam-central:map:3f-1-A:seat-buttons",
+    "library_id": "seongnam-central",
+    "floor_id": "3F",
+    "room_id": "seongnam-central:room:3f-1-A",
+    "width": 3772,
+    "height": 1786,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "seongnam-central:source:user-capture-A-76e3778271ac",
+    "verification": "model_candidate",
+    "image_path": "assets/seat_layout_A.svg",
+    "map_kind": "seat_button_layout"
+  }
+]

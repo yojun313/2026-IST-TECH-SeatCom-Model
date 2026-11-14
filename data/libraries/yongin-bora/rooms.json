@@ -1,0 +1,69 @@
+[
+  {
+    "room_id": "yongin-bora:room:reading-1f",
+    "library_id": "yongin-bora",
+    "name": "보라도서관 열람실",
+    "floor_id": "1F",
+    "capacity": 134,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "07:00",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-bora:source:public_rules_csv",
+    "verification": "model_candidate",
+    "external_room_id": "1",
+    "external_room_id_source_id": "yongin-bora:source:public_seat_csv"
+  }
+]

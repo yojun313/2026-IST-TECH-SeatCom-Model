@@ -1,0 +1,16 @@
+[
+  {
+    "library_id": "yongin-heungdeok",
+    "name": "흥덕도서관",
+    "address": "경기도 용인시 기흥구 흥덕중앙로 153 (영덕동 1235)",
+    "latitude": null,
+    "longitude": null,
+    "timezone": "Asia/Seoul",
+    "external_ids": {
+      "stdg_cd": null,
+      "pblib_id": null
+    },
+    "source_id": "yongin-heungdeok:source:facility_page",
+    "verification": "model_candidate"
+  }
+]

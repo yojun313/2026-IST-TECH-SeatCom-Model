@@ -1,0 +1,60 @@
+[
+  {
+    "facility_id": "yongin-pogok:facility:entrance-r1",
+    "library_id": "yongin-pogok",
+    "map_id": "yongin-pogok:map:room1",
+    "type": "entrance",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          92,
+          606
+        ],
+        [
+          92,
+          721
+        ]
+      ]
+    },
+    "access_point": [
+      92.0,
+      663.5
+    ],
+    "attributes": {
+      "label": "출입문",
+      "note": "배경 이미지의 출입문 개구부 위치를 육안으로 읽은 모델 후보; 통행 방향·출입 제한 미확인"
+    },
+    "source_id": "yongin-pogok:source:room1_image",
+    "verification": "model_candidate"
+  },
+  {
+    "facility_id": "yongin-pogok:facility:entrance-r2",
+    "library_id": "yongin-pogok",
+    "map_id": "yongin-pogok:map:room2",
+    "type": "entrance",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          882,
+          782
+        ],
+        [
+          997,
+          782
+        ]
+      ]
+    },
+    "access_point": [
+      939.5,
+      782.0
+    ],
+    "attributes": {
+      "label": "출입문",
+      "note": "배경 이미지의 출입문 개구부 위치를 육안으로 읽은 모델 후보; 통행 방향·출입 제한 미확인"
+    },
+    "source_id": "yongin-pogok:source:room2_image",
+    "verification": "model_candidate"
+  }
+]

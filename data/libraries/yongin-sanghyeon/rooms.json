@@ -1,0 +1,84 @@
+[
+  {
+    "room_id": "yongin-sanghyeon:room:1",
+    "library_id": "yongin-sanghyeon",
+    "name": "열람실",
+    "floor_id": "5F",
+    "capacity": 180,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": 14,
+      "maximum_age": 100
+    },
+    "opening_hours": {
+      "timezone": "Asia/Seoul",
+      "weekly": [
+        {
+          "day": 0,
+          "opens": "06:45",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 1,
+          "opens": "06:45",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 2,
+          "opens": "06:45",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 3,
+          "opens": "06:45",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 4,
+          "opens": "06:45",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 5,
+          "opens": "06:45",
+          "closes": "22:00",
+          "ends_next_day": false
+        },
+        {
+          "day": 6,
+          "opens": "06:45",
+          "closes": "22:00",
+          "ends_next_day": false
+        }
+      ],
+      "effective_from": null,
+      "effective_until": null
+    },
+    "source_id": "yongin-sanghyeon:src:public_csv_seats",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "yongin-sanghyeon:room:2",
+    "library_id": "yongin-sanghyeon",
+    "name": "노트북실",
+    "floor_id": "5F",
+    "capacity": 30,
+    "assignment": "assigned",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "yongin-sanghyeon:src:public_csv_seats",
+    "verification": "model_candidate"
+  }
+]

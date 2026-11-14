@@ -1,0 +1,19 @@
+[
+  {
+    "room_id": "seongnam-wirye:room:01",
+    "library_id": "seongnam-wirye",
+    "name": "노트북실",
+    "floor_id": null,
+    "capacity": 42,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": true,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-wirye:source:datagokr-15032433",
+    "verification": "model_candidate"
+  }
+]

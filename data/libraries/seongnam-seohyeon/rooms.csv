@@ -1,0 +1,4 @@
+﻿열람실ID,도서관ID,도서관명,층ID,정원,좌석배정방식,이용규칙,운영시간,출처ID,검수상태,원본열람실ID,공식열람실ID,원본열람실ID출처ID,운영시간출처ID,정원출처ID목록,데이터기준일자
+seongnam-seohyeon:room:01,seongnam-seohyeon,제1열람실 (3층),3F,150,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-seohyeon:source:public-csv-15032433,unverified,,,,,,2026-11-14
+seongnam-seohyeon:room:02,seongnam-seohyeon,제2열람실 (4층),4F,52,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-seohyeon:source:public-csv-15032433,unverified,,,,,,2026-11-14
+seongnam-seohyeon:room:03,seongnam-seohyeon,노트북실 (4층),4F,51,unknown,"{""laptop_allowed"":true,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-seohyeon:source:public-csv-15032433,unverified,,,,,,2026-11-14

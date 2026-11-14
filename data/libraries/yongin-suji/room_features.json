@@ -1,0 +1,18 @@
+[
+  {
+    "room_id": "yongin-suji:room:1",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "공개 CSV 열람실그룹명 \"2층노트북석\"에 직접 명시",
+      "observed_on": "2026-10-12"
+    },
+    "method": "diagram_extraction",
+    "source_id": "yongin-suji:source:data_go_15171450",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "yongin-suji"
+  }
+]

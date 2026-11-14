@@ -1,0 +1,6 @@
+﻿열람실ID,도서관ID,도서관명,층ID,정원,좌석배정방식,이용규칙,운영시간,출처ID,검수상태,원본열람실ID,공식열람실ID,원본열람실ID출처ID,운영시간출처ID,정원출처ID목록,데이터기준일자
+seongnam-bundang:room:01,seongnam-bundang,1열람실,,222,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-bundang:source:datagokr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-bundang:room:02,seongnam-bundang,1열람실(노트북겸용),,48,unknown,"{""laptop_allowed"":true,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-bundang:source:datagokr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-bundang:room:03,seongnam-bundang,1열람실(노트북전용),,34,unknown,"{""laptop_allowed"":true,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-bundang:source:datagokr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-bundang:room:04,seongnam-bundang,2열람실(노트북겸용),,90,unknown,"{""laptop_allowed"":true,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-bundang:source:datagokr-15032433,model_candidate,,,,,,2026-11-14
+seongnam-bundang:room:05,seongnam-bundang,3열람실(성인),,100,unknown,"{""laptop_allowed"":null,""keyboard_allowed"":null,""minimum_age"":null,""maximum_age"":null}",,seongnam-bundang:source:datagokr-15032433,model_candidate,,,,,,2026-11-14

@@ -1,0 +1,52 @@
+[
+  {
+    "room_id": "yongin-sanghyeon:room:1",
+    "name": "partition",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "공식 시설안내 \"5층 열람실/노트북실 칸막이 예약 180석/30석\" 표기",
+      "observed_on": "2026-11-14",
+      "currentness": "페이지 최종수정일 미확인"
+    },
+    "method": "diagram_extraction",
+    "source_id": "yongin-sanghyeon:src:facility_page",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "yongin-sanghyeon"
+  },
+  {
+    "room_id": "yongin-sanghyeon:room:2",
+    "name": "partition",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "공식 시설안내 \"5층 열람실/노트북실 칸막이 예약 180석/30석\" 표기",
+      "observed_on": "2026-11-14",
+      "currentness": "페이지 최종수정일 미확인"
+    },
+    "method": "diagram_extraction",
+    "source_id": "yongin-sanghyeon:src:facility_page",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "yongin-sanghyeon"
+  },
+  {
+    "room_id": "yongin-sanghyeon:room:2",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실 명칭 \"노트북실\"에 직접 쓰인 특성",
+      "observed_on": "2026-11-14"
+    },
+    "method": "diagram_extraction",
+    "source_id": "yongin-sanghyeon:src:seatmate_room2",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": true,
+    "library_id": "yongin-sanghyeon"
+  }
+]

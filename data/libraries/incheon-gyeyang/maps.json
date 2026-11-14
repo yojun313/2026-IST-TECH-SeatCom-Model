@@ -1,0 +1,19 @@
+[
+  {
+    "map_id": "incheon-gyeyang:map:3f-layout",
+    "library_id": "incheon-gyeyang",
+    "floor_id": "3F",
+    "room_id": null,
+    "width": 663,
+    "height": 463,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "incheon-gyeyang:source:official-facility-layout",
+    "verification": "model_candidate",
+    "image_path": null,
+    "map_kind": "floor_plan"
+  }
+]

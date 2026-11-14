@@ -1,0 +1,19 @@
+[
+  {
+    "room_id": "yongin-seonong:room:2",
+    "name": "laptopAllowed",
+    "value": true,
+    "unit": null,
+    "context": {
+      "basis": "열람실 명칭 \"노트북실\"",
+      "observed_on": "2026-11-14",
+      "limitation": "명칭 근거 후보값; 이용규정 원문 미확인"
+    },
+    "method": "model_inference",
+    "source_id": "yongin-seonong:source:room_csv",
+    "confidence": null,
+    "verification": "model_candidate",
+    "applies_to_all_seats": null,
+    "library_id": "yongin-seonong"
+  }
+]

@@ -1,0 +1,218 @@
+{
+  "library_id": "yongin-sanghyeon",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "seat_inventory": {
+    "expected_count": 210,
+    "expected_count_source_id": "yongin-sanghyeon:src:public_csv_seats",
+    "extracted_count": 210,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "facility_coverage": [
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 2,
+      "verification": "model_candidate",
+      "missing_reason": null,
+      "note": "열람실/노트북실 배경의 출입문 표시 각 1개(시각 판독, 전수검수 전). 건물 출입구·타층은 미확인"
+    },
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "층별 시설 도면 미확보(시설안내 페이지에 평면도 이미지 없음)"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "배경 이미지에 벽선은 있으나 폴리곤화·통로 검수 전이라 미구축; 이미지 재배포 조건 미확인"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "배경 이미지에서 기둥 미확인"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "배경 이미지에서 창문 미확인"
+    },
+    {
+      "type": "water_dispenser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "원본 미확보"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "partition",
+      "observed_seat_count": 210,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": null,
+      "note": "공식 시설안내 \"칸막이 예약\" 표기에 근거한 room_features(방 단위, model_candidate)"
+    },
+    {
+      "name": "laptopAllowed",
+      "observed_seat_count": 30,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": "열람실(180석)은 명칭만으로 추정 불가; 노트북실(30석)만 명칭 근거"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": "원본 없음"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": "콘센트 위치 원본 없음"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": "창문 위치·축척 없음"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": "화장실 위치·그래프·축척 없음"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": "통로 그래프·축척(meters_per_unit) 없음"
+    },
+    {
+      "name": "brightness/airflow/deskHeight/deskWidth/viewQuality",
+      "observed_seat_count": 0,
+      "verified_seat_count": 0,
+      "target_seat_count": 210,
+      "missing_reason": "측정·원본 없음"
+    }
+  ],
+  "checks": [
+    {
+      "name": "jsonschema v1.1",
+      "result": "pass",
+      "note": "sources/walkway_nodes/room_features 등의 추가 필드 library_id는 스키마가 additionalProperties=false라 검증 시 제외하고 통과"
+    },
+    {
+      "name": "개별 JSON과 dataset.json 일치",
+      "result": "pass"
+    },
+    {
+      "name": "ID 중복 없음·외래키(room/map/source/facility) 무결성",
+      "result": "pass"
+    },
+    {
+      "name": "좌석 bbox 양수·1000x700 프레임 범위 이내",
+      "result": "pass",
+      "note": "210/210"
+    },
+    {
+      "name": "공식 페이지 재파싱 사각형 vs candidates/yongin_geometry 상현 210행",
+      "result": "pass",
+      "note": "탭1 180, 탭2 30 일치(집합 비교)"
+    },
+    {
+      "name": "CSV UTF-8 BOM",
+      "result": "pass",
+      "note": "11개"
+    },
+    {
+      "name": "좌석 bbox 중첩",
+      "result": "info",
+      "note": "간격 24.75px < 너비 25px인 인접 좌석쌍 90개가 약간 겹침. 원본 CSS 값 그대로이며 버튼 레이아웃의 서브픽셀 중첩으로 추정(검수 전)"
+    },
+    {
+      "name": "공개 CSV 좌석 수",
+      "result": "pass",
+      "note": "상현 210행(열람실ID1 180, ID2 30)이 추출 사각형 수와 일치. 번호 대응은 미검증"
+    },
+    "dataset.json 배열과 개별 JSON 배열 11종 값/행 일치 확인",
+    "target_schema.json v1.1 Draft 2020-12 검증 통과"
+  ],
+  "blockers": [
+    "공식 좌석번호 전수 대응 불가: 공식 좌석현황 HTML은 사용 중 좌석의 번호를 \"배정\"으로 대체해 번호를 숨긴다. 좌석 번호를 위치·순서로 추정하지 않았으므로 external_seat_id와 seat_label은 모두 null이며 공개 CSV 좌석ID(1~180, 1~30)와 사각형의 대응은 미확정",
+    "공개 CSV는 열람실 ID 1/2만 갖고 열람실명이 없다. 열람실ID 1=열람실(탭1), 2=노트북실(탭2) 대응은 좌석 수(180/30)와 공식 탭 합계 일치에 근거한 후보이다",
+    "층별 평면도·화장실·설비 도면 미확보: 시설안내 페이지에 도면 이미지 없음. 화장실·에어컨·콘센트·조명·창문 미구축",
+    "배경 이미지(bg01.jpg, bg02.jpg)는 재배포 조건 미확인이라 assets에 넣지 않음. 파일 Exif는 2015년이며 현행 배치 갱신일로 취급하지 않음",
+    "건물 위경도는 근거 있는 공식 자료를 확인하지 못해 null (주변 도서관 거리 추천 비활성). pblib_id도 제3자 목록 값뿐이라 null",
+    "5층 노트북코너(개방형 비예약 26석)·휴게실 등 좌석현황에 없는 구역은 본 데이터셋에 없음",
+    "meters_per_unit 미확인: 픽셀 좌표만 유효하며 미터 거리 산출 불가. 통로 그래프(edges)·map_transforms 미구축",
+    "열람실 운영시간·나이 제한은 공개 CSV(2026-10-12) \"5층 열람실\" 행만 열람실(room 1)에 적용. 노트북실에 적용되는지, 휴관일·예외일은 미확인"
+  ],
+  "next_actions": [
+    "번호가 모두 보이는 공식 정적 도면 또는 허용된 사용자 제공 캡처 확보 후 좌석 번호·공식ID 대응 작성",
+    "5층 도면과 화장실·출입구가 포함된 층별 도면 확보, 벽·통로 검수 후 walkway 그래프 구성",
+    "이미지 이용조건 확인 후 정적 도면 assets 추가 여부 결정",
+    "도서관 위경도를 공식 자료에서 확인",
+    "정원 180/30과 실제 좌석 사각형 수 일치(210)를 현재 현장과 대조"
+  ]
+}

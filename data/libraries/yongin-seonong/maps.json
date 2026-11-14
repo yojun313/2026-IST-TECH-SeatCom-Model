@@ -1,0 +1,36 @@
+[
+  {
+    "map_id": "yongin-seonong:map:room1",
+    "library_id": "yongin-seonong",
+    "floor_id": null,
+    "room_id": "yongin-seonong:room:1",
+    "width": 1520,
+    "height": 871,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "yongin-seonong:source:room1_image",
+    "verification": "model_candidate",
+    "image_path": null,
+    "map_kind": "seat_button_layout"
+  },
+  {
+    "map_id": "yongin-seonong:map:room2",
+    "library_id": "yongin-seonong",
+    "floor_id": null,
+    "room_id": "yongin-seonong:room:2",
+    "width": 1520,
+    "height": 871,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "yongin-seonong:source:room2_image",
+    "verification": "model_candidate",
+    "image_path": null,
+    "map_kind": "seat_button_layout"
+  }
+]

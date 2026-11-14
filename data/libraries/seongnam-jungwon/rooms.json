@@ -1,0 +1,53 @@
+[
+  {
+    "room_id": "seongnam-jungwon:room:01",
+    "library_id": "seongnam-jungwon",
+    "name": "일반열람실",
+    "floor_id": null,
+    "capacity": 264,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-jungwon:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-jungwon:room:02",
+    "library_id": "seongnam-jungwon",
+    "name": "e-러닝실",
+    "floor_id": null,
+    "capacity": 58,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": null,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-jungwon:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  },
+  {
+    "room_id": "seongnam-jungwon:room:03",
+    "library_id": "seongnam-jungwon",
+    "name": "e-러닝실(키보드작업가능)",
+    "floor_id": null,
+    "capacity": 24,
+    "assignment": "unknown",
+    "usage_rules": {
+      "laptop_allowed": null,
+      "keyboard_allowed": true,
+      "minimum_age": null,
+      "maximum_age": null
+    },
+    "opening_hours": null,
+    "source_id": "seongnam-jungwon:source:data-go-kr-15032433",
+    "verification": "model_candidate"
+  }
+]

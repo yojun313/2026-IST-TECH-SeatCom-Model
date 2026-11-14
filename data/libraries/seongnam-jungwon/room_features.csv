@@ -1,0 +1,2 @@
+﻿도서관ID,열람실ID,도서관명,값,단위,측정맥락,수집방법,출처ID,신뢰도,검수상태,모든좌석적용,정규화값,정규화버전,데이터기준일자
+seongnam-jungwon,seongnam-jungwon:room:03,keyboardAllowed,true,,"{""basis"":""열람실명에 '키보드작업가능'이 명시됨"",""reference_date"":""2026-05-19""}",diagram_extraction,seongnam-jungwon:source:data-go-kr-15032433,,model_candidate,,,,2026-11-14

@@ -1,0 +1,36 @@
+[
+  {
+    "map_id": "yongin-jukjeon:map:room1-seatmate",
+    "library_id": "yongin-jukjeon",
+    "floor_id": null,
+    "room_id": "yongin-jukjeon:room:1",
+    "width": 1000,
+    "height": 700,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "yongin-jukjeon:source:seatmate-room1",
+    "verification": "model_candidate",
+    "image_path": null,
+    "map_kind": "seat_button_layout"
+  },
+  {
+    "map_id": "yongin-jukjeon:map:room2-seatmate",
+    "library_id": "yongin-jukjeon",
+    "floor_id": null,
+    "room_id": "yongin-jukjeon:room:2",
+    "width": 1000,
+    "height": 700,
+    "unit": "pixel",
+    "origin": "top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "meters_per_unit": null,
+    "source_id": "yongin-jukjeon:source:seatmate-room2",
+    "verification": "model_candidate",
+    "image_path": null,
+    "map_kind": "seat_button_layout"
+  }
+]

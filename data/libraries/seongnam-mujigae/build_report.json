@@ -1,0 +1,195 @@
+{
+ "library_id": "seongnam-mujigae",
+ "status": "discovery",
+ "dataset_version": "draft-1",
+ "reference_date": "2026-11-14",
+ "seat_inventory": {
+  "expected_count": 70,
+  "expected_count_source_id": "seongnam-mujigae:source:datagokr-15032433",
+  "extracted_count": 0,
+  "identity_verified_count": 0,
+  "geometry_verified_count": 0
+ },
+ "facility_coverage": [
+  {
+   "type": "toilet",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "entrance",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "wall",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "air_conditioner",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "air_diffuser",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "outlet",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "light",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "window",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  },
+  {
+   "type": "column",
+   "expected_count": null,
+   "mapped_count": 0,
+   "verification": "unverified",
+   "missing_reason": "허용된 원본(제공 캡처/PDF·독립 공개도면) 미확보; snlib 수집 금지"
+  }
+ ],
+ "feature_coverage": [
+  {
+   "name": "laptopAllowed",
+   "observed_room_count": 1,
+   "checked_room_count": 0,
+   "total_room_count": 2,
+   "missing_reason": "노트북열람실 명칭에서만 도출(model_candidate). 일반열람실은 명칭만으로 추정하지 않아 null"
+  },
+  {
+   "name": "keyboardAllowed",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "partition",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "outletAvailable",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "windowProximity",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "toiletProximity",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "entranceProximity",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "brightness",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "airflow",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "deskHeight",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "deskWidth",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  },
+  {
+   "name": "viewQuality",
+   "observed_seat_count": 0,
+   "verified_seat_count": 0,
+   "total_seat_count": null,
+   "missing_reason": "좌석·도면 원본 없음"
+  }
+ ],
+ "checks": [
+  {
+   "name": "target_schema_v1.1",
+   "result": "pass",
+   "note": "추가 필드 library_id(및 sources.library_id)는 제거 후 검사. 해당 필드는 에이전트 지시에 따른 확장"
+  },
+  {
+   "name": "individual_vs_bundle",
+   "result": "pass"
+  },
+  {
+   "name": "csv_bom_and_row_count",
+   "result": "pass"
+  },
+  {
+   "name": "foreign_keys_source_room",
+   "result": "pass"
+  }
+ ],
+ "blockers": [
+  "snlib.go.kr robots.txt가 전경로를 금지하여 사이트 직접 수집 불가(접근 시도하지 않음)",
+  "/home/stadium/.univdash/uploads/의 사용자 제공 캡처는 성남중앙용이며 무지개도서관 자료 없음",
+  "도서관 주소·위경도·공식 pblib_id/stdg_cd 근거 자료 없음(null). 제3자 목록의 4113000000/PLR005는 미검증이라 미사용",
+  "운영시간·층·이용연령·키보드 가능 여부 원본 없음"
+ ],
+ "next_actions": [
+  "일반열람실(46)·노트북열람실(24) 번호 포함 좌석현황 캡처 또는 PDF를 사용자 제공으로 확보",
+  "현재 층별도(출입구·화장실·벽·창·설비) 허용 원본 확보",
+  "공식 자료에서 주소·위경도·운영시간 확인",
+  "좌석 추출 후 번호 전수 검수 및 2026-05-19 정원(70)과 대조"
+ ]
+}
