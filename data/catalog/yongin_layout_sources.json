@@ -1,0 +1,183 @@
+[
+  {
+    "slug": "yongin",
+    "library": "중앙",
+    "floor_url": "https://lib.yongin.go.kr/yongin/menu/37396361/contents/40059/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/yongin/contents/img_floor_F2.jpg",
+      "https://lib.yongin.go.kr/include/image/yongin/contents/img_floor_F1.jpg",
+      "https://lib.yongin.go.kr/include/image/yongin/contents/img_floor_B1.jpg"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/yongin/menu/10317/contents/40058/contents.do",
+    "notebook_url": null,
+    "last_modified_labels": [],
+    "visual_size": [
+      750,
+      478
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/yongin/contents/img_floor_F2.jpg"
+  },
+  {
+    "slug": "bora",
+    "library": "보라",
+    "floor_url": "https://lib.yongin.go.kr/bora/menu/11674/contents/40157/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/bora/contents/img_floor_F2.jpg",
+      "https://lib.yongin.go.kr/include/image/bora/contents/img_floor_F1.jpg",
+      "https://lib.yongin.go.kr/include/image/bora/contents/img_floor_B1.jpg"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/bora/menu/11673/contents/40156/contents.do",
+    "notebook_url": null,
+    "last_modified_labels": [],
+    "visual_size": [
+      744,
+      444
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/bora/contents/img_floor_F2.jpg"
+  },
+  {
+    "slug": "dongbaek",
+    "library": "동백",
+    "floor_url": "https://lib.yongin.go.kr/dongbaek/menu/11286/contents/40117/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_F3.png",
+      "https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_F2.jpg",
+      "https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_F1.jpg",
+      "https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_B1.jpg",
+      "https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_B2.jpg",
+      "https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_B3.jpg"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/dongbaek/menu/11285/contents/40116/contents.do",
+    "notebook_url": "https://lib.yongin.go.kr/dongbaek/menu/11190/contents/40112/contents.do",
+    "last_modified_labels": [],
+    "visual_size": [
+      375,
+      463
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_F3.png"
+  },
+  {
+    "slug": "giheung",
+    "library": "기흥",
+    "floor_url": "https://lib.yongin.go.kr/giheung/menu/10898/contents/40076/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F3_annex.png",
+      "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F2_annex.png",
+      "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F1_annex.png",
+      "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F3.png",
+      "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F2.png",
+      "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F1.png"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/giheung/menu/10897/contents/40075/contents.do",
+    "notebook_url": null,
+    "last_modified_labels": [],
+    "visual_size": [
+      318,
+      213
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/giheung/contents/img_floor_F3_annex.png"
+  },
+  {
+    "slug": "guseong",
+    "library": "구성",
+    "floor_url": "https://lib.yongin.go.kr/guseong/menu/10701/contents/40093/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_F3.jpg",
+      "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_F2.jpg",
+      "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_F1.jpg",
+      "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_B1.jpg"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/guseong/menu/10700/contents/40092/contents.do",
+    "notebook_url": null,
+    "last_modified_labels": [],
+    "visual_size": [
+      710,
+      510
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_F3.jpg"
+  },
+  {
+    "slug": "heungdeok",
+    "library": "흥덕",
+    "floor_url": null,
+    "floor_images": [],
+    "facility_url": "https://lib.yongin.go.kr/heungdeok/menu/13830/contents/40215/contents.do",
+    "notebook_url": null,
+    "facility_images": []
+  },
+  {
+    "slug": "jukjeon",
+    "library": "죽전",
+    "floor_url": "https://lib.yongin.go.kr/jukjeon/menu/13247/contents/40186/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/jukjeon/contents/img_floor_F3.jpg",
+      "https://lib.yongin.go.kr/include/image/jukjeon/contents/img_floor_F2.jpg",
+      "https://lib.yongin.go.kr/include/image/jukjeon/contents/img_floor_F1.jpg",
+      "https://lib.yongin.go.kr/include/image/jukjeon/contents/img_floor_B1.jpg"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/jukjeon/menu/13246/contents/40185/contents.do",
+    "notebook_url": null,
+    "last_modified_labels": [],
+    "visual_size": [
+      695,
+      491
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/jukjeon/contents/img_floor_F3.jpg"
+  },
+  {
+    "slug": "pogok",
+    "library": "포곡",
+    "floor_url": "https://lib.yongin.go.kr/pogok/menu/13634/contents/40200/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/pogok/contents/img_floor_F3.jpg",
+      "https://lib.yongin.go.kr/include/image/pogok/contents/img_floor_F2.jpg",
+      "https://lib.yongin.go.kr/include/image/pogok/contents/img_floor_F1.jpg",
+      "https://lib.yongin.go.kr/include/image/pogok/contents/img_floor_B1.jpg"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/pogok/menu/13633/contents/40199/contents.do",
+    "notebook_url": null,
+    "last_modified_labels": [],
+    "visual_size": [
+      822,
+      666
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/pogok/contents/img_floor_F3.jpg"
+  },
+  {
+    "slug": "sanghyeon",
+    "library": "상현",
+    "floor_url": null,
+    "floor_images": [],
+    "facility_url": "https://lib.yongin.go.kr/sanghyeon/menu/11871/contents/40232/contents.do",
+    "notebook_url": null,
+    "facility_images": []
+  },
+  {
+    "slug": "suji",
+    "library": "수지",
+    "floor_url": "https://lib.yongin.go.kr/suji/menu/12475/contents/40172/contents.do",
+    "floor_images": [
+      "https://lib.yongin.go.kr/include/image/suji/contents/img_floor_F3.jpg",
+      "https://lib.yongin.go.kr/include/image/suji/contents/img_floor_F2.jpg",
+      "https://lib.yongin.go.kr/include/image/suji/contents/img_floor_F1.jpg",
+      "https://lib.yongin.go.kr/include/image/suji/contents/img_floor_B1.jpg"
+    ],
+    "facility_url": "https://lib.yongin.go.kr/suji/menu/12474/contents/40171/contents.do",
+    "notebook_url": null,
+    "last_modified_labels": [],
+    "visual_size": [
+      710,
+      493
+    ],
+    "visual_url": "https://lib.yongin.go.kr/include/image/suji/contents/img_floor_F3.jpg"
+  },
+  {
+    "slug": "seonong",
+    "library": "서농",
+    "floor_url": null,
+    "floor_images": [],
+    "facility_url": "https://lib.yongin.go.kr/seonong/menu/12066/contents/41370/contents.do",
+    "notebook_url": null,
+    "facility_images": []
+  }
+]

@@ -1,0 +1,721 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:seatcom:static-library-layout:1.0",
+  "title": "공공도서관 정적 좌석·시설 최종 번들 구조",
+  "description": "현재 추출 CSV의 형식이 아닌 다음 단계 목표 형식. null은 미확인이며 false와 다르다. 이용상태/성별/이용시각 제외. 실제 참조ID·좌표범위·좌표단위 정합은 별도 검증 필요.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "maps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/map"
+      }
+    },
+    "seats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/seat"
+      }
+    },
+    "map_transforms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/map_transform"
+      }
+    },
+    "walkway_nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/walkway_node"
+      }
+    },
+    "walkway_edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/walkway_edge"
+      }
+    },
+    "seat_features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/seat_feature"
+      }
+    },
+    "facilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/facility"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "sources",
+    "maps",
+    "seats",
+    "facilities",
+    "map_transforms",
+    "walkway_nodes",
+    "walkway_edges",
+    "seat_features"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_type": {
+          "enum": [
+            "public_dataset",
+            "official_web",
+            "public_work",
+            "user_supplied",
+            "field_measurement"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "document_date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "collected_on": {
+          "type": "string",
+          "format": "date"
+        },
+        "license_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "source_id",
+        "source_type",
+        "url",
+        "sha256",
+        "document_date",
+        "collected_on",
+        "license_status",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "map": {
+      "type": "object",
+      "properties": {
+        "map_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "library_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "floor_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "room_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "unit": {
+          "enum": [
+            "pixel",
+            "meter"
+          ]
+        },
+        "origin": {
+          "const": "top_left"
+        },
+        "x_direction": {
+          "const": "right"
+        },
+        "y_direction": {
+          "const": "down"
+        },
+        "meters_per_unit": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "map_id",
+        "library_id",
+        "floor_id",
+        "room_id",
+        "width",
+        "height",
+        "unit",
+        "origin",
+        "x_direction",
+        "y_direction",
+        "meters_per_unit",
+        "source_id",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "seat": {
+      "type": "object",
+      "properties": {
+        "seat_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "external_seat_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "seat_label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "library_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "room_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "map_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bbox": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        },
+        "orientation_degrees": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "seat_id",
+        "external_seat_id",
+        "seat_label",
+        "library_id",
+        "room_id",
+        "map_id",
+        "bbox",
+        "orientation_degrees",
+        "source_id",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "facility": {
+      "type": "object",
+      "properties": {
+        "facility_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "library_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "map_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "toilet",
+            "entrance",
+            "air_conditioner",
+            "air_diffuser",
+            "light",
+            "window",
+            "outlet",
+            "column",
+            "water_dispenser",
+            "elevator",
+            "stairs"
+          ]
+        },
+        "geometry": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "Point"
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "Polygon"
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "minItems": 3
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "LineString"
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "minItems": 2
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "access_point": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "attributes": {
+          "type": "object"
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "facility_id",
+        "library_id",
+        "map_id",
+        "type",
+        "geometry",
+        "access_point",
+        "attributes",
+        "source_id",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "map_transform": {
+      "type": "object",
+      "properties": {
+        "from_map_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to_map_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "affine",
+            "homography"
+          ]
+        },
+        "matrix": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "control_points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "to": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 3
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "from_map_id",
+        "to_map_id",
+        "kind",
+        "matrix",
+        "control_points",
+        "source_id",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "walkway_node": {
+      "type": "object",
+      "properties": {
+        "node_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "map_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "point": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "kind": {
+          "enum": [
+            "seat_access",
+            "door",
+            "corridor",
+            "facility_access",
+            "floor_connection"
+          ]
+        },
+        "target_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "node_id",
+        "map_id",
+        "point",
+        "kind",
+        "target_id",
+        "source_id",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "walkway_edge": {
+      "type": "object",
+      "properties": {
+        "from_node_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to_node_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "length": {
+          "type": "number",
+          "minimum": 0
+        },
+        "unit": {
+          "enum": [
+            "pixel",
+            "meter"
+          ]
+        },
+        "accessible": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "from_node_id",
+        "to_node_id",
+        "length",
+        "unit",
+        "accessible",
+        "source_id",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "seat_feature": {
+      "type": "object",
+      "properties": {
+        "seat_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": [
+            "number",
+            "string",
+            "boolean",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "context": {
+          "type": "object"
+        },
+        "method": {
+          "enum": [
+            "diagram_extraction",
+            "field_measurement",
+            "sensor",
+            "user_report",
+            "model_inference"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "model_candidate",
+            "human_checked",
+            "field_verified"
+          ]
+        }
+      },
+      "required": [
+        "seat_id",
+        "name",
+        "value",
+        "unit",
+        "context",
+        "method",
+        "source_id",
+        "confidence",
+        "verification"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "확인일": "2026-11-14",
+  "학교도서관포함": false,
+  "주요검토도서관수": 24,
+  "추가공개도면검토도서관수": 3,
+  "로컬공공데이터카탈로그검토범위": "../Data 카탈로그163건; 전국전체완전검색이아님",
+  "완성된전좌석전시설데이터셋수": 0,
+  "공개HTML좌석사각형수": 1318,
+  "사용자캡처좌석사각형수": 169,
+  "공공데이터포털원본": [
+    {
+      "id": "15154878",
+      "url": "https://www.data.go.kr/data/15154878/fileData.do",
+      "sha256": "5e4a4478e8eced1d21e5828ef66c71e3208089c3a9c9394d93361ee055b61d0a",
+      "bytes": 71114,
+      "rows": 2240,
+      "columns": [
+        "도서관명",
+        "좌석 ID",
+        "열람실 ID",
+        "좌석명",
+        "데이터기준일자"
+      ],
+      "기준일": "2025-11-27"
+    },
+    {
+      "id": "15032433",
+      "url": "https://www.data.go.kr/data/15032433/fileData.do",
+      "sha256": "ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b",
+      "bytes": 4404,
+      "rows": 40,
+      "기준일": "2026-05-19"
+    },
+    {
+      "id": "15171450",
+      "url": "https://www.data.go.kr/data/15171450/fileData.do",
+      "한계": "그룹명에열람실ID없음; 예약기록에이용자ID/좌석ID없음"
+    },
+    {
+      "id": "15142580",
+      "url": "https://www.data.go.kr/data/15142580/openapi.do",
+      "공식경로": [
+        "/info_v2",
+        "/prst_info_v2",
+        "/rlt_rdrm_info_v2"
+      ],
+      "인증호출검증": false,
+      "인증키환경": "DATA_GO_KR_KEY미설정",
+      "한계": "열람실집계스키마; 개별좌석/시설좌표없음"
+    }
+  ],
+  "접근정책": [
+    {
+      "host": "www.snlib.go.kr",
+      "robots": "https://www.snlib.go.kr/robots.txt",
+      "결과": "User-agent:* Disallow:/; 사이트수집중단; 사용자제공사진처리만실행"
+    },
+    {
+      "host": "lib.yongin.go.kr",
+      "robots": "https://lib.yongin.go.kr/robots.txt",
+      "결과": "일반UA의확인경로수집금지없음; 공식nav연결만접근"
+    },
+    {
+      "host": "www.nl.go.kr",
+      "robots": "https://www.nl.go.kr/robots.txt",
+      "결과": "Allow:/"
+    }
+  ],
+  "국립중앙배치도": {
+    "보도자료게시일": "2020-07-21",
+    "첨부목록URL": "https://www.nl.go.kr/afile/fileList.do?fileId=200721152142hcNi",
+    "원본URL": "https://www.nl.go.kr/afile/fileDownload/Aq6mn",
+    "hwp_sha256": "0c1d5e12d36a148627406bdc506bc6d19e0c4134304aaa725709075802312954",
+    "이미지": "BinData/BIN0007.bmp",
+    "이미지크기": [
+      1116,
+      780
+    ],
+    "제약": "현재배치확인필요; 일부도식무번호; 에어컨/콘센트미표시"
+  },
+  "구현확인": {
+    "성남캡처": "OpenCV사각형검출+RapidOCR실행;169행/고유번호169/우선검수8",
+    "해운대PDF": "PyMuPDF실행;1페이지/벡터path9/embeddedimage1; 도면은1127x624래스터",
+    "국립중앙HWP": "OLE BinData스트림DEFLATE해제후배치도시각검토;OCR실험미실행"
+  },
+  "저장제외": [
+    "이용상태",
+    "사용좌석수",
+    "잔여좌석수",
+    "성별색상",
+    "색상",
+    "이용시간",
+    "원본현황HTML",
+    "사용자캡처원본이미지"
+  ],
+  "주의": "공식공개웹을공공데이터포털의개방라이선스와동일시하지않음; 모든좌표는검수전후보를구분함",
+  "사용자지정참고저장소": {
+    "url": "https://github.com/Dev-zeno/opendata_plr",
+    "commit": "f1f4bc187d0e262815a25bae8d27ae12c9aa24cb",
+    "commit_time": "2026-03-29T17:37:23+09:00",
+    "검토방식": "정적분석만; 서버/배포실행및API인증호출안함",
+    "선별원본": "public/library_data.json",
+    "원본sha256": "1d89aa25531e723dbc637255a4f30e956ad70bc8f9a8838037ea90fd830c4fbc",
+    "기관복합키": [
+      "stdgCd",
+      "pblibId"
+    ],
+    "기관수": 91,
+    "도서관이름종류": 88,
+    "열람실수": 222,
+    "주소있는열람실수": 205,
+    "주소없는열람실수": 17,
+    "주소있는기관수": 82,
+    "직접이미지URL수": 0,
+    "링크접속검증": false,
+    "좌석시설좌표필드": false,
+    "라이선스": "명시LICENSE파일미확인; 코드/환경파일미복사;사실메타데이터만출처와함께재구성",
+    "한계": [
+      "참여기관전체목록으로확정불가",
+      "공식ID의현재성은인증실응답검증필요",
+      "실제열람실링크원본미검토",
+      "같은중앙도서관이름끼리조인금지"
+    ]
+  }
+}
