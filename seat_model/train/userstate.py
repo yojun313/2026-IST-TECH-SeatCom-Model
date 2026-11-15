@@ -9,18 +9,39 @@
       r_k = Σ_t (x_chosen,k − mean_avail,k) / (n + m0)        (m0: 수축 강도, 기록이 적으면 0 쪽으로)
   좌석 점수용 상호작용: inf_x_k = r_k · (x_seat,k − mean_avail,k)
 """
+
 from __future__ import annotations
 
 import numpy as np
 
-SEAT_KEYS = ["laptopAllowed", "keyboardAllowed", "partition", "outletAvailable", "windowProximity",
-             "toiletProximity", "entranceProximity", "brightness", "airflow", "deskHeight", "deskWidth",
-             "viewQuality", "noise_index"]
+SEAT_KEYS = [
+    "laptopAllowed",
+    "keyboardAllowed",
+    "partition",
+    "outletAvailable",
+    "windowProximity",
+    "toiletProximity",
+    "entranceProximity",
+    "brightness",
+    "airflow",
+    "deskHeight",
+    "deskWidth",
+    "viewQuality",
+    "noise_index",
+]
 K = len(SEAT_KEYS)
 
 
 class UserState:
-    __slots__ = ("n", "contrast_sum", "contrast_sq", "last_seat", "last_group", "seat_counts", "group_counts")
+    __slots__ = (
+        "n",
+        "contrast_sum",
+        "contrast_sq",
+        "last_seat",
+        "last_group",
+        "seat_counts",
+        "group_counts",
+    )
 
     def __init__(self):
         self.n = 0
@@ -52,17 +73,25 @@ class UserState:
     def update(self, seat_id, group_key, xc_chosen):
         self.n += 1
         self.contrast_sum += xc_chosen
-        self.contrast_sq += xc_chosen ** 2
+        self.contrast_sq += xc_chosen**2
         self.last_seat, self.last_group = seat_id, group_key
         self.seat_counts[seat_id] = self.seat_counts.get(seat_id, 0) + 1
         self.group_counts[group_key] = self.group_counts.get(group_key, 0) + 1
 
     # ---- 직렬화
     def to_dict(self):
-        enc = lambda g: None if g is None else f"{g[0]}|{g[1]}"     # (room_id, desk_group) → 문자열
-        return {"n": self.n, "contrast_sum": self.contrast_sum.tolist(), "contrast_sq": self.contrast_sq.tolist(),
-                "last_seat": self.last_seat, "last_group": enc(self.last_group),
-                "seat_counts": self.seat_counts, "group_counts": {enc(k): v for k, v in self.group_counts.items()}}
+        enc = lambda g: (
+            None if g is None else f"{g[0]}|{g[1]}"
+        )  # (room_id, desk_group) → 문자열
+        return {
+            "n": self.n,
+            "contrast_sum": self.contrast_sum.tolist(),
+            "contrast_sq": self.contrast_sq.tolist(),
+            "last_seat": self.last_seat,
+            "last_group": enc(self.last_group),
+            "seat_counts": self.seat_counts,
+            "group_counts": {enc(k): v for k, v in self.group_counts.items()},
+        }
 
     @classmethod
     def from_dict(cls, d):
@@ -70,17 +99,25 @@ class UserState:
         s.n = d["n"]
         s.contrast_sum = np.array(d["contrast_sum"])
         s.contrast_sq = np.array(d["contrast_sq"])
+
         def dec(x):
             if x is None:
                 return None
             r, g = x.rsplit("|", 1)
             return (r, int(g))
+
         s.last_seat, s.last_group = d["last_seat"], dec(d["last_group"])
         s.seat_counts = dict(d["seat_counts"])
         s.group_counts = {dec(k): v for k, v in d["group_counts"].items()}
         return s
 
 
-HIST_COLS = ["hist_n", "hist_last_seat", "hist_seat_cnt", "hist_last_group", "hist_group_cnt"]
+HIST_COLS = [
+    "hist_n",
+    "hist_last_seat",
+    "hist_seat_cnt",
+    "hist_last_group",
+    "hist_group_cnt",
+]
 INF_R_COLS = [f"inf_r_{k}" for k in SEAT_KEYS]
 INF_X_COLS = [f"inf_x_{k}" for k in SEAT_KEYS]

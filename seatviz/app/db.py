@@ -1,4 +1,5 @@
 """MongoDB `library` DB 접속. 접속 정보는 저장소 루트 .env(MONGO_*)를 읽는다(seatviz/.env 값이 우선)."""
+
 import os
 from functools import lru_cache
 from pathlib import Path
@@ -13,7 +14,10 @@ REPO = APP_DIR.parents[1]
 
 @lru_cache
 def get_db():
-    cfg = {**dotenv_values(REPO / ".env"), **{k: v for k, v in os.environ.items() if k.startswith("MONGO_")}}
+    cfg = {
+        **dotenv_values(REPO / ".env"),
+        **{k: v for k, v in os.environ.items() if k.startswith("MONGO_")},
+    }
     client = MongoClient(
         host=cfg.get("MONGO_HOST", "localhost"),
         port=int(cfg.get("MONGO_PORT", 27017)),

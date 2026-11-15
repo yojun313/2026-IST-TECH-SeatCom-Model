@@ -6,6 +6,7 @@ V_si = x_si · β.  요청 안에서 상수인 열(pref_imp, ctx 등)은 softmax
   β(match_k) = 관측 선호를 얼마나 믿는지(β_pers)
   β(inf_x_k) = 착석 기록으로 추정한 개인 취향을 얼마나 믿는지
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -19,9 +20,14 @@ HIST = ["hist_last_seat", "hist_seat_cnt", "hist_last_group", "hist_group_cnt"]
 VARIANTS = {
     "a_full": BASE + MATCH_COLS[:-1] + HIST + INF_X_COLS + EXP_COLS,
     "b_no_exp": BASE + MATCH_COLS[:-1] + HIST + INF_X_COLS,
-    "g_no_profile": BASE + HIST + INF_X_COLS + EXP_COLS,        # 취향 미입력: 관측 프로필 없이 착석 기록만
-    "h_profile_only": BASE + MATCH_COLS[:-1] + EXP_COLS,         # 착석 기록 미사용(관측 프로필만)
-    "i_population": BASE + EXP_COLS,                              # 개인화 없음
+    "g_no_profile": BASE
+    + HIST
+    + INF_X_COLS
+    + EXP_COLS,  # 취향 미입력: 관측 프로필 없이 착석 기록만
+    "h_profile_only": BASE
+    + MATCH_COLS[:-1]
+    + EXP_COLS,  # 착석 기록 미사용(관측 프로필만)
+    "i_population": BASE + EXP_COLS,  # 개인화 없음
 }
 
 
@@ -52,11 +58,21 @@ class CLogit:
         X = self._std(X)
         y = frame.y == 1
         b0 = warm_start if warm_start is not None else np.zeros(X.shape[1])
-        r = minimize(self._nll, b0, args=(X, y, frame.starts, frame.seg), jac=True, method="L-BFGS-B",
-                     options={"maxiter": self.maxiter})
+        r = minimize(
+            self._nll,
+            b0,
+            args=(X, y, frame.starts, frame.seg),
+            jac=True,
+            method="L-BFGS-B",
+            options={"maxiter": self.maxiter},
+        )
         self.beta = r.x
-        self.opt = {"success": bool(r.success), "nit": int(r.nit), "nll": float(r.fun),
-                    "nll_per_session": float(r.fun / len(frame.starts))}
+        self.opt = {
+            "success": bool(r.success),
+            "nit": int(r.nit),
+            "nll": float(r.fun),
+            "nll_per_session": float(r.fun / len(frame.starts)),
+        }
         self._se(X, frame)
         return self
 
@@ -91,15 +107,33 @@ class CLogit:
         return self._std(X) @ self.beta
 
     def coef_table(self):
-        return [{"feature": c, "beta_std": float(b), "se": float(s), "z": float(b / s) if s > 0 else None,
-                 "beta_raw": float(b / sd)} for c, b, s, sd in zip(self.cols, self.beta, self.se, self.sd)]
+        return [
+            {
+                "feature": c,
+                "beta_std": float(b),
+                "se": float(s),
+                "z": float(b / s) if s > 0 else None,
+                "beta_raw": float(b / sd),
+            }
+            for c, b, s, sd in zip(self.cols, self.beta, self.se, self.sd)
+        ]
 
     def state(self):
-        return {"cols": self.cols, "beta": self.beta.tolist(), "mu": self.mu.tolist(), "sd": self.sd.tolist(),
-                "l2": self.l2, "opt": self.opt}
+        return {
+            "cols": self.cols,
+            "beta": self.beta.tolist(),
+            "mu": self.mu.tolist(),
+            "sd": self.sd.tolist(),
+            "l2": self.l2,
+            "opt": self.opt,
+        }
 
     @classmethod
     def from_state(cls, st):
         m = cls(st["cols"], st["l2"])
-        m.beta, m.mu, m.sd = np.array(st["beta"]), np.array(st["mu"]), np.array(st["sd"])
+        m.beta, m.mu, m.sd = (
+            np.array(st["beta"]),
+            np.array(st["mu"]),
+            np.array(st["sd"]),
+        )
         return m

@@ -11,6 +11,7 @@
   U = Σ_k w_k (1 − |target_k − x_k|) − 0.5 · noise_aversion · noise_index,  노트북 사용자 × 노트북 금지 좌석 = 선택 불가
   exports/train_v1/eval_only/ 에만 저장하고, 특징 테이블과 합치지 않는다.
 """
+
 from __future__ import annotations
 
 import math
@@ -50,7 +51,9 @@ class Frame:
         self.starts = np.flatnonzero(change)
         self.sizes = np.diff(np.r_[self.starts, len(sid)])
         self.seg = np.repeat(np.arange(len(self.starts)), self.sizes)
-        assert (self.cand.session_id.values[self.starts] == self.meta.session_id.values).all()
+        assert (
+            self.cand.session_id.values[self.starts] == self.meta.session_id.values
+        ).all()
         self.y = self.cand.y_chosen.values.astype(np.int8)
 
     def X(self, cols):
@@ -64,7 +67,11 @@ class Frame:
 def load(cfg, cols=None, splits=SPLITS):
     exp = Path(cfg["paths"]["exports"])
     meta = pd.read_parquet(exp / "sessions.parquet")
-    cols = list(dict.fromkeys(["session_id", "seat_id", "y_chosen"] + list(cols or FEATURE_COLS)))
+    cols = list(
+        dict.fromkeys(
+            ["session_id", "seat_id", "y_chosen"] + list(cols or FEATURE_COLS)
+        )
+    )
     cand = pd.read_parquet(exp / "candidates.parquet", columns=cols)
     full = Frame(cand, meta)
     return {s: full.subset(split_mask(meta, s)) for s in splits}, full
@@ -78,8 +85,14 @@ def truth_path(cfg):
 def build_truth(cfg):
     """후보 행 순서와 같은 U_true, 사용자별 archetype·참 중요도. 평가 전용 파일."""
     exp = Path(cfg["paths"]["exports"])
-    seat_cols = [c for c in FEATURE_COLS if c.startswith("seat_") and not c.startswith("seat_desk_")]
-    cand = pd.read_parquet(exp / "candidates.parquet", columns=["session_id", "seat_id"] + seat_cols)
+    seat_cols = [
+        c
+        for c in FEATURE_COLS
+        if c.startswith("seat_") and not c.startswith("seat_desk_")
+    ]
+    cand = pd.read_parquet(
+        exp / "candidates.parquet", columns=["session_id", "seat_id"] + seat_cols
+    )
     meta = pd.read_parquet(exp / "sessions.parquet", columns=["session_id", "user_id"])
     lat = {d["user_id"]: d for d in TruthReader(cfg["db"]).find("synth_users")}
     users = sorted(lat)
@@ -100,14 +113,24 @@ def build_truth(cfg):
     sess_user = dict(zip(meta.session_id, meta.user_id))
     ui = np.array([uidx[sess_user[s]] for s in cand.session_id.values])
     X = cand[seat_cols].to_numpy(np.float64)
-    u = (Wt[ui] * (1 - np.abs(Tt[ui] - X))).sum(1) - 0.5 * na[ui] * X[:, keys.index("noise_index")]
+    u = (Wt[ui] * (1 - np.abs(Tt[ui] - X))).sum(1) - 0.5 * na[ui] * X[
+        :, keys.index("noise_index")
+    ]
     banned = lap[ui] & (X[:, keys.index("laptopAllowed")] == 0)
     u[banned] = -np.inf
-    out = pd.DataFrame({"session_id": cand.session_id.values, "seat_id": cand.seat_id.values, "u_true": u})
+    out = pd.DataFrame(
+        {
+            "session_id": cand.session_id.values,
+            "seat_id": cand.seat_id.values,
+            "u_true": u,
+        }
+    )
     p = truth_path(cfg)
     p.parent.mkdir(parents=True, exist_ok=True)
     out.to_parquet(p, index=False)
-    prof = pd.DataFrame({"user_id": users, "archetype": [lat[u]["archetype"] for u in users]})
+    prof = pd.DataFrame(
+        {"user_id": users, "archetype": [lat[u]["archetype"] for u in users]}
+    )
     for j, k in enumerate(keys):
         prof[f"w_{k}"] = Wt[:, j]
         prof[f"t_{k}"] = Tt[:, j]
@@ -138,7 +161,9 @@ def _rank_within(f: Frame, score):
     return rank + 1
 
 
-def per_session(f: Frame, score, ks=(1, 3, 5), ndcg_k=5, grade_cuts=(0.05, 0.20, 0.50), truth=True):
+def per_session(
+    f: Frame, score, ks=(1, 3, 5), ndcg_k=5, grade_cuts=(0.05, 0.20, 0.50), truth=True
+):
     rank = _rank_within(f, score)
     ch = f.y == 1
     r_chosen = rank[ch]
@@ -162,30 +187,54 @@ def per_session(f: Frame, score, ks=(1, 3, 5), ndcg_k=5, grade_cuts=(0.05, 0.20,
         trank = _rank_within(f, ut)
         n = f.sizes[f.seg]
         cuts = [np.maximum(1, np.ceil(c * n)) for c in grade_cuts]
-        grade = np.where(trank <= cuts[0], 3, np.where(trank <= cuts[1], 2, np.where(trank <= cuts[2], 1, 0)))
-        gain = (2.0 ** grade - 1)
+        grade = np.where(
+            trank <= cuts[0],
+            3,
+            np.where(trank <= cuts[1], 2, np.where(trank <= cuts[2], 1, 0)),
+        )
+        gain = 2.0**grade - 1
         disc = np.where(rank <= ndcg_k, 1 / np.log2(rank + 1), 0)
         idisc = np.where(trank <= ndcg_k, 1 / np.log2(trank + 1), 0)
         dcg = np.add.reduceat(gain * disc, f.starts)
         idcg = np.add.reduceat(gain * idisc, f.starts)
         out[f"ndcg@{ndcg_k}"] = np.where(idcg > 0, dcg / np.maximum(idcg, 1e-12), 0)
         top1 = rank == 1
-        out["oracle_hit@1"] = np.add.reduceat((top1 & (trank == 1)).astype(float), f.starts)
+        out["oracle_hit@1"] = np.add.reduceat(
+            (top1 & (trank == 1)).astype(float), f.starts
+        )
         # 상위 1개 좌석의 참 효용 백분위(선택 가능 좌석 중). 1 = 가장 좋은 좌석
         nvalid = np.add.reduceat(np.isfinite(u).astype(float), f.starts)
-        pct = np.where(np.isfinite(u), 1 - (trank - 1) / np.maximum(nvalid[f.seg] - 1, 1), 0)
+        pct = np.where(
+            np.isfinite(u), 1 - (trank - 1) / np.maximum(nvalid[f.seg] - 1, 1), 0
+        )
         out["exp_utility_pct"] = np.add.reduceat(np.where(top1, pct, 0), f.starts)
     return out
 
 
-METRICS = ["hit@1", "hit@3", "hit@5", "mrr", "loglik", "ndcg@5", "oracle_hit@1", "exp_utility_pct"]
+METRICS = [
+    "hit@1",
+    "hit@3",
+    "hit@5",
+    "mrr",
+    "loglik",
+    "ndcg@5",
+    "oracle_hit@1",
+    "exp_utility_pct",
+]
 
 
 def summarize(ps: pd.DataFrame):
     return {m: float(ps[m].mean()) for m in METRICS if m in ps}
 
 
-def bootstrap(per_model: dict, users: np.ndarray, ref: str, metrics=("hit@1", "mrr", "ndcg@5"), B=1000, seed=0):
+def bootstrap(
+    per_model: dict,
+    users: np.ndarray,
+    ref: str,
+    metrics=("hit@1", "mrr", "ndcg@5"),
+    B=1000,
+    seed=0,
+):
     """사용자 단위 재표본 95% CI. per_model: {name: per_session DataFrame(같은 요청 순서)}."""
     uid, inv = np.unique(users, return_inverse=True)
     U = len(uid)
@@ -204,14 +253,25 @@ def bootstrap(per_model: dict, users: np.ndarray, ref: str, metrics=("hit@1", "m
             v = W @ np.bincount(inv, ps[m].values, minlength=U) / den
             d = v - base
             res.setdefault(name, {})[m] = {
-                "mean": float(ps[m].mean()), "ci": [float(np.percentile(v, 2.5)), float(np.percentile(v, 97.5))],
+                "mean": float(ps[m].mean()),
+                "ci": [float(np.percentile(v, 2.5)), float(np.percentile(v, 97.5))],
                 "diff_vs_ref": float(ps[m].mean() - per_model[ref][m].mean()),
-                "diff_ci": [float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))],
+                "diff_ci": [
+                    float(np.percentile(d, 2.5)),
+                    float(np.percentile(d, 97.5)),
+                ],
             }
     return res
 
 
-def bucket_table(ps: pd.DataFrame, meta: pd.DataFrame, col: str, bins=None, labels=None, metrics=("hit@1", "hit@5", "mrr", "ndcg@5")):
+def bucket_table(
+    ps: pd.DataFrame,
+    meta: pd.DataFrame,
+    col: str,
+    bins=None,
+    labels=None,
+    metrics=("hit@1", "hit@5", "mrr", "ndcg@5"),
+):
     x = meta[col]
     if bins is not None:
         x = pd.cut(x, bins=bins, labels=labels, right=False)

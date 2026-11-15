@@ -82,7 +82,7 @@ uv run python -m recommender.seatrec predict \
 import joblib
 from recommender.seatrec.predict import recommend
 
-model = joblib.load('recommender/artifacts/models/lambdamart.joblib')
+model = joblib.load("recommender/artifacts/models/lambdamart.joblib")
 # current_request: 실제 최신 좌석 스냅샷을 예제 계약으로 변환한 dict
 recommendations = recommend(model, current_request, k=5)
 ```

@@ -876,6 +876,7 @@ U(seat) = w_outlet_fixed · outletAvailable · [참 outlet=required] · [laptop_
 ### 14.4 분포 모듈 `synth_v2/dist.py` (모든 추출의 단일 진입점)
 ```python
 """모든 확률 추출의 단일 진입점. 다른 모듈은 이 함수만 호출한다."""
+
 import hashlib
 import math
 from datetime import datetime
@@ -884,7 +885,14 @@ from zoneinfo import ZoneInfo
 import numpy as np
 
 KST = ZoneInfo("Asia/Seoul")
-STREAM = {"USERS": 1, "CALENDAR": 2, "SIM": 3, "CALIBRATION": 4, "OBSERVATION": 5, "FEEDBACK": 6}
+STREAM = {
+    "USERS": 1,
+    "CALENDAR": 2,
+    "SIM": 3,
+    "CALIBRATION": 4,
+    "OBSERVATION": 5,
+    "FEEDBACK": 6,
+}
 
 
 def rng_for(seed: int, stream: str, *keys: int) -> np.random.Generator:
@@ -893,7 +901,10 @@ def rng_for(seed: int, stream: str, *keys: int) -> np.random.Generator:
 
 
 def make_id(prefix: str, *parts) -> str:
-    return f"{prefix}:" + hashlib.sha1("|".join(map(str, parts)).encode("utf-8")).hexdigest()[:16]
+    return (
+        f"{prefix}:"
+        + hashlib.sha1("|".join(map(str, parts)).encode("utf-8")).hexdigest()[:16]
+    )
 
 
 def iso(dt: datetime) -> str:
@@ -933,7 +944,9 @@ def gumbel_noise(rng, scale, size):
 # ---------- 사용자 ----------
 def stable_weights(rng, mean, concentration, multipliers, active_mask):
     w = rng.dirichlet(np.asarray(mean) * concentration)
-    w = w * np.asarray(multipliers) * np.asarray(active_mask, float)   # archetype 배수, 취향 없음=0
+    w = (
+        w * np.asarray(multipliers) * np.asarray(active_mask, float)
+    )  # archetype 배수, 취향 없음=0
     return w / w.sum() if w.sum() > 0 else w
 
 
@@ -941,15 +954,24 @@ def user_routine(rng, cfg):
     r, b = cfg["routine"], cfg["behavior"]
     mix = r["arrival_mixture"]
     return {
-        "visits_base": int(rng.integers(b["visits_per_week"][0], b["visits_per_week"][1] + 1)),
+        "visits_base": int(
+            rng.integers(b["visits_per_week"][0], b["visits_per_week"][1] + 1)
+        ),
         "dow_p": rng.dirichlet(np.asarray(r["dow_weights"]) * r["dow_concentration"]),
-        "arrival_p": {dt: rng.dirichlet(np.asarray(c["weights"]) * r["arrival_concentration"]) for dt, c in mix.items()},
+        "arrival_p": {
+            dt: rng.dirichlet(np.asarray(c["weights"]) * r["arrival_concentration"])
+            for dt, c in mix.items()
+        },
         "arrival_offset_min": float(rng.normal(0.0, r["user_offset_sd_min"])),
-        "stay_mean_min": float(lognormal_ms(rng, b["stay_minutes"]["mean"], b["stay_minutes"]["sd"])),
+        "stay_mean_min": float(
+            lognormal_ms(rng, b["stay_minutes"]["mean"], b["stay_minutes"]["sd"])
+        ),
         "kappa": float(lognormal_ms(rng, **b["kappa"])),
         "kappa_zone": float(lognormal_ms(rng, **b["kappa_zone"])),
         "eta": float(lognormal_ms(rng, **b["eta"])),
-        "theta_move": float(scaled_beta(rng, *b["theta_move"]["range"], *b["theta_move"]["ab"])),
+        "theta_move": float(
+            scaled_beta(rng, *b["theta_move"]["range"], *b["theta_move"]["ab"])
+        ),
     }
 
 
@@ -957,7 +979,9 @@ def week_visit_days(rng, routine, cfg, open_dows):
     jit = rng.choice([-1, 0, 1], p=cfg["behavior"]["weekly_jitter_p"])
     k = int(np.clip(routine["visits_base"] + jit, 1, len(open_dows)))
     p = routine["dow_p"][open_dows]
-    return np.asarray(open_dows)[rng.choice(len(open_dows), size=k, replace=False, p=p / p.sum())]
+    return np.asarray(open_dows)[
+        rng.choice(len(open_dows), size=k, replace=False, p=p / p.sum())
+    ]
 
 
 def arrival_minute(rng, routine, day_type, cfg, opens_min, closes_min):
@@ -969,7 +993,12 @@ def arrival_minute(rng, routine, day_type, cfg, opens_min, closes_min):
 
 def stay_minutes(rng, routine, cfg):
     m = routine["stay_mean_min"]
-    return float(max(cfg["behavior"]["stay_minutes"]["min"], lognormal_ms(rng, m, m * cfg["behavior"]["stay_cv"])))
+    return float(
+        max(
+            cfg["behavior"]["stay_minutes"]["min"],
+            lognormal_ms(rng, m, m * cfg["behavior"]["stay_cv"]),
+        )
+    )
 
 
 # ---------- 달력 ----------
@@ -980,7 +1009,9 @@ def weather_chain(rng, months, probs, persistence):
             out.append(prev)
             continue
         pm = probs[m]
-        prev = str(categorical(rng, np.array(list(pm)), list(pm.values())))   # 저장용 파이썬 str
+        prev = str(
+            categorical(rng, np.array(list(pm)), list(pm.values()))
+        )  # 저장용 파이썬 str
         out.append(prev)
     return out
 
@@ -989,7 +1020,7 @@ def temperature_series(rng, n, start_c, end_c, sd, phi=0.7):
     trend = np.linspace(start_c, end_c, n)
     e = np.zeros(n)
     for t in range(1, n):
-        e[t] = phi * e[t - 1] + rng.normal(0.0, sd * math.sqrt(1 - phi ** 2))
+        e[t] = phi * e[t - 1] + rng.normal(0.0, sd * math.sqrt(1 - phi**2))
     return trend + e
 
 
@@ -998,8 +1029,8 @@ def realize_visit(rng, stable_w, stable_dir, cfg, flip_map):
     G, g = cfg["groups"]["order"], cfg["groups"]
     w = np.array(stable_w, float)
     d = dict(stable_dir)
-    keep = rng.random(len(G)) < np.asarray(g["rho"])                     # 베르누이(ρ_k)
-    jitter = rng.lognormal(0.0, np.asarray(g["sigma"]))                   # LogN(0, σ_k)
+    keep = rng.random(len(G)) < np.asarray(g["rho"])  # 베르누이(ρ_k)
+    jitter = rng.lognormal(0.0, np.asarray(g["sigma"]))  # LogN(0, σ_k)
     consistent = {}
     for k, name in enumerate(G):
         if w[k] == 0:
@@ -1021,7 +1052,7 @@ def pl_topk(rng, scores, k, temp):
     z = np.asarray(scores, float) / temp
     order = np.argsort(-(z + rng.gumbel(0.0, 1.0, len(z))))[: min(k, len(z))]
     logp, avail = 0.0, np.ones(len(z), bool)
-    for j in order:                                                       # 목록 로그확률
+    for j in order:  # 목록 로그확률
         zz = z[avail]
         logp += z[j] - (zz.max() + math.log(np.exp(zz - zz.max()).sum()))
         avail[j] = False
@@ -1042,7 +1073,10 @@ def sigmoid(x):
 
 def early_leave(rng, q, cfg):
     e = cfg["behavior"]["early_leave"]
-    return bool(rng.random() < sigmoid(math.log(e["base"] / (1 - e["base"])) + e["slope"] * (0.5 - q)))
+    return bool(
+        rng.random()
+        < sigmoid(math.log(e["base"] / (1 - e["base"])) + e["slope"] * (0.5 - q))
+    )
 
 
 def likert(rng, q, thresholds, sd):
@@ -1201,22 +1235,47 @@ from pathlib import Path
 
 MODEL_ROOT = Path(__file__).resolve().parents[1]
 
+
 def parse_args(argv=None):
     ap = argparse.ArgumentParser(description="좌석 추천 데이터셋 v2 생성기 (synth-2.0)")
-    ap.add_argument("--users", type=int, default=None,
-                    help="인간(사용자) 수. 기본: config users.count. 3000 초과분은 v1 make_user로 추가 생성")
-    ap.add_argument("--sims", type=int, default=1,
-                    help="시뮬레이션 회차 수. 같은 사용자·기간을 회차 시드(seed+1000·sim_id)로 반복해 데이터를 늘린다")
-    ap.add_argument("--days", type=int, default=None, help="시작일부터 시뮬레이션할 날짜 수(1~61). 기본: config period.days")
-    ap.add_argument("--rooms", nargs="*", default=None, help="room_id 제한(테스트용). 기본: 24개 전체")
+    ap.add_argument(
+        "--users",
+        type=int,
+        default=None,
+        help="인간(사용자) 수. 기본: config users.count. 3000 초과분은 v1 make_user로 추가 생성",
+    )
+    ap.add_argument(
+        "--sims",
+        type=int,
+        default=1,
+        help="시뮬레이션 회차 수. 같은 사용자·기간을 회차 시드(seed+1000·sim_id)로 반복해 데이터를 늘린다",
+    )
+    ap.add_argument(
+        "--days",
+        type=int,
+        default=None,
+        help="시작일부터 시뮬레이션할 날짜 수(1~61). 기본: config period.days",
+    )
+    ap.add_argument(
+        "--rooms",
+        nargs="*",
+        default=None,
+        help="room_id 제한(테스트용). 기본: 24개 전체",
+    )
     ap.add_argument("--seed", type=int, default=None, help="기본: config seed")
     ap.add_argument("--config", type=Path, default=MODEL_ROOT / "config/synth_v2.yaml")
     ap.add_argument("--out-dir", type=Path, default=MODEL_ROOT / "exports/ml_v2")
     ap.add_argument("--write-mongo", action="store_true", help="새 v2 컬렉션에도 저장")
-    ap.add_argument("--overwrite", action="store_true", help="허용 목록의 v2 컬렉션/출력 폴더만 비우고 다시 쓴다")
+    ap.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="허용 목록의 v2 컬렉션/출력 폴더만 비우고 다시 쓴다",
+    )
     ap.add_argument("--skip-calibration", action="store_true")
     ap.add_argument("--noise-scale", type=float, default=None, help="보정 생략 시 s 값")
-    ap.add_argument("--validate-only", action="store_true", help="기존 출력에 대해 §11 검증만 실행")
+    ap.add_argument(
+        "--validate-only", action="store_true", help="기존 출력에 대해 §11 검증만 실행"
+    )
     a = ap.parse_args(argv)
     if a.users is not None and a.users < 1:
         ap.error("--users 는 1 이상")
@@ -1228,26 +1287,49 @@ def parse_args(argv=None):
         ap.error("--skip-calibration 에는 --noise-scale 이 필요")
     return a
 
+
 def main(argv=None):
-    from . import config, db, sources, calendar, users, calibrate, simulate, writers, validate, report
+    from . import (
+        config,
+        db,
+        sources,
+        calendar,
+        users,
+        calibrate,
+        simulate,
+        writers,
+        validate,
+        report,
+    )
+
     a = parse_args(argv)
-    cfg = config.load(a.config, overrides={"users.count": a.users, "period.days": a.days, "seed": a.seed})
-    mdb = db.get_db(cfg)                                   # 읽기 전용 핸들(쓰기는 writers만)
-    src = sources.load(mdb, cfg, rooms=a.rooms)            # 열람실·규칙·기준 시나리오·좌석 테이블
-    days = calendar.build(src, cfg)                        # synth_v2_days
-    pop = users.build(mdb, src, cfg)                       # 관측(users) / 참값(truth_users) / split
-    out = writers.Writer(a.out_dir, mdb if a.write_mongo else None, cfg, overwrite=a.overwrite)
+    cfg = config.load(
+        a.config,
+        overrides={"users.count": a.users, "period.days": a.days, "seed": a.seed},
+    )
+    mdb = db.get_db(cfg)  # 읽기 전용 핸들(쓰기는 writers만)
+    src = sources.load(mdb, cfg, rooms=a.rooms)  # 열람실·규칙·기준 시나리오·좌석 테이블
+    days = calendar.build(src, cfg)  # synth_v2_days
+    pop = users.build(mdb, src, cfg)  # 관측(users) / 참값(truth_users) / split
+    out = writers.Writer(
+        a.out_dir, mdb if a.write_mongo else None, cfg, overwrite=a.overwrite
+    )
     if a.validate_only:
         return validate.run_all(out, mdb, cfg)
     s = a.noise_scale if a.skip_calibration else calibrate.run(src, days, pop, cfg)
     out.write_static(src.room_rules, days, pop)
     for sim_id in range(a.sims):
-        simulate.run(sim_id, src, days, pop, cfg, noise_scale=s, writer=out)   # 날짜 단위로 flush
+        simulate.run(
+            sim_id, src, days, pop, cfg, noise_scale=s, writer=out
+        )  # 날짜 단위로 flush
     out.write_manifest(args=vars(a), noise_scale=s, src=src)
     res = validate.run_all(out, mdb, cfg)
-    report.write(cfg, out, res, path=Path(cfg.root) / "reports/synth_v2_dataset_report.md")
+    report.write(
+        cfg, out, res, path=Path(cfg.root) / "reports/synth_v2_dataset_report.md"
+    )
     if not res.passed:
         raise SystemExit("검증 실패: 리포트 확인")
+
 
 if __name__ == "__main__":
     main()
@@ -1268,7 +1350,8 @@ cd seat_model
 from pathlib import Path
 from pymongo import MongoClient
 
-ROOT = Path(__file__).resolve().parents[2]          # 저장소 루트
+ROOT = Path(__file__).resolve().parents[2]  # 저장소 루트
+
 
 def _env(path=ROOT / ".env"):
     d = {}
@@ -1279,11 +1362,17 @@ def _env(path=ROOT / ".env"):
             d[k.strip()] = v.strip().strip("'\"")
     return d
 
+
 def get_db(cfg):
     e = _env()
-    client = MongoClient(host=e["MONGO_HOST"], port=int(e["MONGO_PORT"]), username=e.get("MONGO_USER"),
-                         password=e.get("MONGO_PASSWORD"), authSource=e.get("MONGO_AUTH_DB", "admin"),
-                         serverSelectionTimeoutMS=10000)
+    client = MongoClient(
+        host=e["MONGO_HOST"],
+        port=int(e["MONGO_PORT"]),
+        username=e.get("MONGO_USER"),
+        password=e.get("MONGO_PASSWORD"),
+        authSource=e.get("MONGO_AUTH_DB", "admin"),
+        serverSelectionTimeoutMS=10000,
+    )
     return client[cfg["sources"]["db"]]
 ```
 
@@ -1292,61 +1381,121 @@ def get_db(cfg):
 import pandas as pd
 
 LAYOUT = {"four_person_table": "shared_table", "long_shared_table": "shared_table"}
-SEAT_MASTER = ["seat_id", "library_id", "room_id", "map_id", "seat_label", "external_seat_id",
-               "bbox", "norm_bbox", "verification", "source_id"]
+SEAT_MASTER = [
+    "seat_id",
+    "library_id",
+    "room_id",
+    "map_id",
+    "seat_label",
+    "external_seat_id",
+    "bbox",
+    "norm_bbox",
+    "verification",
+    "source_id",
+]
+
 
 def pick_base_scenario(db, room_id, cfg):
     if room_id in cfg["base_scenario"]["override"]:
         sid = cfg["base_scenario"]["override"][room_id]
         return db.synth_scenarios.find_one({"_id": sid}), "override"
-    scen = list(db.synth_scenarios.find({"room_id": room_id}, {"objects": 0, "brightness_grid": 0}).sort("scenario_index", 1))
+    scen = list(
+        db.synth_scenarios.find(
+            {"room_id": room_id}, {"objects": 0, "brightness_grid": 0}
+        ).sort("scenario_index", 1)
+    )
     for season, weather in cfg["base_scenario"]["order"]:
         for s in scen:
-            if s["conditions"]["season"] == season and s["conditions"]["weather"] == weather:
+            if (
+                s["conditions"]["season"] == season
+                and s["conditions"]["weather"] == weather
+            ):
                 return s, f"{season}/{weather}"
     raise RuntimeError(f"기준 시나리오 없음: {room_id}")
 
+
 def room_rule(db, room, base):
     real = (room.get("usage_rules") or {}).get("laptop_allowed")
-    rf = db.room_features.find_one({"room_id": room["_id"], "name": "laptopAllowed", "dataset_status": "active"})
+    rf = db.room_features.find_one(
+        {"room_id": room["_id"], "name": "laptopAllowed", "dataset_status": "active"}
+    )
     if real is not None:
         val, origin = real, "real_usage_rules"
     elif rf is not None:
         val, origin = bool(rf["value"]), "real_room_feature"
     else:
         val, origin = bool(base["conditions"]["laptop_allowed"]), "synthetic"
-    return {"room_id": room["_id"], "library_id": room["library_id"], "room_name": room["name"],
-            "laptop_allowed": val, "laptop_rule_origin": origin,
-            "laptop_allowed_real": real if real is not None else (bool(rf["value"]) if rf else None),
-            "base_scenario_id": base["_id"]}
+    return {
+        "room_id": room["_id"],
+        "library_id": room["library_id"],
+        "room_name": room["name"],
+        "laptop_allowed": val,
+        "laptop_rule_origin": origin,
+        "laptop_allowed_real": real
+        if real is not None
+        else (bool(rf["value"]) if rf else None),
+        "base_scenario_id": base["_id"],
+    }
+
 
 def seat_table(db, base_ids, rules):
     rows = []
     for d in db.synth_seat_env.find({"scenario_id": {"$in": base_ids}}):
         f, r = d["features"], d["raw"]
-        rows.append({
-            "seat_id": d["seat_id"], "room_id": d["room_id"], "scenario_id": d["scenario_id"],
-            "toiletProximity": f["toiletProximity"], "airflow": f["airflow"], "deskWidth": f["deskWidth"],
-            "partition": f["partition"], "outletAvailable": f["outletAvailable"],
-            "windowProximity": f["windowProximity"], "viewQuality": f["viewQuality"],
-            "entranceProximity": f["entranceProximity"], "noise_index": r["noise_index"],
-            "laptopAllowed": int(rules[d["room_id"]]["laptop_allowed"]),          # 열람실 규칙 우선
-            "laptopAllowed_env": f["laptopAllowed"],                                # 차이 리포트용(입력 제외)
-            "b_morning": d["brightness_by_slot"]["morning"], "b_noon": d["brightness_by_slot"]["noon"],
-            "b_evening": d["brightness_by_slot"]["evening"],
-            "deskHeight": f["deskHeight"], "desk_type": r["desk_type"], "desk_layout": LAYOUT.get(r["desk_type"], r["desk_type"]),
-            "desk_group": r["desk_group"], "width_cm": r["width_cm"], "height_cm": r["height_cm"],
-            "temperature_c": r["temperature_c"], "dist_window_m": r["dist_window_m"],
-            "dist_toilet_walk_m": r["dist_toilet_walk_m"], "dist_entrance_walk_m": r["dist_entrance_walk_m"],
-            "dist_outlet_m": r["dist_outlet_m"], "dist_ac_m": r["dist_ac_m"],
-        })
+        rows.append(
+            {
+                "seat_id": d["seat_id"],
+                "room_id": d["room_id"],
+                "scenario_id": d["scenario_id"],
+                "toiletProximity": f["toiletProximity"],
+                "airflow": f["airflow"],
+                "deskWidth": f["deskWidth"],
+                "partition": f["partition"],
+                "outletAvailable": f["outletAvailable"],
+                "windowProximity": f["windowProximity"],
+                "viewQuality": f["viewQuality"],
+                "entranceProximity": f["entranceProximity"],
+                "noise_index": r["noise_index"],
+                "laptopAllowed": int(
+                    rules[d["room_id"]]["laptop_allowed"]
+                ),  # 열람실 규칙 우선
+                "laptopAllowed_env": f["laptopAllowed"],  # 차이 리포트용(입력 제외)
+                "b_morning": d["brightness_by_slot"]["morning"],
+                "b_noon": d["brightness_by_slot"]["noon"],
+                "b_evening": d["brightness_by_slot"]["evening"],
+                "deskHeight": f["deskHeight"],
+                "desk_type": r["desk_type"],
+                "desk_layout": LAYOUT.get(r["desk_type"], r["desk_type"]),
+                "desk_group": r["desk_group"],
+                "width_cm": r["width_cm"],
+                "height_cm": r["height_cm"],
+                "temperature_c": r["temperature_c"],
+                "dist_window_m": r["dist_window_m"],
+                "dist_toilet_walk_m": r["dist_toilet_walk_m"],
+                "dist_entrance_walk_m": r["dist_entrance_walk_m"],
+                "dist_outlet_m": r["dist_outlet_m"],
+                "dist_ac_m": r["dist_ac_m"],
+            }
+        )
     env = pd.DataFrame(rows)
-    master = pd.DataFrame(list(db.seats.find({"_id": {"$in": env.seat_id.tolist()}, "dataset_status": "active"},
-                                             {k: 1 for k in SEAT_MASTER})))
+    master = pd.DataFrame(
+        list(
+            db.seats.find(
+                {"_id": {"$in": env.seat_id.tolist()}, "dataset_status": "active"},
+                {k: 1 for k in SEAT_MASTER},
+            )
+        )
+    )
     master = master.drop(columns="_id")
-    seats = env.merge(master, on=["seat_id", "room_id"], how="left", validate="one_to_one", indicator=True)
+    seats = env.merge(
+        master,
+        on=["seat_id", "room_id"],
+        how="left",
+        validate="one_to_one",
+        indicator=True,
+    )
     missing = seats[seats["_merge"] != "both"]
-    if len(missing):                                     # 정답 좌석은 반드시 seats에 있어야 한다
+    if len(missing):  # 정답 좌석은 반드시 seats에 있어야 한다
         raise RuntimeError(f"seats 조인 실패 {len(missing)}건")
     return seats.drop(columns="_merge")
 ```
@@ -1355,11 +1504,24 @@ def seat_table(db, base_ids, rules):
 ```python
 import numpy as np
 
-ATTRS = ["toiletProximity", "brightness", "airflow", "deskWidth", "partition", "laptopAllowed",
-         "outletAvailable", "windowProximity", "viewQuality", "entranceProximity", "noise_index"]
+ATTRS = [
+    "toiletProximity",
+    "brightness",
+    "airflow",
+    "deskWidth",
+    "partition",
+    "laptopAllowed",
+    "outletAvailable",
+    "windowProximity",
+    "viewQuality",
+    "entranceProximity",
+    "noise_index",
+]
+
 
 def gamma(weather, base_weather, day_f):
     return day_f[weather] / day_f[base_weather] - 1.0
+
 
 def attrs_at(seats_room, slot, weather, base_weather, cfg):
     """요청 시점의 속성 11개 + 보조 컬럼(DataFrame, 좌석당 1행)."""
@@ -1367,7 +1529,9 @@ def attrs_at(seats_room, slot, weather, base_weather, cfg):
     base = df[f"b_{slot}"].to_numpy()
     g = gamma(weather, base_weather, cfg["calendar"]["day_f"])
     df["brightness_base_slot"] = base
-    df["brightness"] = np.clip(base * (1 + g * df["windowProximity"].to_numpy()), 0, 1).round(3)
+    df["brightness"] = np.clip(
+        base * (1 + g * df["windowProximity"].to_numpy()), 0, 1
+    ).round(3)
     df["brightness_origin"] = "weather_adjusted_approx"
     return df
 ```
@@ -1377,8 +1541,12 @@ def attrs_at(seats_room, slot, weather, base_weather, cfg):
 import numpy as np
 from . import dist
 
-FLIP = {"airflow": {"cool": "warm", "warm": "cool"}, "brightness": {"bright": "dim", "dim": "bright"},
-        "deskWidth": {"large": "compact", "compact": "large"}}
+FLIP = {
+    "airflow": {"cool": "warm", "warm": "cool"},
+    "brightness": {"bright": "dim", "dim": "bright"},
+    "deskWidth": {"large": "compact", "compact": "large"},
+}
+
 
 def build_stable(rng, user, cfg):
     """디리클레(§14.3 #1) + 숨은 취향 베르누이(#2). 취향 없는 그룹은 0."""
@@ -1386,15 +1554,33 @@ def build_stable(rng, user, cfg):
     hidden_part = bool(dist.bernoulli(rng, g["hidden"]["partition_rate"]))
     hidden_ent = bool(dist.bernoulli(rng, g["hidden"]["entrance_rate"]))
     lat = user["latent"]["preferences"]
-    active = {"airflow": True, "noise": True,
-              "partition": lat["desk"] == "compact" or hidden_part,
-              "brightness": True, "deskWidth": True,
-              "window": lat["view"] == "window", "toilet": lat["restroom"] == "near",
-              "entrance": hidden_ent}
-    mult = [g["archetype_multipliers"][user["archetype"]].get(k, 1.0) for k in g["order"]]
-    w = dist.stable_weights(rng, g["dirichlet_mean"], g["concentration"], mult, [active[k] for k in g["order"]])
-    dirs = {"airflow": lat["air_conditioning"], "brightness": lat["lighting"], "deskWidth": lat["desk"]}
+    active = {
+        "airflow": True,
+        "noise": True,
+        "partition": lat["desk"] == "compact" or hidden_part,
+        "brightness": True,
+        "deskWidth": True,
+        "window": lat["view"] == "window",
+        "toilet": lat["restroom"] == "near",
+        "entrance": hidden_ent,
+    }
+    mult = [
+        g["archetype_multipliers"][user["archetype"]].get(k, 1.0) for k in g["order"]
+    ]
+    w = dist.stable_weights(
+        rng,
+        g["dirichlet_mean"],
+        g["concentration"],
+        mult,
+        [active[k] for k in g["order"]],
+    )
+    dirs = {
+        "airflow": lat["air_conditioning"],
+        "brightness": lat["lighting"],
+        "deskWidth": lat["desk"],
+    }
     return w, dirs, {"hidden_partition": hidden_part, "hidden_entrance": hidden_ent}
+
 
 def realize(rng, stable_w, stable_dir, cfg):
     """일관성 메커니즘: 베르누이(ρ_k) · 로그정규(0, σ_k) · 반전 베르누이 · 축소 균등(§14.3 #31~#33)."""
@@ -1407,22 +1593,26 @@ def realize(rng, stable_w, stable_dir, cfg):
 import numpy as np
 from . import dist
 
+
 def match_matrix(c, dirs, cfg):
     """c: 후보 DataFrame(속성 11개 포함) → (n, 8) 일치값 m_k."""
     T = cfg["groups"]["targets"]
     t_air = T["airflow"].get(dirs.get("airflow"), 0.0)
     t_bri = T["brightness"].get(dirs.get("brightness"), 0.0)
     t_desk = T["deskWidth"].get(dirs.get("deskWidth"), 0.0)
-    return np.column_stack([
-        1 - np.abs(c.airflow - t_air),
-        1 - c.noise_index,
-        c.partition,
-        1 - np.abs(c.brightness - t_bri),
-        1 - np.abs(c.deskWidth - t_desk),
-        0.6 * c.windowProximity + 0.4 * c.viewQuality,
-        c.toiletProximity,
-        c.entranceProximity,
-    ]).astype(float)
+    return np.column_stack(
+        [
+            1 - np.abs(c.airflow - t_air),
+            1 - c.noise_index,
+            c.partition,
+            1 - np.abs(c.brightness - t_bri),
+            1 - np.abs(c.deskWidth - t_desk),
+            0.6 * c.windowProximity + 0.4 * c.viewQuality,
+            c.toiletProximity,
+            c.entranceProximity,
+        ]
+    ).astype(float)
+
 
 def utilities(c, w, dirs, user, ctx, cfg):
     """ε를 뺀 효용 성분. ctx: last_seat, last_zone, exposure rank 맵, laptop_rule_conflict."""
@@ -1430,21 +1620,39 @@ def utilities(c, w, dirs, user, ctx, cfg):
     outlet = 0.0
     if user["outlet_required"] and not ctx["laptop_rule_conflict"]:
         outlet = cfg["fixed"]["w_outlet_fixed"] * c.outletAvailable.to_numpy()
-    habit = user["kappa"] * (c.seat_id == ctx["last_seat"]).to_numpy() \
-          + user["kappa_zone"] * (c.desk_group == ctx["last_zone"]).to_numpy()
+    habit = (
+        user["kappa"] * (c.seat_id == ctx["last_seat"]).to_numpy()
+        + user["kappa_zone"] * (c.desk_group == ctx["last_zone"]).to_numpy()
+    )
     neighbor = user["eta"] * c.group_empty_ratio.to_numpy()
-    rank = c.seat_id.map(ctx["exposure_rank"]).to_numpy(dtype=float)       # 미노출 NaN
-    expo = np.where(np.isnan(rank), 0.0, user["rec_trust"] * cfg["exposure"]["beta_rank"] * (6 - rank) / 5)
-    return {"base": base, "outlet": outlet, "habit": habit, "neighbor": neighbor, "expo": expo,
-            "U_det": base + outlet + habit + neighbor + expo}
+    rank = c.seat_id.map(ctx["exposure_rank"]).to_numpy(dtype=float)  # 미노출 NaN
+    expo = np.where(
+        np.isnan(rank),
+        0.0,
+        user["rec_trust"] * cfg["exposure"]["beta_rank"] * (6 - rank) / 5,
+    )
+    return {
+        "base": base,
+        "outlet": outlet,
+        "habit": habit,
+        "neighbor": neighbor,
+        "expo": expo,
+        "U_det": base + outlet + habit + neighbor + expo,
+    }
+
 
 def choose(parts, rationality, s, rng):
-    eps = dist.gumbel_noise(rng, s / rationality, len(parts["U_det"]))      # Gumbel(0, s/rationality), §14.3 #34
+    eps = dist.gumbel_noise(
+        rng, s / rationality, len(parts["U_det"])
+    )  # Gumbel(0, s/rationality), §14.3 #34
     U = parts["U_det"] + eps
-    return {"chosen": int(np.argmax(U)),
-            "no_exposure": int(np.argmax(U - parts["expo"])),
-            "oracle": int(np.argmax(parts["U_det"])),
-            "eps": eps}
+    return {
+        "chosen": int(np.argmax(U)),
+        "no_exposure": int(np.argmax(U - parts["expo"])),
+        "oracle": int(np.argmax(parts["U_det"])),
+        "eps": eps,
+    }
+
 
 def experienced_pct(parts, idx):
     x = parts["U_det"] - parts["expo"]
@@ -1456,14 +1664,19 @@ def experienced_pct(parts, idx):
 import numpy as np
 from . import dist
 
+
 def rule_scores(cand, profile):
     """관측 프로필 featureScore = Σ imp·(1−|target−f|) / Σ imp. 프로필이 비면 모든 좌석이 같은 점수."""
     prefs = profile["preferences"]
     W = sum(p["importance"] for p in prefs)
     if W == 0:
         return np.zeros(len(cand))
-    s = sum(p["importance"] * (1 - np.abs(p["target"] - cand[p["featureId"]].to_numpy())) for p in prefs)
+    s = sum(
+        p["importance"] * (1 - np.abs(p["target"] - cand[p["featureId"]].to_numpy()))
+        for p in prefs
+    )
     return s / W
+
 
 def expose(rng, cand, profile, cfg):
     e = cfg["exposure"]
@@ -1475,24 +1688,65 @@ def expose(rng, cand, profile, cfg):
 
 **정답 레코드 (`labels.py`)**: `seats` 원본을 쓴다.
 ```python
-ATTRS = ["toiletProximity", "brightness", "airflow", "deskWidth", "partition", "laptopAllowed",
-         "outletAvailable", "windowProximity", "viewQuality", "entranceProximity", "noise_index"]
-MASTER = ["seat_id", "library_id", "room_id", "map_id", "seat_label", "external_seat_id",
-          "bbox", "norm_bbox", "verification", "source_id"]
+ATTRS = [
+    "toiletProximity",
+    "brightness",
+    "airflow",
+    "deskWidth",
+    "partition",
+    "laptopAllowed",
+    "outletAvailable",
+    "windowProximity",
+    "viewQuality",
+    "entranceProximity",
+    "noise_index",
+]
+MASTER = [
+    "seat_id",
+    "library_id",
+    "room_id",
+    "map_id",
+    "seat_label",
+    "external_seat_id",
+    "bbox",
+    "norm_bbox",
+    "verification",
+    "source_id",
+]
+
 
 def label_row(sim_id, req, cand, chosen_idx, outcome, usage):
     eligible = cand.seat_id.tolist()
     if outcome != "chosen":
-        return {"sim_id": sim_id, "request_id": req["request_id"], "user_id": req["user_id"], "room_id": req["room_id"],
-                "outcome": outcome, "chosen_seat_id": None, "chosen_seat": None, "chosen_seat_attributes": None,
-                "seat_ref": None, "remaining_seat_ids": eligible, **usage}
+        return {
+            "sim_id": sim_id,
+            "request_id": req["request_id"],
+            "user_id": req["user_id"],
+            "room_id": req["room_id"],
+            "outcome": outcome,
+            "chosen_seat_id": None,
+            "chosen_seat": None,
+            "chosen_seat_attributes": None,
+            "seat_ref": None,
+            "remaining_seat_ids": eligible,
+            **usage,
+        }
     row = cand.iloc[chosen_idx]
-    return {"sim_id": sim_id, "request_id": req["request_id"], "user_id": req["user_id"], "room_id": req["room_id"],
-            "outcome": "chosen", "chosen_seat_id": row.seat_id,
-            "chosen_seat": {k: row[k] for k in MASTER},                       # seats 원본(sources.seat_table에서 조인)
-            "chosen_seat_attributes": {k: row[k] for k in ATTRS},
-            "seat_ref": {"collection": "seats", "_id": row.seat_id},
-            "remaining_seat_ids": [s for s in eligible if s != row.seat_id], **usage}
+    return {
+        "sim_id": sim_id,
+        "request_id": req["request_id"],
+        "user_id": req["user_id"],
+        "room_id": req["room_id"],
+        "outcome": "chosen",
+        "chosen_seat_id": row.seat_id,
+        "chosen_seat": {
+            k: row[k] for k in MASTER
+        },  # seats 원본(sources.seat_table에서 조인)
+        "chosen_seat_attributes": {k: row[k] for k in ATTRS},
+        "seat_ref": {"collection": "seats", "_id": row.seat_id},
+        "remaining_seat_ids": [s for s in eligible if s != row.seat_id],
+        **usage,
+    }
 ```
 
 **시뮬레이션 루프 (`simulate.py`)**: 날짜마다 24개 열람실을 하나의 이벤트 큐로 처리한다.
@@ -1500,27 +1754,48 @@ def label_row(sim_id, req, cand, chosen_idx, outcome, usage):
 import heapq
 from . import dist
 
+
 def run(sim_id, src, days, pop, cfg, noise_scale, writer):
-    history = {}                                            # user_id → (last_seat, last_zone, last_ctx), 회차별
+    history = {}  # user_id → (last_seat, last_zone, last_ctx), 회차별
     for date in days.dates():
         # 날짜별 독립 스트림: 처리 순서·병렬화와 무관하게 재현된다(§14.2)
         rng = dist.rng_for(cfg["seed"], "SIM", sim_id, date.toordinal())
-        state = SeatState(src, date, days, rng, cfg)        # 좌석 상태 + seat_states 원장 기록
-        q = []                                               # (시각, 순번, 이벤트종류, payload)
-        for v in pop.visits_on(date, rng, days):             # 루틴 → 방문(도착 시각, 체류, 홈 열람실)
+        state = SeatState(
+            src, date, days, rng, cfg
+        )  # 좌석 상태 + seat_states 원장 기록
+        q = []  # (시각, 순번, 이벤트종류, payload)
+        for v in pop.visits_on(
+            date, rng, days
+        ):  # 루틴 → 방문(도착 시각, 체류, 홈 열람실)
             heapq.heappush(q, (v.arrive, next(state.seq), "arrive", v))
-        for t in state.ticks():                              # 15분 혼잡 보정
+        for t in state.ticks():  # 15분 혼잡 보정
             heapq.heappush(q, (t, next(state.seq), "tick", None))
         while q:
             t, _, kind, p = heapq.heappop(q)
             if kind == "tick":
-                state.fill_background(t)                     # 목표 곡선까지 배경 입·퇴실
+                state.fill_background(t)  # 목표 곡선까지 배경 입·퇴실
             elif kind == "arrive":
-                handle_arrival(sim_id, t, p, state, src, days, pop, cfg, noise_scale, rng, history, writer, q)
+                handle_arrival(
+                    sim_id,
+                    t,
+                    p,
+                    state,
+                    src,
+                    days,
+                    pop,
+                    cfg,
+                    noise_scale,
+                    rng,
+                    history,
+                    writer,
+                    q,
+                )
             elif kind in ("leave", "away_start", "away_end", "move"):
                 state.apply(kind, t, p, q)
         state.close_day()
-        writer.flush_day(sim_id, date, state.ledger())      # seat_states, requests, candidates, labels ... 저장
+        writer.flush_day(
+            sim_id, date, state.ledger()
+        )  # seat_states, requests, candidates, labels ... 저장
 ```
 - `pop.visits_on`: 사용자 루틴에서 만든다.
   - 그 주의 방문 요일: `dist.week_visit_days`
@@ -1545,24 +1820,41 @@ def run(sim_id, src, days, pop, cfg, noise_scale, writer):
 
 **저장 (`writers.py`)**: 허용 목록 밖 컬렉션에는 쓰지 않는다.
 ```python
-ALLOWED = {"synth_v2_users", "synth_v2_room_rules", "synth_v2_days", "synth_v2_seat_states", "ml_v2_requests",
-           "ml_v2_exposures", "ml_v2_candidates", "ml_v2_labels", "ml_v2_label_rows", "ml_v2_feedback",
-           "synth_v2_truth_requests", "synth_v2_truth_users"}
+ALLOWED = {
+    "synth_v2_users",
+    "synth_v2_room_rules",
+    "synth_v2_days",
+    "synth_v2_seat_states",
+    "ml_v2_requests",
+    "ml_v2_exposures",
+    "ml_v2_candidates",
+    "ml_v2_labels",
+    "ml_v2_label_rows",
+    "ml_v2_feedback",
+    "synth_v2_truth_requests",
+    "synth_v2_truth_users",
+}
+
 
 def write_parquet(df, out_dir, table, sim_id, part):
     import pyarrow as pa, pyarrow.parquet as pq
+
     path = out_dir / table / f"sim_id={sim_id}" / f"part-{part}.parquet"
     path.parent.mkdir(parents=True, exist_ok=True)
-    pq.write_table(pa.Table.from_pandas(df, preserve_index=False), path, compression="zstd")
+    pq.write_table(
+        pa.Table.from_pandas(df, preserve_index=False), path, compression="zstd"
+    )
+
 
 def write_mongo(db, name, docs, batch=5000):
     """bulk_write + ReplaceOne(upsert): 같은 시드로 다시 돌리면 같은 _id(hashlib ID)에 덮어써서 중복이 생기지 않는다."""
     from pymongo import ReplaceOne
+
     if name not in ALLOWED:
         raise RuntimeError(f"쓰기 금지 컬렉션: {name}")
     ops = [ReplaceOne({"_id": d["_id"]}, d, upsert=True) for d in docs]
     for i in range(0, len(ops), batch):
-        db[name].bulk_write(ops[i:i + batch], ordered=False)
+        db[name].bulk_write(ops[i : i + batch], ordered=False)
 ```
 - 문서 `_id`는 `request_id`나 `dist.make_id(...)`로 만든 키를 쓴다. 예: candidates는 `request_id|seat_id`의 해시.
 - `meta` 컬렉션에는 `_id: "synthetic_manifest_v2"` 문서 하나만 `replace_one(..., upsert=True)`로 쓴다.
@@ -1573,6 +1865,7 @@ import numpy as np
 from scipy.optimize import bisect
 from . import dist
 
+
 def hitrate_at5(pilot, s, G):
     """pilot: 요청별 (U_det, rationality). G: 요청별로 미리 뽑은 표준 굼벨(공통 난수) → s에 대해 단조."""
     hits = 0
@@ -1581,14 +1874,17 @@ def hitrate_at5(pilot, s, G):
         hits += chosen in np.argsort(-u)[:5]
     return hits / len(pilot)
 
+
 def calibrate_noise_scale(pilot, cfg):
     c = cfg["calibration"]
     rng = dist.rng_for(cfg["seed"], "CALIBRATION", 0)
-    G = [rng.gumbel(0.0, 1.0, len(u)) for u, _ in pilot]        # 공통 난수로 고정
+    G = [rng.gumbel(0.0, 1.0, len(u)) for u, _ in pilot]  # 공통 난수로 고정
     f = lambda s: hitrate_at5(pilot, s, G) - c["hitrate5_target"]
     lo, hi = c["noise_scale_bounds"]
     if f(lo) < 0 or f(hi) > 0:
-        raise RuntimeError("s 탐색 구간이 목표 HitRate@5를 감싸지 않음: noise_scale_bounds 조정")
+        raise RuntimeError(
+            "s 탐색 구간이 목표 HitRate@5를 감싸지 않음: noise_scale_bounds 조정"
+        )
     return bisect(f, lo, hi, xtol=1e-3)
 ```
 
@@ -1597,28 +1893,42 @@ def calibrate_noise_scale(pilot, cfg):
 import numpy as np
 from scipy import stats
 
+
 def check_bernoulli(successes, n, p, alpha=0.001):
     """예: 숨은 칸막이 0.35, 그룹별 일관 비율 ρ_k, 설문 결측 0.10."""
     return stats.binomtest(successes, n, p).pvalue > alpha
 
+
 def check_lognormal(x, mean, sd, alpha=0.001):
     """예: 사용자 체류 기대값, κ. 자르기(clip) 전 원값으로 검정한다."""
     s2 = np.log1p((sd / mean) ** 2)
-    return stats.kstest(x, "lognorm", args=(np.sqrt(s2), 0, mean * np.exp(-s2 / 2))).pvalue > alpha
+    return (
+        stats.kstest(x, "lognorm", args=(np.sqrt(s2), 0, mean * np.exp(-s2 / 2))).pvalue
+        > alpha
+    )
+
 
 def check_gumbel(eps_std, alpha=0.001):
     """eps / (s / rationality) 를 표준 굼벨과 비교."""
     return stats.kstest(eps_std, "gumbel_r").pvalue > alpha
 
+
 def check_dirichlet_mean(w_raw, mean, tol=0.01):
     """archetype 배수 전 원 디리클레 표본의 평균이 config 평균 ±0.01."""
     return np.all(np.abs(w_raw.mean(0) - np.asarray(mean)) < tol)
 
+
 def check_weather_persistence(seq, persistence, probs_by_day):
     """전날 유지 비율의 기대값 = persistence + (1−persistence)·Σ p_w² 와 비교(이항 검정)."""
     stay = sum(a == b for a, b in zip(seq[:-1], seq[1:]))
-    exp = np.mean([persistence + (1 - persistence) * sum(v * v for v in p.values()) for p in probs_by_day[1:]])
+    exp = np.mean(
+        [
+            persistence + (1 - persistence) * sum(v * v for v in p.values())
+            for p in probs_by_day[1:]
+        ]
+    )
     return check_bernoulli(stay, len(seq) - 1, exp)
+
 
 def consistency_order(cv_by_group):
     """그룹별 m_k 변동계수가 우선순위 순으로 커지는지: 스피어만 ≥ 0.8, 켄달 타우도 함께 보고."""
@@ -1626,6 +1936,7 @@ def consistency_order(cv_by_group):
     rho, _ = stats.spearmanr(rank, cv_by_group)
     tau, _ = stats.kendalltau(rank, cv_by_group)
     return rho >= 0.8, {"spearman": rho, "kendall": tau}
+
 
 def day_type_effect(x_weekday, x_weekend):
     """요일 유형별로 고른 좌석 특징의 차이: 맨-휘트니 U + Cohen's d(효과 크기)."""
@@ -1644,13 +1955,17 @@ def check_labels_against_seats(labels, db):
         if l["outcome"] != "chosen":
             continue
         m = master.get(l["chosen_seat_id"])
-        if m is None or m.get("dataset_status") != "active" or m["room_id"] != l["room_id"]:
+        if (
+            m is None
+            or m.get("dataset_status") != "active"
+            or m["room_id"] != l["room_id"]
+        ):
             bad.append((l["request_id"], "missing_or_inactive_or_room_mismatch"))
             continue
         for k, v in l["chosen_seat"].items():
             if m.get(k) != v:
                 bad.append((l["request_id"], f"field_mismatch:{k}"))
-    return bad          # 빈 리스트여야 통과
+    return bad  # 빈 리스트여야 통과
 ```
 
 ### 15.6 구현 시 주의

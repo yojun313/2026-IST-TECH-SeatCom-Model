@@ -12,31 +12,83 @@ features-2 에 대응 특성이 없는 값은 버리지 않고 `unmapped` 에 �
 
 python3 -I recommender/preference_adapter.py <파일> 로 변환 결과를 출력한다.
 """
+
 import json
 import re
 import sys
 
 FEATURE_REGISTRY = "features-2"
-FEATURES = ("restroom", "lighting", "air_conditioning", "desk", "laptop_usage", "outlet", "view")
+FEATURES = (
+    "restroom",
+    "lighting",
+    "air_conditioning",
+    "desk",
+    "laptop_usage",
+    "outlet",
+    "view",
+)
 
 # 원시값 → 표준값. 키는 정규화(소문자, 공백·하이픈→_) 후 비교한다.
 ALIASES = {
-    "restroom": {"near": "near", "close": "near", "near_restroom": "near",
-                 "no_preference": "no_preference", "any": "no_preference", "dont_care": "no_preference"},
-    "lighting": {"bright": "bright", "brighter": "bright", "natural_light": "bright",
-                 "dim": "dim", "dark": "dim", "darker": "dim"},
-    "air_conditioning": {"cool": "cool", "cold": "cool", "cooler": "cool",
-                         "warm": "warm", "warmer": "warm",
-                         "avoid_direct_airflow": "avoid_direct_airflow", "no_direct_airflow": "avoid_direct_airflow"},
-    "desk": {"large": "large", "wide": "large", "big": "large",
-             "compact": "compact", "small": "compact",
-             "height_adjustable": "height_adjustable", "adjustable": "height_adjustable"},
-    "laptop_usage": {"yes": "yes", "uses_laptop": "yes", "laptop": "yes", "true": "yes",
-                     "no": "no", "no_laptop": "no", "does_not_use_laptop": "no", "false": "no"},
-    "outlet": {"required": "required", "needed": "required", "yes": "required",
-               "not_required": "not_required", "not_needed": "not_required", "no": "not_required"},
-    "view": {"window": "window", "window_seat": "window", "near_window": "window",
-             "no_preference": "no_preference", "any": "no_preference"},
+    "restroom": {
+        "near": "near",
+        "close": "near",
+        "near_restroom": "near",
+        "no_preference": "no_preference",
+        "any": "no_preference",
+        "dont_care": "no_preference",
+    },
+    "lighting": {
+        "bright": "bright",
+        "brighter": "bright",
+        "natural_light": "bright",
+        "dim": "dim",
+        "dark": "dim",
+        "darker": "dim",
+    },
+    "air_conditioning": {
+        "cool": "cool",
+        "cold": "cool",
+        "cooler": "cool",
+        "warm": "warm",
+        "warmer": "warm",
+        "avoid_direct_airflow": "avoid_direct_airflow",
+        "no_direct_airflow": "avoid_direct_airflow",
+    },
+    "desk": {
+        "large": "large",
+        "wide": "large",
+        "big": "large",
+        "compact": "compact",
+        "small": "compact",
+        "height_adjustable": "height_adjustable",
+        "adjustable": "height_adjustable",
+    },
+    "laptop_usage": {
+        "yes": "yes",
+        "uses_laptop": "yes",
+        "laptop": "yes",
+        "true": "yes",
+        "no": "no",
+        "no_laptop": "no",
+        "does_not_use_laptop": "no",
+        "false": "no",
+    },
+    "outlet": {
+        "required": "required",
+        "needed": "required",
+        "yes": "required",
+        "not_required": "not_required",
+        "not_needed": "not_required",
+        "no": "not_required",
+    },
+    "view": {
+        "window": "window",
+        "window_seat": "window",
+        "near_window": "window",
+        "no_preference": "no_preference",
+        "any": "no_preference",
+    },
 }
 NO_SIGNAL = {"unknown", "", "none", "null", "n/a"}
 
@@ -53,17 +105,25 @@ MAPPING = {
     ("air_conditioning", "avoid_direct_airflow"): [("airflow", 0.0, 0.9, "direct")],
     ("desk", "large"): [("deskWidth", 1.0, 0.6, "direct")],
     ("desk", "compact"): [("deskWidth", 0.3, 0.3, "direct")],
-    ("desk", "height_adjustable"): None,  # 대응 특성 없음(deskHeight는 높이 수준이지 조절 가능 여부가 아님) → unmapped
+    (
+        "desk",
+        "height_adjustable",
+    ): None,  # 대응 특성 없음(deskHeight는 높이 수준이지 조절 가능 여부가 아님) → unmapped
     ("laptop_usage", "yes"): [("laptopAllowed", 1, 1.0, "direct")],
     ("laptop_usage", "no"): [],
     ("outlet", "required"): [("outletAvailable", 1, 0.9, "direct")],
     ("outlet", "not_required"): [],
-    ("view", "window"): [("windowProximity", 1.0, 0.6, "direct"), ("viewQuality", 1.0, 0.4, "proxy")],
+    ("view", "window"): [
+        ("windowProximity", 1.0, 0.6, "direct"),
+        ("viewQuality", 1.0, 0.4, "proxy"),
+    ],
     ("view", "no_preference"): [],
 }
 INFERENCE_WEIGHT = {"direct": 1.0, "contextual": 0.7, "unknown": 0.0}
 PROXY_FACTOR = 0.5
-LAPTOP_REQUIREMENT_MIN_CONF = 0.6   # 노트북 사용 확신이 이 이상이면 필수 조건으로도 넣는다(명세 5.1)
+LAPTOP_REQUIREMENT_MIN_CONF = (
+    0.6  # 노트북 사용 확신이 이 이상이면 필수 조건으로도 넣는다(명세 5.1)
+)
 
 
 def norm(v):
@@ -102,27 +162,60 @@ def to_profile(analysis):
         if not isinstance(p, dict):
             mapping.append({"feature": f, "raw": None, "status": "missing"})
             continue
-        raw, conf, itype = p.get("preference"), p.get("confidence", 0), p.get("inference_type")
+        raw, conf, itype = (
+            p.get("preference"),
+            p.get("confidence", 0),
+            p.get("inference_type"),
+        )
         c, status = canonical(f, raw)
-        entry = {"feature": f, "raw": raw, "canonical": c, "status": status, "confidence": conf, "inference_type": itype, "mapped": []}
+        entry = {
+            "feature": f,
+            "raw": raw,
+            "canonical": c,
+            "status": status,
+            "confidence": conf,
+            "inference_type": itype,
+            "mapped": [],
+        }
         if status == "unknown_value":
             warnings.append(f"{f}: 허용되지 않은 값 '{raw}' → unknown 처리")
             unmapped.append({"feature": f, "raw": raw, "reason": "허용 값 목록에 없음"})
         elif status == "ok":
             targets = MAPPING.get((f, c))
             if targets is None:
-                unmapped.append({"feature": f, "raw": raw, "canonical": c, "reason": "features-2에 대응 특성 없음(저장만, 점수 미반영)"})
+                unmapped.append(
+                    {
+                        "feature": f,
+                        "raw": raw,
+                        "canonical": c,
+                        "reason": "features-2에 대응 특성 없음(저장만, 점수 미반영)",
+                    }
+                )
                 entry["status"] = "no_feature"
             for fid, t, base, kind in targets or []:
                 imp = importance(base, conf, itype, kind)
-                entry["mapped"].append({"featureId": fid, "target": t, "importance": imp, "kind": kind})
+                entry["mapped"].append(
+                    {"featureId": fid, "target": t, "importance": imp, "kind": kind}
+                )
                 if imp > 0 and (fid not in out or imp > out[fid]["importance"]):
                     out[fid] = {"featureId": fid, "target": t, "importance": imp}
-            if f == "laptop_usage" and c == "yes" and float(conf or 0) >= LAPTOP_REQUIREMENT_MIN_CONF:
-                reqs.append({"featureId": "laptopAllowed", "operator": "eq", "value": 1})
+            if (
+                f == "laptop_usage"
+                and c == "yes"
+                and float(conf or 0) >= LAPTOP_REQUIREMENT_MIN_CONF
+            ):
+                reqs.append(
+                    {"featureId": "laptopAllowed", "operator": "eq", "value": 1}
+                )
         mapping.append(entry)
-    return {"featureRegistryVersion": FEATURE_REGISTRY, "preferences": sorted(out.values(), key=lambda x: x["featureId"]),
-            "requirements": reqs, "mapping": mapping, "unmapped": unmapped, "warnings": warnings}
+    return {
+        "featureRegistryVersion": FEATURE_REGISTRY,
+        "preferences": sorted(out.values(), key=lambda x: x["featureId"]),
+        "requirements": reqs,
+        "mapping": mapping,
+        "unmapped": unmapped,
+        "warnings": warnings,
+    }
 
 
 def _repair(text):
@@ -134,7 +227,11 @@ def _repair(text):
     for line in t.splitlines():
         m = re.match(r'^(\s*"[^"]+"\s*:\s*")(.*)("\s*,?\s*)$', line)
         if m and '"' in m.group(2):
-            line = m.group(1) + m.group(2).replace('\\"', '"').replace('"', '\\"') + m.group(3)
+            line = (
+                m.group(1)
+                + m.group(2).replace('\\"', '"').replace('"', '\\"')
+                + m.group(3)
+            )
         fixed.append(line)
     return "\n".join(fixed)
 
@@ -150,7 +247,10 @@ def load_analysis(path_or_text):
     except json.JSONDecodeError as e:
         first = f"올바른 JSON 아님({e.msg}, {e.lineno}행) → 복구 시도"
     try:
-        return json.loads(_repair(text)), [first, "복구 성공: 원본 출력의 JSON 검증을 요청할 것"]
+        return json.loads(_repair(text)), [
+            first,
+            "복구 성공: 원본 출력의 JSON 검증을 요청할 것",
+        ]
     except json.JSONDecodeError as e:
         raise ValueError(f"{first}; 복구 실패({e.msg}, {e.lineno}행)") from None
 

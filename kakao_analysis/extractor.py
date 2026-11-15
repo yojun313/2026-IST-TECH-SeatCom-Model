@@ -3,6 +3,7 @@
 - extract_records(): 기존 호환: 대상 사용자가 작성한 메시지들만 반환
 - extract_context_records(): 전체 대화 순서/타인 발언/시스템 메시지 보존
 - extract(): 대상 발언만 텍스트로 반환 (with_context=True면 전체 맥락)
+- 한국어 및 영문 모바일 TXT 내보내기 형식 지원 (원본 타임스탬프 보존)
 """
 
 from __future__ import annotations
@@ -12,18 +13,28 @@ from pathlib import Path
 
 
 class NameExtractor:
-    TIME = (
+    KOREAN_TIME = (
         r"\d{4}년\s+\d{1,2}월\s+\d{1,2}일\s+"
         r"(?:오전|오후)\s+\d{1,2}:\d{2}"
     )
-    MESSAGE = re.compile(
-        rf"^(?P<time>{TIME}),\s*(?P<name>.+?)\s+:\s?(?P<text>.*)$"
+    MONTH = (
+        r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
+        r"Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)"
     )
-    DATE = re.compile(rf"^{TIME}$")
-    SYSTEM = re.compile(rf"^(?P<time>{TIME}),\s*(?P<text>.+)$")
+    ENGLISH_DATE = rf"{MONTH}\s+\d{{1,2}},\s+\d{{4}}"
+    # \s includes normal, non-breaking (U+00A0), and narrow non-breaking
+    # (U+202F) spaces emitted before AM/PM by KakaoTalk exports.
+    ENGLISH_TIME = rf"{ENGLISH_DATE}\s+at\s+\d{{1,2}}:\d{{2}}\s+(?:AM|PM)"
+    TIME = rf"(?:{KOREAN_TIME}|{ENGLISH_TIME})"
+    MESSAGE = re.compile(rf"^(?P<time>{TIME}),\s*(?P<name>.+?)\s+:\s?(?P<text>.*)$")
+    DATE = re.compile(
+        rf"^(?:{TIME}|(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),"
+        rf"\s+{ENGLISH_DATE}|{ENGLISH_DATE})$"
+    )
+    SYSTEM = re.compile(rf"^(?P<time>{TIME})(?:,|:)\s*(?P<text>.+)$")
     MEDIA = re.compile(
         r"(?:사진(?:\s+\d+장)?|동영상|이모티콘|"
-        r"음성메시지|파일:.*|톡게시판.*)"
+        r"음성메시지|파일:.*|톡게시판.*|Emoticons?|Photos?|Videos?|Voice\s+Message|File:.*)"
     )
 
     @staticmethod
@@ -38,9 +49,7 @@ class NameExtractor:
                 pass
         raise UnicodeError("지원하지 않는 TXT 인코딩입니다 (UTF-8/CP949).")
 
-    def extract_context_records(
-        self, source: str | Path, name: str
-    ) -> list[dict]:
+    def extract_context_records(self, source: str | Path, name: str) -> list[dict]:
         """대화 전체를 시간순으로 보존하고 분석 대상의 메시지를 표시합니다.
 
         각 record: message_id, timestamp, sender, text, kind, is_target
@@ -97,7 +106,9 @@ class NameExtractor:
             sys_match = self.SYSTEM.match(line)
             if sys_match:
                 flush()
-                append_record("system", sys_match.group("time"), None, sys_match.group("text"))
+                append_record(
+                    "system", sys_match.group("time"), None, sys_match.group("text")
+                )
                 continue
 
             if stripped == "메시지가 삭제되었습니다.":
@@ -125,12 +136,15 @@ class NameExtractor:
             }
             for record in self.extract_context_records(source, name)
             if (
-                record["is_target"] and record["text"]
+                record["is_target"]
+                and record["text"]
                 and not self.MEDIA.fullmatch(record["text"])
             )
         ]
 
-    def extract(self, source: str | Path, name: str, *, with_context: bool = False) -> str:
+    def extract(
+        self, source: str | Path, name: str, *, with_context: bool = False
+    ) -> str:
         if not with_context:
             return "\n".join(r["text"] for r in self.extract_records(source, name))
 
@@ -139,10 +153,10 @@ class NameExtractor:
             if record["kind"] == "message":
                 marker = "[TARGET]" if record["is_target"] else "[CONTEXT]"
                 lines.append(
-                    f'{marker} {record["timestamp"]}, {record["sender"]} : {record["text"]}'
+                    f"{marker} {record['timestamp']}, {record['sender']} : {record['text']}"
                 )
             elif record["kind"] == "date":
-                lines.append(f'\n===== {record["timestamp"]} =====')
+                lines.append(f"\n===== {record['timestamp']} =====")
             else:
-                lines.append(f'[SYSTEM] {record["timestamp"]} {record["text"]}'.strip())
+                lines.append(f"[SYSTEM] {record['timestamp']} {record['text']}".strip())
         return "\n".join(lines)

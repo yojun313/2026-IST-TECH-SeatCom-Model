@@ -1,0 +1,94 @@
+# 모델 테스트(유저 테스트 데이터셋) 설정. 모든 수치·스위치는 여기서만 관리한다.
+# 정답 로직 파라미터는 테스트 결과를 보기 전에 고정한다(결과를 보고 바꾸지 않는다).
+paths:
+  exports: seat_model/exports/test_v1          # 테스트 데이터 산출물
+  train_exports: seat_model/exports/train_v1   # 재현성 비교 기준(학습 산출물, 읽기만)
+
+db: user_test                # 테스트 전용 MongoDB. 적재 스크립트는 이 이름이 아니면 거부한다
+
+generator:
+  pinned_commit: adb80af     # synth-1.0 생성기(gen_v1_pinned.py와 바이트 단위로 같음)
+  train_seed: 20261114       # 학습 시드. 열람실 환경은 이 시드로 고정(학습과 같은 환경)
+  train_users: 3000
+  train_sessions: 165000     # 학습 생성 인자(manifest synth-1.0). 재현성 검사에 쓴다
+  scenarios: 30
+
+test:
+  seed: 20270115             # 사용자·세션 시드(학습 시드와 다름)
+  users: 2000
+  sessions: 110000           # 학습과 같은 사용자당 밀도(165000/3000 × 2000)
+  id_prefix: test-           # synth-user:* → test-user:*, synth-session:* → test-session:*
+
+# ---------------------------------------------------------------- 정답(참 효용) 로직
+# U_truth(λ) = (1 − λ)·U_base + λ·U_new
+#   U_base: synth-1.0 생성기의 true_utility (Σ w·(1−|t−x|) − 0.5·소음회피·소음)
+#   U_new : A1(효용 형태 변경)에 켜진 모듈(A2, A4, C1)을 더한 것
+# 선택 과정 모듈(B1, B3)은 요청마다 확률 λ로 새 선택 과정을 쓴다(나머지는 기존 과정).
+truth:
+  A1_ideal_point:            # 선형 거리 → 가우시안 이상점: w·exp(−(x−t)²/(2σ²))
+    sigma_range: [0.15, 0.35]          # 사용자·특징별 σ
+  A2_dealbreaker:            # 비보상형 탈락 조건: 해당하면 효용에 penalty를 더한다
+    penalty: -1.0
+    outlet_required_prob: 0.7          # latent outlet=required 사용자 중 콘센트 없는 좌석을 탈락시키는 비율
+    cold_ac_dist_m: 2.0                # warm(추위 탐) 사용자: 에어컨 2m 이내 탈락
+    cold_ac_prob: 0.6
+    noise_aversion_min: 0.7            # 소음 회피가 이 이상이면
+    noise_index_max: 0.45              # 소음 지수가 이 초과인 좌석 탈락(학습 환경 상위 약 8%)
+  A4_interaction:
+    thermal_coef_range: [0.10, 0.30]   # −c·|좌석온도 − 선호온도|/3 (raw.temperature_c)
+    pref_temp_c: {cool: 22.0, warm: 25.0, none: 23.5}
+    evening_bright_range: [0.0, 0.30]  # 저녁 시간대 밝기 가산
+    crowd_noise_coef: 0.6              # 혼잡도 0.5 초과분 × 소음 회피 × 소음 지수 감점
+    laptop_desk_coef: 0.15             # 노트북 사용자: 넓은 책상 가산
+  C1_hidden:                 # 관측 프로필에 드러나지 않는 숨은 취향
+    attr_prob: 0.6                     # 속성마다 숨은 취향을 가질 확률
+    weight_range: [0.1, 0.5]
+    partition_target_one_prob: 0.6     # 칸막이 선호(1) vs 트인 자리 선호(0)
+    entrance_target_one_prob: 0.5
+    desk_height_target: 0.3
+    shared_table_dislike_prob: 0.4     # 긴 공용 테이블 기피
+    shared_table_penalty: -0.2
+  B1_consideration:          # 고려집합: 노출 좌석 + 출입구에서 가까운 N석만 둘러본다
+    scan_n_range: [8, 30]
+  B3_habit:                  # 습관: 직전 좌석이 비어 있으면 확률 h로 다시 앉고, 없으면 같은 책상 묶음 우선
+    habit_range: [0.1, 0.5]
+    same_group_bonus: 0.3
+  R_rec_trust:               # 추천 신뢰도: rec_trust × (1 − λ_R·(1 − scale)). λ_R = 세트의 trust_lambda(없으면 lambda)
+    scale: 0.25                        # λ_R = 1이면 신뢰도 25%(평균 0.65 → 0.16). 노출 목록보다 참 효용을 따라 고른다
+    # 선택 기준: 표본(사용자 600명)에서 배율 1.0/0.75/0.5/0.25/0 중, 라벨 반응도 증가가 거의 멈추는 지점(0.25 → 0 차이 0.004).
+    # 모델 결과는 보지 않고 데이터만으로 정했다.
+
+# ---------------------------------------------------------------- 평가 지표·통과 기준 (gunhee/model_test.md 6단계)
+eval:
+  primary: [ndcg@5, oracle_hit@1, exp_utility_pct]   # truth 기준(세트별 u_true)
+  secondary: [hit@1, hit@3, mrr]                    # y_chosen 기준
+  bootstrap: 1000                                    # 사용자 단위 재표본
+  ci: 0.95
+  slice_min_requests: 200
+  slice_min_users: 30
+criteria:
+  service_model: clogit_b_no_exp
+  accuracy_baselines: [service_rule, popularity]     # base에서 NDCG@5·Oracle@1이 이보다 높고 신뢰구간 비겹침
+  generalization_max_drop: 0.10                      # 구간 NDCG@5가 전체 대비 10%p 이하로 하락, service_rule 이상
+  robustness_sets: [real_0.25, real_0.50, real_0.75, real_1.00, form, c_a2, c_a4, c_b]   # NDCG@5 ≥ service_rule
+  hard_constraint_violations: 0
+  exceptions_on_normal_data: 0
+  determinism: 1.0
+  latency_p95_ms: 50
+  latency_max_avail: 176
+
+# 테스트셋. modules가 빈 base는 고정 생성기 출력 그대로(λ = 0, 가정이 맞는 세계).
+# 누적 세트는 도메인 우선순위(A2 → A4 → B1+B3 → C1) 순으로 쌓고 λ = 1로 둔다.
+# R(추천 신뢰도 낮춤)은 정답이 바뀐 모든 세트에 넣는다. 그 효과만 따로 보려면 base_lowtrust와 비교한다.
+sets:
+  base:         {lambda: 0.0,  modules: []}
+  base_resim:   {lambda: 0.0,  modules: []}                       # 대조군 1: 선택 난수만 다름(선택 무작위성의 바닥값)
+  base_lowtrust: {lambda: 0.0, modules: [R], trust_lambda: 1.0}   # 대조군 2: 정답은 base, 신뢰도만 낮춤(R 효과 분리)
+  form:         {lambda: 1.0,  modules: [A1, R]}
+  c_a2:         {lambda: 1.0,  modules: [A1, A2, R]}
+  c_a4:         {lambda: 1.0,  modules: [A1, A2, A4, R]}
+  c_b:          {lambda: 1.0,  modules: [A1, A2, A4, B1, B3, R]}
+  real_0.25:    {lambda: 0.25, modules: [A1, A2, A4, B1, B3, C1, R]}
+  real_0.50:    {lambda: 0.50, modules: [A1, A2, A4, B1, B3, C1, R]}
+  real_0.75:    {lambda: 0.75, modules: [A1, A2, A4, B1, B3, C1, R]}
+  real_1.00:    {lambda: 1.0,  modules: [A1, A2, A4, B1, B3, C1, R]}

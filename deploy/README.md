@@ -3,7 +3,7 @@
 | pm2 이름 | 주소 | 내용 |
 |---|---|---|
 | `seatcom-frontend` | `0.0.0.0:8027` | 프론트(`../2026-IST-TECH-SeatCom-FE/dist`) 정적 파일 + `/api`·`/health` → 백엔드 프록시 |
-| `seatcom-backend` | `127.0.0.1:8028` | `backend/`: 회원가입(이메일 인증)·페르소나·카카오톡 실험실(본인 확인 내장)·좌석 추천 모델(`seat_model/models/v1-20261115`) |
+| `seatcom-backend` | `127.0.0.1:8028` | `backend/`: 회원가입(이메일 인증)·페르소나·카카오톡 실험실(웹 업로드·원문 미저장)·좌석 추천 모델(`seat_model/models/v1-20261115`) |
 
 ```bash
 bash deploy/deploy.sh             # 환경 설치 → 프론트 빌드 → pm2 시작/재시작 → pm2 save → 상태 확인
@@ -15,7 +15,7 @@ pm2 logs seatcom-backend          # 로그 (파일: deploy/logs/)
   - `MAIL_SENDER`, `MAIL_PASSWORD`: 회원가입 인증 메일(Gmail 앱 비밀번호)
   - `AUTH_JWT_SECRET`: 로그인 토큰 서명 키
   - `OSS_API_KEY`: 카카오톡 분석 LLM. 비어 있으면 실험실 분석이 실패한다
-  - `GMAIL_POLL_ENABLED`: 실험실 메일 수신. 꺼져 있으면 실험실이 메일 대기에서 멈춘다
+  - `LAB_MAX_CONCURRENT`·`LAB_MAX_PENDING`·`LAB_UPLOADS_PER_HOUR`: 실험실 동시 분석 수·메모리 대기 상한·사용자당 시간당 업로드
 - **실행 데이터:** `deploy/runtime/`(SQLite: 계정, 설문 답, 추천·선택 기록, 사용자별 온라인 학습 상태).
 - **프론트 빌드 값:** `VITE_MOCK_AUTH=false`(실제 로그인), `SEATCOM_ROOM_ID`(기본 `yongin-giheung:room:1`). 빌드할 때 `FE/.env.production.local`에 기록된다.
 
@@ -30,4 +30,5 @@ pm2 logs seatcom-backend          # 로그 (파일: deploy/logs/)
 
 ## 한계
 - **좌석 현황:** 실시간 수집원이 없어 10분 단위 모의 현황이다(`source: "simulated"`). 좌석 환경 특징은 v1 합성 환경이다.
-- **카카오톡 실험실:** `OSS_API_KEY`와 Gmail 수신을 켜야 분석까지 진행된다.
+- **카카오톡 실험실:** 웹에서 TXT를 올리면(`POST /api/v1/lab/sessions/{id}/file`, raw body) 메모리에서만 분석하고 원문은 저장하지 않는다. `OSS_API_KEY`가 있어야 분석된다. 백엔드를 재시작하면 분석 중이던 대화는 사라지고 다시 올려야 한다. 백엔드는 워커 1개로 돌린다(메모리 작업 목록이 프로세스 안에 있음).
+- **HTTPS:** 프론트 서버(8027)는 평문 HTTP다. 외부에 공개할 때는 반드시 TLS(리버스 프록시) 뒤에 둔다. 그렇지 않으면 업로드한 대화가 네트워크에서 그대로 보인다.

@@ -11,6 +11,7 @@
 좌표계: 원본 지도 픽셀(top-left, x→right, y→down). 미터 환산은 합성 축척(synthetic_meters_per_px)이며
 좌석 버튼 한 변 ≈ 0.75m 라는 가정에서 나온 값이다(실측 아님).
 """
+
 import argparse, json, math, multiprocessing as mp, os, random, statistics
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -18,26 +19,45 @@ from pathlib import Path
 try:  # 진행률 표시(선택). 없으면 그냥 실행된다: python3 -m pip install --user tqdm
     from tqdm import tqdm
 except ImportError:
+
     def tqdm(it=None, **kw):
         return it
 
-LIB = Path(__file__).resolve().parents[1]           # data/libraries
-ROOT = LIB / "real"                                  # 좌석 좌표가 있는 활성 도서관
+
+LIB = Path(__file__).resolve().parents[1]  # data/libraries
+ROOT = LIB / "real"  # 좌석 좌표가 있는 활성 도서관
 OUT = LIB / "synthetic"
-GEN_VERSION = "synth-1.0"
+GEN_VERSION = "synth-1.1"
 FEATURE_REGISTRY = "features-1"
 KST = timezone(timedelta(hours=9))
 SEAT_SIDE_M = 0.75
 TIME_SLOTS = {"morning": 10, "noon": 13, "evening": 19}
-FEATURES = ["laptopAllowed", "keyboardAllowed", "partition", "outletAvailable", "windowProximity",
-            "toiletProximity", "entranceProximity", "brightness", "airflow", "deskHeight", "deskWidth", "viewQuality"]
+PERIOD_END = datetime(
+    2026, 11, 14, tzinfo=KST
+)  # 방문 일정 마지막 날(이 날 0시 직전까지)
+FEATURES = [
+    "laptopAllowed",
+    "keyboardAllowed",
+    "partition",
+    "outletAvailable",
+    "windowProximity",
+    "toiletProximity",
+    "entranceProximity",
+    "brightness",
+    "airflow",
+    "deskHeight",
+    "deskWidth",
+    "viewQuality",
+]
 
+# 칸막이는 1인 칸막이 책상(individual_carrel)에만 있다(확률 1.0/0.0 → 유형과 항상 일치).
+# 확률 추출(rng.random())은 그대로 두어 다른 값의 난수 흐름이 바뀌지 않게 한다.
 DESK_TYPES = {  # type: (width_cm range, height_cm range, partition prob)
-    "individual_carrel": ((85, 110), (72, 76), 0.95),
-    "long_shared_table": ((65, 90), (71, 75), 0.15),
-    "four_person_table": ((90, 120), (72, 75), 0.30),
-    "wide_individual_desk": ((120, 160), (72, 76), 0.60),
-    "window_counter": ((70, 95), (88, 105), 0.05),
+    "individual_carrel": ((85, 110), (72, 76), 1.0),
+    "long_shared_table": ((65, 90), (71, 75), 0.0),
+    "four_person_table": ((90, 120), (72, 75), 0.0),
+    "wide_individual_desk": ((120, 160), (72, 76), 0.0),
+    "window_counter": ((70, 95), (88, 105), 0.0),
     "standing_desk": ((80, 105), (100, 112), 0.0),
 }
 
@@ -61,8 +81,12 @@ def seg_dist(p, a, b):
 
 def wall_point(bounds, wall, t):
     x0, y0, x1, y1 = bounds
-    return {"top": (x0 + t * (x1 - x0), y0), "bottom": (x0 + t * (x1 - x0), y1),
-            "left": (x0, y0 + t * (y1 - y0)), "right": (x1, y0 + t * (y1 - y0))}[wall]
+    return {
+        "top": (x0 + t * (x1 - x0), y0),
+        "bottom": (x0 + t * (x1 - x0), y1),
+        "left": (x0, y0 + t * (y1 - y0)),
+        "right": (x1, y0 + t * (y1 - y0)),
+    }[wall]
 
 
 def wall_len(bounds, wall):
@@ -79,6 +103,53 @@ def nearest_wall(bounds, p):
 INWARD = {"top": (0, 1), "bottom": (0, -1), "left": (1, 0), "right": (-1, 0)}
 
 
+def box_dist(p, b):
+    """점 p 에서 bbox 까지 거리(px, 안이면 0)."""
+    dx = max(b["x"] - p[0], 0, p[0] - b["x"] - b["width"])
+    dy = max(b["y"] - p[1], 0, p[1] - b["y"] - b["height"])
+    return math.hypot(dx, dy)
+
+
+def clear_of(p, boxes, r_px):
+    """p 가 모든 좌석 bbox 에서 r_px 이상 떨어져 있나."""
+    return all(box_dist(p, b) >= r_px for b in boxes)
+
+
+def seg_clear_of(a, c, boxes, r_px, n=24):
+    return all(
+        clear_of(
+            (a[0] + (c[0] - a[0]) * i / n, a[1] + (c[1] - a[1]) * i / n), boxes, r_px
+        )
+        for i in range(n + 1)
+    )
+
+
+TOILET_CLEAR_M = (
+    1.5  # 화장실은 열람실 영역(좌석 bbox + 1.5m)에서 이만큼 더 떨어진 바깥에 둔다
+)
+
+
+def toilet_point(bounds, ent, ent_wall, px, rng, boxes=(), tries=50):
+    """출입구 벽 바깥쪽 반원(법선 ±80°)으로 3~25m. 열람실 영역+여유 안이거나 같은 지도의 다른 열람실 좌석과 1.5m 안이면 다시 뽑는다."""
+    x0, y0, x1, y1 = bounds
+    m = px(TOILET_CLEAR_M)
+    nx, ny = (-INWARD[ent_wall][0], -INWARD[ent_wall][1])
+    base = math.atan2(ny, nx)
+    for _ in range(tries):
+        d = px(rng.uniform(3, 25))
+        ang = base + math.radians(rng.uniform(-80, 80))
+        t = (ent[0] + d * math.cos(ang), ent[1] + d * math.sin(ang))
+        if not (x0 - m < t[0] < x1 + m and y0 - m < t[1] < y1 + m) and clear_of(
+            t, boxes, m
+        ):
+            return t
+    # 실패 시 출입구 벽 법선 방향으로 영역 밖까지 민다
+    d = px(3)
+    while x0 - m < ent[0] + d * nx < x1 + m and y0 - m < ent[1] + d * ny < y1 + m:
+        d += px(1)
+    return (ent[0] + d * nx, ent[1] + d * ny)
+
+
 def desk_groups(seats, med):
     """맞닿은 좌석 버튼을 같은 책상 묶음으로 본다(union-find)."""
     n = len(seats)
@@ -89,13 +160,18 @@ def desk_groups(seats, med):
             par[i] = par[par[i]]
             i = par[i]
         return i
+
     gap = 0.3 * med
     for i in range(n):
         a = seats[i]["bbox"]
         for j in range(i + 1, n):
             b = seats[j]["bbox"]
-            if (a["x"] - gap <= b["x"] + b["width"] and b["x"] - gap <= a["x"] + a["width"]
-                    and a["y"] - gap <= b["y"] + b["height"] and b["y"] - gap <= a["y"] + a["height"]):
+            if (
+                a["x"] - gap <= b["x"] + b["width"]
+                and b["x"] - gap <= a["x"] + a["width"]
+                and a["y"] - gap <= b["y"] + b["height"]
+                and b["y"] - gap <= a["y"] + a["height"]
+            ):
                 par[f(i)] = f(j)
     groups = {}
     for i in range(n):
@@ -126,9 +202,25 @@ def load_units():
         for (mid, rid), ss in by.items():
             m = maps[mid]
             fac = [f for f in ds["facilities"] if f["map_id"] == mid]
-            units.append({"library_id": r["library_id"], "library_name": r["name"], "map": m,
-                          "room": rooms.get(rid, {"room_id": rid, "name": None}), "seats": ss,
-                          "real_facilities": fac, "real_room_features": rf.get(rid, {})})
+            units.append(
+                {
+                    "library_id": r["library_id"],
+                    "library_name": r["name"],
+                    "map": m,
+                    "room": rooms.get(rid, {"room_id": rid, "name": None}),
+                    "seats": ss,
+                    "map_boxes": [
+                        s2["bbox"] for s2 in ds["seats"] if s2["map_id"] == mid
+                    ],
+                    "other_boxes": [
+                        s2["bbox"]
+                        for s2 in ds["seats"]
+                        if s2["map_id"] == mid and s2["room_id"] != rid
+                    ],
+                    "real_facilities": fac,
+                    "real_room_features": rf.get(rid, {}),
+                }
+            )
     return libs, units
 
 
@@ -137,62 +229,119 @@ def build_unit_static(u):
     ss = u["seats"]
     med = statistics.median(min(s["bbox"]["width"], s["bbox"]["height"]) for s in ss)
     mpp = SEAT_SIDE_M / med
-    xs0 = min(s["bbox"]["x"] for s in ss); ys0 = min(s["bbox"]["y"] for s in ss)
-    xs1 = max(s["bbox"]["x"] + s["bbox"]["width"] for s in ss); ys1 = max(s["bbox"]["y"] + s["bbox"]["height"] for s in ss)
+    xs0 = min(s["bbox"]["x"] for s in ss)
+    ys0 = min(s["bbox"]["y"] for s in ss)
+    xs1 = max(s["bbox"]["x"] + s["bbox"]["width"] for s in ss)
+    ys1 = max(s["bbox"]["y"] + s["bbox"]["height"] for s in ss)
     mg = 1.5 / mpp
     W, H = u["map"]["width"], u["map"]["height"]
     bounds = (max(0, xs0 - mg), max(0, ys0 - mg), min(W, xs1 + mg), min(H, ys1 + mg))
-    centers = [(s["bbox"]["x"] + s["bbox"]["width"] / 2, s["bbox"]["y"] + s["bbox"]["height"] / 2) for s in ss]
+    centers = [
+        (
+            s["bbox"]["x"] + s["bbox"]["width"] / 2,
+            s["bbox"]["y"] + s["bbox"]["height"] / 2,
+        )
+        for s in ss
+    ]
     groups = desk_groups(ss, med)
     seat_group = {}
     for gi, g in enumerate(groups):
         for i in g:
             seat_group[i] = gi
-    u.update(mpp=mpp, bounds=bounds, centers=centers, groups=groups, seat_group=seat_group, med=med)
-    real_ent = [f for f in u["real_facilities"] if f["type"] == "entrance" and f.get("access_point")]
-    real_toi = [f for f in u["real_facilities"] if f["type"] == "toilet" and f.get("access_point")]
+    u.update(
+        mpp=mpp,
+        bounds=bounds,
+        centers=centers,
+        groups=groups,
+        seat_group=seat_group,
+        med=med,
+    )
+    real_ent = [
+        f
+        for f in u["real_facilities"]
+        if f["type"] == "entrance" and f.get("access_point")
+    ]
+    real_toi = [
+        f
+        for f in u["real_facilities"]
+        if f["type"] == "toilet" and f.get("access_point")
+    ]
     u["real_entrance"] = tuple(real_ent[0]["access_point"]) if real_ent else None
     u["real_toilets"] = [tuple(f["access_point"]) for f in real_toi]
-    u["unit_id"] = f'{u["map"]["map_id"]}|{u["room"]["room_id"]}'
+    u["unit_id"] = f"{u['map']['map_id']}|{u['room']['room_id']}"
 
 
 def synth_scenario(u, k, rng):
-    lid = u["library_id"]; mpp = u["mpp"]; b = u["bounds"]
-    sid = f'{lid}:synth:{u["map"]["map_id"].split(":")[-1]}:{u["room"]["room_id"].split(":")[-1]}:s{k:03d}'
+    lid = u["library_id"]
+    mpp = u["mpp"]
+    b = u["bounds"]
+    sid = f"{lid}:synth:{u['map']['map_id'].split(':')[-1]}:{u['room']['room_id'].split(':')[-1]}:s{k:03d}"
     px = lambda m: m / mpp  # metres → px
     walls = ["top", "bottom", "left", "right"]
     objs = []
 
     # 출입구: 같은 지도에 실제 후보가 있으면 그것을 사용
     if u["real_entrance"]:
-        ent = u["real_entrance"]; ent_src = "real_model_candidate"
+        ent = u["real_entrance"]
+        ent_src = "real_model_candidate"
     else:
-        ew = rng.choice(walls); ent = wall_point(b, ew, rng.uniform(0.1, 0.9)); ent_src = "synthetic"
+        ew = rng.choice(walls)
+        ent = wall_point(b, ew, rng.uniform(0.1, 0.9))
+        ent_src = "synthetic"
+        for _ in range(30):  # 좌석과 0.8m 안이면 다시 뽑는다
+            if clear_of(ent, u["map_boxes"], px(0.8)):
+                break
+            ew = rng.choice(walls)
+            ent = wall_point(b, ew, rng.uniform(0.1, 0.9))
     ent_wall = nearest_wall(b, ent)
-    objs.append({"type": "entrance", "point": [r3(ent[0]), r3(ent[1])], "wall": ent_wall, "origin": ent_src})
+    objs.append(
+        {
+            "type": "entrance",
+            "point": [r3(ent[0]), r3(ent[1])],
+            "wall": ent_wall,
+            "origin": ent_src,
+        }
+    )
 
     # 창문: 출입구 벽이 아닌 1~3개 벽, 벽 길이의 40~90%
-    win_walls = rng.sample([w for w in walls if w != ent_wall], rng.choice([1, 1, 2, 2, 3]))
+    win_walls = rng.sample(
+        [w for w in walls if w != ent_wall], rng.choice([1, 1, 2, 2, 3])
+    )
     windows = []
     for w in win_walls:
-        cover = rng.uniform(0.4, 0.9); start = rng.uniform(0, 1 - cover)
+        cover = rng.uniform(0.4, 0.9)
+        start = rng.uniform(0, 1 - cover)
         n_pane = max(1, int(wall_len(b, w) * cover * mpp / rng.uniform(1.5, 3.0)))
         view = rng.uniform(0.2, 1.0)  # 합성 전망 점수(벽 단위)
         for i in range(n_pane):
-            t0 = start + cover * i / n_pane; t1 = start + cover * (i + 0.85) / n_pane
+            t0 = start + cover * i / n_pane
+            t1 = start + cover * (i + 0.85) / n_pane
             a, c = wall_point(b, w, t0), wall_point(b, w, t1)
-            windows.append({"a": a, "b": c, "wall": w, "view": view, "blind": rng.random() < 0.2})
-            objs.append({"type": "window", "line": [[r3(a[0]), r3(a[1])], [r3(c[0]), r3(c[1])]], "wall": w,
-                         "view_score": r3(view), "blind_closed": windows[-1]["blind"], "origin": "synthetic"})
+            if not seg_clear_of(a, c, u["map_boxes"], px(0.3)):
+                continue  # 벽선이 좌석 위를 지나면(지도 가장자리·겹치는 열람실) 창을 두지 않는다
+            windows.append(
+                {"a": a, "b": c, "wall": w, "view": view, "blind": rng.random() < 0.2}
+            )
+            objs.append(
+                {
+                    "type": "window",
+                    "line": [[r3(a[0]), r3(a[1])], [r3(c[0]), r3(c[1])]],
+                    "wall": w,
+                    "view_score": r3(view),
+                    "blind_closed": windows[-1]["blind"],
+                    "origin": "synthetic",
+                }
+            )
 
     # 화장실: 실제 후보가 같은 지도에 있으면 사용, 아니면 출입구 바깥 3~25m
     if u["real_toilets"]:
-        toilets = u["real_toilets"]; t_src = "real_model_candidate"
+        toilets = u["real_toilets"]
+        t_src = "real_model_candidate"
     else:
-        toilets = []
-        for _ in range(rng.choice([1, 1, 2])):
-            d = px(rng.uniform(3, 25)); ang = rng.uniform(0, 2 * math.pi)
-            toilets.append((ent[0] + d * math.cos(ang), ent[1] + d * math.sin(ang)))
+        toilets = [
+            toilet_point(b, ent, ent_wall, px, rng, u["map_boxes"])
+            for _ in range(rng.choice([1, 1, 2]))
+        ]
         t_src = "synthetic"
     for t in toilets:
         objs.append({"type": "toilet", "point": [r3(t[0]), r3(t[1])], "origin": t_src})
@@ -201,36 +350,89 @@ def synth_scenario(u, k, rng):
     acs = []
     if rng.random() < 0.6:
         sp = rng.uniform(6, 9)
-        nx = max(1, int((b[2] - b[0]) * mpp / sp)); ny = max(1, int((b[3] - b[1]) * mpp / sp))
+        nx = max(1, int((b[2] - b[0]) * mpp / sp))
+        ny = max(1, int((b[3] - b[1]) * mpp / sp))
         for i in range(nx):
             for j in range(ny):
                 x = b[0] + (i + 0.5) * (b[2] - b[0]) / nx + px(rng.gauss(0, 0.5))
                 y = b[1] + (j + 0.5) * (b[3] - b[1]) / ny + px(rng.gauss(0, 0.5))
-                acs.append({"kind": "ceiling_cassette", "p": (x, y), "dir": None, "strength": rng.uniform(0.5, 1.0), "throw_m": rng.uniform(3, 5)})
+                acs.append(
+                    {
+                        "kind": "ceiling_cassette",
+                        "p": (x, y),
+                        "dir": None,
+                        "strength": rng.uniform(0.5, 1.0),
+                        "throw_m": rng.uniform(3, 5),
+                    }
+                )
     else:
         for w in rng.sample(walls, rng.choice([1, 2])):
             n = max(1, int(wall_len(b, w) * mpp / rng.uniform(5, 8)))
             for i in range(n):
-                acs.append({"kind": "wall_mounted", "p": wall_point(b, w, (i + 0.5) / n), "dir": INWARD[w],
-                            "strength": rng.uniform(0.6, 1.0), "throw_m": rng.uniform(5, 8)})
-    if rng.random() < 0.3:
-        acs.append({"kind": "standing", "p": (rng.uniform(b[0], b[2]), rng.uniform(b[1], b[3])), "dir": None,
-                    "strength": rng.uniform(0.4, 0.8), "throw_m": rng.uniform(2.5, 4)})
+                if not (
+                    clear_of(wall_point(b, w, (i + 0.5) / n), u["map_boxes"], px(0.3))
+                    and clear_of(
+                        wall_point(b, w, (i + 0.5) / n), u["other_boxes"], px(0.5)
+                    )
+                ):
+                    continue
+                acs.append(
+                    {
+                        "kind": "wall_mounted",
+                        "p": wall_point(b, w, (i + 0.5) / n),
+                        "dir": INWARD[w],
+                        "strength": rng.uniform(0.6, 1.0),
+                        "throw_m": rng.uniform(5, 8),
+                    }
+                )
+    if rng.random() < 0.3:  # 스탠드형: 좌석에서 0.6m 이상 떨어진 통로·벽가에만 둔다
+        for _ in range(60):
+            p = (rng.uniform(b[0], b[2]), rng.uniform(b[1], b[3]))
+            if clear_of(p, u["map_boxes"], px(0.6)):
+                acs.append(
+                    {
+                        "kind": "standing",
+                        "p": p,
+                        "dir": None,
+                        "strength": rng.uniform(0.4, 0.8),
+                        "throw_m": rng.uniform(2.5, 4),
+                    }
+                )
+                break
     for a in acs:
-        objs.append({"type": "air_conditioner", "kind": a["kind"], "point": [r3(a["p"][0]), r3(a["p"][1])],
-                     "direction": a["dir"], "strength": r3(a["strength"]), "throw_m": r3(a["throw_m"]), "origin": "synthetic"})
+        objs.append(
+            {
+                "type": "air_conditioner",
+                "kind": a["kind"],
+                "point": [r3(a["p"][0]), r3(a["p"][1])],
+                "direction": a["dir"],
+                "strength": r3(a["strength"]),
+                "throw_m": r3(a["throw_m"]),
+                "origin": "synthetic",
+            }
+        )
 
     # 조명(천장 격자), 5~12%는 어둡거나 고장
     lights = []
-    sp = rng.uniform(2.4, 3.6); base = rng.uniform(450, 750)
-    nx = max(1, int((b[2] - b[0]) * mpp / sp)); ny = max(1, int((b[3] - b[1]) * mpp / sp))
+    sp = rng.uniform(2.4, 3.6)
+    base = rng.uniform(450, 750)
+    nx = max(1, int((b[2] - b[0]) * mpp / sp))
+    ny = max(1, int((b[3] - b[1]) * mpp / sp))
     bad = rng.uniform(0.05, 0.12)
     for i in range(nx):
         for j in range(ny):
-            x = b[0] + (i + 0.5) * (b[2] - b[0]) / nx; y = b[1] + (j + 0.5) * (b[3] - b[1]) / ny
+            x = b[0] + (i + 0.5) * (b[2] - b[0]) / nx
+            y = b[1] + (j + 0.5) * (b[3] - b[1]) / ny
             f = rng.uniform(0, 0.4) if rng.random() < bad else rng.uniform(0.85, 1.1)
             lights.append({"p": (x, y), "lux": base * f})
-            objs.append({"type": "ceiling_light", "point": [r3(x), r3(y)], "lux_at_desk_below": r3(base * f), "origin": "synthetic"})
+            objs.append(
+                {
+                    "type": "ceiling_light",
+                    "point": [r3(x), r3(y)],
+                    "lux_at_desk_below": r3(base * f),
+                    "origin": "synthetic",
+                }
+            )
     light_sp_m = sp
 
     # 콘센트: 벽 콘센트 2~4m 간격 + 일부 책상 묶음에 책상 콘센트
@@ -239,37 +441,79 @@ def synth_scenario(u, k, rng):
     for w in walls:
         n = max(1, int(wall_len(b, w) * mpp / o_sp))
         for i in range(n):
-            if rng.random() < 0.85:
+            if (
+                rng.random() < 0.85
+                and clear_of(wall_point(b, w, (i + 0.5) / n), u["map_boxes"], px(0.15))
+                and clear_of(wall_point(b, w, (i + 0.5) / n), u["other_boxes"], px(0.5))
+            ):
                 outlets.append(("wall", wall_point(b, w, (i + 0.5) / n), None))
     p_desk = rng.uniform(0.2, 0.85)
-    desk_outlet_groups = set(gi for gi in range(len(u["groups"])) if rng.random() < p_desk)
+    desk_outlet_groups = set(
+        gi for gi in range(len(u["groups"])) if rng.random() < p_desk
+    )
     for gi in desk_outlet_groups:
         g = u["groups"][gi]
-        cx = sum(u["centers"][i][0] for i in g) / len(g); cy = sum(u["centers"][i][1] for i in g) / len(g)
+        cx = sum(u["centers"][i][0] for i in g) / len(g)
+        cy = sum(u["centers"][i][1] for i in g) / len(g)
         outlets.append(("desk", (cx, cy), gi))
     for kind, p, gi in outlets:
-        objs.append({"type": "outlet", "kind": kind, "point": [r3(p[0]), r3(p[1])], "desk_group": gi, "origin": "synthetic"})
+        objs.append(
+            {
+                "type": "outlet",
+                "kind": kind,
+                "point": [r3(p[0]), r3(p[1])],
+                "desk_group": gi,
+                "origin": "synthetic",
+            }
+        )
 
     # 책상: 묶음 크기와 위치로 타입 확률 조정
     desk = {}
     for gi, g in enumerate(u["groups"]):
         n = len(g)
-        cx = sum(u["centers"][i][0] for i in g) / n; cy = sum(u["centers"][i][1] for i in g) / n
-        near_win = windows and min(seg_dist((cx, cy), w["a"], w["b"]) for w in windows) * mpp < 1.8
+        cx = sum(u["centers"][i][0] for i in g) / n
+        cy = sum(u["centers"][i][1] for i in g) / n
+        near_win = (
+            windows
+            and min(seg_dist((cx, cy), w["a"], w["b"]) for w in windows) * mpp < 1.8
+        )
         if n == 1:
-            opts = ["individual_carrel", "wide_individual_desk", "standing_desk"] + (["window_counter"] * 2 if near_win else [])
+            opts = ["individual_carrel", "wide_individual_desk", "standing_desk"] + (
+                ["window_counter"] * 2 if near_win else []
+            )
         elif n <= 4:
-            opts = ["four_person_table", "four_person_table", "individual_carrel", "wide_individual_desk"]
+            opts = [
+                "four_person_table",
+                "four_person_table",
+                "individual_carrel",
+                "wide_individual_desk",
+            ]
         else:
-            opts = ["long_shared_table", "long_shared_table", "individual_carrel"] + (["window_counter"] if near_win else [])
-        t = rng.choice(opts); (w0, w1), (h0, h1), pp = DESK_TYPES[t]
-        desk[gi] = {"desk_type": t, "width_cm": round(rng.uniform(w0, w1)), "height_cm": round(rng.uniform(h0, h1)),
-                    "partition": rng.random() < pp, "desk_outlet": gi in desk_outlet_groups}
+            opts = ["long_shared_table", "long_shared_table", "individual_carrel"] + (
+                ["window_counter"] if near_win else []
+            )
+        t = rng.choice(opts)
+        (w0, w1), (h0, h1), pp = DESK_TYPES[t]
+        desk[gi] = {
+            "desk_type": t,
+            "width_cm": round(rng.uniform(w0, w1)),
+            "height_cm": round(rng.uniform(h0, h1)),
+            "partition": rng.random() < pp,
+            "desk_outlet": gi in desk_outlet_groups,
+        }
 
     # 규정(실제 room_features가 있으면 우선)
     rrf = u["real_room_features"]
-    laptop = rrf.get("laptopAllowed") if rrf.get("laptopAllowed") is not None else (rng.random() < 0.6)
-    keyboard = rrf.get("keyboardAllowed") if rrf.get("keyboardAllowed") is not None else (laptop and rng.random() < 0.7)
+    laptop = (
+        rrf.get("laptopAllowed")
+        if rrf.get("laptopAllowed") is not None
+        else (rng.random() < 0.6)
+    )
+    keyboard = (
+        rrf.get("keyboardAllowed")
+        if rrf.get("keyboardAllowed") is not None
+        else (laptop and rng.random() < 0.7)
+    )
     season = rng.choice(["summer", "summer", "winter", "spring_fall"])
     weather = rng.choice(["clear", "clear", "cloudy", "rain"])
     base_temp = {"summer": 27.5, "winter": 21.0, "spring_fall": 24.0}[season]
@@ -278,8 +522,21 @@ def synth_scenario(u, k, rng):
     win_lux0 = rng.uniform(900, 1800)
 
     def lux_at(p, slot):
-        # 격자 조명 커널 합 ≈ 2.6 (a=0.5*간격) → 실내 중앙에서 ≈ 기준 조도
-        art = sum(L["lux"] * (1 + ((math.hypot(p[0] - L["p"][0], p[1] - L["p"][1]) * mpp) / (0.5 * light_sp_m)) ** 2) ** -1.5 for L in lights) / 2.6
+        # 격자 조명 커널 (1+(d/a)²)^-1.5, a=0.5*간격 의 무한 격자 평균 합 = 2πa²/간격² = π/2 → 실내 중앙에서 ≈ 기준 조도
+        # (synth-1.0 은 2.6 으로 나눠 실내가 기준의 약 60%로 어두웠다)
+        art = sum(
+            L["lux"]
+            * (
+                1
+                + (
+                    (math.hypot(p[0] - L["p"][0], p[1] - L["p"][1]) * mpp)
+                    / (0.5 * light_sp_m)
+                )
+                ** 2
+            )
+            ** -1.5
+            for L in lights
+        ) / (math.pi / 2)
         day = 0.0
         for w in windows:
             if w["blind"]:
@@ -291,25 +548,44 @@ def synth_scenario(u, k, rng):
     def airflow_at(p):
         tot = 0.0
         for a in acs:
-            dx, dy = (p[0] - a["p"][0]) * mpp, (p[1] - a["p"][1]) * mpp; d = math.hypot(dx, dy)
+            dx, dy = (p[0] - a["p"][0]) * mpp, (p[1] - a["p"][1]) * mpp
+            d = math.hypot(dx, dy)
             if a["dir"]:
                 cos = (dx * a["dir"][0] + dy * a["dir"][1]) / (d + 1e-9)
                 tot += a["strength"] * max(0.0, cos) ** 2 * math.exp(-d / a["throw_m"])
             else:
-                tot += a["strength"] * math.exp(-(d / a["throw_m"]) ** 2)
+                tot += a["strength"] * math.exp(-((d / a["throw_m"]) ** 2))
         return clamp(tot)
 
     # 밝기 격자(1m) — 정오 기준
     gstep = 1.0 / mpp
-    gx = max(1, int((b[2] - b[0]) / gstep)); gy = max(1, int((b[3] - b[1]) / gstep))
+    gx = max(1, int((b[2] - b[0]) / gstep))
+    gy = max(1, int((b[3] - b[1]) / gstep))
     if gx * gy > 4000:
-        s = math.sqrt(gx * gy / 4000); gx = max(1, int(gx / s)); gy = max(1, int(gy / s))
-    grid = [[round(lux_at((b[0] + (i + 0.5) * (b[2] - b[0]) / gx, b[1] + (j + 0.5) * (b[3] - b[1]) / gy), "noon"))
-             for i in range(gx)] for j in range(gy)]
+        s = math.sqrt(gx * gy / 4000)
+        gx = max(1, int(gx / s))
+        gy = max(1, int(gy / s))
+    grid = [
+        [
+            round(
+                lux_at(
+                    (
+                        b[0] + (i + 0.5) * (b[2] - b[0]) / gx,
+                        b[1] + (j + 0.5) * (b[3] - b[1]) / gy,
+                    ),
+                    "noon",
+                )
+            )
+            for i in range(gx)
+        ]
+        for j in range(gy)
+    ]
 
     seats_out = []
     for i, s in enumerate(u["seats"]):
-        p = u["centers"][i]; gi = u["seat_group"][i]; dk = desk[gi]
+        p = u["centers"][i]
+        gi = u["seat_group"][i]
+        dk = desk[gi]
         d_win = min((seg_dist(p, w["a"], w["b"]) for w in windows), default=None)
         d_win = None if d_win is None else d_win * mpp
         best_view = 0.0
@@ -317,78 +593,191 @@ def synth_scenario(u, k, rng):
             dm = seg_dist(p, w["a"], w["b"]) * mpp
             best_view = max(best_view, w["view"] * math.exp(-dm / 4))
         d_ent = (abs(p[0] - ent[0]) + abs(p[1] - ent[1])) * mpp
-        d_toi = min((abs(p[0] - ent[0]) + abs(p[1] - ent[1]) + math.hypot(t[0] - ent[0], t[1] - ent[1]) * 1.15) for t in toilets) * mpp
-        d_out = min(math.hypot(p[0] - o[1][0], p[1] - o[1][1]) for o in outlets) * mpp if outlets else None
+        d_toi = (
+            min(
+                (
+                    abs(p[0] - ent[0])
+                    + abs(p[1] - ent[1])
+                    + math.hypot(t[0] - ent[0], t[1] - ent[1]) * 1.15
+                )
+                for t in toilets
+            )
+            * mpp
+        )
+        d_out = (
+            min(math.hypot(p[0] - o[1][0], p[1] - o[1][1]) for o in outlets) * mpp
+            if outlets
+            else None
+        )
         outlet_ok = dk["desk_outlet"] or (d_out is not None and d_out <= 1.2)
-        d_ac = min(math.hypot(p[0] - a["p"][0], p[1] - a["p"][1]) for a in acs) * mpp if acs else None
+        d_ac = (
+            min(math.hypot(p[0] - a["p"][0], p[1] - a["p"][1]) for a in acs) * mpp
+            if acs
+            else None
+        )
         air = airflow_at(p)
-        temp = base_temp - (3.5 * air if season == "summer" else 1.5 * air) + rng.gauss(0, 0.3)
+        # 여름 냉방은 바람이 셀수록 시원, 겨울은 난방이라 따뜻, 봄·가을 송풍은 약간 시원
+        temp = (
+            base_temp
+            + {"summer": -3.5, "winter": 1.5, "spring_fall": -1.0}[season] * air
+            + rng.gauss(0, 0.3)
+        )
         lux = {sl: round(lux_at(p, sl)) for sl in TIME_SLOTS}
         noise = clamp(0.25 + 0.35 * (1 - clamp(d_ent / 15)) + rng.gauss(0, 0.08))
         feats = {
-            "laptopAllowed": int(bool(laptop)), "keyboardAllowed": int(bool(keyboard)), "partition": int(dk["partition"]),
+            "laptopAllowed": int(bool(laptop)),
+            "keyboardAllowed": int(bool(keyboard)),
+            "partition": int(dk["partition"]),
             "outletAvailable": int(outlet_ok),
             "windowProximity": r3(max(0, 1 - d_win / 10)) if d_win is not None else 0.0,
-            "toiletProximity": r3(max(0, 1 - d_toi / 100)), "entranceProximity": r3(max(0, 1 - d_ent / 50)),
-            "brightness": r3(clamp((lux["noon"] - 100) / 900)), "airflow": r3(air),
-            "deskHeight": r3(clamp((dk["height_cm"] - 60) / 40)), "deskWidth": r3(clamp((dk["width_cm"] - 60) / 120)),
+            "toiletProximity": r3(max(0, 1 - d_toi / 100)),
+            "entranceProximity": r3(max(0, 1 - d_ent / 50)),
+            "brightness": r3(clamp((lux["noon"] - 100) / 900)),
+            "airflow": r3(air),
+            "deskHeight": r3(clamp((dk["height_cm"] - 60) / 40)),
+            "deskWidth": r3(clamp((dk["width_cm"] - 60) / 120)),
             "viewQuality": r3(best_view),
         }
-        seats_out.append({
-            "_id": f'{sid}|{s["seat_id"]}', "scenario_id": sid, "library_id": lid, "room_id": u["room"]["room_id"],
-            "map_id": u["map"]["map_id"], "seat_id": s["seat_id"], "seat_label": s.get("seat_label"),
-            "center_px": [r3(p[0]), r3(p[1])],
-            "raw": {"dist_window_m": r3(d_win), "dist_toilet_walk_m": r3(d_toi), "dist_entrance_walk_m": r3(d_ent),
-                    "dist_outlet_m": r3(d_out), "dist_ac_m": r3(d_ac), "airflow_index": r3(air), "temperature_c": round(temp, 1),
-                    "lux": lux, "noise_index": r3(noise), "desk_group": gi, **dk},
-            "features": feats,
-            "brightness_by_slot": {sl: r3(clamp((v - 100) / 900)) for sl, v in lux.items()},
-            "feature_registry_version": FEATURE_REGISTRY, "is_synthetic": True, "verification": "synthetic",
-            "generator_version": GEN_VERSION,
-        })
+        seats_out.append(
+            {
+                "_id": f"{sid}|{s['seat_id']}",
+                "scenario_id": sid,
+                "library_id": lid,
+                "room_id": u["room"]["room_id"],
+                "map_id": u["map"]["map_id"],
+                "seat_id": s["seat_id"],
+                "seat_label": s.get("seat_label"),
+                "center_px": [r3(p[0]), r3(p[1])],
+                "raw": {
+                    "dist_window_m": r3(d_win),
+                    "dist_toilet_walk_m": r3(d_toi),
+                    "dist_entrance_walk_m": r3(d_ent),
+                    "dist_outlet_m": r3(d_out),
+                    "dist_ac_m": r3(d_ac),
+                    "airflow_index": r3(air),
+                    "temperature_c": round(temp, 1),
+                    "lux": lux,
+                    "noise_index": r3(noise),
+                    "desk_group": gi,
+                    **dk,
+                },
+                "features": feats,
+                "brightness_by_slot": {
+                    sl: r3(clamp((v - 100) / 900)) for sl, v in lux.items()
+                },
+                "feature_registry_version": FEATURE_REGISTRY,
+                "is_synthetic": True,
+                "verification": "synthetic",
+                "generator_version": GEN_VERSION,
+            }
+        )
 
     scen = {
-        "_id": sid, "scenario_id": sid, "scenario_index": k, "library_id": lid, "library_name": u["library_name"],
-        "room_id": u["room"]["room_id"], "room_name": u["room"].get("name"), "map_id": u["map"]["map_id"],
+        "_id": sid,
+        "scenario_id": sid,
+        "scenario_index": k,
+        "library_id": lid,
+        "library_name": u["library_name"],
+        "room_id": u["room"]["room_id"],
+        "room_name": u["room"].get("name"),
+        "map_id": u["map"]["map_id"],
         "map_size_px": [u["map"]["width"], u["map"]["height"]],
-        "synthetic_meters_per_px": r3(mpp), "room_bounds_px": [r3(v) for v in b], "seat_count": len(u["seats"]),
-        "conditions": {"season": season, "weather": weather, "base_temperature_c": base_temp,
-                       "laptop_allowed": bool(laptop), "keyboard_allowed": bool(keyboard),
-                       "laptop_rule_origin": "real_room_feature" if rrf.get("laptopAllowed") is not None else "synthetic"},
+        "synthetic_meters_per_px": r3(mpp),
+        "room_bounds_px": [r3(v) for v in b],
+        "seat_count": len(u["seats"]),
+        "conditions": {
+            "season": season,
+            "weather": weather,
+            "base_temperature_c": base_temp,
+            "laptop_allowed": bool(laptop),
+            "keyboard_allowed": bool(keyboard),
+            "laptop_rule_origin": "real_room_feature"
+            if rrf.get("laptopAllowed") is not None
+            else "synthetic",
+        },
         "objects": objs,
-        "desk_groups": [{"desk_group": gi, "seat_ids": [u["seats"][i]["seat_id"] for i in g], **desk[gi]} for gi, g in enumerate(u["groups"])],
-        "brightness_grid": {"slot": "noon", "unit": "lux", "cols": gx, "rows": gy, "origin_px": [r3(b[0]), r3(b[1])],
-                            "cell_px": [r3((b[2] - b[0]) / gx), r3((b[3] - b[1]) / gy)], "values": grid},
-        "counts": {t: sum(1 for o in objs if o["type"] == t) for t in ("window", "toilet", "air_conditioner", "ceiling_light", "outlet", "entrance")},
-        "is_synthetic": True, "verification": "synthetic", "generator_version": GEN_VERSION,
+        "desk_groups": [
+            {
+                "desk_group": gi,
+                "seat_ids": [u["seats"][i]["seat_id"] for i in g],
+                **desk[gi],
+            }
+            for gi, g in enumerate(u["groups"])
+        ],
+        "brightness_grid": {
+            "slot": "noon",
+            "unit": "lux",
+            "cols": gx,
+            "rows": gy,
+            "origin_px": [r3(b[0]), r3(b[1])],
+            "cell_px": [r3((b[2] - b[0]) / gx), r3((b[3] - b[1]) / gy)],
+            "values": grid,
+        },
+        "counts": {
+            t: sum(1 for o in objs if o["type"] == t)
+            for t in (
+                "window",
+                "toilet",
+                "air_conditioner",
+                "ceiling_light",
+                "outlet",
+                "entrance",
+            )
+        },
+        "is_synthetic": True,
+        "verification": "synthetic",
+        "generator_version": GEN_VERSION,
     }
     return scen, seats_out
 
 
 # ---------------------------------------------------------------- users (카카오톡 분석 스키마 형식)
-PREF_VALUES = {"restroom": ["near", "no_preference"], "lighting": ["bright", "dim"], "air_conditioning": ["cool", "warm"],
-               "desk": ["large", "compact"], "laptop_usage": ["yes", "no"], "outlet": ["required", "not_required"],
-               "view": ["window", "no_preference"]}
-PREF_PRIOR = {"restroom": [0.35, 0.65], "lighting": [0.7, 0.3], "air_conditioning": [0.5, 0.5], "desk": [0.55, 0.45],
-              "laptop_usage": [0.6, 0.4], "outlet": [0.6, 0.4], "view": [0.45, 0.55]}
+PREF_VALUES = {
+    "restroom": ["near", "no_preference"],
+    "lighting": ["bright", "dim"],
+    "air_conditioning": ["cool", "warm"],
+    "desk": ["large", "compact"],
+    "laptop_usage": ["yes", "no"],
+    "outlet": ["required", "not_required"],
+    "view": ["window", "no_preference"],
+}
+PREF_PRIOR = {
+    "restroom": [0.35, 0.65],
+    "lighting": [0.7, 0.3],
+    "air_conditioning": [0.5, 0.5],
+    "desk": [0.55, 0.45],
+    "laptop_usage": [0.6, 0.4],
+    "outlet": [0.6, 0.4],
+    "view": [0.45, 0.55],
+}
 ARCHETYPES = {  # 행동 원형별 사전 치우침
     "laptop_worker": {"laptop_usage": "yes", "outlet": "required", "desk": "large"},
     "exam_focus": {"lighting": "bright", "view": "no_preference", "desk": "compact"},
     "comfort_seeker": {"view": "window", "air_conditioning": "warm"},
     "heat_sensitive": {"air_conditioning": "cool"},
     "frequent_break": {"restroom": "near"},
-    "casual_reader": {"laptop_usage": "no", "outlet": "not_required", "lighting": "dim"},
+    "casual_reader": {
+        "laptop_usage": "no",
+        "outlet": "not_required",
+        "lighting": "dim",
+    },
 }
 
 
 def pref_to_features(feat, val):
     """카카오톡 선호값 → features-1 (featureId, target, base_importance)."""
-    m = {("restroom", "near"): [("toiletProximity", 1.0, 0.7)],
-         ("lighting", "bright"): [("brightness", 0.85, 0.7)], ("lighting", "dim"): [("brightness", 0.3, 0.6)],
-         ("air_conditioning", "cool"): [("airflow", 0.7, 0.6)], ("air_conditioning", "warm"): [("airflow", 0.05, 0.7)],
-         ("desk", "large"): [("deskWidth", 1.0, 0.6)], ("desk", "compact"): [("deskWidth", 0.3, 0.3), ("partition", 1, 0.5)],
-         ("laptop_usage", "yes"): [("laptopAllowed", 1, 1.0)], ("outlet", "required"): [("outletAvailable", 1, 0.9)],
-         ("view", "window"): [("windowProximity", 1.0, 0.6), ("viewQuality", 1.0, 0.4)]}
+    m = {
+        ("restroom", "near"): [("toiletProximity", 1.0, 0.7)],
+        ("lighting", "bright"): [("brightness", 0.85, 0.7)],
+        ("lighting", "dim"): [("brightness", 0.3, 0.6)],
+        ("air_conditioning", "cool"): [("airflow", 0.7, 0.6)],
+        ("air_conditioning", "warm"): [("airflow", 0.05, 0.7)],
+        ("desk", "large"): [("deskWidth", 1.0, 0.6)],
+        ("desk", "compact"): [("deskWidth", 0.3, 0.3), ("partition", 1, 0.5)],
+        ("laptop_usage", "yes"): [("laptopAllowed", 1, 1.0)],
+        ("outlet", "required"): [("outletAvailable", 1, 0.9)],
+        ("view", "window"): [("windowProximity", 1.0, 0.6), ("viewQuality", 1.0, 0.4)],
+    }
     return m.get((feat, val), [])
 
 
@@ -407,9 +796,15 @@ def make_user(i, rng, libs):
     true_w = {}
     for f, v in latent.items():
         for fid, t, imp in pref_to_features(f, v):
-            true_w[fid] = {"target": t, "weight": round(clamp(imp * rng.uniform(0.6, 1.4)), 3)}
+            true_w[fid] = {
+                "target": t,
+                "weight": round(clamp(imp * rng.uniform(0.6, 1.4)), 3),
+            }
     if rng.random() < 0.3:
-        true_w["entranceProximity"] = {"target": 1.0, "weight": round(rng.uniform(0.2, 0.6), 3)}
+        true_w["entranceProximity"] = {
+            "target": 1.0,
+            "weight": round(rng.uniform(0.2, 0.6), 3),
+        }
     if "partition" not in true_w and rng.random() < 0.35:
         true_w["partition"] = {"target": 1, "weight": round(rng.uniform(0.2, 0.7), 3)}
     noise_aversion = round(rng.uniform(0, 1), 3)
@@ -419,38 +814,82 @@ def make_user(i, rng, libs):
     for f, v in latent.items():
         r = rng.random()
         if r > 0.35 + 0.6 * text_richness:
-            prefs[f] = {"preference": "unknown", "confidence": 0.0, "inference_type": "unknown",
-                        "reason": "합성: 대화에 근거가 부족한 경우를 모사"}
+            prefs[f] = {
+                "preference": "unknown",
+                "confidence": 0.0,
+                "inference_type": "unknown",
+                "reason": "합성: 대화에 근거가 부족한 경우를 모사",
+            }
             continue
         direct = rng.random() < 0.35
         wrong = rng.random() < (0.05 if direct else 0.15)
         obs = [x for x in PREF_VALUES[f] if x != v][0] if wrong else v
         conf = rng.uniform(0.7, 0.95) if direct else rng.uniform(0.35, 0.7)
-        prefs[f] = {"preference": obs, "confidence": round(conf, 2), "inference_type": "direct" if direct else "contextual",
-                    "reason": "합성: 직접 언급" if direct else "합성: 맥락 단서", "is_correct_vs_latent": not wrong}
+        prefs[f] = {
+            "preference": obs,
+            "confidence": round(conf, 2),
+            "inference_type": "direct" if direct else "contextual",
+            "reason": "합성: 직접 언급" if direct else "합성: 맥락 단서",
+            "is_correct_vs_latent": not wrong,
+        }
     profile = []
     for f, p in prefs.items():
         for fid, t, imp in pref_to_features(f, p["preference"]):
-            profile.append({"featureId": fid, "target": t, "importance": round(clamp(imp * (0.5 + 0.5 * p["confidence"])), 3)})
-    requirements = [{"featureId": "laptopAllowed", "operator": "eq", "value": 1}] if prefs["laptop_usage"]["preference"] == "yes" and prefs["laptop_usage"]["confidence"] >= 0.6 else []
+            profile.append(
+                {
+                    "featureId": fid,
+                    "target": t,
+                    "importance": round(clamp(imp * (0.5 + 0.5 * p["confidence"])), 3),
+                }
+            )
+    requirements = (
+        [{"featureId": "laptopAllowed", "operator": "eq", "value": 1}]
+        if prefs["laptop_usage"]["preference"] == "yes"
+        and prefs["laptop_usage"]["confidence"] >= 0.6
+        else []
+    )
     home = rng.choice(libs)
     return {
-        "_id": uid, "user_id": uid, "archetype": arch, "home_library_id": home,
-        "secondary_library_ids": rng.sample([l for l in libs if l != home], k=rng.choice([0, 0, 1, 2])),
+        "_id": uid,
+        "user_id": uid,
+        "archetype": arch,
+        "home_library_id": home,
+        "secondary_library_ids": rng.sample(
+            [l for l in libs if l != home], k=rng.choice([0, 0, 1, 2])
+        ),
         "visit_rate_per_week": round(rng.uniform(0.5, 5), 2),
-        "kakaotalk_profile": {"participant_id": uid, "preferences": prefs, "evidence": [],
-                              "behavioral_summary": f"합성 사용자({arch})", "seat_recommendation": None, "follow_up_question": ""},
-        "preference_profile": {"revision": 1, "featureRegistryVersion": FEATURE_REGISTRY, "preferences": profile},
+        "kakaotalk_profile": {
+            "participant_id": uid,
+            "preferences": prefs,
+            "evidence": [],
+            "behavioral_summary": f"합성 사용자({arch})",
+            "seat_recommendation": None,
+            "follow_up_question": "",
+        },
+        "preference_profile": {
+            "revision": 1,
+            "featureRegistryVersion": FEATURE_REGISTRY,
+            "preferences": profile,
+        },
         "requirements": requirements,
-        "latent": {"preferences": latent, "utility_weights": true_w, "noise_aversion": noise_aversion,
-                   "rationality": round(rng.uniform(2, 8), 2), "rec_trust": round(rng.uniform(0.4, 0.9), 2)},
-        "is_synthetic": True, "verification": "synthetic", "generator_version": GEN_VERSION,
+        "latent": {
+            "preferences": latent,
+            "utility_weights": true_w,
+            "noise_aversion": noise_aversion,
+            "rationality": round(rng.uniform(2, 8), 2),
+            "rec_trust": round(rng.uniform(0.4, 0.9), 2),
+        },
+        "is_synthetic": True,
+        "verification": "synthetic",
+        "generator_version": GEN_VERSION,
     }
 
 
 # ---------------------------------------------------------------- sessions / events
 def true_utility(user, seat, slot):
-    L = user["latent"]; f = dict(seat["features"]); f["brightness"] = seat["brightness_by_slot"][slot]
+    L = user["latent"]
+    f = dict(seat["features"])
+    f["brightness"] = seat["brightness_by_slot"][slot]
     if L["preferences"]["laptop_usage"] == "yes" and f["laptopAllowed"] == 0:
         return None
     u = 0.0
@@ -466,13 +905,17 @@ SAT_NOISE = 0.03  # 만족도 관측 노이즈(표준편차). 0이면 취향 적
 def preference_fit(user, seat, slot):
     """잠재 취향 적합도 0~1: true_utility와 같은 항목·가중치를 가중치 합으로 나눈 값.
     소음 회피는 (1-noise_index) 항목으로, 가중치 0.5*noise_aversion을 준다. 노트북 금지 좌석(노트북 사용자)은 None."""
-    L = user["latent"]; f = dict(seat["features"]); f["brightness"] = seat["brightness_by_slot"][slot]
+    L = user["latent"]
+    f = dict(seat["features"])
+    f["brightness"] = seat["brightness_by_slot"][slot]
     if L["preferences"]["laptop_usage"] == "yes" and f["laptopAllowed"] == 0:
         return None
     a = 0.5 * L["noise_aversion"]
-    num = a * (1 - seat["raw"]["noise_index"]); den = a
+    num = a * (1 - seat["raw"]["noise_index"])
+    den = a
     for fid, tw in L["utility_weights"].items():
-        num += tw["weight"] * (1 - abs(tw["target"] - f[fid])); den += tw["weight"]
+        num += tw["weight"] * (1 - abs(tw["target"] - f[fid]))
+        den += tw["weight"]
     return num / den if den > 0 else 0.5
 
 
@@ -482,8 +925,12 @@ def engine_score(user, seat, slot):
     W = sum(p["importance"] for p in prefs)
     if W == 0:
         return None
-    f = dict(seat["features"]); f["brightness"] = seat["brightness_by_slot"][slot]
-    return sum(p["importance"] * (1 - abs(p["target"] - f[p["featureId"]])) for p in prefs) / W
+    f = dict(seat["features"])
+    f["brightness"] = seat["brightness_by_slot"][slot]
+    return (
+        sum(p["importance"] * (1 - abs(p["target"] - f[p["featureId"]])) for p in prefs)
+        / W
+    )
 
 
 def softmax_choice(rng, items, utils, beta):
@@ -492,33 +939,102 @@ def softmax_choice(rng, items, utils, beta):
     return rng.choices(items, ws)[0]
 
 
-def gen_sessions(ks, users, scen_by_lib, seats_by_scen, rng, start):
+SEASON_OF_MONTH = {
+    12: "winter",
+    1: "winter",
+    2: "winter",
+    6: "summer",
+    7: "summer",
+    8: "summer",
+}  # 나머지 spring_fall
+SLOT_PRIOR = [0.35, 0.4, 0.25]
+
+
+def build_schedule(users, n_target, seed, end):
+    """사용자별 방문 일정: 하루 최대 1회, 방문 확률 = visit_rate_per_week/7, 시간대는 사용자 습관.
+    기간 길이는 기대 방문 수 합이 n_target 이 되도록 정한다. 반환: (시작일, 일수, [(ts, 사용자번호, 도서관, 시간대)] 시간순)."""
+    rng = random.Random(f"{seed}:schedule")
+    days = max(7, round(n_target * 7 / sum(u["visit_rate_per_week"] for u in users)))
+    start = end - timedelta(days=days)
+    out = []
+    for ui, user in enumerate(users):
+        p = min(0.95, user["visit_rate_per_week"] / 7)
+        habit = [
+            w * rng.gammavariate(0.8, 1) + 0.05 for w in SLOT_PRIOR
+        ]  # 사람마다 즐겨 가는 시간대가 있다
+        for d in range(days):
+            if rng.random() >= p:
+                continue
+            lid = (
+                user["home_library_id"]
+                if (not user["secondary_library_ids"] or rng.random() < 0.75)
+                else rng.choice(user["secondary_library_ids"])
+            )
+            slot = rng.choices(list(TIME_SLOTS), habit)[0]
+            out.append(
+                (
+                    start
+                    + timedelta(days=d, hours=TIME_SLOTS[slot] + rng.uniform(-1, 1)),
+                    ui,
+                    lid,
+                    slot,
+                )
+            )
+    out.sort(key=lambda x: (x[0], x[1]))
+    return start, days, out
+
+
+def day_scenario(g, room_id, ts):
+    """같은 열람실·같은 날의 세션은 같은 환경(날씨·계절)을 공유한다. 계절은 날짜의 달로 정한다."""
+    season = SEASON_OF_MONTH.get(ts.month, "spring_fall")
+    pool = g["scen_by_room"][room_id]
+    cands = [sc for sc in pool if sc["conditions"]["season"] == season] or pool
+    return random.Random(f"{g['seed']}:day:{room_id}:{ts.date().isoformat()}").choice(
+        cands
+    )
+
+
+def gen_sessions(ks, g, rng):
     sessions, events = [], []
     for k in ks:
-        user = rng.choice(users)
-        lid = user["home_library_id"] if (not user["secondary_library_ids"] or rng.random() < 0.75) else rng.choice(user["secondary_library_ids"])
-        scen = rng.choice(scen_by_lib[lid]); seats = seats_by_scen[scen["scenario_id"]]
-        slot = rng.choices(list(TIME_SLOTS), [0.35, 0.4, 0.25])[0]
-        ts = start + timedelta(days=int(rng.uniform(0, 60)), hours=TIME_SLOTS[slot] + rng.uniform(-1, 1))
-        occ_rate = clamp(rng.betavariate(3, 3) * (1.2 if slot == "noon" else 0.9), 0.05, 0.95)
+        ts, ui, lid, slot = g["schedule"][k]
+        user = g["users"][ui]
+        scen = day_scenario(g, rng.choice(g["rooms_by_lib"][lid]), ts)
+        seats = g["seats_by_scen"][scen["scenario_id"]]
+        occ_rate = clamp(
+            rng.betavariate(3, 3) * (1.2 if slot == "noon" else 0.9), 0.05, 0.95
+        )
         # 인기 좌석(창가·콘센트·밝음)이 먼저 차도록 점유 확률을 치우침
         avail = []
         for s in seats:
-            pop = 0.3 * s["features"]["windowProximity"] + 0.3 * s["features"]["outletAvailable"] + 0.2 * s["brightness_by_slot"][slot]
+            pop = (
+                0.3 * s["features"]["windowProximity"]
+                + 0.3 * s["features"]["outletAvailable"]
+                + 0.2 * s["brightness_by_slot"][slot]
+            )
             if rng.random() > clamp(occ_rate * (0.7 + pop)):
                 avail.append(s)
         if not avail:
             continue
         sess_id = f"synth-session:{k:06d}"
         reqs = user["requirements"]
-        elig = [s for s in avail if all(s["features"][r["featureId"]] == r["value"] for r in reqs)]
+        elig = [
+            s
+            for s in avail
+            if all(s["features"][r["featureId"]] == r["value"] for r in reqs)
+        ]
         scored = [(engine_score(user, s, slot), s) for s in elig]
         if scored and scored[0][0] is not None:
-            scored.sort(key=lambda x: (-x[0], x[1]["seat_id"])); basis = "preferences"
+            scored.sort(key=lambda x: (-x[0], x[1]["seat_id"]))
+            basis = "preferences"
         else:
-            scored = [(None, s) for s in sorted(elig, key=lambda s: s["seat_id"])]; basis = "unpersonalized"
+            scored = [(None, s) for s in sorted(elig, key=lambda s: s["seat_id"])]
+            basis = "unpersonalized"
         topk = scored[:5]
-        exposed = [{"seat_id": s["seat_id"], "rank": i + 1, "engine_score": r3(sc)} for i, (sc, s) in enumerate(topk)]
+        exposed = [
+            {"seat_id": s["seat_id"], "rank": i + 1, "engine_score": r3(sc)}
+            for i, (sc, s) in enumerate(topk)
+        ]
         # 사용자 선택: 추천 신뢰에 따라 추천 내 또는 전체 가용 좌석 중 MNL
         cand_util = [(s, true_utility(user, s, slot)) for s in avail]
         cand_util = [(s, x) for s, x in cand_util if x is not None]
@@ -527,55 +1043,135 @@ def gen_sessions(ks, users, scen_by_lib, seats_by_scen, rng, start):
         if cand_util:
             exp_ids = {e["seat_id"] for e in exposed}
             if exposed and rng.random() < L["rec_trust"]:
-                pool = [(s, x + 0.08 * (6 - next(e["rank"] for e in exposed if e["seat_id"] == s["seat_id"]))) for s, x in cand_util if s["seat_id"] in exp_ids]
+                pool = [
+                    (
+                        s,
+                        x
+                        + 0.08
+                        * (
+                            6
+                            - next(
+                                e["rank"]
+                                for e in exposed
+                                if e["seat_id"] == s["seat_id"]
+                            )
+                        ),
+                    )
+                    for s, x in cand_util
+                    if s["seat_id"] in exp_ids
+                ]
                 origin = "recommendation"
             else:
-                pool = cand_util; origin = None
+                pool = cand_util
+                origin = None
             if pool:
-                chosen = softmax_choice(rng, [p[0] for p in pool], [p[1] for p in pool], L["rationality"])
+                chosen = softmax_choice(
+                    rng, [p[0] for p in pool], [p[1] for p in pool], L["rationality"]
+                )
                 if origin is None:
-                    origin = "recommendation" if chosen["seat_id"] in exp_ids else "outsideRecommendations"
-        others = [s["seat_id"] for s in avail if not chosen or s["seat_id"] != chosen["seat_id"]]
+                    origin = (
+                        "recommendation"
+                        if chosen["seat_id"] in exp_ids
+                        else "outsideRecommendations"
+                    )
+        others = [
+            s["seat_id"]
+            for s in avail
+            if not chosen or s["seat_id"] != chosen["seat_id"]
+        ]
         negs = rng.sample(others, min(20, len(others)))
         satisfaction = fit = None
-        if chosen:  # 선택 좌석이 잠재 취향에 맞을수록 높다(절대값, 다른 빈자리와 비교하지 않음)
+        if (
+            chosen
+        ):  # 선택 좌석이 잠재 취향에 맞을수록 높다(절대값, 다른 빈자리와 비교하지 않음)
             fit = preference_fit(user, chosen, slot)
             satisfaction = r3(clamp(fit + rng.gauss(0, SAT_NOISE), 0, 1))
-        sess = {"_id": sess_id, "session_id": sess_id, "user_id": user["user_id"], "library_id": lid,
-                "scenario_id": scen["scenario_id"], "room_id": scen["room_id"], "time_slot": slot,
-                "occurred_at": ts.isoformat(), "occupancy_rate": r3(1 - len(avail) / len(seats)),
-                "available_seat_ids_count": len(avail), "eligible_count": len(elig), "ranking_basis": basis,
-                "occupied_seat_ids": sorted(set(s["seat_id"] for s in seats) - set(s["seat_id"] for s in avail)),
-                "exposed": exposed, "chosen_seat_id": chosen["seat_id"] if chosen else None, "choice_origin": origin,
-                "chosen_true_utility": r3(true_utility(user, chosen, slot)) if chosen else None,
-                "negative_seat_ids": negs, "chosen_preference_fit": r3(fit), "satisfaction": satisfaction,
-                "is_synthetic": True, "verification": "synthetic", "generator_version": GEN_VERSION}
+        sess = {
+            "_id": sess_id,
+            "session_id": sess_id,
+            "user_id": user["user_id"],
+            "library_id": lid,
+            "scenario_id": scen["scenario_id"],
+            "room_id": scen["room_id"],
+            "time_slot": slot,
+            "occurred_at": ts.isoformat(),
+            "occupancy_rate": r3(1 - len(avail) / len(seats)),
+            "available_seat_ids_count": len(avail),
+            "eligible_count": len(elig),
+            "ranking_basis": basis,
+            "occupied_seat_ids": sorted(
+                set(s["seat_id"] for s in seats) - set(s["seat_id"] for s in avail)
+            ),
+            "exposed": exposed,
+            "chosen_seat_id": chosen["seat_id"] if chosen else None,
+            "choice_origin": origin,
+            "chosen_true_utility": r3(true_utility(user, chosen, slot))
+            if chosen
+            else None,
+            "negative_seat_ids": negs,
+            "chosen_preference_fit": r3(fit),
+            "satisfaction": satisfaction,
+            "is_synthetic": True,
+            "verification": "synthetic",
+            "generator_version": GEN_VERSION,
+        }
         sessions.append(sess)
-        ev = lambda typ, dt, **kw: events.append({"_id": f"{sess_id}:{typ}", "event_id": f"{sess_id}:{typ}", "session_id": sess_id,
-                                                  "user_id": user["user_id"], "type": typ, "occurred_at": (ts + timedelta(seconds=dt)).isoformat(),
-                                                  "is_synthetic": True, **kw})
+        ev = lambda typ, dt, **kw: events.append(
+            {
+                "_id": f"{sess_id}:{typ}",
+                "event_id": f"{sess_id}:{typ}",
+                "session_id": sess_id,
+                "user_id": user["user_id"],
+                "type": typ,
+                "occurred_at": (ts + timedelta(seconds=dt)).isoformat(),
+                "is_synthetic": True,
+                **kw,
+            }
+        )
         if exposed:
-            ev("recommendationExposed", 0, visibleTargetIds=[e["seat_id"] for e in exposed])
+            ev(
+                "recommendationExposed",
+                0,
+                visibleTargetIds=[e["seat_id"] for e in exposed],
+            )
         if chosen:
-            ev("candidateSelected", rng.uniform(5, 60), targetId=chosen["seat_id"], origin=origin)
+            ev(
+                "candidateSelected",
+                rng.uniform(5, 60),
+                targetId=chosen["seat_id"],
+                origin=origin,
+            )
             if rng.random() < 0.7:
                 ev("useConfirmed", rng.uniform(120, 600), targetId=chosen["seat_id"])
             if rng.random() < 0.4:
-                ev("ratingSubmitted", rng.uniform(1800, 10800), targetId=chosen["seat_id"], satisfaction=satisfaction)
+                ev(
+                    "ratingSubmitted",
+                    rng.uniform(1800, 10800),
+                    targetId=chosen["seat_id"],
+                    satisfaction=satisfaction,
+                )
         if exposed and rng.random() < 0.05:
-            ev("candidateRejected", rng.uniform(5, 40), targetId=exposed[0]["seat_id"], reason="synthetic_dislike", excludeFromFuture=False)
+            ev(
+                "candidateRejected",
+                rng.uniform(5, 40),
+                targetId=exposed[0]["seat_id"],
+                reason="synthetic_dislike",
+                excludeFromFuture=False,
+            )
     return sessions, events
 
 
 def write_jsonl(name, rows):
     with open(OUT / f"{name}.jsonl", "w", encoding="utf-8") as f:
-        for r in tqdm(rows, desc=f"저장 {name}", unit="행", leave=False, dynamic_ncols=True):
+        for r in tqdm(
+            rows, desc=f"저장 {name}", unit="행", leave=False, dynamic_ncols=True
+        ):
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
 
 # ---------------------------------------------------------------- 병렬 작업 단위
-CHUNK = 1000          # 세션 작업 단위(건). 바꾸면 같은 seed라도 결과가 달라진다.
-_G = {}               # fork 로 워커에 물려줄 읽기 전용 공유 데이터
+CHUNK = 1000  # 세션 작업 단위(건). 바꾸면 같은 seed라도 결과가 달라진다.
+_G = {}  # fork 로 워커에 물려줄 읽기 전용 공유 데이터
 
 
 def _unit_job(args):
@@ -585,15 +1181,18 @@ def _unit_job(args):
     scen, seats = [], []
     for k in range(n_scen):
         sc, ss = synth_scenario(u, k, rng)
-        scen.append(sc); seats.extend(ss)
+        scen.append(sc)
+        seats.extend(ss)
     return scen, seats
 
 
 def _session_job(c):
     """c번째 세션 묶음 → (세션 JSON 줄들, 이벤트 JSON 줄들, 시도 건수). 직렬화도 워커에서 한다."""
-    g = _G; k0 = c * CHUNK; ks = range(k0, min(k0 + CHUNK, g["n"]))
+    g = _G
+    k0 = c * CHUNK
+    ks = range(k0, min(k0 + CHUNK, g["n"]))
     rng = random.Random(f"{g['seed']}:sessions:{c}")
-    sess, evs = gen_sessions(ks, g["users"], g["scen_by_lib"], g["seats_by_scen"], rng, g["start"])
+    sess, evs = gen_sessions(ks, g, rng)
     dump = lambda r: json.dumps(r, ensure_ascii=False) + "\n"
     return [dump(r) for r in sess], [dump(r) for r in evs], len(ks)
 
@@ -602,9 +1201,19 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scenarios", type=int, default=30)
     ap.add_argument("--users", type=int, default=3000)
-    ap.add_argument("--sessions", type=int, default=60000)
+    ap.add_argument(
+        "--sessions",
+        type=int,
+        default=60000,
+        help="목표 세션 수(방문 일정 기간을 이 값에 맞춘다)",
+    )
     ap.add_argument("--seed", type=int, default=20261114)
-    ap.add_argument("--workers", type=int, default=os.cpu_count() or 1, help="프로세스 수(기본: CPU 코어 수)")
+    ap.add_argument(
+        "--workers",
+        type=int,
+        default=os.cpu_count() or 1,
+        help="프로세스 수(기본: CPU 코어 수)",
+    )
     a = ap.parse_args()
     OUT.mkdir(exist_ok=True)
     ctx = mp.get_context("fork")
@@ -612,32 +1221,96 @@ def main():
     scen_rows, seat_rows = [], []
     with ctx.Pool(min(a.workers, len(units))) as pool:
         jobs = [(i, u, a.seed, a.scenarios) for i, u in enumerate(units)]
-        for sc, ss in tqdm(pool.imap(_unit_job, jobs), total=len(jobs), desc="열람실 환경", unit="실", dynamic_ncols=True):
-            scen_rows.extend(sc); seat_rows.extend(ss)
+        for sc, ss in tqdm(
+            pool.imap(_unit_job, jobs),
+            total=len(jobs),
+            desc="열람실 환경",
+            unit="실",
+            dynamic_ncols=True,
+        ):
+            scen_rows.extend(sc)
+            seat_rows.extend(ss)
     urng = random.Random(f"{a.seed}:users")
-    users = [make_user(i, urng, libs) for i in tqdm(range(a.users), desc="사용자", unit="명", dynamic_ncols=True)]
-    scen_by_lib, seats_by_scen = {}, {}
+    users = [
+        make_user(i, urng, libs)
+        for i in tqdm(range(a.users), desc="사용자", unit="명", dynamic_ncols=True)
+    ]
+    scen_by_room, rooms_by_lib, seats_by_scen = {}, {}, {}
     for sc in scen_rows:
-        scen_by_lib.setdefault(sc["library_id"], []).append(sc)
+        scen_by_room.setdefault(sc["room_id"], []).append(sc)
+        if sc["room_id"] not in rooms_by_lib.setdefault(sc["library_id"], []):
+            rooms_by_lib[sc["library_id"]].append(sc["room_id"])
     for s in seat_rows:
         seats_by_scen.setdefault(s["scenario_id"], []).append(s)
-    write_jsonl("synth_scenarios", scen_rows); write_jsonl("synth_seat_env", seat_rows); write_jsonl("synth_users", users)
-    _G.update(n=a.sessions, seed=a.seed, users=users, scen_by_lib=scen_by_lib, seats_by_scen=seats_by_scen,
-              start=datetime(2026, 9, 1, tzinfo=KST))
+    write_jsonl("synth_scenarios", scen_rows)
+    write_jsonl("synth_seat_env", seat_rows)
+    write_jsonl("synth_users", users)
+    p_start, p_days, schedule = build_schedule(users, a.sessions, a.seed, PERIOD_END)
+    _G.update(
+        n=len(schedule),
+        seed=a.seed,
+        users=users,
+        scen_by_room=scen_by_room,
+        rooms_by_lib=rooms_by_lib,
+        seats_by_scen=seats_by_scen,
+        schedule=schedule,
+    )
     n_sess = n_ev = 0
-    with ctx.Pool(a.workers) as pool, open(OUT / "synth_sessions.jsonl", "w", encoding="utf-8") as fs, \
-            open(OUT / "synth_events.jsonl", "w", encoding="utf-8") as fe, \
-            tqdm(total=a.sessions, desc=f"세션({a.workers}프로세스)", unit="건", dynamic_ncols=True) as bar:
-        for sl, el, tried in pool.imap(_session_job, range(math.ceil(a.sessions / CHUNK))):  # 순서 유지 → 파일 결정적
-            fs.writelines(sl); fe.writelines(el); n_sess += len(sl); n_ev += len(el); bar.update(tried)
-    manifest = {"generator_version": GEN_VERSION, "seed": a.seed, "params": {k: v for k, v in vars(a).items() if k != "workers"}, "session_chunk": CHUNK, "feature_registry_version": FEATURE_REGISTRY,
-                "libraries": libs, "room_units": len(units),
-                "counts": {"synth_scenarios": len(scen_rows), "synth_seat_env": len(seat_rows), "synth_users": len(users),
-                           "synth_sessions": n_sess, "synth_events": n_ev},
-                "assumptions": {"seat_button_side_m": SEAT_SIDE_M, "time_slots_hour": TIME_SLOTS,
-                                "note": "모든 환경 객체·측정값·사용자·이벤트는 합성. 실좌석 좌표/ID와 같은 지도에 있는 실제 출입구·화장실 후보만 실데이터에서 가져옴(origin 필드)."},
-                "generated_at": datetime.now(KST).isoformat()}
-    json.dump(manifest, open(OUT / "manifest.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    with (
+        ctx.Pool(a.workers) as pool,
+        open(OUT / "synth_sessions.jsonl", "w", encoding="utf-8") as fs,
+        open(OUT / "synth_events.jsonl", "w", encoding="utf-8") as fe,
+        tqdm(
+            total=len(schedule),
+            desc=f"세션({a.workers}프로세스)",
+            unit="건",
+            dynamic_ncols=True,
+        ) as bar,
+    ):
+        for sl, el, tried in pool.imap(
+            _session_job, range(math.ceil(len(schedule) / CHUNK))
+        ):  # 순서 유지 → 파일 결정적
+            fs.writelines(sl)
+            fe.writelines(el)
+            n_sess += len(sl)
+            n_ev += len(el)
+            bar.update(tried)
+    manifest = {
+        "generator_version": GEN_VERSION,
+        "seed": a.seed,
+        "params": {k: v for k, v in vars(a).items() if k != "workers"},
+        "session_chunk": CHUNK,
+        "feature_registry_version": FEATURE_REGISTRY,
+        "libraries": libs,
+        "room_units": len(units),
+        "counts": {
+            "synth_scenarios": len(scen_rows),
+            "synth_seat_env": len(seat_rows),
+            "synth_users": len(users),
+            "synth_sessions": n_sess,
+            "synth_events": n_ev,
+        },
+        "period": {
+            "start": p_start.date().isoformat(),
+            "end": PERIOD_END.date().isoformat(),
+            "days": p_days,
+            "scheduled_visits": len(schedule),
+            "season_of_month": SEASON_OF_MONTH,
+            "default_season": "spring_fall",
+        },
+        "assumptions": {
+            "seat_button_side_m": SEAT_SIDE_M,
+            "time_slots_hour": TIME_SLOTS,
+            "note": "모든 환경 객체·측정값·사용자·이벤트는 합성. 실좌석 좌표/ID와 같은 지도에 있는 실제 출입구·화장실 후보만 실데이터에서 가져옴(origin 필드).",
+        },
+        "generated_at": datetime.now(KST).isoformat(),
+    }
+    json.dump(
+        manifest,
+        open(OUT / "manifest.json", "w", encoding="utf-8"),
+        ensure_ascii=False,
+        indent=2,
+    )
     print(json.dumps(manifest["counts"], ensure_ascii=False))
 
 

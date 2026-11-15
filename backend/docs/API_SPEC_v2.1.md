@@ -32,16 +32,14 @@ SeatCom은 사용자의 도서관 이용 성향을 분석하여 적합한 좌석
 
 기본 페르소나 분석을 완료한 사용자가 선택적으로 이용하는 추가 기능입니다.
 
-사용자는 카카오톡 대화 내용을 TXT로 내보내 이메일에 첨부하여 전송합니다.
+사용자는 카카오톡 대화 내용을 TXT로 내보내 **웹사이트에서 직접 업로드**합니다.
 
-서버는 이메일 수신과 사용자 정보 대조를 완료한 후 AI 분석을 실행합니다.
+서버는 업로드된 파일을 **메모리에서만** 읽어 AI 분석을 실행하고, 분석 결과만 저장합니다. 대화 원문은 디스크·DB·로그 어디에도 저장하지 않습니다.
 
 - 카카오톡 대화 내보내기 튜토리얼
-- Gmail을 통한 TXT 파일 수신
-- 별도 서버를 통한 사용자 이름 및 이메일 대조
-- 사용자 정보 일치 여부 확인
-- 승인 완료 시 AI 분석 시작
-- GPT-OSS 기반 대화 분석
+- 웹 업로드(로그인한 본인 세션에만, 파일 바이트를 본문 그대로 전송)
+- 형식 확인(카카오톡 TXT인지, 입력한 이름의 메시지가 있는지)
+- GPT-OSS 기반 대화 분석(참여자 이름 가명화, 이메일·URL·긴 숫자 마스킹 후 전송)
 - 분석 진행 상태 확인
 - 분석 결과 조회
 
@@ -61,15 +59,11 @@ flowchart TD
 
     F -->|선택 기능| G[실험실 클릭]
     G --> H[카카오톡 TXT 내보내기]
-    H --> I[Gmail 전송]
-    I --> J[이메일 수신 서버]
-    J --> K[외부 사용자 정보 대조]
-
-    K -->|일치| L[OK 승인]
-    K -->|불일치| M[재확인 요청]
-
-    L --> N[AI 분석 중]
-    N --> O[AI 분석 완료]
+    H --> I[웹사이트에서 TXT 업로드]
+    I --> J[메모리에서 형식·이름 확인]
+    J -->|통과| N[AI 분석 중 · 원문은 메모리에만]
+    J -->|실패| M[다시 올리기 안내]
+    N --> O[AI 분석 완료 · 원문 폐기]
     O --> P[실험실 결과 화면]
 ```
 
@@ -93,7 +87,6 @@ flowchart TD
 | Base URL | `https://api.example.com` |
 | API Version | `v1` |
 | User API Prefix | `/api/v1` |
-| Internal API Prefix | `/internal/v1` |
 | Content-Type | `application/json` |
 | Authentication | Bearer Token |
 | Response Format | JSON |
@@ -116,14 +109,7 @@ Content-Type: application/json
 
 ## 3.3 서버 간 인증
 
-서버 간 API는 별도의 인증 수단을 사용합니다.
-
-```http
-Authorization: Bearer <SERVICE_TOKEN>
-Content-Type: application/json
-```
-
-내부 API는 일반 사용자에게 공개하지 않습니다.
+없음. 예전 메일 수집 방식의 내부 API(`/internal/v1/lab/*`)는 제거했습니다.
 
 ## 3.4 공통 HTTP Status
 
@@ -647,616 +633,138 @@ PUT /api/v1/persona/answers/partition
 
 # 6. Laboratory Overview
 
-실험실은 사용자가 카카오톡 대화 내역을 활용하여 AI 기반 성향 분석을 체험하는 선택 기능입니다.
+카카오톡 대화 TXT를 웹에서 올리면 AI가 좌석 취향을 추정합니다. 기본 페르소나 분석을 마친 **회원 계정**만 쓸 수 있습니다(게스트 토큰 불가).
 
-기존 분석 코드의 다음 메서드를 활용합니다.
+## 6.1 대화 원문 처리 원칙
 
-```python
-PersonalityAnalysis.analyze_by_GPT_OSS_API(
-    source,
-    name
-)
-```
+| 항목 | 처리 |
+|---|---|
+| 전송 | `POST .../file` 본문 = TXT 바이트 그대로(`text/plain` 또는 `application/octet-stream`). **multipart 는 거절(415)**: 서버 프레임워크가 큰 파일을 임시파일(디스크)로 내리기 때문 |
+| 수신 | 요청 본문을 메모리 버퍼로 읽는다. `Content-Length`와 실제 바이트 모두 `MAX_TXT_BYTES`(기본 5MB)로 제한 |
+| 보관 | 프로세스 메모리에만 둔다. 분석이 끝나거나 실패·취소·탈퇴하면 즉시 참조를 버린다. 바이트 버퍼는 0으로 덮어쓴다 |
+| 디스크 | 파일·DB·임시파일·로그에 쓰지 않는다. 파일 이름도 저장하지 않는다(파일 이름에 상대방 이름이 들어감). 코어 덤프를 끈다 |
+| 로그 | 업로드 ID·예외 종류만 남긴다. 예외 메시지·요청 본문은 남기지 않는다(422 검증 오류도 본문을 돌려주지 않음) |
+| 재시작 | 메모리 원문은 사라진다. 분석 중이던 세션은 `failed`(`UPLOAD_LOST`)로 바뀌고 다시 올리도록 안내한다 |
+| AI 서버 | 참여자 이름은 `speaker_###`·`TARGET`으로 가명화, 이메일·URL·긴 숫자는 마스킹해서 보낸다 |
+| 남는 것 | 분석 결과 JSON(`lab_results`)만. 세션 삭제·회원 탈퇴 시 함께 지운다 |
+| 남용 방지 | 사용자당 시간당 업로드 `LAB_UPLOADS_PER_HOUR`(기본 5회, 429), 메모리 대기 상한 `LAB_MAX_PENDING`(기본 6, 503), 동시 분석 `LAB_MAX_CONCURRENT`(기본 2) |
 
-Gmail TXT 수집에는 기존 `TxtFromGmail` 기반 수집 기능을 사용합니다.
+> 메모리 작업 목록은 프로세스 안에 있으므로 백엔드는 **uvicorn 워커 1개**로 실행한다(`deploy/ecosystem.config.cjs`).
 
-> 기존 메서드는 FastAPI 서비스 계층에서 import하여 사용합니다. Gmail 수신 이벤트의 사용자별 세션 연결 및 외부 인증은 별도 구현이 필요합니다.
-
-## 6.1 Laboratory User Flow
+## 6.2 Laboratory User Flow
 
 ```mermaid
 sequenceDiagram
-    actor User as 사용자
+    actor User
     participant FE as Frontend
-    participant API as SeatCom Backend
-    participant Gmail as Gmail Collector
-    participant Identity as Identity Server
+    participant API as SeatCom API
     participant AI as GPT-OSS
-
-    User->>FE: 실험실 클릭
-    FE->>API: POST /api/v1/lab/sessions
-    API-->>FE: upload_id, upload_code
-
-    User->>Gmail: TXT 첨부 이메일 발송
-    Gmail->>API: 이메일 수신 이벤트 전달
-
-    API->>Identity: 이메일 및 이름 대조 요청
-    Identity-->>API: matched / approved
-
-    API-->>FE: 인증 결과 상태 제공
-
-    API->>AI: 카카오톡 TXT 분석 요청
-    AI-->>API: 분석 결과 JSON
-
-    API->>API: 결과 저장
-    FE->>API: 결과 조회
-    API-->>FE: 분석 결과 반환
+    FE->>API: POST /api/v1/lab/sessions (target_name, consent)
+    API-->>FE: upload_id, status=waiting_upload
+    User->>FE: 내보낸 .txt 선택
+    FE->>API: POST /api/v1/lab/sessions/{upload_id}/file (본문=파일)
+    API->>API: 메모리에서 디코딩·형식·이름 확인
+    API-->>FE: 202 status=analyzing
+    API->>AI: 가명화·마스킹한 대화
+    AI-->>API: 취향 JSON
+    API->>API: 결과 저장, 원문 폐기
+    FE->>API: GET .../status (5초 간격)
+    FE->>API: GET /api/v1/lab/analyses/{analysis_id}
 ```
 
----
+## 6.3 상태
+
+| status | 뜻 |
+|---|---|
+| `waiting_upload` | 세션 생성, 파일 대기(`UPLOAD_EXPIRY_MINUTES`, 기본 30분) |
+| `analyzing` | 파일 수신, 메모리에서 분석 중 |
+| `completed` | 분석 완료(원문 폐기) |
+| `failed` | 분석 실패 또는 재시작으로 원문 유실(`error.code`) |
+| `expired` | 파일을 올리지 않고 시간 초과 |
+| `cancelled` | 새 세션을 만들어 이전 대기 세션이 취소됨 |
 
 # 7. Laboratory API Endpoints
 
-## API 6. 실험실 분석 세션 생성
-
-### POST `/api/v1/lab/sessions`
-
-사용자가 실험실 기능을 시작하면 분석 세션을 생성합니다.
-
-사용자별 고유 업로드 코드를 발급합니다.
-
-### Request JSON
+## API 6. 실험실 세션 생성 — `POST /api/v1/lab/sessions`
 
 ```json
-{
-  "target_name": "홍길동",
-  "consent": true
-}
+{"target_name": "홍길동", "consent": true}
 ```
 
-### Request Fields
-
-| Field | Type | Required | 설명 |
-|---|---|---|---|
-| `target_name` | string | Yes | 분석 대상 카카오톡 표시 이름 |
-| `consent` | boolean | Yes | 데이터 수집 및 분석 동의 |
-
-### Response — 201 Created
+`201`:
 
 ```json
 {
-  "upload_id": "upl_78f0ab2c",
-  "upload_code": "SC-78F0AB2C",
-  "recipient_email": "taywook74@gmail.com",
-  "mail_subject": "SeatCom SC-78F0AB2C",
+  "upload_id": "upl_3f1c...",
   "target_name": "홍길동",
-  "status": "waiting_email",
-  "expires_at": "2026-11-15T03:00:00+09:00",
+  "status": "waiting_upload",
+  "upload_url": "/api/v1/lab/sessions/upl_3f1c.../file",
+  "max_bytes": 5000000,
+  "accepted_content_types": ["text/plain", "application/octet-stream"],
+  "expires_at": "2026-11-15T02:30:00+00:00",
   "poll_interval_seconds": 5
 }
 ```
 
-### Frontend Requirements
+오류: `400 CONSENT_REQUIRED`, `403 ACCOUNT_REQUIRED`(게스트), `404 PERSONA_NOT_FOUND`. 같은 사용자의 이전 `waiting_upload` 세션은 `cancelled`가 된다.
 
-- 사용자가 카카오톡 TXT 파일을 내보내도록 안내합니다.
-- 발급된 수신 이메일 주소를 표시합니다.
-- 지정된 메일 제목을 표시합니다.
-- 이메일 주소 복사 버튼을 제공합니다.
-- 메일 제목 복사 버튼을 제공합니다.
-- TXT 파일 첨부 방법을 안내합니다.
-- 사용자가 이메일을 보낸 후 수신 확인 화면으로 이동합니다.
+## API 7. 대화 파일 업로드 — `POST /api/v1/lab/sessions/{upload_id}/file`
 
-### Error — 400
-
-```json
-{
-  "error": {
-    "code": "CONSENT_REQUIRED",
-    "message": "카카오톡 분석을 진행하려면 데이터 처리에 동의해야 합니다."
-  }
-}
+```http
+Authorization: Bearer <ACCESS_TOKEN>
+Content-Type: text/plain
+<TXT 파일 바이트>
 ```
 
----
+브라우저: `fetch(url, {method: 'POST', headers: {'Content-Type': 'text/plain', Authorization}, body: file})` (File 객체를 그대로 본문으로). UTF-8·UTF-8 BOM·CP949·UTF-16을 받는다.
 
-## API 7. Gmail 이메일 수신 이벤트 전달
+`202`: 상태 조회(API 8)와 같은 모양, `status: "analyzing"`.
 
-### POST `/internal/v1/lab/email-received`
+| HTTP | code | 언제 |
+|---:|---|---|
+| 404 | `NOT_FOUND` | 세션이 없거나 **다른 사용자 세션**(존재 여부를 알려 주지 않음) |
+| 409 | `UPLOAD_ALREADY_USED` | 이미 파일을 받은 세션 |
+| 410 | `UPLOAD_EXPIRED` | 업로드 시간 초과 |
+| 413 | `FILE_TOO_LARGE` | `MAX_TXT_BYTES` 초과 |
+| 415 | `UNSUPPORTED_MEDIA_TYPE` | multipart·JSON 등 |
+| 422 | `INVALID_TXT` | 빈 파일, NUL 바이트, 지원하지 않는 인코딩 |
+| 422 | `INVALID_KAKAO_TXT` | 카카오톡 대화 형식이 아님 |
+| 422 | `TARGET_NOT_FOUND` | `target_name`의 메시지가 없음 |
+| 429 | `TOO_MANY_UPLOADS` | 시간당 업로드 초과 |
+| 503 | `LAB_BUSY` | 메모리 대기 상한 |
 
-**호출 주체: Gmail 수신 서버 → SeatCom Backend**
-
-Gmail 수집기가 카카오톡 TXT 파일을 수신한 경우 메인 백엔드에 수신 사실을 전달합니다.
-
-이메일 수신 자체는 사용자 인증 완료를 의미하지 않습니다.
-
-### Request JSON
-
-```json
-{
-  "event_id": "evt_12345",
-  "upload_id": "upl_78f0ab2c",
-  "upload_code": "SC-78F0AB2C",
-  "sender": {
-    "name": "홍길동",
-    "email": "user@example.com"
-  },
-  "email": {
-    "subject": "SeatCom SC-78F0AB2C",
-    "message_id": "msg_12345",
-    "received_at": "2026-11-15T02:05:00+09:00"
-  },
-  "attachment": {
-    "file_id": "file_12345",
-    "filename": "KakaoTalk.txt",
-    "file_type": "txt",
-    "validation_status": "valid"
-  }
-}
-```
-
-### Response — 200 OK
+## API 8. 상태 조회 — `GET /api/v1/lab/sessions/{upload_id}/status`
 
 ```json
 {
-  "success": true,
-  "upload_id": "upl_78f0ab2c",
-  "email_received": true,
-  "identity_verified": false,
-  "status": "verifying_identity",
-  "message": "이메일 수신이 확인되었습니다. 사용자 정보를 대조합니다."
-}
-```
-
-### Processing Rules
-
-1. 이메일의 제목 코드를 확인합니다.
-2. 업로드 세션과 연결합니다.
-3. TXT 파일 형식 및 크기를 검증합니다.
-4. 이메일 발신자 정보를 확인합니다.
-5. 등록 사용자 대조 서버에 검증을 요청합니다.
-6. 동일 이벤트가 중복 전달되어도 중복 분석하지 않습니다.
-
-> 실제 Gmail 수집기는 메일 제목, 메시지 ID 및 첨부파일 ID를 이용해 업로드 세션과 연결해야 합니다. 발신자 이름만으로 사용자를 인증하지 않습니다.
-
----
-
-## API 8. 외부 사용자 정보 대조
-
-### POST `/internal/v1/identity/verify`
-
-**호출 주체: SeatCom Backend → 별도 사용자 등록 서버**
-
-이메일을 전송한 사용자와 로그인한 등록 사용자의 정보가 일치하는지 요청합니다.
-
-### Request JSON
-
-```json
-{
-  "verification_request_id": "ver_6b8a201f",
-  "user_id": "usr_91a2b3c4",
-  "upload_id": "upl_78f0ab2c",
-  "sender_email": "user@example.com",
-  "target_name": "홍길동"
-}
-```
-
-### Request Fields
-
-| Field | Type | 설명 |
-|---|---|---|
-| `verification_request_id` | string | 검증 요청 고유 ID |
-| `user_id` | string | 로그인 사용자 ID |
-| `upload_id` | string | 업로드 세션 ID |
-| `sender_email` | string | 이메일 발신 주소 |
-| `target_name` | string | 분석 대상 이름 |
-
-### Response — 200 OK (일치)
-
-```json
-{
-  "verification_request_id": "ver_6b8a201f",
-  "user_id": "usr_91a2b3c4",
-  "matched": true,
-  "verification": "approved",
-  "checks": {
-    "email_match": true,
-    "name_match": true
-  },
-  "verified_at": "2026-11-15T02:05:05+09:00"
-}
-```
-
-### Response — 200 OK (불일치)
-
-```json
-{
-  "verification_request_id": "ver_6b8a201f",
-  "user_id": "usr_91a2b3c4",
-  "matched": false,
-  "verification": "rejected",
-  "checks": {
-    "email_match": false,
-    "name_match": true
-  },
-  "reason_code": "EMAIL_MISMATCH",
-  "verified_at": "2026-11-15T02:05:05+09:00"
-}
-```
-
-### Verification Rules
-
-- 등록된 사용자 ID를 기준으로 검증합니다.
-- 등록된 이메일과 발신 이메일을 대조합니다.
-- 등록된 이름과 전달된 이름을 대조합니다.
-- 두 항목이 일치해야 `matched=true`를 반환합니다.
-- 실제 신원 확인에는 인증된 로그인 세션 및 이메일 발신 검증 등 추가 보호 조치를 적용합니다.
-- 검증에 실패한 파일은 AI 분석을 진행하지 않습니다.
-
-> 이름과 이메일의 단순 일치는 실제 계정 소유자임을 완전히 증명하지 않습니다. `approved`는 등록 정보 대조 통과를 의미하며, 서비스에서는 별도 인증 조건도 충족해야 분석을 승인합니다.
-
----
-
-## API 9. 사용자 대조 승인 및 AI 분석 시작
-
-### POST `/internal/v1/lab/analysis-approved`
-
-**호출 주체: SeatCom Backend → AI 분석 서비스**
-
-사용자 정보 대조가 승인되면 분석 작업을 시작합니다.
-
-### Request JSON
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "user_id": "usr_91a2b3c4",
-  "identity_verification": {
-    "matched": true,
-    "verification": "approved",
-    "verification_request_id": "ver_6b8a201f"
-  },
-  "analysis": {
-    "analysis_type": "kakao_chat",
-    "target_name": "홍길동",
-    "file_id": "file_12345"
-  }
-}
-```
-
-### Response — 202 Accepted
-
-```json
-{
-  "success": true,
-  "upload_id": "upl_78f0ab2c",
-  "analysis_id": "lab_5b32e1c9",
+  "upload_id": "upl_3f1c...",
   "status": "analyzing",
-  "message": "사용자 확인이 완료되었습니다. AI 분석을 시작합니다."
+  "file_received": true,
+  "analysis": {"analysis_id": "lab_9a2e...", "status": "processing", "model": "openai/gpt-oss-120b"},
+  "message": "AI가 카카오톡 대화를 분석하고 있습니다. 대화 원문은 서버에 저장하지 않습니다."
 }
 ```
 
-### Backend Processing
+실패 시 `message` 대신 `error: {code, message}` (`AI_ANALYSIS_FAILED`, `UPLOAD_LOST`).
 
-```python
-result = PersonalityAnalysis.analyze_by_GPT_OSS_API(
-    source=txt_path,
-    name=target_name
-)
-```
-
-실제 호출 시에는 업로드 세션 및 검증된 파일 경로를 사용합니다.
-
-AI 분석 작업은 별도의 백그라운드 작업 처리 시스템에서 실행하도록 구성합니다.
-
-분석이 완료되면 결과를 DB에 저장하고 상태를 `completed`로 변경합니다.
-
----
-
-## API 10. 실험실 진행 상태 조회
-
-### GET `/api/v1/lab/sessions/{upload_id}/status`
-
-**호출 주체: Frontend → SeatCom Backend**
-
-프론트엔드가 Gmail 수신 여부, 사용자 인증 결과 및 AI 분석 진행 상태를 조회합니다.
-
-### Request JSON
+## API 9. 결과 조회 — `GET /api/v1/lab/analyses/{analysis_id}`
 
 ```json
 {
-  "method": "GET",
-  "path": "/api/v1/lab/sessions/upl_78f0ab2c/status",
-  "headers": {
-    "Authorization": "Bearer <ACCESS_TOKEN>"
-  },
-  "body": null
-}
-```
-
-### Response A — 이메일 미수신
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "status": "waiting_email",
-  "email_received": false,
-  "identity": {
-    "matched": null,
-    "verification": "not_started"
-  },
-  "analysis": {
-    "analysis_id": null,
-    "status": "not_started"
-  },
-  "message": "카카오톡 TXT 파일이 첨부된 이메일을 기다리고 있습니다."
-}
-```
-
-### Response B — 이메일 수신 완료 및 사용자 대조 중
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "status": "verifying_identity",
-  "email_received": true,
-  "filename": "KakaoTalk.txt",
-  "identity": {
-    "matched": null,
-    "verification": "pending"
-  },
-  "analysis": {
-    "analysis_id": null,
-    "status": "not_started"
-  },
-  "message": "TXT 파일을 수신했습니다. 사용자 정보를 확인하고 있습니다."
-}
-```
-
-### Response C — 사용자 정보 대조 승인
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "status": "verified",
-  "email_received": true,
-  "filename": "KakaoTalk.txt",
-  "identity": {
-    "matched": true,
-    "verification": "approved",
-    "result": "OK"
-  },
-  "analysis": {
-    "analysis_id": "lab_5b32e1c9",
-    "status": "pending"
-  },
-  "message": "등록된 사용자 정보가 확인되었습니다. AI 분석을 준비합니다."
-}
-```
-
-### Response D — AI 분석 중
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "status": "analyzing",
-  "email_received": true,
-  "filename": "KakaoTalk.txt",
-  "identity": {
-    "matched": true,
-    "verification": "approved",
-    "result": "OK"
-  },
-  "analysis": {
-    "analysis_id": "lab_5b32e1c9",
-    "status": "processing",
-    "model": "openai/gpt-oss-120b"
-  },
-  "message": "사용자 확인이 완료되었습니다. AI가 카카오톡 대화를 분석하고 있습니다."
-}
-```
-
-### Response E — 분석 완료
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "status": "completed",
-  "email_received": true,
-  "filename": "KakaoTalk.txt",
-  "identity": {
-    "matched": true,
-    "verification": "approved",
-    "result": "OK"
-  },
-  "analysis": {
-    "analysis_id": "lab_5b32e1c9",
-    "status": "completed"
-  },
-  "message": "카카오톡 AI 분석이 완료되었습니다."
-}
-```
-
-### Response F — 사용자 정보 불일치
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "status": "rejected",
-  "email_received": true,
-  "identity": {
-    "matched": false,
-    "verification": "rejected",
-    "result": "NOT_MATCHED"
-  },
-  "analysis": {
-    "analysis_id": null,
-    "status": "not_started"
-  },
-  "error": {
-    "code": "IDENTITY_MISMATCH",
-    "message": "등록된 사용자 정보와 일치하지 않습니다."
-  }
-}
-```
-
-### Response G — 분석 실패
-
-```json
-{
-  "upload_id": "upl_78f0ab2c",
-  "status": "failed",
-  "email_received": true,
-  "identity": {
-    "matched": true,
-    "verification": "approved",
-    "result": "OK"
-  },
-  "analysis": {
-    "analysis_id": "lab_5b32e1c9",
-    "status": "failed"
-  },
-  "error": {
-    "code": "AI_ANALYSIS_FAILED",
-    "message": "AI 분석 중 오류가 발생했습니다."
-  }
-}
-```
-
-## Status Values
-
-| Status | 의미 | 프론트엔드 화면 |
-|---|---|---|
-| `waiting_email` | 이메일 수신 대기 | 이메일 발송 안내 |
-| `verifying_identity` | 사용자 정보 대조 중 | 사용자 확인 중 |
-| `verified` | 등록 정보 대조 승인 | 승인 완료 |
-| `analyzing` | AI 분석 진행 중 | 로딩 애니메이션 |
-| `completed` | 분석 완료 | 결과 보기 |
-| `rejected` | 사용자 정보 불일치 | 재확인 안내 |
-| `failed` | 분석 오류 | 오류 메시지 |
-| `expired` | 업로드 세션 만료 | 세션 재생성 |
-
-### Polling Policy
-
-- 기본 Polling 간격: 5초
-- Gmail 수신 확인 최대 자동 Polling 시간: 2분
-- 시간 초과 시 수동 재확인 버튼 제공
-- 완료 또는 거부 상태에서 Polling 중단
-- 페이지 이탈 시 Polling 중단
-- 중복 요청 방지
-- 비활성화된 브라우저 탭에서는 불필요한 요청 최소화
-
-> `verified` 상태가 빠르게 지나가더라도 `analyzing` 응답에 `identity.result="OK"`를 유지하여 프론트엔드가 승인 여부를 확인할 수 있도록 합니다.
-
----
-
-## API 11. 실험실 AI 분석 결과 조회
-
-### GET `/api/v1/lab/analyses/{analysis_id}`
-
-AI 분석 결과를 반환합니다.
-
-### Request JSON
-
-```json
-{
-  "method": "GET",
-  "path": "/api/v1/lab/analyses/lab_5b32e1c9",
-  "headers": {
-    "Authorization": "Bearer <ACCESS_TOKEN>"
-  },
-  "body": null
-}
-```
-
-### Response — 200 OK
-
-```json
-{
-  "analysis_id": "lab_5b32e1c9",
+  "analysis_id": "lab_9a2e...",
   "analysis_method": "kakao_lab",
   "status": "completed",
   "source": "kakao_conversation",
-  "analysis": {
-    "participant_id": "홍길동",
-    "behavioral_summary": "대화에서 노트북을 활용한 작업에 대한 언급이 나타납니다.",
-    "preferences": {
-      "restroom": {
-        "preference": "unknown",
-        "confidence": 0.0,
-        "inference_type": "unknown",
-        "reason": "근거 부족"
-      },
-      "lighting": {
-        "preference": "bright",
-        "confidence": 0.49,
-        "inference_type": "contextual",
-        "reason": "밝은 환경에서 작업하는 상황이 언급되었습니다."
-      },
-      "air_conditioning": {
-        "preference": "unknown",
-        "confidence": 0.0,
-        "inference_type": "unknown",
-        "reason": "근거 부족"
-      },
-      "desk": {
-        "preference": "large",
-        "confidence": 0.43,
-        "inference_type": "contextual",
-        "reason": "여러 작업 도구를 사용한다는 언급이 있습니다."
-      },
-      "laptop_usage": {
-        "preference": "yes",
-        "confidence": 0.9,
-        "inference_type": "explicit",
-        "reason": "노트북 사용을 직접 언급했습니다."
-      },
-      "outlet": {
-        "preference": "required",
-        "confidence": 0.31,
-        "inference_type": "hypothesis",
-        "reason": "노트북 사용 시 충전이 필요할 가능성이 있습니다."
-      },
-      "view": {
-        "preference": "unknown",
-        "confidence": 0.0,
-        "inference_type": "unknown",
-        "reason": "근거 부족"
-      }
-    },
-    "evidence": [
-      {
-        "feature": "laptop_usage",
-        "message_id": "msg_000042",
-        "reason": "노트북 사용을 직접 언급했습니다."
-      }
-    ],
-    "seat_recommendation": "콘센트가 있는 작업 공간을 추천합니다.",
-    "follow_up_question": "칸막이가 있는 자리를 선호하시나요?"
-  },
-  "completed_at": "2026-11-15T02:10:00+09:00"
+  "analysis": {"participant_id": "TARGET", "behavioral_summary": "...", "preferences": {"outlet": {"preference": "required", "confidence": 0.8, "inference_type": "explicit", "reason": "..."}}, "evidence": [], "seat_recommendation": "...", "follow_up_question": ""},
+  "completed_at": "2026-11-15T02:05:00+00:00"
 }
 ```
 
-> 위 값은 응답 구조를 보여주는 예시이며 실제 AI 분석 결과가 아닙니다.
+분석 중이면 `409 ANALYSIS_NOT_READY`, 다른 사용자 결과는 `404`.
 
-### 주의사항
+## API 10. 세션 삭제 — `DELETE /api/v1/lab/sessions/{upload_id}`
 
-기본 페르소나와 실험실 AI 분석의 데이터 구조는 서로 다릅니다.
-
-기본 페르소나의 4개 필드:
-
-- `outlet`
-- `hvac_proximity`
-- `noise_sensitivity`
-- `partition`
-
-실험실의 기존 AI 분석 결과는 7개 필드를 사용합니다.
-
-두 구조는 자동으로 동일하다고 취급하지 않습니다.
-
-특히 에어컨과 가까운 위치를 선호하는지와 냉방 온도를 선호하는지는 다른 개념입니다.
-
-AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
+세션과 분석 결과를 지운다. 분석 대기 중이면 메모리 원문도 즉시 버리고, 진행 중인 분석은 결과를 저장하지 않는다.
 
 ---
 
@@ -1271,13 +779,11 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 | 3 | `GET /api/v1/persona/answers` | 답변 진행 상태 복원 | 응답 정상 |
 | 4 | `POST /api/v1/persona/analyze` | 페르소나 분석 | `completed` |
 | 5 | `GET /api/v1/persona/result` | 분석 결과 표시 | 결과 조회 완료 |
-| 6 | `POST /api/v1/lab/sessions` | 실험실 시작 | `upload_id` 발급 |
-| 7 | `GET /api/v1/lab/sessions/{upload_id}/status` | Gmail 수신 대기 | `waiting_email` |
-| 8 | 동일 API | 사용자 정보 대조 | `verifying_identity` |
-| 9 | 동일 API | 승인 완료 | `identity.result=OK` |
-| 10 | 동일 API | AI 분석 중 | `analyzing` |
-| 11 | 동일 API | 분석 완료 | `completed` |
-| 12 | `GET /api/v1/lab/analyses/{analysis_id}` | 실험실 결과 | 결과 조회 완료 |
+| 6 | `POST /api/v1/lab/sessions` | 실험실 시작 | `upload_id` 발급, `waiting_upload` |
+| 7 | `POST /api/v1/lab/sessions/{upload_id}/file` | TXT 업로드 | `202`, `analyzing` |
+| 8 | `GET /api/v1/lab/sessions/{upload_id}/status` | AI 분석 중 | `analyzing` |
+| 9 | 동일 API | 분석 완료 | `completed` |
+| 10 | `GET /api/v1/lab/analyses/{analysis_id}` | 실험실 결과 | 결과 조회 완료 |
 
 내부 API는 프론트엔드에서 직접 호출하지 않습니다.
 
@@ -1312,27 +818,22 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 - 데이터 수집 및 처리 동의
 - 분석 시작 버튼
 
-## 9.4 카카오톡 TXT 전송 화면
+## 9.4 카카오톡 TXT 업로드 화면
 
-- 카카오톡 대화 내보내기 튜토리얼
-- Android/iOS 안내
-- 이메일 주소 표시
-- 메일 제목 표시
-- 이메일 주소 복사
-- 메일 제목 복사
-- 이메일 전송 확인 버튼
+- 카카오톡 대화 내보내기 튜토리얼(Android: 내 파일에 저장, iPhone: 파일에 저장)
+- `.txt` 파일 선택(드래그 앤 드롭 가능), 확장자·크기 사전 확인
+- 파일 내용은 브라우저 저장소(localStorage 등)에 넣지 않는다. 저장하는 것은 `upload_id`·상태뿐
+- "서버에 저장하지 않음" 안내와 업로드 후 휴대폰의 TXT 삭제 권장
 
-## 9.5 이메일 수신 및 분석 상태 화면
+## 9.5 분석 상태 화면
 
 | 상태 | 표시 메시지 |
 |---|---|
-| `waiting_email` | 이메일이 도착하기를 기다리고 있습니다. |
-| `verifying_identity` | 이메일을 확인했습니다. 사용자 정보를 대조하고 있습니다. |
-| `verified` | 사용자 정보 대조가 완료되었습니다! |
-| `analyzing` | AI가 대화 내용을 분석하고 있습니다. |
-| `completed` | 분석이 완료되었습니다! |
-| `rejected` | 등록된 사용자 정보와 일치하지 않습니다. |
-| `failed` | 분석 도중 오류가 발생했습니다. |
+| `waiting_upload` | 아직 파일을 받지 못했어요. |
+| `analyzing` | AI가 대화를 분석하고 있어요. |
+| `completed` | 분석이 끝났어요. |
+| `failed` | 처리 중 문제가 생겼어요(`UPLOAD_LOST`면 다시 올리기 안내). |
+| `expired` | 업로드 시간이 지났어요. |
 
 ## 9.6 실험실 결과 화면
 
@@ -1370,12 +871,16 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 | 403 | `FORBIDDEN` | 접근 권한 없음 |
 | 404 | `NOT_FOUND` | 요청한 데이터 없음 |
 | 404 | `PERSONA_NOT_FOUND` | 페르소나 분석 결과 없음 |
+| 403 | `ACCOUNT_REQUIRED` | 게스트 계정은 실험실 불가 |
 | 409 | `UPLOAD_ALREADY_USED` | 중복 업로드 |
-| 410 | `UPLOAD_EXPIRED` | 업로드 코드 만료 |
+| 410 | `UPLOAD_EXPIRED` | 업로드 시간 초과 |
+| 413 | `FILE_TOO_LARGE` | 파일 크기 초과 |
+| 415 | `UNSUPPORTED_MEDIA_TYPE` | multipart 등 허용하지 않는 업로드 형식 |
 | 422 | `INVALID_ANSWER` | 답변 값 오류 |
 | 422 | `INCOMPLETE_ANSWERS` | 질문 미완료 |
-| 502 | `IDENTITY_SERVICE_UNAVAILABLE` | 인증 서버 연결 실패 |
-| 503 | `AI_SERVICE_UNAVAILABLE` | AI 서버 연결 실패 |
+| 422 | `INVALID_TXT` / `INVALID_KAKAO_TXT` / `TARGET_NOT_FOUND` | TXT 형식·대상 이름 오류 |
+| 429 | `TOO_MANY_UPLOADS` | 업로드 횟수 제한 |
+| 503 | `LAB_BUSY` | 분석 대기 상한 |
 
 ---
 
@@ -1387,12 +892,12 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 - 데이터 보관 기간 및 삭제 방법을 안내합니다.
 - 제3자 개인정보가 포함될 수 있다는 점을 고지합니다.
 - 불필요한 개인정보는 제거하도록 안내합니다.
-- 이름과 이메일 주소만으로 실제 사용자 신원을 확정하지 않습니다.
-- 업로드 코드와 로그인 사용자 정보를 매핑합니다.
-- 수신 파일은 승인된 세션에서만 분석합니다.
-- 외부 인증 서버와의 통신은 서버 간 인증을 사용합니다.
-- Gmail 인증 토큰은 프론트엔드에 노출하지 않습니다.
+- 업로드는 로그인한 본인의 세션에만 할 수 있고, 다른 사용자의 세션은 존재 여부도 알려 주지 않습니다.
+- **카카오톡 TXT는 서버 디스크·DB·임시파일·로그에 저장하지 않습니다.** 메모리에서만 분석하고 바로 버립니다(6.1).
+- 업로드는 multipart 가 아닌 raw body 로만 받아 임시파일 생성을 막습니다.
+- 파일 이름은 저장하지 않습니다.
 - 원본 TXT 데이터는 브라우저 Local Storage에 저장하지 않습니다.
+- **운영 배포는 HTTPS 뒤에 둡니다.** 평문 HTTP면 대화가 네트워크에서 그대로 보입니다.
 - 분석 결과는 해당 사용자만 조회할 수 있습니다.
 - 사용자 요청에 따른 데이터 삭제 기능을 지원하도록 설계합니다.
 - 서버 로그에 카카오톡 대화 원문을 기록하지 않습니다.
@@ -1417,15 +922,11 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 
 - [ ] 실험실 기능을 선택적으로 실행할 수 있습니다.
 - [ ] 카카오톡 TXT 내보내기 튜토리얼이 제공됩니다.
-- [ ] Gmail 수신 주소 및 제목 코드를 확인할 수 있습니다.
-- [ ] 이메일 수신 상태를 조회할 수 있습니다.
-- [ ] 수신 후 외부 사용자 정보 대조가 진행됩니다.
-- [ ] 사용자 정보 일치 결과가 JSON으로 반환됩니다.
-- [ ] 승인 완료 시 `identity.result="OK"`를 확인할 수 있습니다.
-- [ ] 승인 이후 AI 분석이 시작됩니다.
+- [ ] 웹에서 TXT를 올리면 `202 analyzing`이 됩니다.
+- [ ] 업로드 후 서버의 디스크·DB·로그에 대화 원문이 없습니다(`backend/tests/test_api.py`).
+- [ ] 형식이 틀리거나 이름이 없으면 즉시 422로 알려 줍니다.
 - [ ] 프론트엔드에서 AI 분석 진행 상태를 확인할 수 있습니다.
 - [ ] AI 분석 완료 후 결과를 조회할 수 있습니다.
-- [ ] 인증 실패 시 분석을 진행하지 않습니다.
 - [ ] 데이터 처리 및 삭제 정책을 안내합니다.
 
 ---
@@ -1440,9 +941,7 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 - 분석 결과 UI
 - 실험실 진입 화면
 - 카카오톡 TXT 내보내기 튜토리얼
-- Gmail 전송 안내
-- 이메일 수신 확인 UI
-- 사용자 정보 대조 상태 UI
+- TXT 업로드 UI
 - AI 분석 진행 UI
 - 실험실 결과 화면
 - API 연동 및 예외 처리
@@ -1455,8 +954,7 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 - 페르소나 분석 API
 - 페르소나 결과 조회 API
 - 실험실 세션 생성 API
-- Gmail 수신 이벤트 처리 API
-- 외부 사용자 정보 대조 연동
+- TXT 업로드 API(메모리 전용)
 - AI 분석 작업 실행
 - AI 분석 상태 조회 API
 - AI 분석 결과 조회 API
@@ -1474,11 +972,10 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 | 4 | POST | `/api/v1/persona/analyze` | 페르소나 분석 |
 | 5 | GET | `/api/v1/persona/result` | 페르소나 결과 조회 |
 | 6 | POST | `/api/v1/lab/sessions` | 실험실 세션 생성 |
-| 7 | POST | `/internal/v1/lab/email-received` | Gmail 수신 이벤트 |
-| 8 | POST | `/internal/v1/identity/verify` | 사용자 정보 대조 |
-| 9 | POST | `/internal/v1/lab/analysis-approved` | AI 분석 시작 |
-| 10 | GET | `/api/v1/lab/sessions/{upload_id}/status` | 실험실 상태 조회 |
-| 11 | GET | `/api/v1/lab/analyses/{analysis_id}` | AI 분석 결과 조회 |
+| 7 | POST | `/api/v1/lab/sessions/{upload_id}/file` | 카카오톡 TXT 업로드(메모리 전용) |
+| 8 | GET | `/api/v1/lab/sessions/{upload_id}/status` | 실험실 상태 조회 |
+| 9 | GET | `/api/v1/lab/analyses/{analysis_id}` | AI 분석 결과 조회 |
+| 10 | DELETE | `/api/v1/lab/sessions/{upload_id}` | 세션·결과 삭제 |
 
 ---
 
@@ -1490,12 +987,12 @@ AI 분석에서 근거가 부족한 항목은 `unknown`을 유지합니다.
 4. 4개 질문에 모두 답변한 경우 페르소나 분석을 실행합니다.
 5. 기본 서비스는 카카오톡 데이터 없이 이용할 수 있습니다.
 6. 실험실은 선택 기능으로 제공됩니다.
-7. Gmail 수신 및 사용자 인증은 백엔드에서 처리합니다.
+7. 카카오톡 TXT는 웹에서 raw body 로 업로드하고, 서버는 저장하지 않습니다.
 8. 프론트엔드는 상태 조회 API로 진행 상황을 확인합니다.
-9. 사용자 정보 대조가 승인되면 `identity.result="OK"`를 반환합니다.
-10. 승인 완료 후 GPT-OSS 분석을 시작합니다.
+9. 업로드가 형식·이름 확인을 통과하면 곧바로 GPT-OSS 분석을 시작합니다.
+10. 분석이 끝나면 원문은 버리고 결과만 남깁니다.
 11. AI 분석 결과는 기본 페르소나 결과와 별도로 저장합니다.
-12. 모든 API는 JSON 기반으로 통신합니다.
+12. 업로드 API를 뺀 모든 API는 JSON 기반으로 통신합니다.
 
 ---
 

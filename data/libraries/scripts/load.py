@@ -1,4 +1,5 @@
 """학습/분석용 로더. 예: import sys; sys.path.insert(0,'libraries/scripts'); from load import load_table, load_synthetic"""
+
 import json
 from pathlib import Path
 
@@ -19,6 +20,7 @@ def load_table(name, library_id=None):
 
 def load_df(name, library_id=None):
     import pandas as pd
+
     return pd.DataFrame(load_table(name, library_id))
 
 

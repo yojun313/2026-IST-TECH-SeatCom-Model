@@ -10,6 +10,7 @@
    - infer_profile(): μ_u, P⁻¹ → 서비스 preference_profile 형식(featureId·target·importance)과 확신도.
 2) 전역 층(주기적): 새로 쌓인 요청으로 조건부 로짓을 웜스타트 재학습한다(weekly_retrain).
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -17,10 +18,21 @@ import numpy as np
 from .userstate import SEAT_KEYS, UserState
 
 SEATC_COLS = [f"seatc_{k}" for k in SEAT_KEYS]
-FEATURE_KO = {"laptopAllowed": "노트북 가능", "keyboardAllowed": "키보드 가능", "partition": "칸막이",
-              "outletAvailable": "콘센트", "windowProximity": "창가", "toiletProximity": "화장실 가까움",
-              "entranceProximity": "출입구 가까움", "brightness": "밝음", "airflow": "바람(냉방) 셈",
-              "deskHeight": "높은 책상", "deskWidth": "넓은 책상", "viewQuality": "전망", "noise_index": "소음"}
+FEATURE_KO = {
+    "laptopAllowed": "노트북 가능",
+    "keyboardAllowed": "키보드 가능",
+    "partition": "칸막이",
+    "outletAvailable": "콘센트",
+    "windowProximity": "창가",
+    "toiletProximity": "화장실 가까움",
+    "entranceProximity": "출입구 가까움",
+    "brightness": "밝음",
+    "airflow": "바람(냉방) 셈",
+    "deskHeight": "높은 책상",
+    "deskWidth": "넓은 책상",
+    "viewQuality": "전망",
+    "noise_index": "소음",
+}
 
 
 class BayesUser:
@@ -57,21 +69,41 @@ def infer_profile(bu: BayesUser, z_sd, min_sessions=3, min_z=1.0):
     zstat = bu.mu / sd
     items = []
     for j, k in enumerate(SEAT_KEYS):
-        items.append({"featureId": k, "label_ko": FEATURE_KO[k], "direction": "high" if bu.mu[j] > 0 else "low",
-                      "strength": float(bu.mu[j]), "z": float(zstat[j]), "slope_raw": float(bu.mu[j] / z_sd[j])})
+        items.append(
+            {
+                "featureId": k,
+                "label_ko": FEATURE_KO[k],
+                "direction": "high" if bu.mu[j] > 0 else "low",
+                "strength": float(bu.mu[j]),
+                "z": float(zstat[j]),
+                "slope_raw": float(bu.mu[j] / z_sd[j]),
+            }
+        )
     known = [i for i in items if abs(i["z"]) >= min_z] if bu.n >= min_sessions else []
     mx = max([abs(i["strength"]) for i in known], default=1.0)
     prefs = []
     for i in known:
         if i["featureId"] == "noise_index":
-            continue   # 서비스 특성 레지스트리에 없음. 설명에는 쓴다
-        prefs.append({"featureId": i["featureId"], "target": 1.0 if i["direction"] == "high" else 0.0,
-                      "importance": round(min(1.0, abs(i["strength"]) / mx), 3), "source": "seat_history",
-                      "confidence": round(float(1 - np.exp(-abs(i["z"]) / 2)), 3)})
-    return {"n_sessions": bu.n, "preferences": sorted(prefs, key=lambda p: -p["importance"]), "all": items}
+            continue  # 서비스 특성 레지스트리에 없음. 설명에는 쓴다
+        prefs.append(
+            {
+                "featureId": i["featureId"],
+                "target": 1.0 if i["direction"] == "high" else 0.0,
+                "importance": round(min(1.0, abs(i["strength"]) / mx), 3),
+                "source": "seat_history",
+                "confidence": round(float(1 - np.exp(-abs(i["z"]) / 2)), 3),
+            }
+        )
+    return {
+        "n_sessions": bu.n,
+        "preferences": sorted(prefs, key=lambda p: -p["importance"]),
+        "all": items,
+    }
 
 
-def prequential(frame, g, z_sd, cfg, users, g_update=None, snapshots=(0, 1, 3, 5, 10, 20, 40)):
+def prequential(
+    frame, g, z_sd, cfg, users, g_update=None, snapshots=(0, 1, 3, 5, 10, 20, 40)
+):
     """요청을 시간 순서로 처리: (1) 지금 상태로 점수 → 기록 (2) 실제 선택으로 갱신.
     g: 추천 점수용 전역 점수(노출 중립). g_update: 갱신 우도용 전역 점수(실제로 보였던 노출 포함).
     실제 선택은 노출의 영향을 받았으므로, 갱신 때 노출 효과를 빼지 않으면 μ_u가 로깅 정책의 취향을 배운다.
@@ -115,8 +147,12 @@ def truth_direction(truth_users, users):
 def recovery(snaps, final, truth_users):
     """착석 횟수별로 추정 μ와 참 취향의 상관(특징별 스피어만, 사용자 횡단)."""
     from scipy.stats import spearmanr
+
     res = {}
-    for n, d in sorted(list(snaps.items()) + [("final", final)], key=lambda x: (isinstance(x[0], str), x[0])):
+    for n, d in sorted(
+        list(snaps.items()) + [("final", final)],
+        key=lambda x: (isinstance(x[0], str), x[0]),
+    ):
         users = sorted(d)
         if len(users) < 30:
             continue
@@ -139,6 +175,7 @@ def weekly_retrain(frames_all, meta_all, make_model, cfg, eval_users_mask, log=p
     정적 모델(첫 2주로 1회 학습)과 비교한다."""
     import pandas as pd
     from .evaluate import per_session
+
     days = pd.to_datetime(meta_all.occurred_at.str[:10])
     d0 = days.min()
     week = ((days - d0).dt.days // cfg["online"]["retrain_every_days"]).values
@@ -157,11 +194,22 @@ def weekly_retrain(frames_all, meta_all, make_model, cfg, eval_users_mask, log=p
             continue
         for name, m in (("static_first_2w", static), ("weekly_warm_start", model)):
             ps = per_session(ev, m.score(ev), truth=False)
-            rows.append({"week": w, "model": name, "n": len(ev.starts), "train_sessions": len(fit_frame.starts),
-                         "hit@1": ps["hit@1"].mean(), "hit@5": ps["hit@5"].mean(), "mrr": ps["mrr"].mean(),
-                         "nit": model.opt["nit"]})
-        log(f"week {w}: train={len(fit_frame.starts)} eval={len(ev.starts)} nit={model.opt['nit']} "
-            f"static={rows[-2]['mrr']:.4f} weekly={rows[-1]['mrr']:.4f}")
+            rows.append(
+                {
+                    "week": w,
+                    "model": name,
+                    "n": len(ev.starts),
+                    "train_sessions": len(fit_frame.starts),
+                    "hit@1": ps["hit@1"].mean(),
+                    "hit@5": ps["hit@5"].mean(),
+                    "mrr": ps["mrr"].mean(),
+                    "nit": model.opt["nit"],
+                }
+            )
+        log(
+            f"week {w}: train={len(fit_frame.starts)} eval={len(ev.starts)} nit={model.opt['nit']} "
+            f"static={rows[-2]['mrr']:.4f} weekly={rows[-1]['mrr']:.4f}"
+        )
     return rows
 
 
@@ -180,9 +228,19 @@ class OnlineState:
         return self.hist[u], self.bayes[u]
 
     def to_dict(self):
-        return {"k": self.k, "prior_var": self.prior_var,
-                "users": {u: {"hist": self.hist[u].to_dict(), "mu": self.bayes[u].mu.tolist(),
-                              "P": self.bayes[u].P.tolist(), "n": self.bayes[u].n} for u in self.hist}}
+        return {
+            "k": self.k,
+            "prior_var": self.prior_var,
+            "users": {
+                u: {
+                    "hist": self.hist[u].to_dict(),
+                    "mu": self.bayes[u].mu.tolist(),
+                    "P": self.bayes[u].P.tolist(),
+                    "n": self.bayes[u].n,
+                }
+                for u in self.hist
+            },
+        }
 
     @classmethod
     def from_dict(cls, d):

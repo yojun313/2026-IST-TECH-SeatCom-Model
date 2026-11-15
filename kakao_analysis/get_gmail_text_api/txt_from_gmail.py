@@ -1,4 +1,5 @@
-ㅁ"""Gmail 수신함에서 카카오톡 TXT 첨부파일을 수집하는 간단한 폴링 리스너."""
+"""Gmail 수신함에서 카카오톡 TXT 첨부파일을 수집하는 간단한 폴링 리스너."""
+
 from __future__ import annotations
 
 import base64
@@ -35,7 +36,9 @@ class TxtFromGmail:
 
         self.index = self._load_index()
         self.gmail = self._connect()
-        actual = self.gmail.users().getProfile(userId="me").execute()["emailAddress"].lower()
+        actual = (
+            self.gmail.users().getProfile(userId="me").execute()["emailAddress"].lower()
+        )
         if actual != self.email:
             raise RuntimeError(f"인증된 계정이 다릅니다: {actual} (필요: {self.email})")
 
@@ -46,19 +49,25 @@ class TxtFromGmail:
 
     def _save_index(self) -> None:
         tmp = self.index_path.with_suffix(".json.tmp")
-        tmp.write_text(json.dumps(self.index, ensure_ascii=False, indent=2), encoding="utf-8")
+        tmp.write_text(
+            json.dumps(self.index, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
         tmp.replace(self.index_path)
 
     def _connect(self):
         creds = None
         if self.token_path.exists():
-            creds = Credentials.from_authorized_user_file(str(self.token_path), self.SCOPES)
+            creds = Credentials.from_authorized_user_file(
+                str(self.token_path), self.SCOPES
+            )
         if not creds or not creds.valid:
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
                 if not self.credentials_path.exists():
-                    raise FileNotFoundError(f"OAuth 파일이 없습니다: {self.credentials_path}")
+                    raise FileNotFoundError(
+                        f"OAuth 파일이 없습니다: {self.credentials_path}"
+                    )
                 flow = InstalledAppFlow.from_client_secrets_file(
                     str(self.credentials_path), self.SCOPES
                 )
@@ -120,9 +129,12 @@ class TxtFromGmail:
         for message_id in self._message_ids():
             if message_id in seen:
                 continue
-            message = self.gmail.users().messages().get(
-                userId="me", id=message_id, format="full"
-            ).execute()
+            message = (
+                self.gmail.users()
+                .messages()
+                .get(userId="me", id=message_id, format="full")
+                .execute()
+            )
             sender = parseaddr(self._from_header(message, "From"))[1]
             subject = self._from_header(message, "Subject")
             date = self._from_header(message, "Date")
@@ -136,9 +148,13 @@ class TxtFromGmail:
                     continue
                 body = part.get("body", {})
                 if body.get("attachmentId"):
-                    body = self.gmail.users().messages().attachments().get(
-                        userId="me", messageId=message_id, id=body["attachmentId"]
-                    ).execute()
+                    body = (
+                        self.gmail.users()
+                        .messages()
+                        .attachments()
+                        .get(userId="me", messageId=message_id, id=body["attachmentId"])
+                        .execute()
+                    )
                 raw = self._b64(body.get("data", ""))
                 text = self._decode(raw)
                 checksum = hashlib.sha256(raw).hexdigest()
@@ -170,13 +186,20 @@ class TxtFromGmail:
 
     def listen(self) -> None:
         """Gmail 수신함을 주기적으로 확인합니다. Ctrl+C로 종료합니다."""
-        print(f"[Gmail 감시 시작] {self.email} / {self.poll_seconds}초 간격", flush=True)
+        print(
+            f"[Gmail 감시 시작] {self.email} / {self.poll_seconds}초 간격", flush=True
+        )
         try:
             while True:
                 try:
                     result = self.txt_from_gmail()
                     if result:
-                        print("\n===== TXT 내용 =====\n", result, "\n====================\n", flush=True)
+                        print(
+                            "\n===== TXT 내용 =====\n",
+                            result,
+                            "\n====================\n",
+                            flush=True,
+                        )
                 except Exception as exc:
                     print(f"[Gmail 조회 오류] {type(exc).__name__}: {exc}", flush=True)
                 time.sleep(self.poll_seconds)

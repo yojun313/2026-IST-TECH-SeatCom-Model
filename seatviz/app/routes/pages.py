@@ -1,4 +1,5 @@
 """HTML 페이지. 각 페이지는 _layout.html 을 상속하고 데이터는 /api 에서 JS 로 불러온다."""
+
 from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 
@@ -19,8 +20,11 @@ NAV = (
 
 
 def page(request: Request, name: str, title: str, **ctx):
-    return templates.TemplateResponse(request=request, name=f"{name}.html",
-                                      context={"active": name, "nav": NAV, "title": title, **ctx})
+    return templates.TemplateResponse(
+        request=request,
+        name=f"{name}.html",
+        context={"active": name, "nav": NAV, "title": title, **ctx},
+    )
 
 
 @router.get("/")

@@ -12,8 +12,9 @@ snapshot 형식
    "conditions": {"season", "weather", "base_temperature_c"},
    "seats": [{"seat_id", "features": {12개}, "brightness_by_slot": {...}, "noise_index", "desk_type", "desk_group"}],
    "occupied_seat_ids": [...]}
-필수 조건(노트북 규정 등)은 모델 밖 규칙 필터로 먼저 적용한다.
+필수 조건(노트북 규정 등)은 하드 필터: 조건 밖 좌석은 결과에 나오지 않는다(recommend 설명 참고).
 """
+
 from __future__ import annotations
 
 import json
@@ -27,13 +28,21 @@ from .models.clogit import CLogit
 from .online import FEATURE_KO, SEATC_COLS, OnlineState, infer_profile
 from .userstate import K, SEAT_KEYS
 
-HIGH_LOW = {"laptopAllowed": ("노트북 가능", "노트북 불가"), "keyboardAllowed": ("키보드 가능", "키보드 불가"),
-            "partition": ("칸막이", "개방형"), "outletAvailable": ("콘센트 있음", "콘센트 없음"),
-            "windowProximity": ("창가", "안쪽 자리"), "toiletProximity": ("화장실 가까움", "화장실과 떨어짐"),
-            "entranceProximity": ("출입구 가까움", "출입구와 떨어짐"), "brightness": ("밝음", "은은한 조명"),
-            "airflow": ("바람 셈", "바람 약함"), "deskHeight": ("높은 책상", "낮은 책상"),
-            "deskWidth": ("넓은 책상", "좁은 책상"), "viewQuality": ("전망 좋음", "전망 적음"),
-            "noise_index": ("활기찬 구역", "조용함")}
+HIGH_LOW = {
+    "laptopAllowed": ("노트북 가능", "노트북 불가"),
+    "keyboardAllowed": ("키보드 가능", "키보드 불가"),
+    "partition": ("칸막이", "개방형"),
+    "outletAvailable": ("콘센트 있음", "콘센트 없음"),
+    "windowProximity": ("창가", "안쪽 자리"),
+    "toiletProximity": ("화장실 가까움", "화장실과 떨어짐"),
+    "entranceProximity": ("출입구 가까움", "출입구와 떨어짐"),
+    "brightness": ("밝음", "은은한 조명"),
+    "airflow": ("바람 셈", "바람 약함"),
+    "deskHeight": ("높은 책상", "낮은 책상"),
+    "deskWidth": ("넓은 책상", "좁은 책상"),
+    "viewQuality": ("전망 좋음", "전망 적음"),
+    "noise_index": ("활기찬 구역", "조용함"),
+}
 
 
 def _feature_of(col):
@@ -52,7 +61,16 @@ def scenario_from_snapshot(snap):
     sc = Scenario()
     sc.seat_ids = [s["seat_id"] for s in seats]
     sc.index = {x: i for i, x in enumerate(sc.seat_ids)}
-    sc.F = np.array([[s["features"][k] if k != "noise_index" else s["noise_index"] for k in SEAT_KEYS] for s in seats], float)
+    sc.F = np.array(
+        [
+            [
+                s["features"][k] if k != "noise_index" else s["noise_index"]
+                for k in SEAT_KEYS
+            ]
+            for s in seats
+        ],
+        float,
+    )
     sc.bright = np.array([[s["brightness_by_slot"][sl] for sl in SLOTS] for s in seats])
     sc.desk = np.array([DESK_TYPES.index(s["desk_type"]) for s in seats])
     sc.group = np.array([int(s["desk_group"]) for s in seats])
@@ -64,8 +82,16 @@ def scenario_from_snapshot(snap):
 
 
 class SeatRecommender:
-    def __init__(self, model: CLogit, z_sd, online: OnlineState, cfg_online, model_dir=None):
-        self.model, self.z_sd, self.online, self.cfg_online, self.model_dir = model, np.asarray(z_sd), online, cfg_online, model_dir
+    def __init__(
+        self, model: CLogit, z_sd, online: OnlineState, cfg_online, model_dir=None
+    ):
+        self.model, self.z_sd, self.online, self.cfg_online, self.model_dir = (
+            model,
+            np.asarray(z_sd),
+            online,
+            cfg_online,
+            model_dir,
+        )
 
     @classmethod
     def load(cls, model_dir, state_file="online_state.json"):
@@ -73,7 +99,11 @@ class SeatRecommender:
         man = json.loads((d / "manifest.json").read_text(encoding="utf-8"))
         model = CLogit.from_state(json.loads((d / man["model_file"]).read_text()))
         sp = d / state_file
-        online = OnlineState.from_dict(json.loads(sp.read_text())) if sp.exists() else OnlineState(K, man["online"]["prior_var"])
+        online = (
+            OnlineState.from_dict(json.loads(sp.read_text()))
+            if sp.exists()
+            else OnlineState(K, man["online"]["prior_var"])
+        )
         return cls(model, man["z_sd"], online, man["online"], d)
 
     def save_state(self, path=None):
@@ -86,15 +116,32 @@ class SeatRecommender:
         occ = set(snap.get("occupied_seat_ids") or [])
         avail = np.array([i for i, x in enumerate(sc.seat_ids) if x not in occ])
         st, bu = self.online.get(user["user_id"])
-        prefs = UserPrefs({"preference_profile": user.get("preference_profile"), "requirements": user.get("requirements"),
-                           "kakaotalk_profile": user.get("kakaotalk_profile")})
-        M, seat_ids, gkeys, Xc = candidate_block(sc, avail, snap["time_slot"], parse_ts(snap["requested_at"]), prefs, st, {},
-                                                 self.cfg_online.get("inf_shrinkage", 3.0))
+        prefs = UserPrefs(
+            {
+                "preference_profile": user.get("preference_profile"),
+                "requirements": user.get("requirements"),
+                "kakaotalk_profile": user.get("kakaotalk_profile"),
+            }
+        )
+        M, seat_ids, gkeys, Xc = candidate_block(
+            sc,
+            avail,
+            snap["time_slot"],
+            parse_ts(snap["requested_at"]),
+            prefs,
+            st,
+            {},
+            self.cfg_online.get("inf_shrinkage", 3.0),
+        )
         return M, seat_ids, gkeys, Xc, st, bu
 
     def recommend(self, user, snap, k=5, bias=None):
         """bias: 사용자가 직접 정한 취향 중 모델 프로필 특징이 없는 항목(칸막이·소음·출입구 등)의 고정 가산(표준화 단위).
-        학습되는 μ_u와 달리 착석 기록으로 바뀌지 않는다."""
+        학습되는 μ_u와 달리 착석 기록으로 바뀌지 않는다.
+
+        필수 조건(노트북 규정 등)은 하드 필터다. 점수는 학습 때와 같이 빈자리 전체로 계산하고(ctx_n_avail·중심화 특징 유지),
+        조건을 만족하지 않는 좌석은 결과에서 뺀다. 만족 좌석이 k개보다 적으면 그 수만큼만 반환하고,
+        0개면 빈 목록과 reason="no_eligible_seat"를 반환한다. 동점은 seat_id 오름차순(안정 정렬)."""
         M, seat_ids, _, Xc, st, bu = self._block(user, snap)
         cols = self.model.cols
         Xm = M[:, [FEATURE_COLS.index(c) for c in cols]]
@@ -103,13 +150,22 @@ class SeatRecommender:
         mu = bu.mu if bias is None else bu.mu + np.asarray(bias)
         s = g + Z @ mu
         req_ok = M[:, FEATURE_COLS.index("ctx_req_ok")]
-        final = s + 1000.0 * req_ok
-        order = np.argsort(-final)[:k]
+        elig = np.flatnonzero(req_ok > 0)
+        order = elig[np.argsort(-s[elig], kind="stable")][:k]
+        base = {
+            "user_id": user["user_id"],
+            "history_sessions": st.n,
+            "excluded_by_requirements": int(len(seat_ids) - len(elig)),
+        }
+        if len(elig) == 0:
+            return {**base, "recommendations": [], "reason": "no_eligible_seat"}
         # 이유: (특징 기여 − 빈자리 평균 기여)를 좌석 특징 단위로 합산
         Xs = self.model._std(Xm.astype(np.float64))
         for c in ("exp_flag", "exp_rank", "exp_inv_rank"):
             if c in cols:
-                Xs[:, cols.index(c)] = self.model._std(np.zeros((1, len(cols))))[0, cols.index(c)]
+                Xs[:, cols.index(c)] = self.model._std(np.zeros((1, len(cols))))[
+                    0, cols.index(c)
+                ]
         contrib = (Xs - Xs.mean(0)) * self.model.beta
         out = []
         for i in order:
@@ -130,12 +186,31 @@ class SeatRecommender:
                     text, fid, code = "자주 앉던 자리", None, "HISTORY_HABIT"
                 else:
                     high = Xc[i, SEAT_KEYS.index(f)] > 0
-                    text, fid, code = HIGH_LOW[f][0 if high else 1], f, f"FEATURE_{'HIGH' if high else 'LOW'}"
+                    text, fid, code = (
+                        HIGH_LOW[f][0 if high else 1],
+                        f,
+                        f"FEATURE_{'HIGH' if high else 'LOW'}",
+                    )
                 reasons.append(text)
-                items.append({"code": code, "featureId": fid, "text": text, "contribution": float(v)})
-            out.append({"seat_id": seat_ids[i], "score": float(s[i]), "meets_requirements": bool(req_ok[i]),
-                        "reasons": reasons, "reason_items": items, "reason_text": " · ".join(reasons)})
-        return {"user_id": user["user_id"], "history_sessions": st.n, "recommendations": out}
+                items.append(
+                    {
+                        "code": code,
+                        "featureId": fid,
+                        "text": text,
+                        "contribution": float(v),
+                    }
+                )
+            out.append(
+                {
+                    "seat_id": seat_ids[i],
+                    "score": float(s[i]),
+                    "meets_requirements": bool(req_ok[i]),
+                    "reasons": reasons,
+                    "reason_items": items,
+                    "reason_text": " · ".join(reasons),
+                }
+            )
+        return {**base, "recommendations": out}
 
     def observe(self, user_id, snap, chosen_seat_id, user=None, exposed_rank=None):
         """착석 기록 1건을 바로 반영한다(전역 모델 재학습 없이 사용자 상태만 갱신).
@@ -157,17 +232,36 @@ class SeatRecommender:
 
     def inferred_profile(self, user_id):
         st, bu = self.online.get(user_id)
-        return infer_profile(bu, self.z_sd, self.cfg_online["profile_min_sessions"], self.cfg_online["profile_min_z"])
+        return infer_profile(
+            bu,
+            self.z_sd,
+            self.cfg_online["profile_min_sessions"],
+            self.cfg_online["profile_min_z"],
+        )
 
 
 def snapshot_from_db(reader, session_id):
     """테스트·백엔드 연동 예시: DB 세션 1건 → snapshot(선택 결과는 넣지 않는다)."""
     s = next(iter(reader.find("synth_sessions", {"session_id": session_id})))
     sc = next(iter(reader.find("synth_scenarios", {"scenario_id": s["scenario_id"]})))
-    seats = [{"seat_id": d["seat_id"], "features": d["features"], "brightness_by_slot": d["brightness_by_slot"],
-              "noise_index": d["raw"]["noise_index"], "desk_type": d["raw"]["desk_type"], "desk_group": d["raw"]["desk_group"]}
-             for d in reader.find("synth_seat_env", {"scenario_id": s["scenario_id"]})]
-    snap = {"room_id": s["room_id"], "time_slot": s["time_slot"], "requested_at": s["occurred_at"],
-            "conditions": sc["conditions"], "seats": seats, "occupied_seat_ids": s["occupied_seat_ids"]}
+    seats = [
+        {
+            "seat_id": d["seat_id"],
+            "features": d["features"],
+            "brightness_by_slot": d["brightness_by_slot"],
+            "noise_index": d["raw"]["noise_index"],
+            "desk_type": d["raw"]["desk_type"],
+            "desk_group": d["raw"]["desk_group"],
+        }
+        for d in reader.find("synth_seat_env", {"scenario_id": s["scenario_id"]})
+    ]
+    snap = {
+        "room_id": s["room_id"],
+        "time_slot": s["time_slot"],
+        "requested_at": s["occurred_at"],
+        "conditions": sc["conditions"],
+        "seats": seats,
+        "occupied_seat_ids": s["occupied_seat_ids"],
+    }
     exposed = {e["seat_id"]: e["rank"] for e in (s.get("exposed") or [])}
     return snap, s["user_id"], s.get("chosen_seat_id"), exposed

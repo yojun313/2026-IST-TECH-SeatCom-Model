@@ -12,6 +12,7 @@
 
     seat_model/.venv/bin/python -m seat_model.train.data
 """
+
 from __future__ import annotations
 
 import argparse
@@ -26,28 +27,71 @@ from .common import FeatureReader, SplitReader, load_config, parse_ts, write_jso
 from .userstate import HIST_COLS, INF_R_COLS, INF_X_COLS, K, SEAT_KEYS, UserState
 
 SLOTS = ["morning", "noon", "evening"]
-DESK_TYPES = ["individual_carrel", "long_shared_table", "four_person_table", "wide_individual_desk",
-              "window_counter", "standing_desk"]
+DESK_TYPES = [
+    "individual_carrel",
+    "long_shared_table",
+    "four_person_table",
+    "wide_individual_desk",
+    "window_counter",
+    "standing_desk",
+]
 WEATHERS = ["clear", "cloudy", "rain"]
 SEASONS = ["spring_fall", "summer", "winter"]
 # 관측 프로필(preference_profile)이 다루는 특징
-PREF_FIDS = ["toiletProximity", "brightness", "airflow", "deskWidth", "laptopAllowed", "outletAvailable",
-             "windowProximity", "viewQuality"]
-KAKAO = ["restroom", "lighting", "air_conditioning", "desk", "laptop_usage", "outlet", "view"]
+PREF_FIDS = [
+    "toiletProximity",
+    "brightness",
+    "airflow",
+    "deskWidth",
+    "laptopAllowed",
+    "outletAvailable",
+    "windowProximity",
+    "viewQuality",
+]
+KAKAO = [
+    "restroom",
+    "lighting",
+    "air_conditioning",
+    "desk",
+    "laptop_usage",
+    "outlet",
+    "view",
+]
 ITYPE = {"direct": 1.0, "contextual": 0.5, "unknown": 0.0}
 
 SEAT_COLS = [f"seat_{k}" for k in SEAT_KEYS]
 SEATC_COLS = [f"seatc_{k}" for k in SEAT_KEYS]
 DESK_COLS = [f"seat_desk_{d}" for d in DESK_TYPES]
-PREF_COLS = [f"pref_imp_{f}" for f in PREF_FIDS] + [f"pref_tgt_{f}" for f in PREF_FIDS] + \
-            ["pref_n_known"] + [f"pref_itype_{f}" for f in KAKAO]
+PREF_COLS = (
+    [f"pref_imp_{f}" for f in PREF_FIDS]
+    + [f"pref_tgt_{f}" for f in PREF_FIDS]
+    + ["pref_n_known"]
+    + [f"pref_itype_{f}" for f in KAKAO]
+)
 MATCH_COLS = [f"match_{f}" for f in PREF_FIDS] + ["match_score"]
-CTX_COLS = [f"ctx_slot_{s}" for s in SLOTS] + ["ctx_weekend", "ctx_dow", "ctx_occ", "ctx_n_avail"] + \
-           [f"ctx_weather_{w}" for w in WEATHERS] + [f"ctx_season_{s}" for s in SEASONS] + ["ctx_temp", "ctx_req_ok"]
+CTX_COLS = (
+    [f"ctx_slot_{s}" for s in SLOTS]
+    + ["ctx_weekend", "ctx_dow", "ctx_occ", "ctx_n_avail"]
+    + [f"ctx_weather_{w}" for w in WEATHERS]
+    + [f"ctx_season_{s}" for s in SEASONS]
+    + ["ctx_temp", "ctx_req_ok"]
+)
 RT_COLS = ["rt_group_size", "rt_group_occ", "rt_group_empty_ratio"]
 EXP_COLS = ["exp_flag", "exp_rank", "exp_inv_rank"]
-FEATURE_COLS = (SEAT_COLS + SEATC_COLS + DESK_COLS + PREF_COLS + MATCH_COLS + CTX_COLS + RT_COLS
-                + HIST_COLS + INF_R_COLS + INF_X_COLS + ["inf_score"] + EXP_COLS)
+FEATURE_COLS = (
+    SEAT_COLS
+    + SEATC_COLS
+    + DESK_COLS
+    + PREF_COLS
+    + MATCH_COLS
+    + CTX_COLS
+    + RT_COLS
+    + HIST_COLS
+    + INF_R_COLS
+    + INF_X_COLS
+    + ["inf_score"]
+    + EXP_COLS
+)
 GROUPS = ["seat", "seatc", "pref", "match", "ctx", "rt", "hist", "inf", "exp"]
 
 
@@ -63,7 +107,18 @@ def group_cols(groups, cols=FEATURE_COLS):
 
 # ---------------------------------------------------------------- 정적 테이블
 class Scenario:
-    __slots__ = ("seat_ids", "index", "F", "bright", "desk", "group", "group_size", "req_vals", "cond", "room_id")
+    __slots__ = (
+        "seat_ids",
+        "index",
+        "F",
+        "bright",
+        "desk",
+        "group",
+        "group_size",
+        "req_vals",
+        "cond",
+        "room_id",
+    )
 
 
 def load_scenarios(rd: FeatureReader):
@@ -81,9 +136,14 @@ def load_scenarios(rd: FeatureReader):
         F = np.zeros((n, K))
         for i, d in enumerate(lst):
             f = d["features"]
-            F[i] = [f[k] if k != "noise_index" else d["raw"]["noise_index"] for k in SEAT_KEYS]
+            F[i] = [
+                f[k] if k != "noise_index" else d["raw"]["noise_index"]
+                for k in SEAT_KEYS
+            ]
         s.F = F
-        s.bright = np.array([[d["brightness_by_slot"][sl] for sl in SLOTS] for d in lst])
+        s.bright = np.array(
+            [[d["brightness_by_slot"][sl] for sl in SLOTS] for d in lst]
+        )
         s.desk = np.array([DESK_TYPES.index(d["raw"]["desk_type"]) for d in lst])
         s.group = np.array([d["raw"]["desk_group"] for d in lst])
         _, inv, cnt = np.unique(s.group, return_inverse=True, return_counts=True)
@@ -98,6 +158,7 @@ def load_scenarios(rd: FeatureReader):
 
 class UserPrefs:
     """관측 프로필(카카오톡 → preference_profile) 벡터. 취향 미입력 사용자는 모두 0."""
+
     __slots__ = ("imp", "tgt", "itype", "reqs", "home")
 
     def __init__(self, doc=None, masked=False):
@@ -109,7 +170,9 @@ class UserPrefs:
         if doc is None:
             return
         self.home = doc.get("home_library_id")
-        self.reqs = [(r["featureId"], r["value"]) for r in doc.get("requirements") or []]
+        self.reqs = [
+            (r["featureId"], r["value"]) for r in doc.get("requirements") or []
+        ]
         if masked:
             return
         for p in (doc.get("preference_profile") or {}).get("preferences") or []:
@@ -118,10 +181,21 @@ class UserPrefs:
                 self.imp[j], self.tgt[j] = p["importance"], p["target"]
         kp = ((doc.get("kakaotalk_profile") or {}).get("preferences")) or {}
         for j, f in enumerate(KAKAO):
-            self.itype[j] = ITYPE.get(((kp.get(f) or {}).get("inference_type")) or "unknown", 0.0)
+            self.itype[j] = ITYPE.get(
+                ((kp.get(f) or {}).get("inference_type")) or "unknown", 0.0
+            )
 
 
-def candidate_block(sc: Scenario, avail_idx, slot, ts, prefs: UserPrefs, state: UserState, exposed_rank, m0):
+def candidate_block(
+    sc: Scenario,
+    avail_idx,
+    slot,
+    ts,
+    prefs: UserPrefs,
+    state: UserState,
+    exposed_rank,
+    m0,
+):
     """한 요청의 후보 특징 행렬(n × FEATURE_COLS). 서비스 추론도 이 함수를 쓴다."""
     si = SLOTS.index(slot)
     X = sc.F[avail_idx].copy()
@@ -132,7 +206,9 @@ def candidate_block(sc: Scenario, avail_idx, slot, ts, prefs: UserPrefs, state: 
     desk = np.zeros((n, len(DESK_TYPES)))
     desk[np.arange(n), sc.desk[avail_idx]] = 1
     # 관측 프로필
-    pref = np.concatenate([prefs.imp, prefs.tgt, [np.count_nonzero(prefs.imp)], prefs.itype])
+    pref = np.concatenate(
+        [prefs.imp, prefs.tgt, [np.count_nonzero(prefs.imp)], prefs.itype]
+    )
     cols_p = [SEAT_KEYS.index(f) for f in PREF_FIDS]
     match = prefs.imp * (1 - np.abs(prefs.tgt - X[:, cols_p]))
     W = prefs.imp.sum()
@@ -140,7 +216,7 @@ def candidate_block(sc: Scenario, avail_idx, slot, ts, prefs: UserPrefs, state: 
     # 필수 조건
     req_ok = np.ones(n)
     for fid, val in prefs.reqs:
-        req_ok *= (X[:, SEAT_KEYS.index(fid)] == val)
+        req_ok *= X[:, SEAT_KEYS.index(fid)] == val
     # 상황
     c = sc.cond
     dow = ts.weekday()
@@ -157,7 +233,14 @@ def candidate_block(sc: Scenario, avail_idx, slot, ts, prefs: UserPrefs, state: 
     g = sc.group[avail_idx]
     gsize = sc.group_size[avail_idx]
     empty_in_group = np.bincount(sc.group[avail_mask], minlength=sc.group.max() + 1)[g]
-    rt = np.stack([gsize, gsize - empty_in_group, (empty_in_group - 1) / np.maximum(gsize - 1, 1)], 1)
+    rt = np.stack(
+        [
+            gsize,
+            gsize - empty_in_group,
+            (empty_in_group - 1) / np.maximum(gsize - 1, 1),
+        ],
+        1,
+    )
     # 이력·취향 추정 (요청 이전 상태)
     seat_ids = [sc.seat_ids[i] for i in avail_idx]
     gkeys = [(sc.room_id, int(x)) for x in g]
@@ -165,8 +248,21 @@ def candidate_block(sc: Scenario, avail_idx, slot, ts, prefs: UserPrefs, state: 
     # 노출
     er = np.array([exposed_rank.get(s, 0) for s in seat_ids], float)
     exp = np.stack([er > 0, er, np.where(er > 0, (6 - er) / 5, 0)], 1)
-    blocks = [X, Xc, desk, np.broadcast_to(pref, (n, len(pref))), match, mscore[:, None],
-              np.broadcast_to(ctx, (n, len(ctx))), rt, hist, inf_r, inf_x, inf_x.sum(1, keepdims=True), exp]
+    blocks = [
+        X,
+        Xc,
+        desk,
+        np.broadcast_to(pref, (n, len(pref))),
+        match,
+        mscore[:, None],
+        np.broadcast_to(ctx, (n, len(ctx))),
+        rt,
+        hist,
+        inf_r,
+        inf_x,
+        inf_x.sum(1, keepdims=True),
+        exp,
+    ]
     M = np.concatenate(blocks, 1).astype(np.float32)
     M[:, FEATURE_COLS.index("ctx_req_ok")] = req_ok
     return M, seat_ids, gkeys, Xc
@@ -185,7 +281,9 @@ def make_splits(cfg, users_arch, rooms_lib, rng):
         for i, u in enumerate(lst):
             split[u] = "train" if i < n1 else ("val" if i < n2 else "test")
     libs = sorted(set(rooms_lib.values()))
-    pick_libs = list(rng.choice(libs, cfg["split"]["room_holdout_count"], replace=False))
+    pick_libs = list(
+        rng.choice(libs, cfg["split"]["room_holdout_count"], replace=False)
+    )
     holdout = []
     for lib in sorted(pick_libs):
         rooms = sorted(r for r, l in rooms_lib.items() if l == lib)
@@ -204,7 +302,9 @@ def build(cfg, max_sessions=0, out=None):
 
     scen = load_scenarios(rd)
     users = {d["user_id"]: d for d in rd.find("synth_users")}
-    arch = {d["user_id"]: d["archetype"] for d in SplitReader(cfg["db"]).find("synth_users")}
+    arch = {
+        d["user_id"]: d["archetype"] for d in SplitReader(cfg["db"]).find("synth_users")
+    }
     rooms_lib = {}
     for d in rd.find("synth_scenarios", fields=["room_id", "library_id"]):
         rooms_lib[d["room_id"]] = d["library_id"]
@@ -238,7 +338,9 @@ def build(cfg, max_sessions=0, out=None):
             # 상태는 갱신(서비스에서도 착석 기록은 남는다)
         u = s["user_id"]
         er = {e["seat_id"]: e["rank"] for e in (s.get("exposed") or [])}
-        M, seat_ids, gkeys, Xc = candidate_block(sc, avail_idx, s["time_slot"], s["_ts"], prefs[u], states[u], er, m0)
+        M, seat_ids, gkeys, Xc = candidate_block(
+            sc, avail_idx, s["time_slot"], s["_ts"], prefs[u], states[u], er, m0
+        )
         if chosen not in seat_ids:
             excl["chosen_not_available"] += 1
             continue
@@ -247,17 +349,33 @@ def build(cfg, max_sessions=0, out=None):
             y = np.zeros(len(seat_ids), np.int8)
             y[ci] = 1
             mats.append(M)
-            keys.append(pd.DataFrame({"session_id": s["session_id"], "seat_id": seat_ids, "y_chosen": y}))
-            meta_rows.append({
-                "session_id": s["session_id"], "user_id": u, "room_id": s["room_id"], "library_id": s["library_id"],
-                "scenario_id": s["scenario_id"], "occurred_at": s["occurred_at"], "time_slot": s["time_slot"],
-                "split": split[u], "room_holdout": s["room_id"] in holdout,
-                "before_time_split": s["occurred_at"][:10] < tsplit,
-                "n_avail": len(seat_ids), "n_eligible": int(M[:, FEATURE_COLS.index("ctx_req_ok")].sum()),
-                "hist_n": states[u].n, "has_profile": bool(prefs[u].imp.sum() > 0),
-                "n_unknown": int(7 - np.count_nonzero(prefs[u].itype)), "laptop_req": bool(prefs[u].reqs),
-                "exposed_any": bool(er), "chosen_exposed": chosen in er,
-            })
+            keys.append(
+                pd.DataFrame(
+                    {"session_id": s["session_id"], "seat_id": seat_ids, "y_chosen": y}
+                )
+            )
+            meta_rows.append(
+                {
+                    "session_id": s["session_id"],
+                    "user_id": u,
+                    "room_id": s["room_id"],
+                    "library_id": s["library_id"],
+                    "scenario_id": s["scenario_id"],
+                    "occurred_at": s["occurred_at"],
+                    "time_slot": s["time_slot"],
+                    "split": split[u],
+                    "room_holdout": s["room_id"] in holdout,
+                    "before_time_split": s["occurred_at"][:10] < tsplit,
+                    "n_avail": len(seat_ids),
+                    "n_eligible": int(M[:, FEATURE_COLS.index("ctx_req_ok")].sum()),
+                    "hist_n": states[u].n,
+                    "has_profile": bool(prefs[u].imp.sum() > 0),
+                    "n_unknown": int(7 - np.count_nonzero(prefs[u].itype)),
+                    "laptop_req": bool(prefs[u].reqs),
+                    "exposed_any": bool(er),
+                    "chosen_exposed": chosen in er,
+                }
+            )
         states[u].update(chosen, gkeys[ci], Xc[ci])
 
     X = np.concatenate(mats)
@@ -267,18 +385,38 @@ def build(cfg, max_sessions=0, out=None):
     meta = pd.DataFrame(meta_rows)
     cand.to_parquet(out / "candidates.parquet", index=False, compression="zstd")
     meta.to_parquet(out / "sessions.parquet", index=False)
-    write_json(out / "splits.json", {"user_split": split, "room_holdout": holdout, "time_split_date": tsplit,
-                                     "seed": cfg["seed"], "stratified_by": "archetype"})
+    write_json(
+        out / "splits.json",
+        {
+            "user_split": split,
+            "room_holdout": holdout,
+            "time_split_date": tsplit,
+            "seed": cfg["seed"],
+            "stratified_by": "archetype",
+        },
+    )
     rep = {
-        "sessions_total": len(sess), "sessions_used": len(meta), "rows": len(cand), "features": len(FEATURE_COLS),
+        "sessions_total": len(sess),
+        "sessions_used": len(meta),
+        "rows": len(cand),
+        "features": len(FEATURE_COLS),
         "excluded": dict(excl),
         "users": {k: int(v) for k, v in pd.Series(split).value_counts().items()},
         "room_holdout": holdout,
-        "sessions_by_split": meta.groupby(["split", "room_holdout"]).size().rename("n").reset_index().to_dict("records"),
-        "n_avail_quantiles": {str(q): float(meta.n_avail.quantile(q)) for q in (0, .1, .25, .5, .75, .9, .99, 1)},
+        "sessions_by_split": meta.groupby(["split", "room_holdout"])
+        .size()
+        .rename("n")
+        .reset_index()
+        .to_dict("records"),
+        "n_avail_quantiles": {
+            str(q): float(meta.n_avail.quantile(q))
+            for q in (0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99, 1)
+        },
         "chosen_in_exposed_rate": float(meta.chosen_exposed.mean()),
         "exposed_any_rate": float(meta.exposed_any.mean()),
-        "chosen_violates_requirements": int(cand.loc[cand.y_chosen == 1, "ctx_req_ok"].eq(0).sum()),
+        "chosen_violates_requirements": int(
+            cand.loc[cand.y_chosen == 1, "ctx_req_ok"].eq(0).sum()
+        ),
         "seconds": round(time.time() - t0, 1),
     }
     write_json(out / "data_report.json", rep)
@@ -292,7 +430,12 @@ def main():
     ap.add_argument("--out")
     a = ap.parse_args()
     rep = build(load_config(a.config), a.max_sessions, a.out)
-    print({k: rep[k] for k in ("sessions_total", "sessions_used", "rows", "excluded", "seconds")})
+    print(
+        {
+            k: rep[k]
+            for k in ("sessions_total", "sessions_used", "rows", "excluded", "seconds")
+        }
+    )
 
 
 if __name__ == "__main__":

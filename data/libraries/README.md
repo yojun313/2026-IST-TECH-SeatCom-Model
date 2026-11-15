@@ -22,7 +22,7 @@ libraries/
 │   ├── synth_scenarios.jsonl    # 열람실 × 시나리오 환경 배치 (720)
 │   ├── synth_seat_env.jsonl     # 시나리오별 좌석 특성 (63,330)
 │   ├── synth_users.jsonl        # 카카오톡 분석 형식 사용자 프로필 (3,000)
-│   ├── synth_sessions.jsonl     # 추천 노출·선택 세션 (163,767)
+│   ├── synth_sessions.jsonl     # 추천 노출·선택 세션 (163,306)
 │   └── synth_events.jsonl       # M/B 이벤트 API 형식 이벤트 (454,103)
 ├── scripts/
 │   ├── build_unified.py         # real/* → unified/*.jsonl, coverage.csv
@@ -74,11 +74,14 @@ uv run data/libraries/scripts/load_mongo.py          # MongoDB 적재 (컬렉션
 | libraries · rooms · maps · seats · facilities · room_features · sources · walkway_nodes | 27 · 94 · 34 · 2,111 · 73 · 29 · 109 · 6 | 27관 실데이터. `dataset_status`=`active`(real) / `backup`, `is_synthetic=false`. 빈 배열 테이블(seat_features, walkway_edges, map_transforms)은 컬렉션이 생기지 않음 |
 | build_reports | 27 | 도서관별 build_report |
 | meta | 2 | `registry`, `synthetic_manifest` |
-| synth_scenarios · synth_seat_env · synth_users · synth_sessions · synth_events | 720 · 63,330 · 3,000 · 163,767 · 454,103 | 합성 데이터. `is_synthetic=true`, `verification=synthetic` |
+| synth_scenarios · synth_seat_env · synth_users · synth_sessions · synth_events | 720 · 63,330 · 3,000 · 163,306 · 444,297 | 합성 데이터. `is_synthetic=true`, `verification=synthetic` |
 
 ```python
-import sys; sys.path.insert(0, "libraries/scripts")
+import sys
+
+sys.path.insert(0, "libraries/scripts")
 from load import load_table, load_df, load_synthetic
+
 seats = load_df("seats", "yongin-suji")
 env = load_synthetic("synth_seat_env")
 ```

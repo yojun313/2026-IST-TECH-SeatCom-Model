@@ -6,6 +6,7 @@ Python 3.10+ / openai / pydantic 2.x / python-dotenv
 from __future__ import annotations
 
 import json
+import logging
 import os
 import re
 from pathlib import Path
@@ -14,7 +15,7 @@ from time import perf_counter
 from typing import Callable, Literal
 
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai import OpenAI, APIConnectionError, APIStatusError
 from pydantic import BaseModel, Field, ValidationError
 
 if __package__:
@@ -116,13 +117,30 @@ SYSTEM_PROMPT = """
 허용 preference 값:
 """ + json.dumps({k: sorted(v) for k, v in ALLOWED.items()}, ensure_ascii=False)
 
-MERGE_PROMPT = SYSTEM_PROMPT + """
+MERGE_PROMPT = (
+    SYSTEM_PROMPT
+    + """
 
 현재 입력은 원문 대신 여러 구간에서 나온 chunk_profiles입니다.
 약한 추론과 직접 근거를 함께 보되, 구간 간 반복 근거는 강화할 수 있습니다.
 근거가 모순되면 신뢰도를 낮추세요. 새 message_id를 창작하지 마세요.
 중간 구간에 근거가 없다 해도 다른 구간의 정당한 추론을 임의로 unknown으로 지우지 마세요.
+같은 message_id는 구간 겹침으로 반복될 수 있으므로 독립적인 증거로 중복 합산하지 마세요.
+다수결이나 confidence의 단순 합계 대신 직접성, 서로 다른 발언의 반복, 최근성,
+반대 증거를 함께 비교하여 최종 판단하세요. 상충하는 근거도 reason에 설명하세요.
 """
+)
+
+
+log = logging.getLogger(__name__)
+
+
+class AnalysisResponseError(RuntimeError):
+    """원문이나 AI 응답을 담지 않는 안전한 오류."""
+
+    def __init__(self, code: str):
+        self.code = code
+        super().__init__(code)
 
 
 class PersonalityAnalysis:
@@ -138,7 +156,9 @@ class PersonalityAnalysis:
 
         # KNPU API: 다른 사용자가 공유하는 서버이므로 동시 요청 수를 제한합니다.
         self.oss_workers = max(1, int(os.getenv("OSS_MAX_WORKERS", "3")))
-        self.oss_max_tokens = max(256, int(os.getenv("OSS_MAX_COMPLETION_TOKENS", "2000")))
+        self.oss_max_tokens = max(
+            256, int(os.getenv("OSS_MAX_COMPLETION_TOKENS", "2000"))
+        )
         self.oss_reasoning = os.getenv("OSS_REASONING_EFFORT", "low").strip().lower()
         self.oss_merge_group = max(2, int(os.getenv("OSS_MERGE_GROUP", "6")))
         self.oss_log_times = os.getenv("OSS_LOG_TIMES", "1") == "1"
@@ -150,7 +170,8 @@ class PersonalityAnalysis:
                 timeout=float(os.getenv("OSS_TIMEOUT", "180")),
                 max_retries=int(os.getenv("OSS_MAX_RETRIES", "1")),
             )
-            if oss_key else None
+            if oss_key
+            else None
         )
         self.oss_model = os.getenv("OSS_MODEL", "openai/gpt-oss-120b")
         # 변하지 않는 스키마 문자열 재활용, JSON 직렬화 길이 감소
@@ -171,7 +192,9 @@ class PersonalityAnalysis:
     def _anonymize_records(records: list[dict], name: str) -> list[dict]:
         # 원본 데이터는 건드리지 않고 외부 모델로 전송할 발신자 표시만 가명화
         senders = list(dict.fromkeys(r["sender"] for r in records if r["sender"]))
-        alias = {sender: f"speaker_{i:03d}" for i, sender in enumerate(senders, start=1)}
+        alias = {
+            sender: f"speaker_{i:03d}" for i, sender in enumerate(senders, start=1)
+        }
         alias[name] = "TARGET"
         result = []
         for record in records:
@@ -212,7 +235,8 @@ class PersonalityAnalysis:
             + "\n반드시 유효한 순수 JSON 객체 하나만 출력하세요."
             + "\n각 feature의 reason은 한 문장, evidence는 핵심 메시지만 최대 7개,"
             + " behavioral_summary와 seat_recommendation은 최대 2문장으로 작성하세요."
-            + "\nJSON 구조:\n" + self._oss_schema
+            + "\nJSON 구조:\n"
+            + self._oss_schema
         )
         kwargs = {
             "model": self.oss_model,
@@ -225,43 +249,92 @@ class PersonalityAnalysis:
         if self.oss_reasoning in ("low", "medium", "high"):
             kwargs["reasoning_effort"] = self.oss_reasoning
 
-        start_time = perf_counter()
-        response = self.oss_client.chat.completions.create(**kwargs)
-        if self.oss_log_times:
-            usage = response.usage
-            print(
-                f"[KNPU] {perf_counter() - start_time:.1f}s, "
-                f"input={getattr(usage, 'prompt_tokens', '?')}, "
-                f"output={getattr(usage, 'completion_tokens', '?')}",
-                flush=True,
+        # 프롬프트만으로 JSON 형태를 부탁하지 않고 서버에서 스키마를 강제한다.
+        kwargs["response_format"] = {
+            "type": "json_schema",
+            "json_schema": {
+                "name": "seat_profile",
+                "strict": True,
+                "schema": SeatProfile.model_json_schema(),
+            },
+        }
+        last_code = "AI_RESPONSE_INVALID"
+        for attempt in range(2):
+            start_time = perf_counter()
+            response = self.oss_client.chat.completions.create(**kwargs)
+            if self.oss_log_times:
+                usage = response.usage
+                print(
+                    f"[KNPU] {perf_counter() - start_time:.1f}s, "
+                    f"input={getattr(usage, 'prompt_tokens', '?')}, "
+                    f"output={getattr(usage, 'completion_tokens', '?')}",
+                    flush=True,
+                )
+            choice = response.choices[0] if response.choices else None
+            output = choice.message.content if choice else None
+            finish = getattr(choice, "finish_reason", "missing")
+            last_code = (
+                "AI_EMPTY_RESPONSE"
+                if not isinstance(output, str) or not output.strip()
+                else "AI_RESPONSE_INVALID"
             )
-        if not response.choices:
-            raise RuntimeError("GPT-OSS 응답이 없습니다.")
-        output = response.choices[0].message.content
-        if not isinstance(output, str) or not output.strip():
-            raise RuntimeError(
-                "GPT-OSS가 빈 결과를 반환했습니다. "
-                "max_completion_tokens를 늘리거나 서버 응답을 확인하세요."
+            if isinstance(output, str) and output.strip() and finish != "length":
+                output = output.strip()
+                if output.startswith("```"):
+                    output = re.sub(
+                        r"\A```(?:json)?\s*|\s*```\Z", "", output, flags=re.I
+                    ).strip()
+                candidates = [output]
+                start, end = output.find("{"), output.rfind("}")
+                if 0 <= start < end:
+                    candidates.append(output[start : end + 1])
+                for candidate in candidates:
+                    try:
+                        return SeatProfile.model_validate_json(candidate)
+                    except (ValidationError, ValueError):
+                        pass
+            # 개인정보가 들어갈 수 있는 응답 본문/검증 오류 값은 로그에 남기지 않는다.
+            log.warning(
+                "AI response rejected: code=%s finish=%s attempt=%d",
+                last_code,
+                finish,
+                attempt + 1,
             )
-        output = output.strip()
-        if output.startswith("```"):
-            output = re.sub(
-                r"\A```(?:json)?\s*|\s*```\Z", "", output, flags=re.I
-            ).strip()
-        try:
-            return SeatProfile.model_validate_json(output)
-        except (ValidationError, ValueError):
-            start, end = output.find("{"), output.rfind("}")
-            if 0 <= start < end:
-                try:
-                    return SeatProfile.model_validate_json(output[start:end + 1])
-                except (ValidationError, ValueError):
-                    pass
-            reason = getattr(response.choices[0], "finish_reason", "unknown")
-            raise RuntimeError(
-                f"GPT-OSS JSON 파싱 실패(finish_reason={reason}). "
-                "OSS_MAX_COMPLETION_TOKENS를 늘려보세요."
-            )
+            if attempt == 0:
+                kwargs["max_completion_tokens"] = max(self.oss_max_tokens, 4000)
+        raise AnalysisResponseError(last_code)
+
+    @staticmethod
+    def _merge_fallback(profiles: list[SeatProfile]) -> SeatProfile:
+        """종합 호출 실패 시 검증된 구간의 일치하는 판단만 보존한다."""
+        preferences = {}
+        for feature in ALLOWED:
+            known = [
+                getattr(p.preferences, feature)
+                for p in profiles
+                if getattr(p.preferences, feature).preference != "unknown"
+            ]
+            values = {p.preference for p in known}
+            if len(values) == 1:
+                preferences[feature] = max(
+                    known, key=lambda p: p.confidence
+                ).model_copy(deep=True)
+            else:
+                preferences[feature] = Preference(
+                    preference="unknown",
+                    confidence=0,
+                    inference_type="unknown",
+                    reason="구간별 근거가 서로 달라 판단을 보류했습니다."
+                    if known
+                    else "판단 근거가 부족합니다.",
+                )
+        evidence = {(e.feature, e.message_id): e for p in profiles for e in p.evidence}
+        return SeatProfile(
+            participant_id="TARGET",
+            preferences=Preferences(**preferences),
+            evidence=list(evidence.values()),
+            behavioral_summary="AI 종합 응답을 받지 못해 분석된 구간의 일치하는 근거만 반영했습니다.",
+        )
 
     def _split_chunks(self, records: list[dict]) -> list[list[dict]]:
         """대화 전체를 연속 블록으로 자르고, 앞뒤 메시지 맥락을 겹칩니다.
@@ -276,10 +349,12 @@ class PersonalityAnalysis:
         while start < len(records):
             end = start
             used = 0
-            while end < len(records) and (used + costs[end] <= core_limit or end == start):
+            while end < len(records) and (
+                used + costs[end] <= core_limit or end == start
+            ):
                 if costs[end] > self.max_chars - 200:
                     raise ValueError(
-                        f'{records[end]["message_id"]}의 메시지가 너무 깁니다. '
+                        f"{records[end]['message_id']}의 메시지가 너무 깁니다. "
                         "max_chars를 늘려주세요."
                     )
                 used += costs[end]
@@ -296,7 +371,9 @@ class PersonalityAnalysis:
             low, high = start, end
             remaining = self.max_chars - sum(costs[low:high]) - 200
             before_budget = min(int(self.max_chars * 0.15), max(0, remaining // 2))
-            after_budget = min(int(self.max_chars * 0.15), max(0, remaining - before_budget))
+            after_budget = min(
+                int(self.max_chars * 0.15), max(0, remaining - before_budget)
+            )
 
             before_used = 0
             while low > 0 and before_used + costs[low - 1] <= before_budget:
@@ -311,15 +388,20 @@ class PersonalityAnalysis:
         return chunks
 
     @staticmethod
-    def _validate_profile(profile: SeatProfile, records: list[dict], name: str) -> SeatProfile:
+    def _validate_profile(
+        profile: SeatProfile, records: list[dict], name: str
+    ) -> SeatProfile:
         valid_ids = {r["message_id"] for r in records}
         profile.participant_id = name
-        profile.evidence = [
-            e for e in profile.evidence
-            if e.feature in (*ALLOWED.keys(), "behavior")
-            and e.message_id in valid_ids
-            and e.reason.strip()
-        ]
+        profile.evidence = list(
+            {
+                (e.feature, e.message_id): e
+                for e in profile.evidence
+                if e.feature in (*ALLOWED.keys(), "behavior")
+                and e.message_id in valid_ids
+                and e.reason.strip()
+            }.values()
+        )
 
         # evidence ID가 없다는 이유만으로 합리적인 약한 가설까지 삭제하지 않습니다.
         # 단, 근거 추적에 실패한 값은 확신도를 강제로 낮춰 불확실성을 표시합니다.
@@ -338,7 +420,9 @@ class PersonalityAnalysis:
                 if pref.reason.strip():
                     pref.inference_type = "hypothesis"
                     pref.confidence = min(pref.confidence, 0.25)
-                    pref.reason = "근거 메시지 연결이 확인되지 않은 추측: " + pref.reason
+                    pref.reason = (
+                        "근거 메시지 연결이 확인되지 않은 추측: " + pref.reason
+                    )
                 else:
                     pref.preference = "unknown"
                     pref.confidence = 0.0
@@ -362,87 +446,206 @@ class PersonalityAnalysis:
         return profile
 
     def _analyze(
-        self, source: str | Path, name: str,
+        self,
+        source: str | Path,
+        name: str,
         call_model: Callable[[str, str], SeatProfile],
         parallel: bool = False,
+        recent_chunk_limit: int | None = None,
     ) -> dict:
         # 원본 대화 순서와 다른 사람 발언(맥락)을 유지합니다.
         all_records = self.name_extractor.extract_context_records(source, name)
         if not any(r["is_target"] for r in all_records):
             raise ValueError(f"{name!r}의 메시지가 없습니다.")
         records = self._anonymize_records(all_records, name)
+        if recent_chunk_limit is not None:
+            # 긴 말풍선을 자르지 않고 여러 조각으로 보존한다. 같은 원문 ID를
+            # 유지하여 서로 다른 증거로 중복 집계하지 않는다.
+            fragments = []
+            fragment_chars = min(self.max_chars, 24000) // 3
+            for record in records:
+                if record["kind"] == "metadata":
+                    continue
+                body = record["text"]
+                for offset in range(0, max(1, len(body)), fragment_chars):
+                    fragments.append(
+                        {
+                            **record,
+                            "text": body[offset : offset + fragment_chars],
+                            "fragment_index": offset // fragment_chars,
+                        }
+                    )
+            records = fragments
         chunks = self._split_chunks(records)
+        if recent_chunk_limit is not None:
+            chunks = chunks[-recent_chunk_limit:]
+            # 대상 발언이 있는 최근 구간들을 선택하고 주변 타인 발언도 유지한다.
+            selected = {
+                (r["message_id"], r.get("fragment_index", 0)) for c in chunks for r in c
+            }
+            selected_records = [
+                r
+                for r in records
+                if (r["message_id"], r.get("fragment_index", 0)) in selected
+            ]
+            omitted = len(selected_records) < len(records)
+            records = selected_records
 
         def encode(payload: dict) -> str:
             return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 
-        def batch_call(jobs: list[tuple[str, str]]) -> list[SeatProfile]:
+        call_errors: list[Exception] = []
+
+        def safe_call(prompt: str, content: str) -> SeatProfile | None:
+            try:
+                return call_model(prompt, content)
+            except (AnalysisResponseError, APIConnectionError, APIStatusError) as exc:
+                if recent_chunk_limit is None:
+                    raise
+                call_errors.append(exc)
+                log.warning("AI stage unavailable: %s", type(exc).__name__)
+                return None
+
+        def batch_call(jobs: list[tuple[str, str]]) -> list[SeatProfile | None]:
             """동시에 요청하고 원래 순서대로 결과를 반환합니다."""
             if not jobs:
                 return []
             if not parallel or len(jobs) == 1:
-                return [call_model(prompt, content) for prompt, content in jobs]
+                return [safe_call(prompt, content) for prompt, content in jobs]
             # 공유 서버를 과부하시키지 않도록 최대 동시 요청 수 제한
             workers = min(self.oss_workers, len(jobs))
             with ThreadPoolExecutor(max_workers=workers) as executor:
                 futures = [
-                    executor.submit(call_model, prompt, content)
+                    executor.submit(safe_call, prompt, content)
                     for prompt, content in jobs
                 ]
                 return [future.result() for future in futures]
 
         start_time = perf_counter()
+        merge_calls = 0
         if parallel and self.oss_log_times:
             print(
-                f"[KNPU] 청크 {len(chunks)}개, "
-                f"최대 동시 요청 {self.oss_workers}개",
+                f"[KNPU] 청크 {len(chunks)}개, 최대 동시 요청 {self.oss_workers}개",
                 flush=True,
             )
         jobs = [
             (SYSTEM_PROMPT, encode({"participant_id": "TARGET", "messages": chunk}))
             for chunk in chunks
         ]
+        responses = batch_call(jobs)
+        failed_chunks = sum(response is None for response in responses)
+        if failed_chunks == len(chunks):
+            raise call_errors[-1]
+        if failed_chunks:
+            good_ids = {
+                (r["message_id"], r.get("fragment_index", 0))
+                for response, chunk in zip(responses, chunks)
+                if response is not None
+                for r in chunk
+            }
+            records = [
+                r
+                for r in records
+                if (r["message_id"], r.get("fragment_index", 0)) in good_ids
+            ]
+            omitted = True
         partials = [
             self._validate_profile(result, chunk, name)
-            for result, chunk in zip(batch_call(jobs), chunks)
+            for result, chunk in zip(responses, chunks)
+            if result is not None
         ]
+        # 전체 증거 목록은 별도로 보존한다. 병합 응답의 길이 제한 때문에
+        # 앞 단계에서 발견한 근거가 최종 응답에서 사라지지 않게 한다.
+        collected_evidence = {
+            (e.feature, e.message_id): e
+            for profile in partials
+            for e in profile.evidence
+        }
 
         # 병합 역시 레벨별 서로 독립적인 그룹은 동시에 요청합니다.
         group_size = self.oss_merge_group if parallel else 4
         while len(partials) > 1:
             groups = [
-                partials[i:i + group_size]
+                partials[i : i + group_size]
                 for i in range(0, len(partials), group_size)
             ]
             merge_jobs = [
                 (
                     MERGE_PROMPT,
-                    encode({
-                        "participant_id": "TARGET",
-                        "chunk_profiles": [p.model_dump() for p in group],
-                    }),
+                    encode(
+                        {
+                            "participant_id": "TARGET",
+                            "chunk_profiles": [
+                                {**p.model_dump(), "participant_id": "TARGET"}
+                                for p in group
+                            ],
+                        }
+                    ),
                 )
-                for group in groups if len(group) > 1
+                for group in groups
+                if len(group) > 1
             ]
+            merge_calls += len(merge_jobs)
             merged = iter(batch_call(merge_jobs))
             partials = [
-                group[0] if len(group) == 1
-                else self._validate_profile(next(merged), records, name)
+                group[0]
+                if len(group) == 1
+                else self._validate_profile(
+                    next(merged) or self._merge_fallback(group), records, name
+                )
                 for group in groups
             ]
 
         if parallel and self.oss_log_times:
             print(f"[KNPU] 분석 전체: {perf_counter() - start_time:.1f}s", flush=True)
-        return self._validate_profile(partials[0], records, name).model_dump()
+        final = self._validate_profile(partials[0], records, name)
+        result = final.model_dump()
+        if recent_chunk_limit is not None:
+            analyzed_ids = {r["message_id"] for r in records if r["kind"] == "message"}
+            result["behavioral_summary"] = (
+                "최근 대화에서 찾은 근거를 종합했습니다. "
+                + result["behavioral_summary"]
+            )
+            if call_errors:
+                result["behavioral_summary"] = (
+                    "일부 AI 응답을 받지 못해 확인된 구간의 근거만 반영한 결과입니다. "
+                    + result["behavioral_summary"]
+                )
+            result["collected_evidence"] = [
+                e.model_dump() for e in collected_evidence.values()
+            ]
+            result["analysis_scope"] = {
+                "mode": "recent_evidence",
+                "total_messages": sum(r["kind"] == "message" for r in all_records),
+                "analyzed_messages": len(analyzed_ids),
+                "truncated": omitted,
+                "analyzed_chunks": len(chunks),
+                "max_chunks": recent_chunk_limit,
+                "merge_requests": merge_calls,
+                "model_requests": len(chunks) + merge_calls,
+                "collected_evidence_count": len(collected_evidence),
+                "target_seconds": 60,
+                "hard_deadline_seconds": None,
+                "failed_chunks": failed_chunks,
+                "partial": bool(call_errors),
+                "merge_fallbacks": len(call_errors) - failed_chunks,
+                "request_count_excludes_retries": True,
+            }
+        return result
 
     def analyze_by_GPT_API(self, source: str | Path, name: str) -> dict:
         """기존 OpenAI 방식은 유지합니다."""
         return self._analyze(source, name, self._call_gpt)
 
     def analyze_by_GPT_OSS_API(self, source: str | Path, name: str) -> dict:
-        """기존 KNPU 서버를 사용해 청크 분석과 병합을 병렬로 처리합니다."""
-        return self._analyze(source, name, self._call_gpt_oss, parallel=True)
-
+        """최근 최대 18구간의 증거를 종합한다. 1분은 목표이며 종료 기한이 아니다."""
+        return self._analyze(
+            source,
+            name,
+            self._call_gpt_oss,
+            parallel=True,
+            recent_chunk_limit=18,
+        )
 
 
 """
@@ -466,34 +669,21 @@ from typing import Any
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
-from vllm import LLM, SamplingParams
-from vllm.sampling_params import StructuredOutputsParams
-
-if __package__:
-    from .api import (
-        PersonalityAnalysis,
-        SeatProfile,
-        SYSTEM_PROMPT,
-        MERGE_PROMPT,
-    )
-else:
-    from api import (
-        PersonalityAnalysis,
-        SeatProfile,
-        SYSTEM_PROMPT,
-        MERGE_PROMPT,
-    )
-
-
-load_dotenv(
-    Path(__file__).resolve().parent / ".env",
-    override=True,
-)
 
 # TODO : VLLM 사용해서 빠른 추론 구현하기
 class VLLMPersonalityAnalysis(PersonalityAnalysis):
-
     def __init__(self, max_chars: int = 10000):
+        # 외부 API 분석에는 로컬 GPU용 선택 의존성이 필요하지 않습니다.
+        try:
+            from vllm import LLM, SamplingParams
+            from vllm.sampling_params import StructuredOutputsParams
+        except ModuleNotFoundError as exc:
+            if exc.name != "vllm":
+                raise
+            raise RuntimeError(
+                "로컬 GPU 분석에는 vllm 설치가 필요합니다. "
+                "외부 API 분석은 PersonalityAnalysis를 사용하세요."
+            ) from exc
         super().__init__(max_chars=max_chars)
 
         # ==========================================
@@ -505,15 +695,9 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
                 "VLLM_MODEL",
                 "openai/gpt-oss-120b",
             ),
-            tensor_parallel_size=int(
-                os.getenv("VLLM_TP", "1")
-            ),
-            gpu_memory_utilization=float(
-                os.getenv("VLLM_GPU_UTIL", "0.90")
-            ),
-            max_model_len=int(
-                os.getenv("VLLM_MAX_MODEL_LEN", "16384")
-            ),
+            tensor_parallel_size=int(os.getenv("VLLM_TP", "1")),
+            gpu_memory_utilization=float(os.getenv("VLLM_GPU_UTIL", "0.90")),
+            max_model_len=int(os.getenv("VLLM_MAX_MODEL_LEN", "16384")),
             trust_remote_code=True,
             enable_prefix_caching=True,
         )
@@ -524,9 +708,7 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
 
         self.sampling = SamplingParams(
             temperature=1.0,
-            max_tokens=int(
-                os.getenv("VLLM_MAX_TOKENS", "1600")
-            ),
+            max_tokens=int(os.getenv("VLLM_MAX_TOKENS", "1600")),
             structured_outputs=StructuredOutputsParams(
                 json=SeatProfile.model_json_schema()
             ),
@@ -545,8 +727,7 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
 
         except (ValidationError, ValueError) as exc:
             raise RuntimeError(
-                "vLLM 응답이 SeatProfile JSON 형식이 아닙니다: "
-                + raw[:400]
+                "vLLM 응답이 SeatProfile JSON 형식이 아닙니다: " + raw[:400]
             ) from exc
 
     # ==========================================
@@ -570,11 +751,7 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
             [
                 {
                     "role": "system",
-                    "content": (
-                        instructions
-                        + "\n출력 JSON 스키마:\n"
-                        + schema_text
-                    ),
+                    "content": (instructions + "\n출력 JSON 스키마:\n" + schema_text),
                 },
                 {
                     "role": "user",
@@ -592,18 +769,11 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
         outputs = self.llm.chat(
             messages=conversations,
             sampling_params=self.sampling,
-            chat_template_kwargs={
-                "reasoning_effort": "low"
-            },
+            chat_template_kwargs={"reasoning_effort": "low"},
             use_tqdm=False,
         )
 
-        return [
-            self._parse_output(
-                output.outputs[0].text
-            )
-            for output in outputs
-        ]
+        return [self._parse_output(output.outputs[0].text) for output in outputs]
 
     # ==========================================
     # Personality Analysis
@@ -616,24 +786,13 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
     ) -> dict:
 
         # 1. 전체 대화 맥락 추출
-        all_records = (
-            self.name_extractor.extract_context_records(
-                source, name
-            )
-        )
+        all_records = self.name_extractor.extract_context_records(source, name)
 
-        if not any(
-            record["is_target"]
-            for record in all_records
-        ):
-            raise ValueError(
-                f"{name!r}의 메시지가 없습니다."
-            )
+        if not any(record["is_target"] for record in all_records):
+            raise ValueError(f"{name!r}의 메시지가 없습니다.")
 
         # 2. 개인정보 마스킹
-        records = self._anonymize_records(
-            all_records, name
-        )
+        records = self._anonymize_records(all_records, name)
 
         # 3. 대화 청크 분할
         chunks = self._split_chunks(records)
@@ -653,40 +812,27 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
         generated = self._generate_batch(jobs)
 
         partials = [
-            self._validate_profile(
-                profile, chunk, name
-            )
-            for profile, chunk in zip(
-                generated, chunks
-            )
+            self._validate_profile(profile, chunk, name)
+            for profile, chunk in zip(generated, chunks)
         ]
 
         # 5. 청크별 분석 결과 병합
         while len(partials) > 1:
-
-            groups = [
-                partials[i:i + 4]
-                for i in range(0, len(partials), 4)
-            ]
+            groups = [partials[i : i + 4] for i in range(0, len(partials), 4)]
 
             merge_jobs = [
                 (
                     MERGE_PROMPT,
                     {
                         "participant_id": "TARGET",
-                        "chunk_profiles": [
-                            profile.model_dump()
-                            for profile in group
-                        ],
+                        "chunk_profiles": [profile.model_dump() for profile in group],
                     },
                 )
                 for group in groups
                 if len(group) > 1
             ]
 
-            merged = iter(
-                self._generate_batch(merge_jobs)
-            )
+            merged = iter(self._generate_batch(merge_jobs))
 
             partials = [
                 group[0]
@@ -706,7 +852,8 @@ class VLLMPersonalityAnalysis(PersonalityAnalysis):
             name,
         ).model_dump()
 
-'''
+
+"""
 # ==========================================
 # Main
 # ==========================================
@@ -736,7 +883,7 @@ if __name__ == "__main__":
         )
     )
 
-'''
+"""
 
 
 if __name__ == "__main__":
@@ -746,7 +893,7 @@ if __name__ == "__main__":
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
-'''
+"""
 if __name__ == "__main__":
 
     analyzer = VLLMPersonalityAnalysis(
@@ -771,4 +918,4 @@ if __name__ == "__main__":
             indent=2,
         )
     )
-'''
+"""

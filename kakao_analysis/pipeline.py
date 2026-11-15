@@ -59,11 +59,15 @@ class SeatComPipeline:
         self.directory = Path(directory or BASE_DIR).resolve()
         self.gmail = TxtFromGmail(poll_seconds=poll_seconds, directory=self.directory)
         self.analyzer = PersonalityAnalysis()  # Uses existing KNPU API, not local vLLM
-        self.default_target = (target_name or os.getenv("KAKAO_TARGET_NAME", "")).strip()
+        self.default_target = (
+            target_name or os.getenv("KAKAO_TARGET_NAME", "")
+        ).strip()
 
         env_map = json.loads(os.getenv("KAKAO_SENDER_NAME_MAP", "{}"))
         names = sender_name_map if sender_name_map is not None else env_map
-        self.sender_name_map = {str(k).lower(): str(v).strip() for k, v in names.items()}
+        self.sender_name_map = {
+            str(k).lower(): str(v).strip() for k, v in names.items()
+        }
 
         self.db_path = self.directory / "seatcom_profiles.sqlite3"
         self._stop_event = threading.Event()
@@ -114,8 +118,12 @@ class SeatComPipeline:
                     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
                 )
             """)
-            db.execute("CREATE INDEX IF NOT EXISTS idx_profiles_status ON profiles(status)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_profiles_sender ON profiles(sender_email)")
+            db.execute(
+                "CREATE INDEX IF NOT EXISTS idx_profiles_status ON profiles(status)"
+            )
+            db.execute(
+                "CREATE INDEX IF NOT EXISTS idx_profiles_sender ON profiles(sender_email)"
+            )
             # A prior process may have stopped in the middle of model inference.
             db.execute("UPDATE profiles SET status='pending' WHERE status='processing'")
 
@@ -130,17 +138,25 @@ class SeatComPipeline:
 
     def _register_attachment(self, key: str, meta: dict[str, Any]) -> str:
         with self._db() as db:
-            db.execute("""
+            db.execute(
+                """
                 INSERT OR IGNORE INTO profiles (
                     id, attachment_id, message_id, sender_email, subject,
                     mail_date, filename, file_path, sha256, status
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')
-            """, (
-                uuid.uuid4().hex, key, str(meta["message_id"]),
-                str(meta.get("sender", "")).lower(), str(meta.get("subject", "")),
-                str(meta.get("date", "")), str(meta.get("original_filename", "")),
-                str(meta["saved_path"]), str(meta["sha256"]),
-            ))
+            """,
+                (
+                    uuid.uuid4().hex,
+                    key,
+                    str(meta["message_id"]),
+                    str(meta.get("sender", "")).lower(),
+                    str(meta.get("subject", "")),
+                    str(meta.get("date", "")),
+                    str(meta.get("original_filename", "")),
+                    str(meta["saved_path"]),
+                    str(meta["sha256"]),
+                ),
+            )
             row = db.execute(
                 "SELECT id FROM profiles WHERE attachment_id=?", (key,)
             ).fetchone()
@@ -184,55 +200,73 @@ class SeatComPipeline:
         """Save a JSON analysis under its stable UUID; return that UUID."""
         encoded = json.dumps(analysis, ensure_ascii=False, separators=(",", ":"))
         with self._db() as db:
-            cur = db.execute("""
+            cur = db.execute(
+                """
                 UPDATE profiles
                    SET profile_json=?, status='done', error=NULL,
                        updated_at=CURRENT_TIMESTAMP
                  WHERE id=?
-            """, (encoded, profile_id))
+            """,
+                (encoded, profile_id),
+            )
             if cur.rowcount != 1:
                 raise KeyError(f"존재하지 않는 프로파일 ID: {profile_id}")
         return profile_id
 
     def get_by_id(self, profile_id: str) -> dict[str, Any] | None:
         with self._db() as db:
-            row = db.execute("SELECT * FROM profiles WHERE id=?", (profile_id,)).fetchone()
+            row = db.execute(
+                "SELECT * FROM profiles WHERE id=?", (profile_id,)
+            ).fetchone()
         if row is None:
             return None
         result = dict(row)
-        result["analysis"] = json.loads(result.pop("profile_json")) if result["profile_json"] else None
+        result["analysis"] = (
+            json.loads(result.pop("profile_json")) if result["profile_json"] else None
+        )
         return result
 
     def list_profiles(self, limit: int = 100) -> list[dict[str, Any]]:
         with self._db() as db:
-            rows = db.execute("""
+            rows = db.execute(
+                """
                 SELECT id, sender_email, filename, target_name, status,
                        duplicate_of, error, created_at, updated_at
                   FROM profiles ORDER BY created_at DESC, id DESC LIMIT ?
-            """, (min(max(limit, 1), 500),)).fetchall()
+            """,
+                (min(max(limit, 1), 500),),
+            ).fetchall()
         return [dict(row) for row in rows]
 
     def retry(self, profile_id: str) -> bool:
         """Requeue a failed analysis (for example after fixing the KakaoTalk name)."""
         with self._db() as db:
-            cur = db.execute("""
+            cur = db.execute(
+                """
                 UPDATE profiles SET status='pending', error=NULL,
                                     updated_at=CURRENT_TIMESTAMP
                  WHERE id=? AND status='error'
-            """, (profile_id,))
+            """,
+                (profile_id,),
+            )
         return bool(cur.rowcount) and self._enqueue(profile_id)
 
     def _analyze_one(self, profile_id: str) -> None:
         with self._db() as db:
-            cur = db.execute("""
+            cur = db.execute(
+                """
                 UPDATE profiles SET status='processing', updated_at=CURRENT_TIMESTAMP
                  WHERE id=? AND status='pending'
-            """, (profile_id,))
+            """,
+                (profile_id,),
+            )
             if cur.rowcount != 1:
                 return
-            row = dict(db.execute(
-                "SELECT * FROM profiles WHERE id=?", (profile_id,)
-            ).fetchone())
+            row = dict(
+                db.execute(
+                    "SELECT * FROM profiles WHERE id=?", (profile_id,)
+                ).fetchone()
+            )
 
         try:
             sender = row["sender_email"]
@@ -249,26 +283,38 @@ class SeatComPipeline:
                 raise ValueError("TXT 파일이 비어 있습니다.")
 
             with self._db() as db:
-                db.execute("""
+                db.execute(
+                    """
                     UPDATE profiles SET target_name=?, updated_at=CURRENT_TIMESTAMP
                      WHERE id=?
-                """, (name, profile_id))
-                prior = db.execute("""
+                """,
+                    (name, profile_id),
+                )
+                prior = db.execute(
+                    """
                     SELECT id, profile_json FROM profiles
                      WHERE sender_email=? AND sha256=? AND target_name=?
                        AND status='done' AND id<>?
                      LIMIT 1
-                """, (sender, row["sha256"], name, profile_id)).fetchone()
+                """,
+                    (sender, row["sha256"], name, profile_id),
+                ).fetchone()
 
             if prior and prior["profile_json"]:
                 with self._db() as db:
-                    db.execute("""
+                    db.execute(
+                        """
                         UPDATE profiles SET status='done', profile_json=?,
                                             duplicate_of=?, error=NULL,
                                             updated_at=CURRENT_TIMESTAMP
                          WHERE id=?
-                    """, (prior["profile_json"], prior["id"], profile_id))
-                print(f"[중복 분석 재사용] id={profile_id}, 원본={prior['id']}", flush=True)
+                    """,
+                        (prior["profile_json"], prior["id"], profile_id),
+                    )
+                print(
+                    f"[중복 분석 재사용] id={profile_id}, 원본={prior['id']}",
+                    flush=True,
+                )
                 return
 
             # This is the existing KNPU API method (its internal chunk calls are parallel).
@@ -277,21 +323,33 @@ class SeatComPipeline:
                 name=name,
             )
             self.save_to_db(profile_id, analysis)
-            print(json.dumps({
-                "id": profile_id,
-                "sender_email": sender,
-                "filename": row["filename"],
-                "analysis": analysis,
-            }, ensure_ascii=False, indent=2), flush=True)
+            print(
+                json.dumps(
+                    {
+                        "id": profile_id,
+                        "sender_email": sender,
+                        "filename": row["filename"],
+                        "analysis": analysis,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                ),
+                flush=True,
+            )
 
         except Exception as exc:
             with self._db() as db:
-                db.execute("""
+                db.execute(
+                    """
                     UPDATE profiles SET status='error', error=?,
                                         updated_at=CURRENT_TIMESTAMP
                      WHERE id=?
-                """, (f"{type(exc).__name__}: {exc}", profile_id))
-            print(f"[분석 실패] id={profile_id}: {type(exc).__name__}: {exc}", flush=True)
+                """,
+                    (f"{type(exc).__name__}: {exc}", profile_id),
+                )
+            print(
+                f"[분석 실패] id={profile_id}: {type(exc).__name__}: {exc}", flush=True
+            )
 
     def _worker_loop(self) -> None:
         while not self._stop_event.is_set():
@@ -320,7 +378,9 @@ class SeatComPipeline:
         self._stop_event.clear()
         self._threads = [
             threading.Thread(target=self._poll_loop, name="gmail-poller", daemon=True),
-            threading.Thread(target=self._worker_loop, name="seatcom-analyzer", daemon=True),
+            threading.Thread(
+                target=self._worker_loop, name="seatcom-analyzer", daemon=True
+            ),
         ]
         for thread in self._threads:
             thread.start()
@@ -359,7 +419,9 @@ app = FastAPI(title="SeatCom Gmail Analysis API", lifespan=lifespan)
 def require_api_key(x_api_key: str | None = Header(default=None)) -> None:
     expected = os.getenv("SEATCOM_API_KEY", "")
     if not expected:
-        raise HTTPException(status_code=503, detail="SEATCOM_API_KEY 설정이 필요합니다.")
+        raise HTTPException(
+            status_code=503, detail="SEATCOM_API_KEY 설정이 필요합니다."
+        )
     if x_api_key is None or not secrets.compare_digest(x_api_key, expected):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
@@ -390,7 +452,9 @@ def scan_now():
 @app.post("/profiles/{profile_id}/retry", dependencies=[Depends(require_api_key)])
 def retry_profile(profile_id: str):
     if not app.state.pipeline.retry(profile_id):
-        raise HTTPException(status_code=409, detail="Only error profiles can be retried")
+        raise HTTPException(
+            status_code=409, detail="Only error profiles can be retried"
+        )
     return {"id": profile_id, "status": "pending"}
 
 
