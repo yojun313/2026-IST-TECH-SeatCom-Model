@@ -17,7 +17,7 @@
 ## 2. 도서관 하나당 납품할 디렉터리
 
 ```text
-data/libraries/{library_id}/
+data/libraries/real/{library_id}/
 ├── dataset.json             # 아래 배열들을 합친 검증 대상 번들
 ├── libraries.json           # 해당 기관 1행 배열
 ├── rooms.json
@@ -37,7 +37,7 @@ data/libraries/{library_id}/
 - JSON을 기준 산출물로 한다. `dataset.json`은 `schema_version:"1.1"`과 위 11종 배열을 포함한다. 개별 파일은 해당 배열과 값·행 수가 같아야 한다.
 - 표 형태 파일은 CSV 사본도 제공한다. UTF-8 BOM, 한글 컬럼, 마지막 컬럼명은 `데이터기준일자`로 하고 값은 `YYYY-MM-DD` 형식으로 기록한다. 중첩 bbox·좌표 배열·context는 CSV 셀 안에 **JSON 문자열**로 저장하고 Python repr로 쓰지 않는다.
 - JSON은 UTF-8, 미확인은 `null`. 빈 배열은 ‘관측·등록 레코드 없음’이며 실제 시설 부재를 뜻하지 않는다.
-- 도서관별 레코드에는 해당 `library_id`를 넣는다. 각 CSV의 한글 헤더와 필드 순서는 [`data/libraries/export_csv.py`](../libraries/export_csv.py)가 정본이며, 중첩 값은 JSON 문자열로 내보낸다. JSON 번들을 수정한 뒤 이 스크립트를 실행해 CSV 사본을 다시 생성한다.
+- 도서관별 레코드에는 해당 `library_id`를 넣는다. 각 CSV의 한글 헤더와 필드 순서는 [`data/libraries/scripts/export_csv.py`](../libraries/scripts/export_csv.py)가 정본이며, 중첩 값은 JSON 문자열로 내보낸다. JSON 번들을 수정한 뒤 이 스크립트를 실행해 CSV 사본을 다시 생성한다.
 - 빈 파일과 가짜 좌표를 먼저 양산하지 않는다. 자료가 없는 항목은 `[]` 또는 허용된 `null`로 두고 미구축 사유를 build_report에 기록한다.
 - assets에 브라우저 개인 영역·현황 색상·성별·이용 시각이 든 캡처나 원본 현황 HTML을 복제하지 않는다. 사용자가 제공한 원본은 기존 업로드 경로와 해시로 추적하고, 배포용은 상태를 제거한 좌석도나 허용된 정적 원본만 만든다.
 
@@ -177,4 +177,4 @@ data/libraries/{library_id}/
 
 ## 8. 다른 에이전트에게 그대로 보낼 지시문
 
-> 저장소 루트 data/docs/DATASET_BUILD_TASKS.md, HANDOFF.md, target_schema.json을 읽고 data/catalog/library_build_tasks.csv에서 지정한 작업ID의 공공도서관 데이터셋을 구축하라. data/libraries/{library_id}/에 v1.1 JSON 번들과 개별 배열, CSV 사본, build_report.json을 저장하라. 좌석 번호·좌표·공식ID 대응, 지도 프레임, 화장실·출입구·설비·통로와 추천용 특성을 근거가 있는 범위에서 조사하라. 원본 이용조건·robots·수집 간격을 지키고, 접근 제한을 우회하거나 없는 좌석·시설·특성 값을 AI로 만들어 채우지 마라. 미확인은 null 또는 미구축으로 보고하고, 검수 전 후보와 운영 적격 데이터를 분리하라. 기관별로 실제 완료 범위·누락 원인·다음 작업을 보고하라. 다른 도서관이나 기존 산출물을 덮어쓰지 마라.
+> 저장소 루트 data/docs/DATASET_BUILD_TASKS.md, HANDOFF.md, target_schema.json을 읽고 data/catalog/library_build_tasks.csv에서 지정한 작업ID의 공공도서관 데이터셋을 구축하라. data/libraries/real/{library_id}/에 v1.1 JSON 번들과 개별 배열, CSV 사본, build_report.json을 저장하라. 좌석 번호·좌표·공식ID 대응, 지도 프레임, 화장실·출입구·설비·통로와 추천용 특성을 근거가 있는 범위에서 조사하라. 원본 이용조건·robots·수집 간격을 지키고, 접근 제한을 우회하거나 없는 좌석·시설·특성 값을 AI로 만들어 채우지 마라. 미확인은 null 또는 미구축으로 보고하고, 검수 전 후보와 운영 적격 데이터를 분리하라. 기관별로 실제 완료 범위·누락 원인·다음 작업을 보고하라. 다른 도서관이나 기존 산출물을 덮어쓰지 마라.

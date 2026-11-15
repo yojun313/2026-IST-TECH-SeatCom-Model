@@ -1,0 +1,57 @@
+{% extends "_layout.html" %}
+{% block head %}<script src="/static/vendor/chart.umd.min.js"></script>{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><a href="/users" class="small"><i class="fa-solid fa-arrow-left"></i> 사용자 목록</a><h1 id="title">사용자</h1><div class="muted" id="sub"></div></div>
+</div>
+<div id="body"><div class="empty"><span class="spinner"></span></div></div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/floor.js"></script>
+<script src="/static/timeline.js"></script>
+<script>
+(async () => {
+  const { $, api, esc, l, fmt, bar } = SV;
+  const uid = {{ uid|tojson }};
+  try {
+    const d = await api('/api/users/' + encodeURIComponent(uid)), u = d.user, kp = u.kakaotalk_profile.preferences, lat = u.latent;
+    $('#title').innerHTML = `${esc(u.user_id)} <span class="badge b-syn">합성</span>`;
+    $('#sub').innerHTML = `${l(u.archetype)} · 주 이용 <a href="/floor?lib=${u.home_library_id}">${esc(u.home_library_id)}</a>${u.secondary_library_ids.length ? ' · 보조 ' + u.secondary_library_ids.map(esc).join(', ') : ''} · 주 ${u.visit_rate_per_week}회 방문`;
+    const wts = Object.entries(lat.utility_weights).sort((a, b) => b[1].weight - a[1].weight);
+    $('#body').innerHTML = `
+      <div class="card" style="margin-bottom:14px"><h2>카카오톡 분석 프로필 (관측) vs 잠재 선호 (정답)</h2>
+        <div class="grid g4">${Object.entries(kp).map(([k, p]) => {
+          const ok = p.preference === 'unknown' ? null : p.preference === lat.preferences[k];
+          return `<div class="pref-card"><div class="t">${l(k)} · ${esc(k)}</div><div class="v">${esc(p.preference)} ${ok === null ? '<span class="badge b-mute">근거 없음</span>' : ok ? '<span class="badge b-ok">일치</span>' : '<span class="badge b-bad">오추론</span>'}</div>
+            <div class="frow" style="grid-template-columns:60px 1fr 40px"><span class="small muted">확신도</span>${bar(p.confidence)}<span class="n">${p.confidence.toFixed(2)}</span></div>
+            <div class="small muted">${esc(p.inference_type)} · ${esc(p.reason)}</div><div class="small" style="margin-top:4px">정답: <b>${esc(lat.preferences[k])}</b></div></div>`; }).join('')}</div></div>
+      <div class="grid g3" style="margin-bottom:14px">
+        <div class="card"><h2>추천 엔진 입력 (preference_profile)</h2>
+          ${u.preference_profile.preferences.length ? u.preference_profile.preferences.map(p => `<div class="frow"><span>${l(p.featureId)} <span class="muted small">→ ${p.target}</span></span>${bar(p.importance)}<span class="n">${p.importance.toFixed(2)}</span></div>`).join('') : '<div class="muted">활성 취향 없음 (unpersonalized)</div>'}
+          <div class="small muted" style="margin-top:8px">막대 = importance, 화살표 = target</div>
+          <h3 style="margin-top:12px">필수 조건</h3>${u.requirements.length ? u.requirements.map(r => `<code>${esc(r.featureId)} ${r.operator} ${r.value}</code>`).join(' ') : '<span class="muted">없음</span>'}</div>
+        <div class="card"><h2>잠재 효용 가중치 (정답)</h2>
+          ${wts.map(([k, v]) => `<div class="frow"><span>${l(k)} <span class="muted small">→ ${v.target}</span></span>${bar(v.weight, 1, 'var(--accent-2)')}<span class="n">${v.weight.toFixed(2)}</span></div>`).join('')}
+          <dl class="kv small" style="margin-top:10px"><dt>소음 회피</dt><dd>${lat.noise_aversion}</dd><dt>합리성 β</dt><dd>${lat.rationality}</dd><dt>추천 신뢰</dt><dd>${lat.rec_trust}</dd></dl></div>
+        <div class="card"><h2>선택한 좌석의 평균 특성</h2>
+          ${Object.keys(d.chosen_feature_avg).length ? SV.FEATURES.map(k => `<div class="frow"><span>${l(k)}</span>${bar(d.chosen_feature_avg[k])}<span class="n">${d.chosen_feature_avg[k].toFixed(2)}</span></div>`).join('') : '<div class="muted">선택 이력 없음</div>'}</div>
+      </div>
+      <div id="tl" style="margin-bottom:14px"><div class="card"><div class="empty"><span class="spinner"></span> 시계열 불러오는 중…</div></div></div>
+      <div class="grid g3" style="margin-bottom:14px">
+        <div class="card"><h2>선택 경로</h2><div class="chart-box"><canvas id="cOrigin"></canvas></div></div>
+        <div class="card"><h2>만족도 분포</h2><div class="chart-box"><canvas id="cRating"></canvas></div></div>
+        <div class="card"><h2>이벤트</h2><div class="chart-box"><canvas id="cEvents"></canvas></div></div>
+      </div>
+      <div class="card" style="margin-bottom:14px"><h2>세션 ${d.sessions.length}건</h2><div class="tbl-wrap" style="max-height:480px"><table class="tbl"><thead><tr><th>세션</th><th>시각</th><th>도서관</th><th>시간대</th><th class="num">점유율</th><th>추천 Top5</th><th>선택</th><th>경로</th><th class="num">만족도</th></tr></thead><tbody>
+        ${d.sessions.map(s => `<tr class="click" onclick="location.href='/sessions/${encodeURIComponent(s.session_id)}'"><td class="mono">${esc(s.session_id.split(':').pop())}</td><td class="small nowrap">${esc(s.occurred_at.slice(0, 16).replace('T', ' '))}</td><td class="small">${esc(s.library_id)}</td><td>${l(s.time_slot)}</td><td class="num">${(s.occupancy_rate * 100).toFixed(0)}%</td>
+          <td class="small mono">${s.exposed.map(e => esc(e.seat_id.split(':').pop())).join(', ')}</td><td class="mono small">${esc(s.chosen_seat_id?.split(':').pop() ?? '-')}</td><td>${l(s.choice_origin ?? 'none')}</td><td class="num">${s.satisfaction?.toFixed(3) ?? '-'}</td></tr>`).join('')}</tbody></table></div></div>
+      <details class="card"><summary>원본 JSON</summary>${SV.json(u)}</details>`;
+    const pal = ['#2f6f5e', '#c9852b', '#3567a8', '#b8473a', '#7a5ea8', '#5b8f3a'];
+    const doughnut = (id, obj) => new Chart($(id), { type: 'doughnut', data: { labels: Object.keys(obj).map(l), datasets: [{ data: Object.values(obj), backgroundColor: pal }] }, options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } } });
+    doughnut('#cOrigin', d.origin); doughnut('#cEvents', d.events);
+    new Chart($('#cRating'), { type: 'bar', data: { labels: SV.SAT_BINS, datasets: [{ data: SV.SAT_BINS.map(k => d.satisfaction[k] || 0), backgroundColor: '#c9852b' }] }, options: { maintainAspectRatio: false, plugins: { legend: { display: false } } } });
+    SV.userTimeline($('#tl'), await api('/api/users/' + encodeURIComponent(uid) + '/timeline'));
+  } catch (e) { SV.err($('#body'), e); }
+})();
+</script>
+{% endblock %}

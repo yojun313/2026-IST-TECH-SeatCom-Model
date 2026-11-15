@@ -1,0 +1,48 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="page-head">
+  <div><h1>합성 사용자 <span class="badge b-syn">합성</span></h1><div class="muted">카카오톡 분석 형식으로 관측한 선호(누락·오추론 포함)와, 학습 정답인 잠재 선호입니다.</div></div>
+</div>
+<div class="card">
+  <div class="toolbar">
+    <select id="arch"><option value="">모든 유형</option></select>
+    <select id="home"><option value="">모든 주 이용 도서관</option></select>
+    <input type="text" id="q" placeholder="user_id 검색 (예: 00012)">
+  </div>
+  <div class="tbl-wrap" id="tbl"></div>
+  <div class="pager" id="pager"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const { $, api, esc, l } = SV;
+  const ARCH = ['laptop_worker', 'exam_focus', 'comfort_seeker', 'heat_sensitive', 'frequent_break', 'casual_reader'];
+  const PK = ['restroom', 'lighting', 'air_conditioning', 'desk', 'laptop_usage', 'outlet', 'view'];
+  $('#arch').innerHTML += ARCH.map(a => `<option value="${a}">${l(a)}</option>`).join('');
+  let skip = 0; const limit = 50;
+  const prefCell = (p, latent) => {
+    if (p.preference === 'unknown') return `<span class="muted small">unknown</span>`;
+    const ok = p.preference === latent;
+    return `<span class="small" title="정답: ${esc(latent)} · ${esc(p.inference_type)} · 확신 ${p.confidence}" style="color:${ok ? 'var(--ok)' : 'var(--danger)'}">${esc(p.preference)}</span><span class="muted small"> ${p.confidence.toFixed(2)}</span>`;
+  };
+  async function load() {
+    SV.setQs({ arch: $('#arch').value, home: $('#home').value, q: $('#q').value });
+    const d = await api('/api/users', { archetype: $('#arch').value, home: $('#home').value, q: $('#q').value, skip, limit });
+    $('#tbl').innerHTML = `<table class="tbl"><thead><tr><th>user_id</th><th>유형</th><th>주 이용</th>${PK.map(k => `<th>${l(k)}</th>`).join('')}<th class="num">세션</th><th class="num">평균 만족도</th></tr></thead><tbody>
+      ${d.items.map(u => `<tr class="click" onclick="location.href='/users/${encodeURIComponent(u.user_id)}'"><td class="mono">${esc(u.user_id)}</td><td>${l(u.archetype)}</td><td class="small">${esc(u.home_library_id)}</td>
+        ${PK.map(k => `<td>${prefCell(u.kakaotalk_profile.preferences[k], u.latent.preferences[k])}</td>`).join('')}<td class="num">${u.session_count}</td><td class="num">${u.avg_satisfaction ?? '-'}</td></tr>`).join('')}</tbody></table>
+      <div class="small muted" style="margin-top:6px">관측 선호 색: <span style="color:var(--ok)">정답과 일치</span> / <span style="color:var(--danger)">오추론</span> / unknown = 대화 근거 부족</div>`;
+    SV.pager($('#pager'), d.total, skip, limit, s => { skip = s; load(); });
+  }
+  (async () => {
+    const ov = await api('/api/overview');
+    $('#home').innerHTML += ov.libraries.filter(x => x.dataset_status === 'active').map(x => `<option value="${x.library_id}">${esc(x.name)}</option>`).join('');
+    const q = SV.qs(); if (q.arch) $('#arch').value = q.arch; if (q.home) $('#home').value = q.home; if (q.q) $('#q').value = q.q;
+    $('#arch').onchange = $('#home').onchange = () => { skip = 0; load(); };
+    $('#q').oninput = () => { clearTimeout(window._qt); window._qt = setTimeout(() => { skip = 0; load(); }, 250); };
+    load().catch(e => SV.err($('#tbl'), e));
+  })();
+})();
+</script>
+{% endblock %}

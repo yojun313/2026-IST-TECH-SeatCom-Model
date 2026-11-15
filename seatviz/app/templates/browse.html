@@ -1,0 +1,56 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="page-head">
+  <div><h1>데이터 탐색</h1><div class="muted">모든 컬렉션의 원본 문서를 MongoDB 필터(JSON)로 조회합니다. 행을 누르면 전체 JSON이 펼쳐집니다.</div></div>
+</div>
+<div class="grid" style="grid-template-columns:230px minmax(0,1fr)">
+  <div class="card" id="colls" style="align-self:start"></div>
+  <div class="card">
+    <div class="toolbar">
+      <b id="cname" class="mono"></b>
+      <input type="text" id="filter" placeholder='{"library_id":"yongin-suji"}' style="flex:1;min-width:240px" class="mono">
+      <input type="text" id="sort" placeholder="정렬 필드 (-는 내림차순)" style="width:200px">
+      <button class="btn on" id="run"><i class="fa-solid fa-magnifying-glass"></i> 조회</button>
+    </div>
+    <div class="small muted" id="hint" style="margin-bottom:8px"></div>
+    <div class="tbl-wrap" id="tbl"></div>
+    <div class="pager" id="pager"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const { $, $$, api, esc } = SV;
+  const HINT = {
+    seats: '{"library_id":"yongin-pogok","seat_label":"12"}', synth_seat_env: '{"features.outletAvailable":1,"features.windowProximity":{"$gte":0.8}}',
+    synth_users: '{"archetype":"laptop_worker"}', synth_sessions: '{"satisfaction":{"$gte":0.9},"choice_origin":"recommendation"}', synth_events: '{"type":"candidateRejected"}',
+    synth_scenarios: '{"conditions.season":"winter"}', facilities: '{"type":"toilet"}', libraries: '{"dataset_status":"backup"}',
+  };
+  let coll = {{ coll|tojson }} || 'libraries', skip = 0; const limit = 25;
+  const brief = (v) => v === null || v === undefined ? '<span class="muted">null</span>' : typeof v === 'object' ? `<span class="muted mono small">${esc(JSON.stringify(v).slice(0, 80))}${JSON.stringify(v).length > 80 ? '…' : ''}</span>` : esc(String(v).slice(0, 80));
+  async function load() {
+    $('#cname').textContent = coll; $$('#colls a').forEach(a => a.classList.toggle('on', a.dataset.c === coll));
+    $('#hint').innerHTML = HINT[coll] ? `예시 필터: <code>${esc(HINT[coll])}</code>` : '';
+    SV.setQs({ c: coll, f: $('#filter').value, s: $('#sort').value });
+    try {
+      const d = await api('/api/collections/' + coll, { filter: $('#filter').value || '{}', sort: $('#sort').value, skip, limit });
+      const keys = [...new Set(d.items.flatMap(x => Object.keys(x)))].slice(0, 9);
+      $('#tbl').innerHTML = d.items.length ? `<table class="tbl"><thead><tr>${keys.map(k => `<th>${esc(k)}</th>`).join('')}</tr></thead><tbody>
+        ${d.items.map((x, i) => `<tr class="click" data-i="${i}">${keys.map(k => `<td>${brief(x[k])}</td>`).join('')}</tr><tr hidden data-j="${i}"><td colspan="${keys.length}">${SV.json(x)}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">결과 없음</div>';
+      $$('#tbl tr[data-i]').forEach(tr => tr.onclick = () => { const r = $(`#tbl tr[data-j="${tr.dataset.i}"]`); r.hidden = !r.hidden; });
+      SV.pager($('#pager'), d.total, skip, limit, s => { skip = s; load(); });
+    } catch (e) { SV.err($('#tbl'), e); $('#pager').innerHTML = ''; }
+  }
+  (async () => {
+    const cs = await api('/api/collections');
+    $('#colls').innerHTML = ['real', 'synthetic'].map(k => `<h3 style="margin-top:6px">${k === 'real' ? '실데이터' : '합성'}</h3><nav class="nav">${cs.filter(c => c.kind === k).map(c => `<a href="#" data-c="${c.name}"><span class="mono small" style="flex:1">${c.name}</span><span class="muted small">${SV.num(c.count)}</span></a>`).join('')}</nav>`).join('');
+    $$('#colls a').forEach(a => a.onclick = (e) => { e.preventDefault(); coll = a.dataset.c; skip = 0; $('#filter').value = ''; $('#sort').value = ''; load(); });
+    const q = SV.qs(); if (q.f) $('#filter').value = q.f; if (q.s) $('#sort').value = q.s;
+    $('#run').onclick = () => { skip = 0; load(); };
+    $('#filter').onkeydown = $('#sort').onkeydown = (e) => { if (e.key === 'Enter') { skip = 0; load(); } };
+    load();
+  })();
+})();
+</script>
+{% endblock %}

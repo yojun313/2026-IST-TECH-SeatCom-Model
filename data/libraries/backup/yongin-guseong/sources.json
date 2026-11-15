@@ -1,0 +1,86 @@
+[
+  {
+    "source_id": "yongin-guseong:source:data-go-kr-15154878",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15154878/fileData.do",
+    "sha256": "b8fa6f68b3bbc745ceac09615ebffde9f04b9bd29f191159f1f2bb9c63820b74",
+    "document_date": "2025-11-27",
+    "collected_on": "2026-11-14",
+    "license_status": "공공데이터포털 CSV, 이용제한 없음(카탈로그 표기). 작업표 기준",
+    "notes": "구성도서관 291행(좌석 ID/열람실 ID/좌석명). 좌표·환경·열람실명 없음. 저장소 data/source_data/ 정리본_UTF8 파일 전체의 해시.",
+    "local_path": null,
+    "library_id": "yongin-guseong"
+  },
+  {
+    "source_id": "yongin-guseong:source:data-go-kr-15171450",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15171450/fileData.do",
+    "sha256": "4bc24f565a38f051e700cb6b014b984a3ca652f9cc9fe45123978018e5d23c5c",
+    "document_date": "2026-10-12",
+    "collected_on": "2026-11-14",
+    "license_status": "공공저작물 출처표시(제1유형)",
+    "notes": "구성도서관 열람실그룹 \"열람실\" 1행: 평일·주말 07:00-22:00, 최대배정300분, 연령14-100. 열람실 ID가 없어 개별 방에 조인하지 않음(opening_hours null 유지).",
+    "local_path": null,
+    "library_id": "yongin-guseong"
+  },
+  {
+    "source_id": "yongin-guseong:source:official-floor-page",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/guseong/menu/10701/contents/40093/contents.do",
+    "sha256": "f1eb3fc667d4c7d0ba9099ac989d532b3a80c4b047d9f744decb89ff0a0572dd",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "robots.txt 금지 경로 아님(확인). 페이지 텍스트에서 주소만 사용. 이용조건 명시 미확인",
+    "notes": "층별안내 페이지. 도서관 주소 출처. 층 이미지 alt 텍스트는 시설 상대 설명뿐이라 좌표화하지 않음.",
+    "local_path": null,
+    "library_id": "yongin-guseong"
+  },
+  {
+    "source_id": "yongin-guseong:source:floor-image-F3",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_F3.jpg",
+    "sha256": "6d0fdccf97e81075cc6c72164c6a334fbac333c33c086fb47bf9ad64600ddf0a",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 불명확: assets에 복제하지 않음(image_path null). 크기 710x510 확인용으로만 열람",
+    "notes": "3층 층별 안내 이미지. 해시와 크기만 기록.",
+    "local_path": null,
+    "library_id": "yongin-guseong"
+  },
+  {
+    "source_id": "yongin-guseong:source:floor-image-F2",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_F2.jpg",
+    "sha256": "67879ab135e5ffe67e2e25e5261a21c839d846daf6ca17f6df9901848982f4c4",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 불명확: assets에 복제하지 않음(image_path null). 크기 710x510 확인용으로만 열람",
+    "notes": "2층 층별 안내 이미지. 해시와 크기만 기록.",
+    "local_path": null,
+    "library_id": "yongin-guseong"
+  },
+  {
+    "source_id": "yongin-guseong:source:floor-image-F1",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_F1.jpg",
+    "sha256": "84f5269335c446a956f59dfd3cf28f71755071c33cb39581def933c8bc02f581",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 불명확: assets에 복제하지 않음(image_path null). 크기 710x510 확인용으로만 열람",
+    "notes": "1층 층별 안내 이미지. 해시와 크기만 기록.",
+    "local_path": null,
+    "library_id": "yongin-guseong"
+  },
+  {
+    "source_id": "yongin-guseong:source:floor-image-B1",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/include/image/guseong/contents/img_floor_B1.jpg",
+    "sha256": "5d14bb5b0742d2fe3192eec3ff27c41d1be9041b3a24e52968a632b0fdb0f301",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "이용조건 불명확: assets에 복제하지 않음(image_path null). 크기 710x510 확인용으로만 열람",
+    "notes": "지하1층 층별 안내 이미지. 해시와 크기만 기록.",
+    "local_path": null,
+    "library_id": "yongin-guseong"
+  }
+]

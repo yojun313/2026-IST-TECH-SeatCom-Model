@@ -1,0 +1,76 @@
+{% extends "_layout.html" %}
+{% block head %}<script src="/static/vendor/chart.umd.min.js"></script>{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><h1>통계 <span class="badge b-syn">합성</span></h1><div class="muted">합성 좌석 특성 분포, 환경 조건, 사용자·세션·이벤트 분포입니다. 첫 계산에 몇 초 걸리고 이후 10분간 캐시됩니다.</div></div>
+  <select id="lib"><option value="">전체 도서관</option></select>
+</div>
+<div id="body"><div class="empty"><span class="spinner"></span> 집계 중…</div></div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const { $, api, esc, l } = SV;
+  const charts = [];
+  const pal = ['#2f6f5e', '#c9852b', '#3567a8', '#b8473a', '#7a5ea8', '#5b8f3a', '#9a6b3f', '#4a8fb0'];
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  function mk(id, cfg) {
+    Chart.defaults.color = css('--muted'); Chart.defaults.borderColor = css('--line');
+    cfg.options = Object.assign({ maintainAspectRatio: false, plugins: { legend: { display: cfg.type === 'doughnut' || !!cfg.legend, position: 'bottom' } } }, cfg.options || {});
+    charts.push(new Chart($(id), cfg));
+  }
+  const bar = (id, obj, color = '#2f6f5e', lab = l) => mk(id, { type: 'bar', data: { labels: Object.keys(obj).map(lab), datasets: [{ data: Object.values(obj), backgroundColor: color }] } });
+  const dough = (id, obj) => mk(id, { type: 'doughnut', data: { labels: Object.keys(obj).map(l), datasets: [{ data: Object.values(obj), backgroundColor: pal }] } });
+  async function load() {
+    charts.splice(0).forEach(c => c.destroy());
+    SV.loading($('#body'));
+    const lib = $('#lib').value; SV.setQs({ lib });
+    const d = await api('/api/stats', { library: lib });
+    $('#body').innerHTML = `
+      <h2>좌석 특성 분포 (features-1, 0~1, 10구간)</h2>
+      <div class="grid g4" style="margin-bottom:18px">${SV.FEATURES.map(f => `<div class="card"><h3>${l(f)} <span class="muted small mono">${f}</span></h3><div class="chart-box" style="height:150px"><canvas id="h_${f}"></canvas></div></div>`).join('')}</div>
+      <div class="grid g3" style="margin-bottom:18px">
+        <div class="card"><h2>책상 유형</h2><div class="chart-box"><canvas id="cDesk"></canvas></div><div class="small muted" id="deskTxt"></div></div>
+        <div class="card"><h2>시간대별 평균 조도 (lux)</h2><div class="chart-box"><canvas id="cLux"></canvas></div></div>
+        <div class="card"><h2>환경 조건 (시나리오)</h2><div class="chart-box"><canvas id="cCond"></canvas></div></div>
+      </div>
+      <div class="card" style="margin-bottom:18px"><h2>도서관별 평균 특성</h2><div class="tbl-wrap" id="byLib"></div></div>
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card"><h2>선택 경로</h2><div class="chart-box"><canvas id="cOrigin"></canvas></div></div>
+        <div class="card"><h2>선택 좌석의 추천 순위</h2><div class="chart-box"><canvas id="cRank"></canvas></div></div>
+        <div class="card"><h2>만족도 분포 (0~1)</h2><div class="chart-box"><canvas id="cRating"></canvas></div></div>
+        <div class="card"><h2>시간대</h2><div class="chart-box"><canvas id="cSlot"></canvas></div></div>
+      </div>
+      <div class="grid g3" style="margin-bottom:18px">
+        <div class="card"><h2>사용자 유형</h2><div class="chart-box"><canvas id="cArch"></canvas></div></div>
+        <div class="card"><h2>이벤트 유형 (전체)</h2><div class="chart-box"><canvas id="cEv"></canvas></div></div>
+        <div class="card"><h2>카카오톡 관측 프로필 정확도</h2><div class="chart-box"><canvas id="cAcc"></canvas></div></div>
+      </div>
+      <div class="card"><h2>일별 세션 수</h2><div class="chart-box"><canvas id="cDaily"></canvas></div></div>`;
+    SV.FEATURES.forEach(f => mk('#h_' + f, { type: 'bar', data: { labels: [...Array(10)].map((_, i) => (i / 10).toFixed(1)), datasets: [{ data: d.feature_hist[f], backgroundColor: [...Array(10)].map((_, i) => SV.color(i / 9)) }] }, options: { scales: { x: { ticks: { maxRotation: 0, autoSkip: true } } } } }));
+    const desk = Object.fromEntries(d.desk_types.map(x => [x._id, x.n])); bar('#cDesk', desk, '#9a6b3f');
+    $('#deskTxt').innerHTML = d.desk_types.map(x => `${l(x._id)}: 폭 ${x.w.toFixed(0)}cm · 높이 ${x.h.toFixed(0)}cm`).join('<br>');
+    bar('#cLux', Object.fromEntries(['morning', 'noon', 'evening'].map(k => [k, Math.round(d.lux_by_slot[k] || 0)])), '#e0a24e');
+    const cond = { ...Object.fromEntries(Object.entries(d.conditions.season)), ...Object.fromEntries(Object.entries(d.conditions.weather)), ...Object.fromEntries(Object.entries(d.conditions.laptop_allowed).map(([k, v]) => [k === 'true' ? '노트북 허용' : '노트북 금지', v])) };
+    bar('#cCond', cond, '#3567a8');
+    $('#byLib').innerHTML = `<table class="tbl"><thead><tr><th>도서관</th>${SV.FEATURES.map(f => `<th class="num">${l(f)}</th>`).join('')}<th class="num">정오 lux</th><th class="num">온도</th></tr></thead><tbody>
+      ${d.by_library.map(r => `<tr><td class="small">${esc(r._id)}</td>${SV.FEATURES.map(f => `<td class="num" style="background:${SV.color(r[f])}40">${r[f].toFixed(2)}</td>`).join('')}<td class="num">${r.lux_noon.toFixed(0)}</td><td class="num">${r.temp.toFixed(1)}</td></tr>`).join('')}</tbody></table>`;
+    const og = Object.fromEntries(Object.entries(d.origin).map(([k, v]) => [k === 'None' ? 'none' : k, v])); dough('#cOrigin', og);
+    bar('#cRank', Object.fromEntries(['1', '2', '3', '4', '5', 'outside'].map(k => [k === 'outside' ? '추천 외' : k + '위', d.chosen_rank[k] || 0])), '#2f6f5e', x => x);
+    bar('#cRating', Object.fromEntries(SV.SAT_BINS.map(k => [k, d.satisfaction[k] || 0])), '#c9852b', x => x);
+    dough('#cSlot', d.time_slot); dough('#cArch', d.archetype); dough('#cEv', d.event_type);
+    const keys = Object.keys(d.profile_accuracy);
+    mk('#cAcc', { type: 'bar', legend: true, data: { labels: keys.map(l), datasets: [['correct', '일치', '#2f7d4f'], ['wrong', '오추론', '#b8473a'], ['unknown', 'unknown', '#9a9890']].map(([k, lab, c]) => ({ label: lab, data: keys.map(f => d.profile_accuracy[f][k] || 0), backgroundColor: c })) }, options: { scales: { x: { stacked: true }, y: { stacked: true } } } });
+    mk('#cDaily', { type: 'line', data: { labels: d.daily_sessions.map(x => x._id), datasets: [{ data: d.daily_sessions.map(x => x.n), borderColor: '#2f6f5e', backgroundColor: '#2f6f5e33', fill: true, tension: .3, pointRadius: 0 }] } });
+  }
+  (async () => {
+    const ov = await api('/api/overview');
+    $('#lib').innerHTML += ov.libraries.filter(x => x.dataset_status === 'active').map(x => `<option value="${x.library_id}">${esc(x.name)}</option>`).join('');
+    if (SV.qs().lib) $('#lib').value = SV.qs().lib;
+    $('#lib').onchange = () => load().catch(e => SV.err($('#body'), e));
+    load().catch(e => SV.err($('#body'), e));
+    document.addEventListener('sv-theme', () => load());
+  })();
+})();
+</script>
+{% endblock %}

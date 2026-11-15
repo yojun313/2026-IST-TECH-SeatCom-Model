@@ -1,0 +1,45 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="page-head">
+  <div><h1>합성 세션 <span class="badge b-syn">합성</span></h1><div class="muted">추천 노출(Top 5), 실제 선택, 선택하지 않은 좌석, 만족도(0~1)로 이루어진 학습용 선택 이력입니다.</div></div>
+</div>
+<div class="card">
+  <div class="toolbar">
+    <select id="library"><option value="">모든 도서관</option></select>
+    <select id="slot"><option value="">모든 시간대</option><option value="morning">아침</option><option value="noon">정오</option><option value="evening">저녁</option></select>
+    <select id="origin"><option value="">모든 선택 경로</option><option value="recommendation">추천 내 선택</option><option value="outsideRecommendations">추천 외 선택</option><option value="none">선택 없음</option></select>
+    <select id="sat"><option value="">모든 만족도</option>{% for i in range(10) %}<option value="{{ '%.1f' % (i/10) }}">{{ '%.1f' % (i/10) }}~{{ '%.1f' % ((i+1)/10) }}</option>{% endfor %}</select>
+    <input type="text" id="user" placeholder="user_id (synth-user:00012)">
+    <input type="text" id="scenario" placeholder="scenario_id" style="min-width:260px">
+  </div>
+  <div class="tbl-wrap" id="tbl"></div>
+  <div class="pager" id="pager"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const { $, $$, api, esc, l } = SV;
+  const F = ['library', 'slot', 'origin', 'sat', 'user', 'scenario'];
+  let skip = 0; const limit = 50;
+  async function load() {
+    const p = Object.fromEntries(F.map(k => [k, $('#' + k).value.trim()])); SV.setQs(p);
+    const d = await api('/api/sessions', { ...p, skip, limit });
+    $('#tbl').innerHTML = `<table class="tbl"><thead><tr><th>세션</th><th>사용자</th><th>시각</th><th>도서관 · 환경</th><th>시간대</th><th class="num">점유율</th><th class="num">가용/조건충족</th><th>방식</th><th>추천 Top5</th><th>선택</th><th>경로</th><th class="num">효용</th><th class="num">만족도</th></tr></thead><tbody>
+      ${d.items.map(s => `<tr class="click" onclick="location.href='/sessions/${encodeURIComponent(s.session_id)}'"><td class="mono">${esc(s.session_id.split(':').pop())}</td><td class="mono small">${esc(s.user_id.split(':').pop())}</td>
+        <td class="small nowrap">${esc(s.occurred_at.slice(0, 16).replace('T', ' '))}</td><td class="small">${esc(s.library_id)}<div class="mono muted">${esc(s.scenario_id.split(':synth:').pop())}</div></td><td>${l(s.time_slot)}</td>
+        <td class="num">${(s.occupancy_rate * 100).toFixed(0)}%</td><td class="num">${s.available_seat_ids_count}/${s.eligible_count}</td><td class="small">${esc(s.ranking_basis)}</td>
+        <td class="mono small">${s.exposed.map(e => `${esc(e.seat_id.split(':').pop())}${e.seat_id === s.chosen_seat_id ? '★' : ''}`).join(', ')}</td><td class="mono small">${esc(s.chosen_seat_id?.split(':').pop() ?? '-')}</td>
+        <td><span class="badge ${s.choice_origin === 'recommendation' ? 'b-ok' : s.choice_origin ? 'b-syn' : 'b-mute'}">${l(s.choice_origin ?? 'none')}</span></td><td class="num">${s.chosen_true_utility ?? '-'}</td><td class="num">${s.satisfaction?.toFixed(3) ?? '-'}</td></tr>`).join('')}</tbody></table>`;
+    SV.pager($('#pager'), d.total, skip, limit, s => { skip = s; load(); });
+  }
+  (async () => {
+    const ov = await api('/api/overview');
+    $('#library').innerHTML += ov.libraries.filter(x => x.dataset_status === 'active').map(x => `<option value="${x.library_id}">${esc(x.name)}</option>`).join('');
+    const q = SV.qs(); F.forEach(k => { if (q[k]) $('#' + k).value = q[k]; });
+    F.forEach(k => $('#' + k).addEventListener($('#' + k).tagName === 'INPUT' ? 'change' : 'change', () => { skip = 0; load(); }));
+    load().catch(e => SV.err($('#tbl'), e));
+  })();
+})();
+</script>
+{% endblock %}

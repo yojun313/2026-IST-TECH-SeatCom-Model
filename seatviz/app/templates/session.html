@@ -1,0 +1,57 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="page-head">
+  <div><a href="/sessions" class="small"><i class="fa-solid fa-arrow-left"></i> 세션 목록</a><h1 id="title">세션</h1><div class="muted" id="sub"></div></div>
+</div>
+<div class="floor-layout" style="grid-template-columns:minmax(0,1fr) 380px">
+  <div>
+    <div class="stage short" id="stage"><div class="empty">불러오는 중…</div></div>
+    <div class="card" style="margin-top:14px"><h2>추천 노출 · 선택 좌석 비교</h2><div class="tbl-wrap" id="cmp"></div></div>
+  </div>
+  <div class="grid">
+    <div class="card" id="info"></div>
+    <div class="card"><h2>이벤트</h2><div class="timeline" id="events"></div></div>
+    <div class="card" id="userBox"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/floor.js"></script>
+<script>
+(async () => {
+  const { $, api, esc, l, fmt } = SV;
+  const sid = {{ sid|tojson }};
+  try {
+    const d = await api('/api/sessions/' + encodeURIComponent(sid)), s = d.session, u = d.user;
+    $('#title').innerHTML = `${esc(s.session_id)} <span class="badge b-syn">합성</span>`;
+    $('#sub').innerHTML = `${esc(s.occurred_at.replace('T', ' ').slice(0, 19))} · ${l(s.time_slot)} · <a href="/users/${encodeURIComponent(s.user_id)}">${esc(s.user_id)}</a>`;
+    const hl = {};
+    (s.occupied_seat_ids || []).forEach(id => hl[id] = { kind: 'occupied' });
+    (s.negative_seat_ids || []).forEach(id => hl[id] = { kind: 'negative' });
+    s.exposed.forEach(e => hl[e.seat_id] = { kind: 'exposed', rank: e.rank });
+    if (s.chosen_seat_id) hl[s.chosen_seat_id] = { kind: 'chosen', rank: s.exposed.find(e => e.seat_id === s.chosen_seat_id)?.rank };
+    const floor = new SV.Floor($('#stage'), { highlight: hl, slot: s.time_slot, layers: new Set(['desks', 'labels', 'windows', 'toilets', 'ac', 'fixtures', 'glow', 'outlets']) });
+    floor.setData(await api('/api/scenarios/' + encodeURIComponent(s.scenario_id)));
+    floor.legend.hidden = false;
+    floor.legend.innerHTML = `<span class="sw"><i style="background:#2fd27a"></i>선택 ★</span><span class="sw"><i style="background:#ffb547"></i>추천 노출(순위)</span><span class="sw"><i style="background:#7fb4ff"></i>선택하지 않은 가용 좌석(샘플)</span><span class="sw"><i style="background:#b8473a"></i>✕ 다른 사람 사용 중</span>`;
+    $('#info').innerHTML = `<h2>세션 정보</h2><dl class="kv">
+      <dt>도서관</dt><dd>${esc(s.library_id)}</dd><dt>환경</dt><dd><a href="/floor?scenario=${encodeURIComponent(s.scenario_id)}" class="mono small">${esc(s.scenario_id)}</a></dd>
+      <dt>점유율</dt><dd>${(s.occupancy_rate * 100).toFixed(1)}% · 사용 중 ${(s.occupied_seat_ids || []).length} · 가용 ${s.available_seat_ids_count} · 조건충족 ${s.eligible_count}</dd>
+      <dt>추천 방식</dt><dd>${esc(s.ranking_basis)}</dd><dt>선택</dt><dd>${esc(s.chosen_seat_id ?? '없음')}</dd>
+      <dt>선택 경로</dt><dd>${l(s.choice_origin ?? 'none')}</dd><dt>잠재 효용</dt><dd>${fmt(s.chosen_true_utility)}</dd><dt>취향 적합도</dt><dd>${fmt(s.chosen_preference_fit)}</dd><dt>만족도</dt><dd>${fmt(s.satisfaction)}</dd></dl>
+      <details style="margin-top:8px"><summary class="small">원본 JSON</summary>${SV.json(s)}</details>`;
+    $('#events').innerHTML = d.events.map(e => `<div class="ev"><b>${l(e.type)}</b> <span class="muted small">${esc(e.occurred_at.slice(11, 19))}</span>
+      <div class="small mono muted">${esc(JSON.stringify(Object.fromEntries(Object.entries(e).filter(([k]) => !['_id', 'event_id', 'session_id', 'user_id', 'type', 'occurred_at', 'is_synthetic'].includes(k)))))}</div></div>`).join('') || '<div class="muted">이벤트 없음</div>';
+    $('#userBox').innerHTML = `<h2>사용자 프로필 (엔진 입력)</h2>${u.preference_profile.preferences.map(p => `<div class="frow"><span>${l(p.featureId)} → ${p.target}</span>${SV.bar(p.importance)}<span class="n">${p.importance.toFixed(2)}</span></div>`).join('') || '<span class="muted">없음</span>'}
+      <div class="small muted" style="margin-top:6px">${l(u.archetype)} · 필수조건 ${u.requirements.map(r => r.featureId + '=' + r.value).join(', ') || '없음'}</div>`;
+    const rows = [...s.exposed.map(e => ({ id: e.seat_id, tag: `추천 ${e.rank}위`, score: e.engine_score })),
+      ...(s.chosen_seat_id && !s.exposed.some(e => e.seat_id === s.chosen_seat_id) ? [{ id: s.chosen_seat_id, tag: '추천 외 선택' }] : [])];
+    const prefs = new Set(u.preference_profile.preferences.map(p => p.featureId));
+    $('#cmp').innerHTML = `<table class="tbl"><thead><tr><th>좌석</th><th>구분</th><th class="num">엔진 점수</th>${SV.FEATURES.map(f => `<th class="num" style="${prefs.has(f) ? 'color:var(--accent)' : ''}">${l(f)}</th>`).join('')}</tr></thead><tbody>
+      ${rows.map(r => { const e = d.seat_env[r.id]; if (!e) return ''; return `<tr style="${r.id === s.chosen_seat_id ? 'background:color-mix(in srgb,var(--ok) 14%,transparent)' : ''}"><td class="mono">${esc(e.seat_label ?? r.id.split(':').pop())}${r.id === s.chosen_seat_id ? ' ★' : ''}</td><td class="small">${r.tag}</td><td class="num">${fmt(r.score)}</td>
+        ${SV.FEATURES.map(f => { const v = f === 'brightness' ? e.brightness_by_slot[s.time_slot] : e.features[f]; return `<td class="num" style="background:${SV.color(v)}33">${v.toFixed ? v.toFixed(2) : v}</td>`; }).join('')}</tr>`; }).join('')}</tbody></table>
+      <div class="small muted" style="margin-top:6px">초록 열 이름 = 이 사용자가 프로필에 가진 특성.</div>`;
+  } catch (e) { SV.err($('#stage'), e); }
+})();
+</script>
+{% endblock %}

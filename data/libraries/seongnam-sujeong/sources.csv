@@ -1,3 +1,0 @@
-﻿도서관ID,출처ID,출처유형,URL,SHA256,자료기준일,수집일,이용조건,비고,로컬경로,데이터기준일자
-seongnam-sujeong,seongnam-sujeong:source:data-go-kr-15032433,public_dataset,https://www.data.go.kr/data/15032433/fileData.do,ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b,2026-05-19,2026-11-14,data.go.kr 공개 파일데이터(이용제한 없음으로 작업표에 기재),"전국 성남시 도서관 열람실 CSV 중 성남수정도서관 2행만 사용. 로컬 저장소 Data/ 사본(정리본_UTF8, 원본과 해시 동일).",Data/열람실_좌석추천_데이터/정리본_UTF8/15032433.csv,2026-11-14
-seongnam-sujeong,seongnam-sujeong:source:snlib-robots,official_web,https://www.snlib.go.kr/robots.txt,,,2026-11-14,robots.txt가 User-agent * Disallow / 로 전체 경로 금지 확인; snlib.go.kr 하위 수집하지 않음,robots.txt만 1회 조회. 좌석현황 페이지(http://www.snlib.go.kr/sj/contents/roomStatus.do)는 수집하지 않음.,,2026-11-14

@@ -1,0 +1,663 @@
+{
+  "best_params": {
+    "learning_rate": 0.02692052892423632,
+    "num_leaves": 36,
+    "min_data_in_leaf": 719,
+    "feature_fraction": 0.4547010391735995,
+    "bagging_fraction": 0.6252242385062161,
+    "lambda_l2": 10.159001278760368,
+    "lambdarank_truncation_level": 36
+  },
+  "trials": [
+    {
+      "params": {
+        "learning_rate": 0.09032210173802058,
+        "num_leaves": 147,
+        "min_data_in_leaf": 799,
+        "feature_fraction": 0.9700506844124436,
+        "bagging_fraction": 0.84807995592819,
+        "lambda_l2": 2.7133381209445435,
+        "lambdarank_truncation_level": 18
+      },
+      "best_iter": 78,
+      "val_mrr": 0.4413180907246615
+    },
+    {
+      "params": {
+        "learning_rate": 0.09933239500564028,
+        "num_leaves": 17,
+        "min_data_in_leaf": 148,
+        "feature_fraction": 0.5643184551885458,
+        "bagging_fraction": 0.6958407492395744,
+        "lambda_l2": 0.008400383984681398,
+        "lambdarank_truncation_level": 41
+      },
+      "best_iter": 125,
+      "val_mrr": 0.46739770918322443
+    },
+    {
+      "params": {
+        "learning_rate": 0.03227710313993831,
+        "num_leaves": 22,
+        "min_data_in_leaf": 236,
+        "feature_fraction": 0.4733982687148501,
+        "bagging_fraction": 0.7408942967373294,
+        "lambda_l2": 0.001849807863069011,
+        "lambdarank_truncation_level": 52
+      },
+      "best_iter": 543,
+      "val_mrr": 0.47373904207574263
+    },
+    {
+      "params": {
+        "learning_rate": 0.03967882761464349,
+        "num_leaves": 46,
+        "min_data_in_leaf": 292,
+        "feature_fraction": 0.699849946448577,
+        "bagging_fraction": 0.8816389447434477,
+        "lambda_l2": 0.45362847100217574,
+        "lambdarank_truncation_level": 18
+      },
+      "best_iter": 233,
+      "val_mrr": 0.4649601948390848
+    },
+    {
+      "params": {
+        "learning_rate": 0.19239843238741622,
+        "num_leaves": 98,
+        "min_data_in_leaf": 25,
+        "feature_fraction": 0.5449167730056828,
+        "bagging_fraction": 0.9417807354422687,
+        "lambda_l2": 17.724969022504276,
+        "lambdarank_truncation_level": 44
+      },
+      "best_iter": 36,
+      "val_mrr": 0.4529780496021255
+    },
+    {
+      "params": {
+        "learning_rate": 0.054472488900805624,
+        "num_leaves": 136,
+        "min_data_in_leaf": 26,
+        "feature_fraction": 0.8760727178168503,
+        "bagging_fraction": 0.9957965839617725,
+        "lambda_l2": 4.711440367717251,
+        "lambdarank_truncation_level": 33
+      },
+      "best_iter": 148,
+      "val_mrr": 0.45587789422800173
+    },
+    {
+      "params": {
+        "learning_rate": 0.04401729612197863,
+        "num_leaves": 183,
+        "min_data_in_leaf": 27,
+        "feature_fraction": 0.47536473808613433,
+        "bagging_fraction": 0.5362615078296232,
+        "lambda_l2": 0.11657046581758501,
+        "lambdarank_truncation_level": 56
+      },
+      "best_iter": 131,
+      "val_mrr": 0.45178217064696713
+    },
+    {
+      "params": {
+        "learning_rate": 0.0760649788442532,
+        "num_leaves": 136,
+        "min_data_in_leaf": 201,
+        "feature_fraction": 0.7203427580418726,
+        "bagging_fraction": 0.7685435249770376,
+        "lambda_l2": 0.0017416329272068123,
+        "lambdarank_truncation_level": 36
+      },
+      "best_iter": 105,
+      "val_mrr": 0.44461524396138885
+    },
+    {
+      "params": {
+        "learning_rate": 0.03192290478001495,
+        "num_leaves": 41,
+        "min_data_in_leaf": 30,
+        "feature_fraction": 0.4725438588002262,
+        "bagging_fraction": 0.5882042353951005,
+        "lambda_l2": 0.02584303723165799,
+        "lambdarank_truncation_level": 51
+      },
+      "best_iter": 249,
+      "val_mrr": 0.46827733689778434
+    },
+    {
+      "params": {
+        "learning_rate": 0.05868744783277836,
+        "num_leaves": 16,
+        "min_data_in_leaf": 593,
+        "feature_fraction": 0.40172220533365377,
+        "bagging_fraction": 0.76620993186049,
+        "lambda_l2": 15.618992895027102,
+        "lambdarank_truncation_level": 54
+      },
+      "best_iter": 205,
+      "val_mrr": 0.4718255135852357
+    },
+    {
+      "params": {
+        "learning_rate": 0.023075530623550496,
+        "num_leaves": 19,
+        "min_data_in_leaf": 936,
+        "feature_fraction": 0.6846126915889428,
+        "bagging_fraction": 0.9269912377815599,
+        "lambda_l2": 0.600626288863497,
+        "lambdarank_truncation_level": 51
+      },
+      "best_iter": 392,
+      "val_mrr": 0.46534403908581806
+    },
+    {
+      "params": {
+        "learning_rate": 0.06931771029187138,
+        "num_leaves": 15,
+        "min_data_in_leaf": 577,
+        "feature_fraction": 0.5062444784661315,
+        "bagging_fraction": 0.8020707906334384,
+        "lambda_l2": 5.009307548613847,
+        "lambdarank_truncation_level": 53
+      },
+      "best_iter": 261,
+      "val_mrr": 0.4709411626646738
+    },
+    {
+      "params": {
+        "learning_rate": 0.061304422771690764,
+        "num_leaves": 20,
+        "min_data_in_leaf": 787,
+        "feature_fraction": 0.4643785520479503,
+        "bagging_fraction": 0.5934746035293881,
+        "lambda_l2": 20.215341207336785,
+        "lambdarank_truncation_level": 43
+      },
+      "best_iter": 312,
+      "val_mrr": 0.47816891983809984
+    },
+    {
+      "params": {
+        "learning_rate": 0.13438250027470047,
+        "num_leaves": 18,
+        "min_data_in_leaf": 850,
+        "feature_fraction": 0.5079213739711631,
+        "bagging_fraction": 0.5130525867652457,
+        "lambda_l2": 3.8829040132483033,
+        "lambdarank_truncation_level": 45
+      },
+      "best_iter": 126,
+      "val_mrr": 0.4688199002354235
+    },
+    {
+      "params": {
+        "learning_rate": 0.038298400189828934,
+        "num_leaves": 29,
+        "min_data_in_leaf": 561,
+        "feature_fraction": 0.5381264578257163,
+        "bagging_fraction": 0.6871705836036361,
+        "lambda_l2": 2.248283678618965,
+        "lambdarank_truncation_level": 32
+      },
+      "best_iter": 197,
+      "val_mrr": 0.46716184951243334
+    },
+    {
+      "params": {
+        "learning_rate": 0.04094599953993096,
+        "num_leaves": 25,
+        "min_data_in_leaf": 600,
+        "feature_fraction": 0.40098133525938506,
+        "bagging_fraction": 0.5139897120400223,
+        "lambda_l2": 0.0011051255756819828,
+        "lambdarank_truncation_level": 28
+      },
+      "best_iter": 218,
+      "val_mrr": 0.4671673529969209
+    },
+    {
+      "params": {
+        "learning_rate": 0.049062151210867905,
+        "num_leaves": 62,
+        "min_data_in_leaf": 406,
+        "feature_fraction": 0.4686726239613528,
+        "bagging_fraction": 0.6098965200124672,
+        "lambda_l2": 12.383908761817302,
+        "lambdarank_truncation_level": 42
+      },
+      "best_iter": 190,
+      "val_mrr": 0.46974110355032656
+    },
+    {
+      "params": {
+        "learning_rate": 0.036646781252861145,
+        "num_leaves": 29,
+        "min_data_in_leaf": 375,
+        "feature_fraction": 0.6655211216438963,
+        "bagging_fraction": 0.6631128460186679,
+        "lambda_l2": 0.21105692587242356,
+        "lambdarank_truncation_level": 57
+      },
+      "best_iter": 330,
+      "val_mrr": 0.4711416421991567
+    },
+    {
+      "params": {
+        "learning_rate": 0.044595102662517844,
+        "num_leaves": 19,
+        "min_data_in_leaf": 107,
+        "feature_fraction": 0.5982570816083441,
+        "bagging_fraction": 0.7281794621147927,
+        "lambda_l2": 0.009785804371372359,
+        "lambdarank_truncation_level": 58
+      },
+      "best_iter": 350,
+      "val_mrr": 0.47016013093137166
+    },
+    {
+      "params": {
+        "learning_rate": 0.09986514428333695,
+        "num_leaves": 30,
+        "min_data_in_leaf": 460,
+        "feature_fraction": 0.4300419914006314,
+        "bagging_fraction": 0.5373234950803928,
+        "lambda_l2": 0.2717467698947781,
+        "lambdarank_truncation_level": 34
+      },
+      "best_iter": 139,
+      "val_mrr": 0.4650210906385176
+    },
+    {
+      "params": {
+        "learning_rate": 0.02747276815782446,
+        "num_leaves": 19,
+        "min_data_in_leaf": 424,
+        "feature_fraction": 0.529589970828055,
+        "bagging_fraction": 0.5222887198406225,
+        "lambda_l2": 23.913635600474283,
+        "lambdarank_truncation_level": 53
+      },
+      "best_iter": 459,
+      "val_mrr": 0.47483955833425695
+    },
+    {
+      "params": {
+        "learning_rate": 0.03920210588662771,
+        "num_leaves": 29,
+        "min_data_in_leaf": 564,
+        "feature_fraction": 0.6368411529101724,
+        "bagging_fraction": 0.5675768576218956,
+        "lambda_l2": 6.892143456694343,
+        "lambdarank_truncation_level": 44
+      },
+      "best_iter": 214,
+      "val_mrr": 0.4728753933721635
+    },
+    {
+      "params": {
+        "learning_rate": 0.028552378005498605,
+        "num_leaves": 24,
+        "min_data_in_leaf": 775,
+        "feature_fraction": 0.5306509878056757,
+        "bagging_fraction": 0.5044319474238625,
+        "lambda_l2": 7.815053982820321,
+        "lambdarank_truncation_level": 57
+      },
+      "best_iter": 336,
+      "val_mrr": 0.47257626892925986
+    },
+    {
+      "params": {
+        "learning_rate": 0.02035474713648122,
+        "num_leaves": 35,
+        "min_data_in_leaf": 390,
+        "feature_fraction": 0.5115759176618359,
+        "bagging_fraction": 0.5249669757931364,
+        "lambda_l2": 11.651254258204848,
+        "lambdarank_truncation_level": 46
+      },
+      "best_iter": 424,
+      "val_mrr": 0.47456750470609965
+    },
+    {
+      "params": {
+        "learning_rate": 0.022608183242865343,
+        "num_leaves": 16,
+        "min_data_in_leaf": 362,
+        "feature_fraction": 0.46641928618207495,
+        "bagging_fraction": 0.5452734232679769,
+        "lambda_l2": 22.484056479080856,
+        "lambdarank_truncation_level": 57
+      },
+      "best_iter": 526,
+      "val_mrr": 0.47285103716579424
+    },
+    {
+      "params": {
+        "learning_rate": 0.020029903665278882,
+        "num_leaves": 28,
+        "min_data_in_leaf": 259,
+        "feature_fraction": 0.5309732333571752,
+        "bagging_fraction": 0.5228734811147014,
+        "lambda_l2": 1.6123774805824316,
+        "lambdarank_truncation_level": 51
+      },
+      "best_iter": 444,
+      "val_mrr": 0.4714882319090601
+    },
+    {
+      "params": {
+        "learning_rate": 0.030985191469677136,
+        "num_leaves": 24,
+        "min_data_in_leaf": 533,
+        "feature_fraction": 0.47395841538828676,
+        "bagging_fraction": 0.6280900655020504,
+        "lambda_l2": 15.447288969938729,
+        "lambdarank_truncation_level": 32
+      },
+      "best_iter": 418,
+      "val_mrr": 0.4753901990504839
+    },
+    {
+      "params": {
+        "learning_rate": 0.042419286607598944,
+        "num_leaves": 17,
+        "min_data_in_leaf": 308,
+        "feature_fraction": 0.5541363196879054,
+        "bagging_fraction": 0.5083121979831557,
+        "lambda_l2": 7.525428194095361,
+        "lambdarank_truncation_level": 39
+      },
+      "best_iter": 255,
+      "val_mrr": 0.4704772236470039
+    },
+    {
+      "params": {
+        "learning_rate": 0.037398330420060605,
+        "num_leaves": 27,
+        "min_data_in_leaf": 813,
+        "feature_fraction": 0.41362798064497186,
+        "bagging_fraction": 0.609831537476875,
+        "lambda_l2": 24.161045778655104,
+        "lambdarank_truncation_level": 35
+      },
+      "best_iter": 322,
+      "val_mrr": 0.4745948794816272
+    },
+    {
+      "params": {
+        "learning_rate": 0.02289890080355245,
+        "num_leaves": 27,
+        "min_data_in_leaf": 766,
+        "feature_fraction": 0.542923604719434,
+        "bagging_fraction": 0.5818947772437564,
+        "lambda_l2": 9.057838388101704,
+        "lambdarank_truncation_level": 42
+      },
+      "best_iter": 394,
+      "val_mrr": 0.4728236185560383
+    },
+    {
+      "params": {
+        "learning_rate": 0.02564448899971872,
+        "num_leaves": 29,
+        "min_data_in_leaf": 254,
+        "feature_fraction": 0.5716264418684035,
+        "bagging_fraction": 0.6150511327914252,
+        "lambda_l2": 5.15500744994047,
+        "lambdarank_truncation_level": 45
+      },
+      "best_iter": 338,
+      "val_mrr": 0.4693013930584047
+    },
+    {
+      "params": {
+        "learning_rate": 0.02692052892423632,
+        "num_leaves": 36,
+        "min_data_in_leaf": 719,
+        "feature_fraction": 0.4547010391735995,
+        "bagging_fraction": 0.6252242385062161,
+        "lambda_l2": 10.159001278760368,
+        "lambdarank_truncation_level": 36
+      },
+      "best_iter": 599,
+      "val_mrr": 0.4793194139450435
+    },
+    {
+      "params": {
+        "learning_rate": 0.03529080490882235,
+        "num_leaves": 16,
+        "min_data_in_leaf": 582,
+        "feature_fraction": 0.5764282608723651,
+        "bagging_fraction": 0.5315421347053503,
+        "lambda_l2": 19.1562979292334,
+        "lambdarank_truncation_level": 53
+      },
+      "best_iter": 336,
+      "val_mrr": 0.47356657026336213
+    },
+    {
+      "params": {
+        "learning_rate": 0.027533574996882804,
+        "num_leaves": 32,
+        "min_data_in_leaf": 802,
+        "feature_fraction": 0.483750049708504,
+        "bagging_fraction": 0.5733159474748564,
+        "lambda_l2": 9.917763046480973,
+        "lambdarank_truncation_level": 31
+      },
+      "best_iter": 135,
+      "val_mrr": 0.4622220430603234
+    },
+    {
+      "params": {
+        "learning_rate": 0.03077883524720232,
+        "num_leaves": 28,
+        "min_data_in_leaf": 222,
+        "feature_fraction": 0.4656039871845269,
+        "bagging_fraction": 0.5210838440017557,
+        "lambda_l2": 13.776825524340966,
+        "lambdarank_truncation_level": 56
+      },
+      "best_iter": 480,
+      "val_mrr": 0.47817258688312836
+    },
+    {
+      "params": {
+        "learning_rate": 0.02198123996178879,
+        "num_leaves": 22,
+        "min_data_in_leaf": 317,
+        "feature_fraction": 0.44360926175948273,
+        "bagging_fraction": 0.6382115509049525,
+        "lambda_l2": 8.548799431023836,
+        "lambdarank_truncation_level": 44
+      },
+      "best_iter": 445,
+      "val_mrr": 0.47154819142675314
+    },
+    {
+      "params": {
+        "learning_rate": 0.034961128527160996,
+        "num_leaves": 23,
+        "min_data_in_leaf": 167,
+        "feature_fraction": 0.4954016625956384,
+        "bagging_fraction": 0.5128901131164297,
+        "lambda_l2": 6.149266099980409,
+        "lambdarank_truncation_level": 43
+      },
+      "best_iter": 307,
+      "val_mrr": 0.4725254462067793
+    },
+    {
+      "params": {
+        "learning_rate": 0.026546402273949422,
+        "num_leaves": 29,
+        "min_data_in_leaf": 425,
+        "feature_fraction": 0.41747547551916375,
+        "bagging_fraction": 0.5527391393576928,
+        "lambda_l2": 5.495275704616193,
+        "lambdarank_truncation_level": 32
+      },
+      "best_iter": 368,
+      "val_mrr": 0.4741764541483538
+    },
+    {
+      "params": {
+        "learning_rate": 0.033532433215747,
+        "num_leaves": 16,
+        "min_data_in_leaf": 451,
+        "feature_fraction": 0.4798446002623651,
+        "bagging_fraction": 0.6221538129811909,
+        "lambda_l2": 10.177142918002211,
+        "lambdarank_truncation_level": 29
+      },
+      "best_iter": 469,
+      "val_mrr": 0.47642874996885287
+    },
+    {
+      "params": {
+        "learning_rate": 0.07273079498849534,
+        "num_leaves": 17,
+        "min_data_in_leaf": 659,
+        "feature_fraction": 0.4537862690755195,
+        "bagging_fraction": 0.6109554695878431,
+        "lambda_l2": 6.243435397306312,
+        "lambdarank_truncation_level": 41
+      },
+      "best_iter": 185,
+      "val_mrr": 0.4743157726466982
+    },
+    {
+      "params": {
+        "learning_rate": 0.03787490800439196,
+        "num_leaves": 30,
+        "min_data_in_leaf": 548,
+        "feature_fraction": 0.5445135153733975,
+        "bagging_fraction": 0.6500217216427345,
+        "lambda_l2": 26.891022852702445,
+        "lambdarank_truncation_level": 40
+      },
+      "best_iter": 314,
+      "val_mrr": 0.47566667371560806
+    },
+    {
+      "params": {
+        "learning_rate": 0.03412288591406757,
+        "num_leaves": 17,
+        "min_data_in_leaf": 850,
+        "feature_fraction": 0.5095340356038073,
+        "bagging_fraction": 0.5890566630817596,
+        "lambda_l2": 9.606708253829462,
+        "lambdarank_truncation_level": 38
+      },
+      "best_iter": 429,
+      "val_mrr": 0.47479894372634596
+    },
+    {
+      "params": {
+        "learning_rate": 0.03481356499501021,
+        "num_leaves": 46,
+        "min_data_in_leaf": 736,
+        "feature_fraction": 0.5285524749385003,
+        "bagging_fraction": 0.6658863679071825,
+        "lambda_l2": 9.427603229970002,
+        "lambdarank_truncation_level": 42
+      },
+      "best_iter": 293,
+      "val_mrr": 0.47154818997006087
+    },
+    {
+      "params": {
+        "learning_rate": 0.0313595806126233,
+        "num_leaves": 34,
+        "min_data_in_leaf": 873,
+        "feature_fraction": 0.5323567004131292,
+        "bagging_fraction": 0.5665524053198987,
+        "lambda_l2": 3.332098369006657,
+        "lambdarank_truncation_level": 43
+      },
+      "best_iter": 191,
+      "val_mrr": 0.46875356658506373
+    },
+    {
+      "params": {
+        "learning_rate": 0.043668758588659304,
+        "num_leaves": 16,
+        "min_data_in_leaf": 492,
+        "feature_fraction": 0.4788759382449411,
+        "bagging_fraction": 0.6425578963317286,
+        "lambda_l2": 26.83998471281634,
+        "lambdarank_truncation_level": 35
+      },
+      "best_iter": 337,
+      "val_mrr": 0.47334253551408256
+    },
+    {
+      "params": {
+        "learning_rate": 0.03292702801105389,
+        "num_leaves": 18,
+        "min_data_in_leaf": 498,
+        "feature_fraction": 0.44821221759987345,
+        "bagging_fraction": 0.6243294294349747,
+        "lambda_l2": 6.241519443804327,
+        "lambdarank_truncation_level": 28
+      },
+      "best_iter": 425,
+      "val_mrr": 0.47394632546656573
+    },
+    {
+      "params": {
+        "learning_rate": 0.033448905361552726,
+        "num_leaves": 26,
+        "min_data_in_leaf": 848,
+        "feature_fraction": 0.5061999079107738,
+        "bagging_fraction": 0.6648411327055815,
+        "lambda_l2": 27.79302717076922,
+        "lambdarank_truncation_level": 43
+      },
+      "best_iter": 306,
+      "val_mrr": 0.47413051595872163
+    },
+    {
+      "params": {
+        "learning_rate": 0.031931503932171645,
+        "num_leaves": 21,
+        "min_data_in_leaf": 441,
+        "feature_fraction": 0.5162877775250972,
+        "bagging_fraction": 0.5591554680224825,
+        "lambda_l2": 18.6042393451684,
+        "lambdarank_truncation_level": 35
+      },
+      "best_iter": 426,
+      "val_mrr": 0.47601744970814935
+    },
+    {
+      "params": {
+        "learning_rate": 0.03976838872224627,
+        "num_leaves": 21,
+        "min_data_in_leaf": 335,
+        "feature_fraction": 0.5722088823079587,
+        "bagging_fraction": 0.5677950262157876,
+        "lambda_l2": 17.61648204520416,
+        "lambdarank_truncation_level": 35
+      },
+      "best_iter": 372,
+      "val_mrr": 0.4749331613282554
+    },
+    {
+      "params": {
+        "learning_rate": 0.03335719046009746,
+        "num_leaves": 25,
+        "min_data_in_leaf": 616,
+        "feature_fraction": 0.44526580238239843,
+        "bagging_fraction": 0.6101276884479835,
+        "lambda_l2": 3.17195257154796,
+        "lambdarank_truncation_level": 39
+      },
+      "best_iter": 340,
+      "val_mrr": 0.4725132054677012
+    }
+  ]
+}

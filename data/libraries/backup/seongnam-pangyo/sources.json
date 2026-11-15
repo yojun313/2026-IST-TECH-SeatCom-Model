@@ -1,0 +1,26 @@
+[
+  {
+    "source_id": "seongnam-pangyo:source:public-csv-15032433",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15032433/fileData.do",
+    "sha256": "ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b",
+    "document_date": "2026-05-19",
+    "collected_on": "2026-11-14",
+    "license_status": "CSV 이용제한 없음(공공데이터포털 표기, 작업표 기준)",
+    "notes": "성남시 도서관 열람실 현황 파일데이터. 판교도서관 4행만 사용. 좌석ID·좌표·잔여석 없음.",
+    "local_path": "data/source_data/public_datasets/15032433.csv",
+    "library_id": "seongnam-pangyo"
+  },
+  {
+    "source_id": "seongnam-pangyo:source:snlib-roomstatus-link",
+    "source_type": "official_web",
+    "url": "http://www.snlib.go.kr/pg/contents/roomStatus.do",
+    "sha256": null,
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "snlib.go.kr robots.txt 전 경로 Disallow; 접근·수집하지 않음. CSV에 적힌 링크 URL만 기록",
+    "notes": "실시간 좌석현황 페이지 링크. 내용 미수집.",
+    "local_path": null,
+    "library_id": "seongnam-pangyo"
+  }
+]

@@ -1,0 +1,134 @@
+{
+  "k": 8,
+  "silhouette": 0.15766482055187225,
+  "clusters": [
+    {
+      "cluster": 0,
+      "label": "밝음 · 창가 · 바람 약함",
+      "size": 171,
+      "center_raw": {
+        "partition": 0.43299999833106995,
+        "outletAvailable": 0.46799999475479126,
+        "windowProximity": 0.781000018119812,
+        "brightness": 0.4950000047683716,
+        "airflow": 0.37599998712539673,
+        "deskWidth": 0.3199999928474426,
+        "noise_index": 0.27399998903274536,
+        "toiletProximity": 0.7110000252723694,
+        "entranceProximity": 0.6600000262260437
+      }
+    },
+    {
+      "cluster": 1,
+      "label": "콘센트 · 칸막이 없음 · 좁은 책상",
+      "size": 213,
+      "center_raw": {
+        "partition": -0.0,
+        "outletAvailable": 1.0,
+        "windowProximity": 0.2540000081062317,
+        "brightness": 0.17599999904632568,
+        "airflow": 0.5059999823570251,
+        "deskWidth": 0.17499999701976776,
+        "noise_index": 0.2800000011920929,
+        "toiletProximity": 0.699999988079071,
+        "entranceProximity": 0.6859999895095825
+      }
+    },
+    {
+      "cluster": 2,
+      "label": "바람 셈 · 넓은 책상 · 콘센트",
+      "size": 185,
+      "center_raw": {
+        "partition": 0.6050000190734863,
+        "outletAvailable": 0.9409999847412109,
+        "windowProximity": 0.2160000056028366,
+        "brightness": 0.16699999570846558,
+        "airflow": 0.8690000176429749,
+        "deskWidth": 0.4830000102519989,
+        "noise_index": 0.29899999499320984,
+        "toiletProximity": 0.7870000004768372,
+        "entranceProximity": 0.7070000171661377
+      }
+    },
+    {
+      "cluster": 3,
+      "label": "시끄러움 · 출입구 가까움 · 화장실 가까움",
+      "size": 229,
+      "center_raw": {
+        "partition": 0.42399999499320984,
+        "outletAvailable": 0.37599998712539673,
+        "windowProximity": 0.29899999499320984,
+        "brightness": 0.15700000524520874,
+        "airflow": 0.42800000309944153,
+        "deskWidth": 0.2980000078678131,
+        "noise_index": 0.4690000116825104,
+        "toiletProximity": 0.8059999942779541,
+        "entranceProximity": 0.8600000143051147
+      }
+    },
+    {
+      "cluster": 4,
+      "label": "칸막이 · 콘센트 없음 · 조용함",
+      "size": 191,
+      "center_raw": {
+        "partition": 1.0,
+        "outletAvailable": 0.0,
+        "windowProximity": 0.3610000014305115,
+        "brightness": 0.20200000703334808,
+        "airflow": 0.5220000147819519,
+        "deskWidth": 0.32199999690055847,
+        "noise_index": 0.24400000274181366,
+        "toiletProximity": 0.675000011920929,
+        "entranceProximity": 0.6349999904632568
+      }
+    },
+    {
+      "cluster": 5,
+      "label": "출입구 멂 · 화장실 멂 · 조용함",
+      "size": 184,
+      "center_raw": {
+        "partition": 0.4569999873638153,
+        "outletAvailable": 0.7070000171661377,
+        "windowProximity": 0.4729999899864197,
+        "brightness": 0.1509999930858612,
+        "airflow": 0.5289999842643738,
+        "deskWidth": 0.28200000524520874,
+        "noise_index": 0.24199999868869781,
+        "toiletProximity": 0.492000013589859,
+        "entranceProximity": 0.3190000057220459
+      }
+    },
+    {
+      "cluster": 6,
+      "label": "칸막이 · 콘센트 · 바람 약함",
+      "size": 171,
+      "center_raw": {
+        "partition": 1.0,
+        "outletAvailable": 1.0,
+        "windowProximity": 0.34599998593330383,
+        "brightness": 0.17000000178813934,
+        "airflow": 0.38600000739097595,
+        "deskWidth": 0.3089999854564667,
+        "noise_index": 0.3050000071525574,
+        "toiletProximity": 0.7089999914169312,
+        "entranceProximity": 0.7250000238418579
+      }
+    },
+    {
+      "cluster": 7,
+      "label": "콘센트 없음 · 칸막이 없음 · 좁은 책상",
+      "size": 267,
+      "center_raw": {
+        "partition": -0.0,
+        "outletAvailable": 0.0,
+        "windowProximity": 0.3050000071525574,
+        "brightness": 0.1889999955892563,
+        "airflow": 0.5419999957084656,
+        "deskWidth": 0.18700000643730164,
+        "noise_index": 0.26499998569488525,
+        "toiletProximity": 0.6949999928474426,
+        "entranceProximity": 0.6700000166893005
+      }
+    }
+  ]
+}

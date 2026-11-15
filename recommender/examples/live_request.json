@@ -1,0 +1,28 @@
+{
+  "user": {
+    "user_id": "new-user",
+    "preference_profile": {
+      "preferences": [
+        {"featureId": "brightness", "target": 0.85, "importance": 0.8},
+        {"featureId": "outletAvailable", "target": 1, "importance": 0.9}
+      ]
+    },
+    "requirements": [{"featureId": "laptopAllowed", "operator": "eq", "value": 1}]
+  },
+  "context": {"library_id": "demo-library", "room_id": "room-1", "time_slot": "noon", "occupancy_rate": 0.5},
+  "snapshot": {
+    "updated_at": "2026-11-15T10:00:00+09:00",
+    "seats": [
+      {
+        "seat_id": "seat-1", "library_id": "demo-library", "room_id": "room-1", "status": "empty",
+        "features": {"laptopAllowed": 1, "keyboardAllowed": 1, "partition": 1, "outletAvailable": 1, "windowProximity": 0.7, "toiletProximity": 0.4, "entranceProximity": 0.2, "brightness": 0.8, "airflow": 0.2, "deskHeight": 0.4, "deskWidth": 0.6, "viewQuality": 0.6},
+        "brightness_by_slot": {"morning": 0.6, "noon": 0.8, "evening": 0.4},
+        "raw": {"noise_index": 0.2}
+      },
+      {
+        "seat_id": "seat-2", "library_id": "demo-library", "room_id": "room-1", "status": "occupied",
+        "features": {"laptopAllowed": 1, "outletAvailable": 1, "brightness": 0.85}
+      }
+    ]
+  }
+}

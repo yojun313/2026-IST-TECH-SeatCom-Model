@@ -1,0 +1,662 @@
+[
+  {
+    "id": "15013109",
+    "title": "전국도서관표준데이터",
+    "type": "standard",
+    "query": "site:data.go.kr \"전국도서관표준데이터\""
+  },
+  {
+    "id": "15051849",
+    "title": "서울특별시_서울도서관 인기대출 도서목록 100선 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"인기대출\""
+  },
+  {
+    "id": "15111886",
+    "title": "경기도 부천시_도서관 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15146813",
+    "title": "경기도 의왕시_도서관영화상영",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15136612",
+    "title": "경기도 의왕시_도서관 문화강좌",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15134507",
+    "title": "충청남도 보령시_보령시립도서관문화강좌현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15081364",
+    "title": "전남광주통합특별시_전남 도립 도서관 도서 현황",
+    "type": "openapi",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15049366",
+    "title": "울산광역시_남구_구립도서관 추천도서",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15044574",
+    "title": "2015년 구의제3동도서관 프로그램 운영현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15051848",
+    "title": "서울특별시_독서실태조사",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15090277",
+    "title": "이용허락범위 제한 없음",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"문화프로그램\""
+  },
+  {
+    "id": "15171450",
+    "title": "경기도 용인시_도서관 열람실 그룹 및 좌석 예약 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"좌석\""
+  },
+  {
+    "id": "15154878",
+    "title": "경기도 용인시_도서관 좌석정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"좌석\""
+  },
+  {
+    "id": "15136382",
+    "title": "경기도 의왕시_관내 도서관",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"좌석\""
+  },
+  {
+    "id": "15063649",
+    "title": "전북특별자치도 군산시_도서관열람실좌석예약시스템 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"좌석\""
+  },
+  {
+    "id": "15078215",
+    "title": "경기도 의정부시_열람실좌석관리_좌석정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"좌석\""
+  },
+  {
+    "id": "15074092",
+    "title": "경상남도 양산시_시립도서관 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"좌석\""
+  },
+  {
+    "id": "15153049",
+    "title": "전북특별자치도교육청_통합도서관_대출이력",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"대출\" \"이력\""
+  },
+  {
+    "id": "15161352",
+    "title": "한국전력기술(주)_열린도서관 도서 대출이력 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"대출\" \"이력\""
+  },
+  {
+    "id": "15089212",
+    "title": "대구광역시_공공도서관 단행자료 대출 이력",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"대출\" \"이력\""
+  },
+  {
+    "id": "15144820",
+    "title": "경기도 과천시_도서관 도서대출",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"대출\" \"이력\""
+  },
+  {
+    "id": "15148788",
+    "title": "한국영상자료원_영상도서관 자료대출 이력",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"대출\" \"이력\""
+  },
+  {
+    "id": "15168094",
+    "title": "전북특별자치도교육청_통합도서관_비치희망정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"희망도서\""
+  },
+  {
+    "id": "3068859",
+    "title": "경상북도교육청 경상북도교육청구미도서관_희망도서구입목록",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"희망도서\""
+  },
+  {
+    "id": "15042703",
+    "title": "한국사학진흥재단_홈페이지_관리_도서구매",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"희망도서\""
+  },
+  {
+    "id": "15144821",
+    "title": "경기도 과천시_도서관 비치희망자료",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"희망도서\""
+  },
+  {
+    "id": "15153008",
+    "title": "전북특별자치도교육청_통합도서관_납품정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"희망도서\""
+  },
+  {
+    "id": "15167682",
+    "title": "경상남도 진주시_연암도서관 종합자료실 신간도서 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"희망도서\""
+  },
+  {
+    "id": "15113941",
+    "title": "충청남도 보령시_죽정도서관희망도서구입목록조회서비스",
+    "type": "openapi",
+    "query": "site:data.go.kr \"도서관\" \"희망도서\""
+  },
+  {
+    "id": "15135710",
+    "title": "전남광주통합특별시 서구_독서동아리현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"독서동아리\""
+  },
+  {
+    "id": "15146809",
+    "title": "경기도 의왕시_도서관 콘텐츠",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"독서동아리\""
+  },
+  {
+    "id": "15168714",
+    "title": "광진구시설관리공단_광진구립도서관 전자도서관 소장 전자책 목록",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15049230",
+    "title": "인천광역시_통합전자도서관 콘텐츠대출정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15152499",
+    "title": "전남광주통합특별시교육청 전남광주통합특별시교육청나주도서관_전자책 북큐레이션오디오 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15112554",
+    "title": "서울특별시 은평구",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15049662",
+    "title": "대구도시개발공사_전자도서관_베스트100_도서현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15105841",
+    "title": "전남광주통합특별시_도립도서관 장서 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15064193",
+    "title": "경기도 의정부시_전자도서관",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15049663",
+    "title": "대구도시개발공사_전자도서관 보유도서 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15152494",
+    "title": "전남광주통합특별시교육청 전남광주통합특별시교육청나주도서관_전자책 북큐레이션 도서 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15004155",
+    "title": "국립공원공단_국립공원 도서관 장서 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"전자책\""
+  },
+  {
+    "id": "15105001",
+    "title": "문화체육관광부_국립중앙도서관 조선총독부관보",
+    "type": "openapi",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "15096286",
+    "title": "전국도서관도서표준데이터",
+    "type": "standard",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "15171694",
+    "title": "문화체육관광부 국립중앙도서관_웹DB 목록",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "3078982",
+    "title": "문화체육관광부_국립중앙도서관_ISBN서지정보",
+    "type": "openapi",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "15040262",
+    "title": "공공데이터포털",
+    "type": "openapi",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "15151118",
+    "title": "문화체육관광부 국립중앙도서관_전국 독서교실(국립어린이청소년도서관)",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "15151124",
+    "title": "문화체육관광부 국립중앙도서관_사서추천도서(국립어린이청소년도서관)",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "15137811",
+    "title": "경기도 하남시_하남시립도서관 배너존관련 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "3084210",
+    "title": "제주특별자치도_한라도서관추천도서현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립중앙도서관\" \"API\""
+  },
+  {
+    "id": "15149720",
+    "title": "서울특별시 강서구_통합도서관 도서 대출 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"연령\" \"대출\""
+  },
+  {
+    "id": "15146069",
+    "title": "서울특별시_도심권 공공도서관 이용자 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"연령\" \"대출\""
+  },
+  {
+    "id": "15108153",
+    "title": "대전광역시 서구_둔산도서관도서현황",
+    "type": "openapi",
+    "query": "site:data.go.kr \"도서관\" \"연령\" \"대출\""
+  },
+  {
+    "id": "15162792",
+    "title": "한국교통안전공단_교통약자 이동편의 실태조사",
+    "type": "fileData",
+    "query": "site:data.go.kr 국민독서실태조사"
+  },
+  {
+    "id": "15129449",
+    "title": "전국청소년수련시설표준데이터",
+    "type": "standard",
+    "query": "site:data.go.kr 국민독서실태조사"
+  },
+  {
+    "id": "15038516",
+    "title": "서울특별시_구로구_장난감나라",
+    "type": "fileData",
+    "query": "site:data.go.kr \"장난감\" \"대여\""
+  },
+  {
+    "id": "15084488",
+    "title": "서울특별시 성동구_무지개장난감세상물품분류",
+    "type": "fileData",
+    "query": "site:data.go.kr \"장난감\" \"대여\""
+  },
+  {
+    "id": "15060857",
+    "title": "서울특별시 성동구_무지개장난감세상휴일정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"장난감\" \"대여\""
+  },
+  {
+    "id": "15051844",
+    "title": "서울특별시_장난감 도서관 위치 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"장난감\" \"대여\""
+  },
+  {
+    "id": "15117131",
+    "title": "인천광역시 계양구_도담도담장난감월드현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"장난감\" \"대여\""
+  },
+  {
+    "id": "15160138",
+    "title": "경기도 시흥시_통합예약시스템 시소_공유자원 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"공유\" \"공간\""
+  },
+  {
+    "id": "15150686",
+    "title": "경기도 시흥시_공유플랫폼 공간 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"공유\" \"공간\""
+  },
+  {
+    "id": "15013110",
+    "title": "전국평생학습강좌표준데이터",
+    "type": "standard",
+    "query": "site:data.go.kr \"평생학습강좌\""
+  },
+  {
+    "id": "15148750",
+    "title": "서울특별시 동작구_평생학습강좌 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"평생학습강좌\""
+  },
+  {
+    "id": "15141154",
+    "title": "경상북도 고령군_평생학습강좌",
+    "type": "fileData",
+    "query": "site:data.go.kr \"평생학습강좌\""
+  },
+  {
+    "id": "15143307",
+    "title": "경기도 성남시_평생학습_강좌정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"평생학습강좌\""
+  },
+  {
+    "id": "15109843",
+    "title": "경상남도 남해군_평생학습강좌현황 데이터 조회 서비스",
+    "type": "openapi",
+    "query": "site:data.go.kr \"평생학습강좌\""
+  },
+  {
+    "id": "15076791",
+    "title": "전남광주통합특별시 광양시_평생학습강좌",
+    "type": "openapi",
+    "query": "site:data.go.kr \"평생학습강좌\""
+  },
+  {
+    "id": "15090075",
+    "title": "울산광역시 북구_평생학습포털_강사관리 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"평생학습강좌\""
+  },
+  {
+    "id": "15076179",
+    "title": "행정안전부_공공개방자원 상세정보",
+    "type": "openapi",
+    "query": "공유누리 공공개방자원 API 공공데이터"
+  },
+  {
+    "id": "15076186",
+    "title": "행정안전부_공공개방자원 관리기관 정보",
+    "type": "openapi",
+    "query": "공유누리 공공개방자원 API 공공데이터"
+  },
+  {
+    "id": "15077523",
+    "title": "행정안전부_공공개방자원 물품 목록",
+    "type": "openapi",
+    "query": "공유누리 공공개방자원 API 공공데이터"
+  },
+  {
+    "id": "15077524",
+    "title": "행정안전부_공공개방자원 연구실험장비 목록",
+    "type": "openapi",
+    "query": "공유누리 공공개방자원 API 공공데이터"
+  },
+  {
+    "id": "15062866",
+    "title": "경기도 군포시_추천도서",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15040801",
+    "title": "인천광역시_남동구_도서관추천도서정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15132725",
+    "title": "경기도 평택시_도서관 추천도서",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15104976",
+    "title": "문화체육관광부_국립어린이청소년도서관_사서추천도서",
+    "type": "openapi",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15063432",
+    "title": "부산광역시 동래구_도서관 추천도서정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15152933",
+    "title": "전북특별자치도교육청_통합도서관_인기도서목록",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15148817",
+    "title": "경기도 수원시_추천도서현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15145329",
+    "title": "경기도 안양시_시립도서관 사서추천도서",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15133783",
+    "title": "경기도 하남시_미사도서관콘텐츠 베스트책 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15102150",
+    "title": "대구광역시 동구_도서관 문화강좌",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"추천도서\""
+  },
+  {
+    "id": "15154580",
+    "title": "경기도 평택시_도서관 시설달력",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"예약정보\""
+  },
+  {
+    "id": "15151627",
+    "title": "문화체육관광부 국립장애인도서관_책나래 대출 파손 정책",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"분실\""
+  },
+  {
+    "id": "15137510",
+    "title": "경기도 용인시_도서관 홈페이지 설문 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"이용자\" \"만족도\""
+  },
+  {
+    "id": "15060954",
+    "title": "부산광역시 남구_도서관 신착도서 목록",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"이용자\" \"만족도\""
+  },
+  {
+    "id": "15040797",
+    "title": "인천광역시_남동구_도서관영화상영정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"이용자\" \"만족도\""
+  },
+  {
+    "id": "15077232",
+    "title": "대전광역시_한밭도서관 문화학교 운영계획",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"이용자\" \"만족도\""
+  },
+  {
+    "id": "15042118",
+    "title": "경기도_안산시_행정자료도서관리_대여현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"연체\" \"정책\""
+  },
+  {
+    "id": "15171148",
+    "title": "경기도 용인시_도서관 행사 및 일정 달력 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15163312",
+    "title": "전북특별자치도 부안군_도서관 휴관일자",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15135708",
+    "title": "전남광주통합특별시 서구_도서관휴일현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15137140",
+    "title": "경기도 용인시_도서관 홈페이지 도서관 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15125842",
+    "title": "서울특별시 성동구_스마트도서관",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15148626",
+    "title": "인천광역시 제물포구_도서관휴관일",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15123203",
+    "title": "경기도 안산시_작은 도서관 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15102729",
+    "title": "경기도 이천시_작은도서관",
+    "type": "fileData",
+    "query": "site:data.go.kr \"도서관\" \"휴관일\""
+  },
+  {
+    "id": "15090743",
+    "title": "인천광역시 서해구_도서관교육프로그램현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"독서\" \"동아리\" \"현황\""
+  },
+  {
+    "id": "15062365",
+    "title": "전남광주통합특별시 광산구_도서관 동아리 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"독서\" \"동아리\" \"현황\""
+  },
+  {
+    "id": "15145183",
+    "title": "경상북도 영주시_공공도서관 운영 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"독서\" \"동아리\" \"현황\""
+  },
+  {
+    "id": "15142580",
+    "title": "행정안전부 한국지역정보개발원_(전국 통합데이터) 공공도서관 열람실 현황 실시간 정보",
+    "type": "openapi",
+    "query": "공식 상세페이지 확인"
+  },
+  {
+    "id": "15125914",
+    "title": "국회 국회사무처_국회도서관 업무추진비 집행현황",
+    "type": "openapi",
+    "query": "site:data.go.kr \"국회도서관\""
+  },
+  {
+    "id": "15040835",
+    "title": "공공데이터포털",
+    "type": "openapi",
+    "query": "site:data.go.kr \"국회도서관\""
+  },
+  {
+    "id": "15122943",
+    "title": "행정안전부 국가기록원_주제분야정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국가기록원\" \"검색\""
+  },
+  {
+    "id": "15156344",
+    "title": "문화체육관광부 국립장애인도서관_대표서지 정보",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립장애인도서관\""
+  },
+  {
+    "id": "15163296",
+    "title": "문화체육관광부 국립장애인도서관_자료유형별 대체자료 신청 이력",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립장애인도서관\""
+  },
+  {
+    "id": "15163294",
+    "title": "문화체육관광부 국립장애인도서관_연도별 점역 위탁 계약 현황",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립장애인도서관\""
+  },
+  {
+    "id": "15095893",
+    "title": "문화체육관광부 국립장애인도서관_DeepQA 데이터",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립장애인도서관\""
+  },
+  {
+    "id": "15163292",
+    "title": "문화체육관광부 국립장애인도서관_DeepQA 구축 데이터",
+    "type": "fileData",
+    "query": "site:data.go.kr \"국립장애인도서관\""
+  }
+]

@@ -37,48 +37,47 @@ data/
 │   ├── reference_room_candidates.csv/json    # 열람실 222개 링크 후보
 │   ├── source_manifest.json          # 원본 출처·해시·접근정책·조사 범위
 │   └── yongin_layout_sources.json    # 용인11관 공식 안내도 URL
-├── seats/
-│   └── seongnam_central_A.csv/json   # 사용자 캡처에서 추출한169개 좌석
-├── candidates/
-│   └── yongin_geometry.csv/json      # 공식좌석ID 미연결 좌표 후보1,318개
-├── maps/
-│   └── seongnam_central_A.svg        # 상태를 제거한 좌석 버튼 배치 재구성
+├── source_data/
+│   ├── public_datasets/              # 보존한 공공 CSV 원본·UTF-8 정리본
+│   ├── extracted/                    # OCR·좌석 사각형 추출 중간물
+│   └── README.md                     # 보관 기준 및 제외 자료
 ├── validation/
 │   ├── seongnam_central_A.json       # OCR·좌표·개수 검증
 │   └── integrity.json                # 파일 간 무결성 점검 결과
 └── scripts/
     ├── structure_seat_screenshot.py  # 해당 유형 캡처의 좌표+OCR+SVG 생성
     └── validate_artifacts.py         # CSV/JSON·범위·ID·상태필드 제외 점검
-├── libraries/
-│   ├── ID_REGISTRY.json              # 27개 library_id
-│   ├── {library_id}/                 # 도서관별 정적 데이터 번들·JSON/CSV·assets
-│   ├── _unified/                     # 학습·분석용 전체 도서관 JSONL 테이블
-│   ├── build_unified.py              # 통합 JSONL/coverage.csv 재생성
-│   ├── export_csv.py                 # 공통 한글 헤더로 도서관별 CSV 사본 재생성
-│   └── load.py                       # unified 테이블 로더
+├── libraries/                        # 자세한 구조·재생성 방법: libraries/README.md
+│   ├── real/{library_id}/            # 좌석 좌표가 있는 11관 정적 번들(JSON/CSV/assets)
+│   ├── backup/{library_id}/          # 좌석 좌표가 없는 16관(보관, 학습 대상 제외)
+│   ├── unified/                      # real 11관 통합 JSONL + coverage.csv
+│   ├── synthetic/                    # 합성 환경·사용자·선택 이력 JSONL (manifest.json)
+│   ├── registry/ID_REGISTRY.json     # 27개 library_id
+│   ├── scripts/                      # build_unified·export_csv·load·generate_synthetic·load_mongo
+│   └── docs/                         # AGENT_BRIEF.md, SYNTHETIC_DATA.md
 ```
 
 CSV는 UTF-8 BOM, 한글 컬럼, 마지막 컬럼은 데이터기준일자다. JSON은 UTF-8이며 공란은 null이다. 좌표 후보를 검증된 좌석처럼 사용하지 않는다. 이용 상태·이용 시각·성별·색상은 좌석 데이터에 저장하지 않았다.
 
 ## 실행
 
-저장소 루트에서 Python3.10 이상을 사용한다. 이번 실행은3.12였다.
+저장소 루트의 uv 환경(`pyproject.toml`, Python 3.11)을 쓴다. OCR 의존성은 `ocr` 그룹에 있다.
 
 ```bash
-python3.12 -m venv .venv
-.venv/bin/pip install -r data/requirements.txt
-.venv/bin/python data/scripts/validate_artifacts.py
+uv sync --group ocr                       # OCR 재현이 필요할 때만 --group ocr
+uv run data/scripts/validate_artifacts.py
+uv run data/scripts/validate_api_spec.py  # API 명세(OpenAPI·예시) 검증
 
 # 이 이미지의 프로필에 한정된 재현 명령. 다른 캡처는 frame·검출 크기를 조정해야 한다.
-.venv/bin/python data/scripts/structure_seat_screenshot.py \
+uv run data/scripts/structure_seat_screenshot.py \
   /home/stadium/.univdash/uploads/76e3778271ac-pasted-20261114075747.png \
   --frame 48 582 3772 1786 --expected 169 --date 2026-11-14
-.venv/bin/python data/scripts/validate_artifacts.py
+uv run data/scripts/validate_artifacts.py
 ```
 
 원본 캡처는 사용자 제공 업로드 경로에 있다. 이용 현황과 브라우저 개인 영역을 복제하지 않도록 저장소에 원본 이미지를 복사하지 않았다. 다른 실행환경에서는 동일 원본을 별도로 확보해야 OCR를 재현할 수 있다. SVG는 JSON만으로 웹에 표시할 수 있다.
 
-기존 공개 CSV 원본은 저장소의 대문자 `Data/`에 있다. 이 소문자 `data/`에는 원본을 중복 복사하지 않았다. 실제 파일명이 한글 자모 분해형일 수 있으므로 인계서의 Python 검색 방법을 사용한다.
+공개 원본과 필요한 UTF-8 정리본은 `source_data/public_datasets/`에 보관한다. 예약 이력, 이번 27개관 구축에서 쓰지 않는 별도 CSV, 중복 확인 결과는 제외했다. 좌석 추출 중간물은 `source_data/extracted/`에 있고, 화면 미리보기 SVG는 `libraries/real/seongnam-central/assets/seat_layout_A.svg`에 있다.
 
 ## 백엔드·모델 API 설계
 

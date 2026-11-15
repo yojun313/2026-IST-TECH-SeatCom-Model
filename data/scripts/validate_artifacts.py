@@ -39,7 +39,7 @@ def validate():
             assert all(a[k]==('' if v is None else str(v)) for k,v in b.items()), path
             assert date.fromisoformat(a['데이터기준일자']).isoformat()==a['데이터기준일자']
         checks.append(f'{path.relative_to(ROOT)}: BOM/컬럼/전체값/JSON/날짜 일치')
-    seats=load(ROOT/'seats/seongnam_central_A.json')
+    seats=load(ROOT/'source_data/extracted/seongnam_central_A.json')
     report=load(ROOT/'validation/seongnam_central_A.json')
     frame=report['좌석도표시영역']
     assert len(seats)==report['검출사각형수']==report['표기전체좌석수']==169
@@ -57,11 +57,11 @@ def validate():
     assert priority==report['우선검수좌석'] and len(priority)==8
     checks.append('성남중앙169개: 고유번호/객체ID/좌표범위/변환/정규화/우선검수8개 일치')
     ns={'svg':'http://www.w3.org/2000/svg'}
-    svg=ET.parse(ROOT/'maps/seongnam_central_A.svg').getroot()
+    svg=ET.parse(ROOT/'libraries/seongnam-central/assets/seat_layout_A.svg').getroot()
     assert len(svg.findall('svg:g',ns))==169
     assert {n.text for n in svg.findall('.//svg:text',ns)}=={r['좌석번호'] for r in seats}
     checks.append('SVG169개 객체와 JSON좌석번호 일치')
-    geometry=load(ROOT/'candidates/yongin_geometry.json')
+    geometry=load(ROOT/'source_data/extracted/yongin_geometry.json')
     assert len(geometry)==1318
     assert len({r['기하객체ID'] for r in geometry})==1318
     assert all(r['공식좌석ID'] is None and r['좌석번호'] is None for r in geometry)

@@ -1,0 +1,140 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="page-head">
+  <div><h1>도서관 뷰어</h1><div class="muted">실좌석 배치 위에 합성 환경(창문·화장실·냉방기·조명·콘센트·책상)을 렌더링합니다. 좌석을 누르면 특성이 보이고, 마우스 휠로 확대, 드래그로 이동합니다.</div></div>
+</div>
+<div class="floor-layout">
+  <div class="card left">
+    <div class="field"><span>도서관</span><select id="lib"></select></div>
+    <div class="field"><span>열람실</span><select id="unit"></select></div>
+    <div class="field"><span>시나리오 <b id="scnLabel"></b></span>
+      <div class="scn-nav"><button class="btn" id="prev"><i class="fa-solid fa-chevron-left"></i></button><input type="range" id="scn" min="0" max="29" value="0"><button class="btn" id="next"><i class="fa-solid fa-chevron-right"></i></button></div>
+    </div>
+    <div class="field"><span>시간대</span><div class="btn-group" id="slot"><button class="btn" data-v="morning">아침</button><button class="btn on" data-v="noon">정오</button><button class="btn" data-v="evening">저녁</button></div></div>
+    <div class="field"><span>좌석 색칠</span><select id="colorBy"></select></div>
+    <div class="field"><span>바닥 히트맵</span><select id="heat"><option value="none">없음</option><option value="brightness">조도(정오)</option><option value="airflow">직접 바람</option></select></div>
+    <div class="field"><span>레이어</span><div id="layers"></div></div>
+  </div>
+  <div>
+    <div class="stage" id="stage"><div class="empty">불러오는 중…</div></div>
+  </div>
+  <div class="right grid">
+    <div class="card" id="seatPanel"><h2>좌석</h2><div class="muted small">평면에서 좌석을 누르세요.</div></div>
+    <div class="card" id="scnPanel"></div>
+    <div class="card"><h2>범례</h2><div class="legend-list" id="legendList"></div></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/floor.js"></script>
+<script>
+(() => {
+  const { $, $$, api, esc, l, fmt, bar } = SV;
+  const init = { lib: {{ lib|tojson }}, scenario: {{ scenario|tojson }} };
+  const LAYERS = [['desks', '책상·좌석'], ['labels', '좌석 번호'], ['windows', '창문'], ['toilets', '화장실·경로'], ['ac', '냉방기'], ['airflow', '냉방 바람 범위'],
+    ['fixtures', '천장 조명'], ['glow', '조명·채광 효과'], ['outlets', '콘센트'], ['real', '실데이터 시설']];
+  const on = new Set(['desks', 'labels', 'windows', 'toilets', 'ac', 'fixtures', 'glow', 'outlets', 'real']);
+  $('#layers').innerHTML = LAYERS.map(([k, t]) => `<label class="chk"><input type="checkbox" value="${k}" ${on.has(k) ? 'checked' : ''}> ${t}</label>`).join('');
+  $('#colorBy').innerHTML = `<option value="none">없음(실제 모습)</option><optgroup label="특성 features-1 (0~1)">${SV.FEATURES.map(f => `<option value="${f}">${l(f)}</option>`).join('')}</optgroup>
+    <optgroup label="원값·이용">${Object.entries(SV.RAW_METRICS).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('')}</optgroup>`;
+  $('#legendList').innerHTML = [
+    ['<rect x="2" y="3" width="18" height="10" rx="2" fill="#b88d58"/><rect x="8" y="5" width="6" height="6" rx="2" fill="#3e4d5f"/>', '책상 + 의자(좌석)'],
+    ['<rect x="2" y="3" width="18" height="10" fill="none" stroke="#5b4630" stroke-width="2.5"/>', '칸막이 좌석'],
+    ['<line x1="1" y1="8" x2="21" y2="8" stroke="#9fd8f5" stroke-width="5"/><line x1="1" y1="8" x2="21" y2="8" stroke="#fff" stroke-width="1"/>', '창문 (회색 점선 = 블라인드)'],
+    ['<rect x="4" y="1" width="14" height="14" rx="2" fill="#f1f4f7" stroke="#6f7c8a"/><line x1="8" y1="4" x2="14" y2="4" stroke="#4a90d9" stroke-width="2"/>', '냉방기 (천장형/벽걸이/스탠드)'],
+    ['<rect x="2" y="6" width="18" height="4" rx="1" fill="#fffbe8" stroke="#d8c77a"/>', '천장 조명 (회색 = 어두움/고장)'],
+    ['<circle cx="11" cy="8" r="5" fill="#f6c343" stroke="#6b4e00"/>', '콘센트 (벽/책상)'],
+    ['<rect x="3" y="2" width="16" height="12" fill="#e6eef3" stroke="#33363b"/>', '화장실 + 보행 경로(점선)'],
+    ['<path d="M11 2L17 8L11 14L5 8Z" fill="#e0533d" stroke="#fff"/>', '실데이터 시설 후보'],
+  ].map(([s, t]) => `<svg viewBox="0 0 22 16">${s}</svg><span>${t}</span>`).join('');
+
+  let lib = null, unit = null, floor = new SV.Floor($('#stage'), { onSeat: showSeat }), slot = 'noon';
+  const layers = () => new Set($$('#layers input:checked').map(i => i.value));
+
+  async function boot() {
+    const ov = await api('/api/overview');
+    const active = ov.libraries.filter(x => x.dataset_status === 'active');
+    $('#lib').innerHTML = active.map(x => `<option value="${x.library_id}">${esc(x.name)} (${x.seats}석)</option>`).join('');
+    let startLib = init.lib, startScn = init.scenario;
+    if (startScn && !startLib) startLib = startScn.split(':')[0];
+    if (startLib) $('#lib').value = startLib;
+    await loadLib(startScn);
+  }
+  async function loadLib(scnId) {
+    lib = await api('/api/libraries/' + encodeURIComponent($('#lib').value));
+    $('#unit').innerHTML = lib.units.map((u, i) => `<option value="${i}">${esc(u.room_name || u.room_id.split(':').pop())} · ${u.seat_count}석 · ${esc(u.map_id.split(':').pop())}</option>`).join('');
+    let ui = 0, si = 0;
+    if (scnId) lib.units.forEach((u, i) => u.scenarios.forEach((s, j) => { if (s.scenario_id === scnId) { ui = i; si = j; } }));
+    $('#unit').value = ui; await loadUnit(si);
+  }
+  async function loadUnit(si = 0) {
+    unit = lib.units[+$('#unit').value];
+    $('#scn').max = unit.scenarios.length - 1; $('#scn').value = si; await loadScenario();
+  }
+  async function loadScenario() {
+    const s = unit.scenarios[+$('#scn').value];
+    $('#scnLabel').textContent = `#${s.index} · ${l(s.season)} · ${l(s.weather)}`;
+    SV.setQs({ lib: lib.library.library_id, scenario: s.scenario_id });
+    try {
+      const d = await api('/api/scenarios/' + encodeURIComponent(s.scenario_id));
+      floor.opts.layers = layers(); floor.opts.slot = slot; floor.opts.colorBy = $('#colorBy').value; floor.opts.heat = $('#heat').value;
+      floor.setData(d); showScenario(d);
+    } catch (e) { SV.err($('#stage'), e); }
+  }
+  function showScenario(d) {
+    const sc = d.scenario, c = sc.conditions, n = sc.counts;
+    const desk = {}; sc.desk_groups.forEach(g => { desk[g.desk_type] = (desk[g.desk_type] || 0) + g.seat_ids.length; });
+    const ac = {}; sc.objects.filter(o => o.type === 'air_conditioner').forEach(o => ac[o.kind] = (ac[o.kind] || 0) + 1);
+    const outlets = sc.objects.filter(o => o.type === 'outlet'); const lights = sc.objects.filter(o => o.type === 'ceiling_light');
+    const dark = lights.filter(x => x.lux_at_desk_below < 300).length;
+    $('#scnPanel').innerHTML = `<h2>시나리오 <span class="badge b-syn">합성</span></h2>
+      <div class="mono small muted" style="word-break:break-all;margin-bottom:8px">${esc(sc.scenario_id)}</div>
+      <dl class="kv">
+        <dt>계절·날씨</dt><dd>${l(c.season)} · ${l(c.weather)} · 기준 ${c.base_temperature_c}°C</dd>
+        <dt>노트북/키보드</dt><dd>${c.laptop_allowed ? '허용' : '금지'} / ${c.keyboard_allowed ? '허용' : '금지'} <span class="muted small">(${c.laptop_rule_origin === 'synthetic' ? '합성' : '실규정'})</span></dd>
+        <dt>합성 축척</dt><dd>${sc.synthetic_meters_per_px} m/px</dd>
+        <dt>좌석</dt><dd>${sc.seat_count}석 · 책상 묶음 ${sc.desk_groups.length}</dd>
+        <dt>창문</dt><dd>${n.window}개 창 · 블라인드 ${sc.objects.filter(o => o.blind_closed).length}</dd>
+        <dt>화장실</dt><dd>${n.toilet} <span class="muted small">(${sc.objects.find(o => o.type === 'toilet')?.origin === 'synthetic' ? '합성' : '실데이터 후보'})</span></dd>
+        <dt>냉방기</dt><dd>${Object.entries(ac).map(([k, v]) => `${l(k)} ${v}`).join(' · ')}</dd>
+        <dt>조명</dt><dd>${lights.length}개 · 어두움/고장 ${dark}</dd>
+        <dt>콘센트</dt><dd>벽 ${outlets.filter(o => o.kind === 'wall').length} · 책상 ${outlets.filter(o => o.kind === 'desk').length}</dd>
+        <dt>이 환경의 세션</dt><dd>${SV.num(d.session_count)}건 선택 · <a href="/sessions?scenario=${encodeURIComponent(sc.scenario_id)}">세션 보기</a></dd>
+      </dl>
+      <h3 style="margin-top:12px">책상 유형</h3>${Object.entries(desk).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<div class="frow"><span>${l(k)}</span>${bar(v, sc.seat_count)}<span class="n">${v}</span></div>`).join('')}
+      <h3 style="margin-top:12px">좌석 특성 평균</h3>${SV.FEATURES.map(f => { const a = d.seats.reduce((s, x) => s + (f === 'brightness' ? x.brightness_by_slot[slot] : x.features[f]), 0) / d.seats.length; return `<div class="frow"><span>${l(f)}</span>${bar(a)}<span class="n">${a.toFixed(2)}</span></div>`; }).join('')}
+      <details style="margin-top:10px"><summary class="small">원본 JSON (객체 ${sc.objects.length}개)</summary>${SV.json({ ...sc, brightness_grid: { ...sc.brightness_grid, values: `[${sc.brightness_grid.rows}×${sc.brightness_grid.cols}]` } })}</details>`;
+  }
+  function showSeat(s) {
+    if (!s) return;
+    const f = s.features, r = s.raw;
+    $('#seatPanel').innerHTML = `<h2>좌석 ${esc(s.seat_label ?? '')} <span class="badge b-real">실좌석</span> <span class="badge b-syn">합성 특성</span></h2>
+      <dl class="kv small"><dt>seat_id</dt><dd class="mono">${esc(s.seat_id)}</dd><dt>공식 ID</dt><dd>${fmt(s.external_seat_id)}</dd>
+        <dt>bbox(px)</dt><dd class="mono">${s.bbox ? [s.bbox.x, s.bbox.y, s.bbox.width, s.bbox.height].join(', ') : '-'}</dd><dt>실좌석 검수</dt><dd>${esc(s.real_verification)}</dd></dl>
+      <h3 style="margin-top:10px">특성 (features-1)</h3>
+      ${SV.FEATURES.map(k => { const v = k === 'brightness' ? s.brightness_by_slot[slot] : f[k]; return `<div class="frow"><span>${l(k)}</span>${bar(v, 1, SV.BINARY.has(k) ? (v ? '#3fbf7f' : '#d9534f') : null)}<span class="n">${v.toFixed ? v.toFixed(2) : v}</span></div>`; }).join('')}
+      <h3 style="margin-top:10px">원값</h3>
+      <dl class="kv small">
+        <dt>책상</dt><dd>${l(r.desk_type)} · 폭 ${r.width_cm}cm · 높이 ${r.height_cm}cm · 칸막이 ${r.partition ? 'O' : 'X'} · 책상콘센트 ${r.desk_outlet ? 'O' : 'X'}</dd>
+        <dt>조도</dt><dd>아침 ${r.lux.morning} / 정오 ${r.lux.noon} / 저녁 ${r.lux.evening} lux</dd>
+        <dt>온도·바람</dt><dd>${r.temperature_c}°C · 바람 ${r.airflow_index}</dd>
+        <dt>거리</dt><dd>창문 ${fmt(r.dist_window_m, 1)}m · 화장실 ${fmt(r.dist_toilet_walk_m, 1)}m · 출입구 ${fmt(r.dist_entrance_walk_m, 1)}m · 콘센트 ${fmt(r.dist_outlet_m, 1)}m · 냉방기 ${fmt(r.dist_ac_m, 1)}m</dd>
+        <dt>소음</dt><dd>${r.noise_index}</dd>
+        <dt>이용(이 환경)</dt><dd>선택 ${s.usage.chosen}회 · 노출 ${s.usage.exposed}회 · 평균 만족도 ${fmt(s.usage.avg_satisfaction)}</dd>
+      </dl>
+      <details style="margin-top:8px"><summary class="small">원본 JSON</summary>${SV.json(s)}</details>`;
+  }
+
+  $('#lib').onchange = () => loadLib();
+  $('#unit').onchange = () => loadUnit(0);
+  $('#scn').oninput = () => { clearTimeout(window._st); window._st = setTimeout(loadScenario, 120); };
+  $('#prev').onclick = () => { $('#scn').value = Math.max(0, +$('#scn').value - 1); loadScenario(); };
+  $('#next').onclick = () => { $('#scn').value = Math.min(+$('#scn').max, +$('#scn').value + 1); loadScenario(); };
+  $$('#slot .btn').forEach(b => b.onclick = () => { $$('#slot .btn').forEach(x => x.classList.toggle('on', x === b)); slot = b.dataset.v; floor.set({ slot }); if (floor.data) showScenario(floor.data); });
+  $('#colorBy').onchange = () => floor.set({ colorBy: $('#colorBy').value });
+  $('#heat').onchange = () => floor.set({ heat: $('#heat').value });
+  $('#layers').onchange = () => floor.set({ layers: layers() });
+  boot().catch(e => SV.err($('#stage'), e));
+})();
+</script>
+{% endblock %}

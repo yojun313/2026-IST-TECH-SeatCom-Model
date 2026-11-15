@@ -89,10 +89,10 @@ def structure(image_path, output_dir, frame, expected, data_date):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     stem = 'seongnam_central_A'
-    for subdir in ('seats','validation','maps'):
+    for subdir in ('source_data/extracted','validation'):
         (output_dir/subdir).mkdir(exist_ok=True)
-    (output_dir/'seats'/(stem+'.json')).write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    with (output_dir/'seats'/(stem+'.csv')).open('w',encoding='utf-8-sig',newline='') as f:
+    (output_dir/'source_data/extracted'/(stem+'.json')).write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    with (output_dir/'source_data/extracted'/(stem+'.csv')).open('w',encoding='utf-8-sig',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n')
         writer.writeheader();writer.writerows(rows)
     (output_dir/'validation'/(stem+'.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
@@ -107,7 +107,7 @@ def structure(image_path, output_dir, frame, expected, data_date):
                     f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="#edf2f7" stroke="#334155"/>',
                     f'<text x="{x+w/2}" y="{y+h/2}" text-anchor="middle" dominant-baseline="middle" font-size="20" font-family="sans-serif">{label}</text>','</g>'])
     svg.append('</svg>')
-    (output_dir/'maps'/(stem+'.svg')).write_text('\n'.join(svg)+'\n',encoding='utf-8')
+    (output_dir/'libraries/seongnam-central/assets'/(stem+'.svg')).write_text('\n'.join(svg)+'\n',encoding='utf-8')
     print(json.dumps({k:report[k] for k in ('검출사각형수','고유좌석번호수','좌석수대조','범위검증','우선검수좌석','번호수열내미등장번호')},ensure_ascii=False,indent=2))
 
 

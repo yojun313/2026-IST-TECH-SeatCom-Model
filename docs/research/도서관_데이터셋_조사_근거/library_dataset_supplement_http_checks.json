@@ -1,0 +1,169 @@
+[
+  {
+    "url": "https://aihub.or.kr/aihubdata/data/view.do?dataSetSn=93",
+    "status": 200,
+    "final_url": "https://aihub.or.kr/aihubdata/data/view.do?dataSetSn=93"
+  },
+  {
+    "url": "https://api.ncloud-docs.com/docs/naver-api-hub-search-news",
+    "status": 200,
+    "final_url": "https://api.ncloud-docs.com/docs/naver-api-hub-search-news"
+  },
+  {
+    "url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=4K9YEYMEGUD0N4ZIATSR24291536&infSeq=1",
+    "status": 200,
+    "final_url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=4K9YEYMEGUD0N4ZIATSR24291536&infSeq=1"
+  },
+  {
+    "url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=8E8IIJ6P51O0SUXQDCLA23473789&infSeq=1",
+    "status": 200,
+    "final_url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=8E8IIJ6P51O0SUXQDCLA23473789&infSeq=1"
+  },
+  {
+    "url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=8OA7QE89M021HP3G100712792133&infSeq=1",
+    "status": 200,
+    "final_url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=8OA7QE89M021HP3G100712792133&infSeq=1"
+  },
+  {
+    "url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=OSL02MD6FXIBGCJGYHEM23487593&infSeq=1",
+    "status": 200,
+    "final_url": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=OSL02MD6FXIBGCJGYHEM23487593&infSeq=1"
+  },
+  {
+    "url": "https://data.seattle.gov/Community-and-Culture/Seattle-Checkouts-by-Title/tmmm-ytt6",
+    "status": 200,
+    "final_url": "https://data.seattle.gov/Community-and-Culture/Checkouts-by-Title/tmmm-ytt6"
+  },
+  {
+    "url": "https://data.seattle.gov/Community-and-Culture/Seattle-Library-Collection-Inventory/6vkj-f5xf",
+    "status": 200,
+    "final_url": "https://data.seattle.gov/Community-and-Culture/Library-Collection-Inventory/6vkj-f5xf"
+  },
+  {
+    "url": "https://data.seattle.gov/Community-and-Culture/Seattle-Physical-Item-Checkouts/5src-czff",
+    "status": 200,
+    "final_url": "https://data.seattle.gov/Community-and-Culture/Checkouts-By-Title-Physical-Items-/5src-czff"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-12115/S/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-12115/S/1/datasetView.do"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-12117/S/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-12117/S/1/datasetView.do"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-15182/F/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-15182/F/1/datasetView.do"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-15476/S/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-15476/S/1/datasetView.do"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-15480/S/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-15480/S/1/datasetView.do"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-21096/L/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-21096/L/1/datasetView.do"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-22384/F/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-22384/F/1/datasetView.do"
+  },
+  {
+    "url": "https://data.seoul.go.kr/dataList/OA-22609/F/1/datasetView.do",
+    "status": 200,
+    "final_url": "https://data.seoul.go.kr/dataList/OA-22609/F/1/datasetView.do"
+  },
+  {
+    "url": "https://github.com/zygmuntz/goodbooks-10k",
+    "status": 200,
+    "final_url": "https://github.com/zygmuntz/goodbooks-10k"
+  },
+  {
+    "url": "https://help.openalex.org/",
+    "status": 200,
+    "final_url": "https://help.openalex.org/"
+  },
+  {
+    "url": "https://info.arxiv.org/help/api/index.html",
+    "status": 200,
+    "final_url": "https://info.arxiv.org/help/api/index.html"
+  },
+  {
+    "url": "https://libsta.go.kr/board/statapi",
+    "status": 404,
+    "final_url": "https://libsta.go.kr/board/statapi",
+    "replacement_url": "https://www.mcst.go.kr/libsta/board/statapi",
+    "replacement_status": 200
+  },
+  {
+    "url": "https://mcauleylab.ucsd.edu/public_datasets/gdrive/goodreads/UCSD%20Book%20Graph.html",
+    "status": 200,
+    "final_url": "https://mcauleylab.ucsd.edu/public_datasets/gdrive/goodreads/UCSD%20Book%20Graph.html"
+  },
+  {
+    "url": "https://openlibrary.org/developers/api",
+    "status": 200,
+    "final_url": "https://openlibrary.org/developers/api"
+  },
+  {
+    "url": "https://openlibrary.org/developers/dumps",
+    "status": 200,
+    "final_url": "https://openlibrary.org/developers/dumps"
+  },
+  {
+    "url": "https://search.r-project.org/CRAN/refmans/recommenderlabBX/html/BX.html",
+    "status": 200,
+    "final_url": "https://search.r-project.org/CRAN/refmans/recommenderlabBX/html/BX.html"
+  },
+  {
+    "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+    "status": 200,
+    "final_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+  },
+  {
+    "url": "https://www.data4library.kr/apiUtilization",
+    "status": 200,
+    "final_url": "https://www.data4library.kr/apiUtilization"
+  },
+  {
+    "url": "https://www.gutenberg.org/ebooks/offline_catalogs.html",
+    "status": 200,
+    "final_url": "https://www.gutenberg.org/ebooks/offline_catalogs.html"
+  },
+  {
+    "url": "https://www.loc.gov/apis/json-and-yaml",
+    "status": 200,
+    "final_url": "https://www.loc.gov/apis/json-and-yaml"
+  },
+  {
+    "url": "https://www.mcst.go.kr/libsta/statistics/national/stat",
+    "status": 200,
+    "final_url": "https://www.mcst.go.kr/libsta/statistics/national/stat"
+  },
+  {
+    "url": "https://www.mcst.go.kr/libsta/statistics/public/stat",
+    "status": 200,
+    "final_url": "https://www.mcst.go.kr/libsta/statistics/public/stat"
+  },
+  {
+    "url": "https://www.mcst.go.kr/libsta/statistics/small/stat",
+    "status": 200,
+    "final_url": "https://www.mcst.go.kr/libsta/statistics/small/stat"
+  },
+  {
+    "url": "https://www.mcst.go.kr/libsta/statistics/special/stat",
+    "status": 200,
+    "final_url": "https://www.mcst.go.kr/libsta/statistics/special/stat"
+  }
+]

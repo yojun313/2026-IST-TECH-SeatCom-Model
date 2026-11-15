@@ -1,0 +1,450 @@
+[
+  {
+    "id": "15142580",
+    "metadata": {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "행정안전부 한국지역정보개발원_(전국 통합데이터) 공공도서관 열람실 현황 실시간 정보",
+      "description": "자치단체에서 운영하고 있는 공공 도서관 열람실 이용자의 편의제공을 목적으로 공공 도서관 통합정보를 비롯해 공공도서관 상태정보, 공공도서관 열람실의 실시간 좌석이용 현황 정보를 제공 합니다. 제공되는 정보는 공공 도서관의 지리적 위치 및 연락처, 운영시간, 휴관일 정보 등 공공 도서관의 기본 정보인 \"공공도서관 통합정보\"와 공공도서관의 운영 상태 및 방문자수, 좌석사용율 등의 공공도서관 운영상태 정보인 \"공공도서관 현황정보\", 공공도서관의 열람실 정보 및 열람실 실시간 이용가능한 좌석 정보인 \"공공도서관 열람실 실시간정보\"를 제공합니다.",
+      "url": "https://www.data.go.kr/data/15142580/openapi.do",
+      "identifier": "15142580",
+      "inLanguage": "ko",
+      "keywords": "공공도서관,실시간열람실정보,공공도서관운영현황,도서관 좌석 현황,좌석 이용현황,열람실 정보,실시간 좌석정보,도서관 정보",
+      "license": {
+        "name": "이용허락범위 제한 없음",
+        "url": "https://www.data.go.kr/ugs/selectPortalPolicyView.do",
+        "@type": "CreativeWork"
+      },
+      "isAccessibleForFree": true,
+      "dateCreated": "2025-03-25",
+      "dateModified": "2026-01-27",
+      "datePublished": "2025-03-25",
+      "creator": {
+        "name": "행정안전부 한국지역정보개발원",
+        "contactPoint": {
+          "contactType": "인공지능데이터활용부",
+          "telephone": "+82-2-2031-9337",
+          "@type": "ContactPoint"
+        },
+        "@type": "Organization"
+      },
+      "spatialCoverage": "대한민국",
+      "encodingFormat": "JSON+XML",
+      "includedInDataCatalog": {
+        "name": "공공데이터포털",
+        "url": "https://www.data.go.kr",
+        "@id": "https://www.data.go.kr/#datacatalog",
+        "@type": "DataCatalog"
+      },
+      "additionalProperty": [
+        {
+          "name": "분류체계",
+          "value": "교육 - 교육일반",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "제공형태",
+          "value": "REST",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "업데이트 주기",
+          "value": "실시간",
+          "@type": "PropertyValue"
+        }
+      ],
+      "distribution": [
+        {
+          "encodingFormat": "JSON+XML",
+          "contentUrl": "https://apis.data.go.kr/B551982/plr_v2",
+          "@type": "DataDownload"
+        }
+      ]
+    }
+  },
+  {
+    "id": "15171450",
+    "metadata": {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "경기도 용인시_도서관 열람실 그룹 및 좌석 예약 정보",
+      "alternateName": "경기도 용인시_도서관 열람실 그룹 및 좌석 예약 정보_20261012",
+      "description": "용인시 공공도서관 열람실 그룹별 운영시각과 이용 조건, 열람실 좌석 예약 이력 정보입니다(좌석 예약 2017년~2024년). CSV 파일 2개로 구성되며, 주요 항목은 도서관명, 열람실그룹명, 평일운영시작시각, 평일운영종료시각, 주말운영시작시각, 주말운영종료시각, 최대배정가능시간, 이용가능최소나이, 이용가능최대나이, 최대예약자수, 예약일자, 예약일시, 배정일시, 예약만료일시, 예약취소일시, 예약상태, 키오스크명입니다.",
+      "url": "https://www.data.go.kr/data/15171450/fileData.do",
+      "identifier": "15171450",
+      "inLanguage": "ko",
+      "keywords": "열람실,좌석예약,좌석배정,운영시간,공공도서관,용인특례시",
+      "license": {
+        "name": "공공저작물 : 출처표시 (제 1유형)",
+        "url": "https://www.kogl.or.kr/info/licenseType1.do",
+        "@type": "CreativeWork"
+      },
+      "isAccessibleForFree": true,
+      "dateCreated": "2026-10-14",
+      "dateModified": "2026-10-14",
+      "datePublished": "2026-10-14",
+      "creator": {
+        "name": "경기도 용인시",
+        "contactPoint": {
+          "contactType": "경기도 용인시 기획조정실 정책기획과",
+          "telephone": "+82-31-6193-3958",
+          "@type": "ContactPoint"
+        },
+        "@type": "Organization"
+      },
+      "spatialCoverage": "경기도 용인시",
+      "temporalCoverage": "2017-02-27 ~ 2024-04-21",
+      "encodingFormat": "CSV",
+      "includedInDataCatalog": {
+        "name": "공공데이터포털",
+        "url": "https://www.data.go.kr",
+        "@id": "https://www.data.go.kr/#datacatalog",
+        "@type": "DataCatalog"
+      },
+      "additionalProperty": [
+        {
+          "name": "분류체계",
+          "value": "문화체육관광 - 문화예술",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "업데이트 주기",
+          "value": "연간",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "보유근거",
+          "value": "「도서관법」",
+          "@type": "PropertyValue"
+        }
+      ]
+    }
+  },
+  {
+    "id": "15154878",
+    "metadata": {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "경기도 용인시_도서관 좌석정보",
+      "alternateName": "경기도 용인시_도서관 좌석정보_20251127",
+      "description": "경기도 용인시_도서관 좌석정보는 관내 공공도서관의 열람실 좌석 현황을 체계적으로 제공하는 데이터로, 도서관명, 좌석 ID, 열람실 ID, 좌석명 등 좌석 운영에 필요한 기본 정보를 포함한다. 각 도서관별 열람실 구성과 좌석 배치 구조를 파악할 수 있어, 좌석 예약 시스템 구축, 이용자 편의 향상, 도서관 공간 운영 최적화 등 다양한 목적으로 활용할 수 있다. 특히 좌석별 고유 ID가 포함되어 있어 열람실별 좌석 이용 패턴 분석, 좌석별 회전율 파악, 혼잡도 예측 등 정밀한 운영 데이터 분석이 가능하다. 도서관 앱서비스의 좌석 예약·대기·배정 기능과 연계할 수 있어 스마트 도서관 서비스 구축에도 유용한 자료이다. 데이터는 최신 기준일을 반영해 지속적으로 갱신되며, 도서관별 공간 구조 변화, 시설 개선 계획 수립, 이용자 중심 서비스 설계 등에 활용도가 높다.",
+      "url": "https://www.data.go.kr/data/15154878/fileData.do",
+      "identifier": "15154878",
+      "inLanguage": "ko",
+      "keywords": "도서관열람실,좌석예약,좌석배정,도서관시설,공간운영,도서관앱서비스",
+      "license": {
+        "name": "이용허락범위 제한 없음",
+        "url": "https://www.data.go.kr/ugs/selectPortalPolicyView.do",
+        "@type": "CreativeWork"
+      },
+      "isAccessibleForFree": true,
+      "dateCreated": "2025-11-27",
+      "dateModified": "2026-09-15",
+      "datePublished": "2025-11-27",
+      "creator": {
+        "name": "경기도 용인시",
+        "contactPoint": {
+          "contactType": "경기도 용인시 기획조정실 정책기획과",
+          "telephone": "+82-31-6193-3958",
+          "@type": "ContactPoint"
+        },
+        "@type": "Organization"
+      },
+      "encodingFormat": "CSV",
+      "includedInDataCatalog": {
+        "name": "공공데이터포털",
+        "url": "https://www.data.go.kr",
+        "@id": "https://www.data.go.kr/#datacatalog",
+        "@type": "DataCatalog"
+      },
+      "variableMeasured": [
+        {
+          "name": "도서관명",
+          "description": "도서관명",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "좌석 ID",
+          "description": "좌석 ID",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "열람실 ID",
+          "description": "열람실 ID",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "좌석명",
+          "description": "좌석명",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "데이터기준일자",
+          "description": "데이터기준일자",
+          "@type": "PropertyValue"
+        }
+      ],
+      "additionalProperty": [
+        {
+          "name": "분류체계",
+          "value": "교육 - 교육일반",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "업데이트 주기",
+          "value": "연간",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "보유근거",
+          "value": "「도서관법」",
+          "@type": "PropertyValue"
+        }
+      ]
+    }
+  },
+  {
+    "id": "15078215",
+    "metadata": {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "경기도 의정부시_열람실좌석관리_좌석정보",
+      "alternateName": "경기도 의정부시_열람실좌석관리_좌석정보_20210329",
+      "description": "본 데이터셋은 경기도 의정부시가 운영하는 공공열람실의 좌석 현황을 체계적으로 관리·공개하기 위해 제공됩니다. 열람실별 좌석 번호, 구역, 이용 가능 여부, 예약 제한 시간 등 기본 정보를 포함하고 있어 시민이 열람실 이용 계획을 사전에 확인할 수 있도록 돕습니다. 데이터는 좌석 ID, 열람실명, 층·구역, 좌석 종류(일반·컴퓨터·전기·장애인용 등), 현재 사용 상태(이용 중·비어 있음·점검 중), 최종 업데이트 일시 등 8개 항목으로 구성됩니다. 일일 단위로 자동 수집·갱신되며 CSV·JSON 형식으로 제공되어 행정·연구·앱 개발 등에 바로 활용할 수 있습니다. 이 정보를 활용하면 실시간 좌석 가용성을 파악해 모바일 예약 서비스나 현장 안내 시스템을 구축할 수 있으며, 이용 패턴 분석을 통해 열람실 운영 효율성을 높이고 시설 확충·배치 개선에 기여할 수 있습니다. 데이터는 공공데이터포털에서 자유롭게 다운로드받을 수 있습니다.",
+      "url": "https://www.data.go.kr/data/15078215/fileData.do",
+      "identifier": "15078215",
+      "inLanguage": "ko",
+      "keywords": "열람실,좌석,좌석 기본정보,시작시간,종료시간,자리설명,번호",
+      "license": {
+        "name": "이용허락범위 제한 없음",
+        "url": "https://www.data.go.kr/ugs/selectPortalPolicyView.do",
+        "@type": "CreativeWork"
+      },
+      "isAccessibleForFree": true,
+      "dateCreated": "2021-03-29",
+      "dateModified": "2026-09-22",
+      "datePublished": "2021-03-29",
+      "creator": {
+        "name": "경기도 의정부시",
+        "contactPoint": {
+          "contactType": "기획혁신국 AI혁신과 데이터분석팀",
+          "telephone": "+82-31-828-2613",
+          "@type": "ContactPoint"
+        },
+        "@type": "Organization"
+      },
+      "encodingFormat": "CSV",
+      "includedInDataCatalog": {
+        "name": "공공데이터포털",
+        "url": "https://www.data.go.kr",
+        "@id": "https://www.data.go.kr/#datacatalog",
+        "@type": "DataCatalog"
+      },
+      "variableMeasured": [
+        {
+          "name": "자리번호",
+          "description": "경기도 의정부시 도서관의 열람실 좌석 자리의 번호",
+          "unitText": "해당없음",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "자리설명",
+          "description": "경기도 의정부시 도서관 열람 좌석 자리에 대한 설명",
+          "unitText": "해당없음",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "PC상태",
+          "description": "경기도 의정부시 도서관 열람실 좌석 자리의 PC상태",
+          "unitText": "해당없음",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "시작시간",
+          "description": "경기도 의정부시 도서관의 열람실 해당 자리의 PC 시작 시간",
+          "unitText": "해당없음",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "종료시간",
+          "description": "경기도 의정부시 도서관의 열람실 해당 자리의 PC 종료 시간",
+          "unitText": "해당없음",
+          "@type": "PropertyValue"
+        }
+      ],
+      "additionalProperty": [
+        {
+          "name": "분류체계",
+          "value": "교육 - 평생·직업교육",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "업데이트 주기",
+          "value": "수시 (1회성 데이터)",
+          "@type": "PropertyValue"
+        }
+      ]
+    }
+  },
+  {
+    "id": "15063649",
+    "metadata": {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "전북특별자치도 군산시_도서관열람실좌석예약시스템 현황",
+      "alternateName": "전북특별자치도 군산시_도서관열람실좌석예약시스템 현황_20260731",
+      "description": "전북특별자치도 군산시 도서관열람실 좌석예약시스템현황(일자, 전체이용자수, 남자,여자,강제종료처리 등)을 파악 할 수 있도록 사용자 통계를 제공 도서관 열람실 좌석예약시스템은 이용자가 편리하게 열람실 좌석을 예약, 이용할 수 있도록 지원하는 전산 시스템 입니다. 이용자는 열람실 문 옆에 위치한 키오스크를 통해 실시간으로 빈 좌석 현황을 확인하고 원하는 좌석을 선택, 예약 할수 있으며, 이용자는 대기없이 열람실을 이용 할 수 있고, 도서관은 좌석 운영 효율성과 이용자의 만족도를 동시에 향상시킬 수 있습니다.",
+      "url": "https://www.data.go.kr/data/15063649/fileData.do",
+      "identifier": "15063649",
+      "inLanguage": "ko",
+      "keywords": "도서관,좌석,예약,사용자편의,이용현황",
+      "license": {
+        "name": "이용허락범위 제한 없음",
+        "url": "https://www.data.go.kr/ugs/selectPortalPolicyView.do",
+        "@type": "CreativeWork"
+      },
+      "isAccessibleForFree": true,
+      "dateCreated": "2026-08-05",
+      "dateModified": "2026-08-05",
+      "datePublished": "2026-08-05",
+      "creator": {
+        "name": "전북특별자치도 군산시",
+        "contactPoint": {
+          "contactType": "정보통신과",
+          "telephone": "+82-63-454-2154",
+          "@type": "ContactPoint"
+        },
+        "@type": "Organization"
+      },
+      "encodingFormat": "CSV",
+      "includedInDataCatalog": {
+        "name": "공공데이터포털",
+        "url": "https://www.data.go.kr",
+        "@id": "https://www.data.go.kr/#datacatalog",
+        "@type": "DataCatalog"
+      },
+      "variableMeasured": [
+        {
+          "name": "일자",
+          "description": "군산시립도서관 열람실좌석 예약일",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "전체이용자",
+          "description": "군산시립도서관 열람실좌석 전체이용자",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "남자",
+          "description": "군산시립도서관 열람실 남자 이용자수",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "여자",
+          "description": "군산시립도서관 열람실 여자 이용자수",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "강제종료처리횟수",
+          "description": "군산시립도서관 열람실 강제종료처리횟수",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "데이터기준일자",
+          "description": "데이터기준일자",
+          "@type": "PropertyValue"
+        }
+      ],
+      "additionalProperty": [
+        {
+          "name": "분류체계",
+          "value": "일반공공행정 - 일반행정",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "업데이트 주기",
+          "value": "연간",
+          "@type": "PropertyValue"
+        }
+      ]
+    }
+  },
+  {
+    "id": "15032433",
+    "metadata": {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "경기도 성남시_도서관 열람실 좌석정보",
+      "alternateName": "경기도 성남시_도서관 열람실 좌석정보_20260519",
+      "description": "성남시내 도서관별 열람실 데이터이며, 도서관명, 열람실명, 총좌석수, 홈페이지주소(좌석현황) 항목으로 구성되어 있습니다. 데이터는 성남시 내 공공도서관 및 문화시설 등에서 운영 중인 열람실의 좌석 현황을 실시간 또는 주기적으로 제공하는 데이터입니다. 이 데이터는 시민들이 도서관 등 공공시설을 효율적으로 이용할 수 있도록 지원하기 위해 제공되며, 주요 내용으로는 열람실별 총 좌석 수, 현재 이용 중인 좌석 수, 잔여 좌석 수 등이 포함됩니다. 해당 데이터는 웹사이트, 모바일 앱 또는 공공데이터 포털을 통해 접근 가능하며, 실시간 데이터로 연동되어 시민들이 직접 방문하지 않고도 남은 좌석을 확인하거나 예약할 수 있도록 도와줍니다.",
+      "url": "https://www.data.go.kr/data/15032433/fileData.do",
+      "identifier": "15032433",
+      "inLanguage": "ko",
+      "keywords": "독서,자리,의자,열람좌석,빈자리,좌석현황",
+      "license": {
+        "name": "이용허락범위 제한 없음",
+        "url": "https://www.data.go.kr/ugs/selectPortalPolicyView.do",
+        "@type": "CreativeWork"
+      },
+      "isAccessibleForFree": true,
+      "dateCreated": "2026-05-19",
+      "dateModified": "2026-05-19",
+      "datePublished": "2026-05-19",
+      "creator": {
+        "name": "경기도 성남시",
+        "contactPoint": {
+          "contactType": "정책기획과",
+          "telephone": "+82-31-1577-3100",
+          "@type": "ContactPoint"
+        },
+        "@type": "Organization"
+      },
+      "encodingFormat": "CSV",
+      "includedInDataCatalog": {
+        "name": "공공데이터포털",
+        "url": "https://www.data.go.kr",
+        "@id": "https://www.data.go.kr/#datacatalog",
+        "@type": "DataCatalog"
+      },
+      "variableMeasured": [
+        {
+          "name": "도서관명",
+          "description": "도서관명",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "열람실명",
+          "description": "열람실명",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "총좌석수",
+          "description": "총좌석수",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "홈페이지 주소(좌석현황)",
+          "description": "홈페이지 주소(좌석현황)",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "데이터기준일자",
+          "description": "데이터기준일자",
+          "@type": "PropertyValue"
+        }
+      ],
+      "additionalProperty": [
+        {
+          "name": "분류체계",
+          "value": "교육 - 교육일반",
+          "@type": "PropertyValue"
+        },
+        {
+          "name": "업데이트 주기",
+          "value": "연간",
+          "@type": "PropertyValue"
+        }
+      ]
+    }
+  }
+]

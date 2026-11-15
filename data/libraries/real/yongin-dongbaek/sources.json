@@ -1,0 +1,98 @@
+[
+  {
+    "source_id": "yongin-dongbaek:src:data15154878",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15154878/fileData.do",
+    "sha256": "5e4a4478e8eced1d21e5828ef66c71e3208089c3a9c9394d93361ee055b61d0a",
+    "document_date": "2025-11-27",
+    "collected_on": "2026-11-14",
+    "license_status": "data.go.kr 공개 CSV(이용제한 없음으로 작업표에 기재)",
+    "notes": "동백도서관 좌석 320행 중 287행: 열람실ID 1=156석(ID 1-40,143-258), 2=102석(41-142), 4=29석(292-320). ID 259-291(33개)은 CSV에 없음. 좌석명은 열람실 1/2에서 좌석ID와 동일, 열람실 4는 1-29.",
+    "local_path": "data/source_data/public_datasets/15154878_original.csv",
+    "library_id": "yongin-dongbaek"
+  },
+  {
+    "source_id": "yongin-dongbaek:src:data15171450",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15171450/fileData.do",
+    "sha256": "e2ddb96a55e13918dbca67407f4df4149b6ed4f75070efa74079e952cb842019",
+    "document_date": "2026-10-12",
+    "collected_on": "2026-11-14",
+    "license_status": "data.go.kr 공개 파일",
+    "notes": "열람실 그룹별 운영시간(열람실/노트북실/청소년 모두 평일·주말 06:55-22:00). 그룹에 열람실ID가 없어 좌석/열람실에 그룹 속성(연령 등)을 조인하지 않고, 세 그룹이 동일한 운영시간만 사용. 휴관일·예외일 미확인.",
+    "local_path": "data/source_data/public_datasets/15171450_groups_utf8.csv",
+    "library_id": "yongin-dongbaek"
+  },
+  {
+    "source_id": "yongin-dongbaek:src:seatmate1",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/seatmate_db/seatmate.php?classInfo=1",
+    "sha256": "85d237929e3bac1fb796743301cbc3a19b234b311f09fc911d2187ba1163c956",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "공식 공개 좌석현황 페이지; 서비스 재사용 조건 별도 확인 필요",
+    "notes": "robots.txt는 해당 경로를 금지하지 않음. 열람실명 표기와 좌석 사각형(CSS left/top, 25x20)만 사용. sha256은 수집 시점 HTML 해시이며 사용/상태 정보는 저장·복제하지 않음. 페이지 제목 \"일반\" 구역.",
+    "local_path": null,
+    "library_id": "yongin-dongbaek"
+  },
+  {
+    "source_id": "yongin-dongbaek:src:seatmate2",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/seatmate_db/seatmate.php?classInfo=2",
+    "sha256": "eabb614507d75f7b0615c6eb53e4a2b43bedbf4bdd3800cc7d7b8bbc568bf954",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "공식 공개 좌석현황 페이지; 서비스 재사용 조건 별도 확인 필요",
+    "notes": "robots.txt는 해당 경로를 금지하지 않음. 열람실명 표기와 좌석 사각형(CSS left/top, 25x20)만 사용. sha256은 수집 시점 HTML 해시이며 사용/상태 정보는 저장·복제하지 않음. 페이지 제목 \"청소년\" 구역.",
+    "local_path": null,
+    "library_id": "yongin-dongbaek"
+  },
+  {
+    "source_id": "yongin-dongbaek:src:seatmate4",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/seatmate_db/seatmate.php?classInfo=4",
+    "sha256": "c9d07c8bf8ac5f907c96666c67f8b52fcf29794dec025867b31bfd88a3932043",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "공식 공개 좌석현황 페이지; 서비스 재사용 조건 별도 확인 필요",
+    "notes": "robots.txt는 해당 경로를 금지하지 않음. 열람실명 표기와 좌석 사각형(CSS left/top, 25x20)만 사용. sha256은 수집 시점 HTML 해시이며 사용/상태 정보는 저장·복제하지 않음. 페이지 제목 \"노트북석\" 구역.",
+    "local_path": null,
+    "library_id": "yongin-dongbaek"
+  },
+  {
+    "source_id": "yongin-dongbaek:src:floorplan",
+    "source_type": "official_web",
+    "url": "https://lib.yongin.go.kr/dongbaek/menu/11286/contents/40117/contents.do",
+    "sha256": "f7665f8102620e7a041c8c33e1fc1541f29c071fd30eefb22b89e19a31bc0f58",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "공식 공개 층별안내 페이지; 이미지 이용조건 불명확하여 assets에 복제하지 않음",
+    "notes": "층별안내 페이지. 3층 도면 이미지 https://lib.yongin.go.kr/include/image/dongbaek/contents/img_floor_F3.png (375x463, sha256 de7f870a69a860e77bc0273cb039fa396a75b2ebe1adec7478e606004d657cef)",
+    "local_path": null,
+    "library_id": "yongin-dongbaek"
+  },
+  {
+    "source_id": "yongin-dongbaek:src:geometry_candidates",
+    "source_type": "public_work",
+    "url": null,
+    "sha256": "87ab98ff804952d0fb8b9c621e1e715c99e4a81ea0785250dfd2259b6ecacac6",
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "저장소 내 후보 파일(공식 공개 HTML에서 추출, 상태 제거)",
+    "notes": "data/candidates/yongin_geometry.json 중 동백도서관 287행. 공식 번호 미매핑.",
+    "local_path": "data/source_data/extracted/yongin_geometry.json",
+    "library_id": "yongin-dongbaek"
+  },
+  {
+    "source_id": "yongin-dongbaek:src:reflist",
+    "source_type": "public_work",
+    "url": "https://github.com/Dev-zeno/opendata_plr/blob/f1f4bc187d0e262815a25bae8d27ae12c9aa24cb/public/library_data.json",
+    "sha256": null,
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "제3자 목록; 원본 미검토",
+    "notes": "법정동코드 4146000000, 도서관ID PLR007 연결용(제3자 목록, 공식 확인 전).",
+    "local_path": "data/catalog/reference_library_candidates.json",
+    "library_id": "yongin-dongbaek"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "source_id": "seongnam-sujeong:source:data-go-kr-15032433",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15032433/fileData.do",
+    "sha256": "ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b",
+    "document_date": "2026-05-19",
+    "collected_on": "2026-11-14",
+    "license_status": "data.go.kr 공개 파일데이터(이용제한 없음으로 작업표에 기재)",
+    "notes": "전국 성남시 도서관 열람실 CSV 중 성남수정도서관 2행만 사용. 로컬 저장소 data/source_data/ 사본(정리본_UTF8, 원본과 해시 동일).",
+    "local_path": "data/source_data/public_datasets/15032433.csv",
+    "library_id": "seongnam-sujeong"
+  },
+  {
+    "source_id": "seongnam-sujeong:source:snlib-robots",
+    "source_type": "official_web",
+    "url": "https://www.snlib.go.kr/robots.txt",
+    "sha256": null,
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "robots.txt가 User-agent * Disallow / 로 전체 경로 금지 확인; snlib.go.kr 하위 수집하지 않음",
+    "notes": "robots.txt만 1회 조회. 좌석현황 페이지(http://www.snlib.go.kr/sj/contents/roomStatus.do)는 수집하지 않음.",
+    "local_path": null,
+    "library_id": "seongnam-sujeong"
+  }
+]

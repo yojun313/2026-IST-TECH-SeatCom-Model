@@ -1,0 +1,12 @@
+﻿library_id,name,status,rooms,seats,seats_with_label,seats_with_official_id,facilities,has_latlng,room_features,human_checked_seats
+yongin-bora,보라도서관,partial,1,134,57,0,6,False,0,0
+yongin-dongbaek,동백도서관,partial,3,287,0,0,3,False,1,0
+yongin-giheung,기흥도서관,partial,2,148,0,0,13,False,0,0
+yongin-heungdeok,흥덕도서관,partial,2,236,0,0,0,False,1,0
+yongin-jukjeon,죽전도서관,partial,2,234,0,0,0,False,0,0
+yongin-pogok,포곡도서관,partial,2,159,159,159,2,False,1,0
+yongin-sanghyeon,상현도서관,partial,2,210,0,0,2,False,3,0
+yongin-suji,수지도서관,partial,1,69,69,69,0,False,1,0
+yongin-seonong,서농도서관,partial,2,112,112,112,0,False,1,0
+seongnam-central,성남중앙도서관,partial,4,169,169,0,0,False,0,0
+nl-digital,국립중앙도서관 디지털도서관,partial,24,353,353,0,9,False,1,0

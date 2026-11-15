@@ -1,0 +1,47 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="page-head">
+  <div><h1>SeatCom 데이터셋 개요</h1><div class="muted">MongoDB <code>library</code> DB의 실데이터 27관과 합성 데이터(환경·사용자·세션·이벤트)를 한곳에서 조회합니다.</div></div>
+  <a class="btn on" href="/floor"><i class="fa-solid fa-building-columns"></i> 도서관 뷰어 열기</a>
+</div>
+<div id="stats" class="grid g6" style="margin-bottom:14px"></div>
+<div class="grid g2" style="margin-bottom:14px">
+  <div class="card"><h2><i class="fa-solid fa-building-columns"></i> 도서관 <span class="badge b-real">실데이터</span></h2><div class="tbl-wrap" id="libs"></div></div>
+  <div class="grid">
+    <div class="card" id="manifest"></div>
+    <div class="card"><h2>컬렉션</h2><div class="tbl-wrap" id="colls"></div></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(async () => {
+  const { $, api, esc, l, num } = SV;
+  try {
+    const d = await api('/api/overview'), c = d.counts;
+    const act = d.libraries.filter(x => x.dataset_status === 'active');
+    const st = [
+      ['fa-building-columns', '학습 대상 도서관', act.length, `전체 ${d.libraries.length}관 중 좌석 좌표 보유`],
+      ['fa-chair', '실좌석', c.seats, '좌표 후보(model_candidate)'],
+      ['fa-cubes', '합성 환경', c.synth_scenarios, '열람실 × 시나리오 30'],
+      ['fa-table-cells', '합성 좌석 특성', c.synth_seat_env, '시나리오 × 좌석'],
+      ['fa-users', '합성 사용자', c.synth_users, '카카오톡 프로필 형식'],
+      ['fa-route', '합성 세션 / 이벤트', c.synth_sessions, `이벤트 ${num(c.synth_events)}건`],
+    ];
+    $('#stats').innerHTML = st.map(([i, k, v, s]) => `<div class="card stat"><div class="k"><i class="fa-solid ${i}"></i>${k}</div><div class="v">${num(v)}</div><div class="s">${s}</div></div>`).join('');
+    $('#libs').innerHTML = `<table class="tbl"><thead><tr><th>도서관</th><th>상태</th><th class="num">열람실</th><th class="num">좌석</th><th class="num">시설</th><th class="num">합성 환경</th><th class="num">세션</th><th></th></tr></thead><tbody>
+      ${d.libraries.map(x => `<tr><td><b>${esc(x.name)}</b><div class="mono muted">${esc(x.library_id)}</div></td>
+        <td><span class="badge ${x.dataset_status === 'active' ? 'b-ok' : 'b-mute'}">${l(x.dataset_status)}</span></td>
+        <td class="num">${x.rooms}</td><td class="num">${num(x.seats)}</td><td class="num">${x.facilities}</td><td class="num">${x.scenarios}</td><td class="num">${num(x.sessions)}</td>
+        <td class="nowrap">${x.dataset_status === 'active' ? `<a href="/floor?lib=${x.library_id}" title="뷰어"><i class="fa-solid fa-eye"></i></a> ` : ''}<a href="/real?lib=${x.library_id}" title="실데이터"><i class="fa-solid fa-map-location-dot"></i></a></td></tr>`).join('')}</tbody></table>`;
+    const m = d.manifest;
+    $('#manifest').innerHTML = `<h2>합성 데이터 생성 정보 <span class="badge b-syn">합성</span></h2>
+      <dl class="kv"><dt>생성기</dt><dd>${esc(m.generator_version)} · seed <code>${m.seed}</code></dd><dt>피처 레지스트리</dt><dd>${esc(m.feature_registry_version)}</dd>
+      <dt>파라미터</dt><dd class="mono">${esc(JSON.stringify(m.params))}</dd><dt>열람실 단위</dt><dd>${m.room_units}</dd>
+      <dt>가정</dt><dd>좌석 버튼 한 변 ${m.assumptions?.seat_button_side_m}m · ${esc(m.assumptions?.note)}</dd><dt>생성 시각</dt><dd>${esc(m.generated_at)}</dd></dl>`;
+    const cols = await api('/api/collections');
+    $('#colls').innerHTML = `<table class="tbl"><thead><tr><th>컬렉션</th><th>구분</th><th class="num">문서</th></tr></thead><tbody>${cols.map(x => `<tr><td><a href="/browse?c=${x.name}" class="mono">${x.name}</a></td><td><span class="badge ${x.kind === 'real' ? 'b-real' : 'b-syn'}">${x.kind === 'real' ? '실데이터' : '합성'}</span></td><td class="num">${num(x.count)}</td></tr>`).join('')}</tbody></table>`;
+  } catch (e) { SV.err($('#stats'), e); }
+})();
+</script>
+{% endblock %}

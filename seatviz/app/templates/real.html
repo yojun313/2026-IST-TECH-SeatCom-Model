@@ -1,0 +1,63 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="page-head">
+  <div><h1>실데이터 <span class="badge b-real">실데이터</span></h1><div class="muted">27관 구축 결과입니다. 지도 프레임별로 좌석 bbox와 시설 후보를 원본 픽셀 좌표 그대로 그립니다(합성 요소 없음).</div></div>
+  <select id="lib"></select>
+</div>
+<div class="tabs" id="tabs">
+  <button data-t="maps" class="on">지도</button><button data-t="rooms">열람실</button><button data-t="seats">좌석</button><button data-t="facilities">시설</button>
+  <button data-t="room_features">열람실 특성</button><button data-t="sources">출처</button><button data-t="report">구축 보고서</button>
+</div>
+<div id="body"></div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/floor.js"></script>
+<script>
+(() => {
+  const { $, $$, api, esc, l, fmt } = SV;
+  let d = null, tab = 'maps';
+  const tbl = (rows, cols) => rows.length ? `<div class="tbl-wrap"><table class="tbl"><thead><tr>${cols.map(c => `<th>${c[0]}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${cols.map(c => `<td>${c[1](r)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '<div class="empty">레코드 없음</div>';
+
+  function mapSvg(m) {
+    const seats = d.seats.filter(s => s.map_id === m.map_id), fac = d.facilities.filter(f => f.map_id === m.map_id);
+    const nodes = d.walkway_nodes.filter(n => n.map_id === m.map_id);
+    const med = seats.length ? seats.map(s => Math.min(s.bbox.width, s.bbox.height)).sort((a, b) => a - b)[Math.floor(seats.length / 2)] : Math.min(m.width, m.height) / 40;
+    const M = med / 0.75;
+    return `<svg viewBox="0 0 ${m.width} ${m.height}" style="width:100%;height:auto;max-height:560px;background:#f3f1ec;border-radius:8px;border:1px solid var(--line)">
+      <rect width="${m.width}" height="${m.height}" fill="#f6f4ef"/>
+      ${seats.map(s => `<g data-tip="${esc(`<b>${esc(s.seat_label ?? '번호 미확인')}</b><br>${esc(s.seat_id)}<br>공식ID ${esc(s.external_seat_id ?? 'null')} · ${esc(s.verification)}`)}"><rect x="${s.bbox.x}" y="${s.bbox.y}" width="${s.bbox.width}" height="${s.bbox.height}" rx="2" fill="${s.seat_label ? '#6aa58f' : '#b9b3a7'}" stroke="#2f5d50" stroke-width="1"/>
+        ${s.seat_label ? `<text x="${s.bbox.x + s.bbox.width / 2}" y="${s.bbox.y + s.bbox.height / 2}" font-size="${Math.min(s.bbox.width, s.bbox.height) * 0.42}" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-weight="700">${esc(s.seat_label)}</text>` : ''}</g>`).join('')}
+      ${fac.map(f => SV.facilitySvg(f, M)).join('')}
+      ${nodes.map(n => `<circle data-tip="${esc(`<b>통로 노드</b> ${esc(n.kind)}`)}" cx="${n.point[0]}" cy="${n.point[1]}" r="${0.25 * M}" fill="#111" stroke="#fff"/>`).join('')}
+    </svg>`;
+  }
+  function render() {
+    $$('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === tab));
+    const B = $('#body');
+    if (tab === 'maps') {
+      B.innerHTML = d.maps.length ? `<div class="grid g2">${d.maps.map(m => {
+        const n = d.seats.filter(s => s.map_id === m.map_id).length, f = d.facilities.filter(x => x.map_id === m.map_id).length;
+        return `<div class="card"><h3>${esc(m.map_id.split(':').slice(1).join(':'))} <span class="badge b-mute">${esc(m.map_kind || '')}</span></h3>
+          <div class="small muted" style="margin-bottom:8px">${m.width}×${m.height} ${esc(m.unit)} · 좌석 ${n} · 시설 ${f} · ${esc(m.verification)}${n ? ` · <a href="/floor?lib=${d.library.library_id}">합성 뷰어</a>` : ''}</div>${mapSvg(m)}</div>`; }).join('')}</div>` : '<div class="card empty">지도 프레임 없음</div>';
+      SV.$$('svg [data-tip]', B).forEach(g => { g.onmousemove = ev => SV.tip(g.dataset.tip, ev); g.onmouseleave = () => SV.tip(null); });
+    } else if (tab === 'rooms') B.innerHTML = `<div class="card">${tbl(d.rooms, [['room_id', r => `<span class="mono">${esc(r.room_id)}</span>`], ['이름', r => esc(r.name)], ['층', r => fmt(r.floor_id)], ['정원', r => fmt(r.capacity)], ['좌석 좌표', r => r.seat_count], ['배정', r => esc(r.assignment)], ['이용규칙', r => `<span class="mono small">${esc(JSON.stringify(r.usage_rules))}</span>`], ['검수', r => esc(r.verification)]])}</div>`;
+    else if (tab === 'seats') B.innerHTML = `<div class="card">${tbl(d.seats, [['seat_id', r => `<span class="mono">${esc(r.seat_id)}</span>`], ['라벨', r => fmt(r.seat_label)], ['공식ID', r => fmt(r.external_seat_id)], ['열람실', r => `<span class="mono small">${esc(r.room_id.split(':').pop())}</span>`], ['지도', r => `<span class="mono small">${esc(r.map_id.split(':').pop())}</span>`], ['bbox', r => `<span class="mono small">${r.bbox.x}, ${r.bbox.y}, ${r.bbox.width}×${r.bbox.height}</span>`], ['norm_bbox', r => `<span class="mono small">${(r.norm_bbox || []).map(v => v.toFixed(3)).join(', ')}</span>`], ['검수', r => esc(r.verification)]])}</div>`;
+    else if (tab === 'facilities') B.innerHTML = `<div class="card">${tbl(d.facilities, [['facility_id', r => `<span class="mono">${esc(r.facility_id)}</span>`], ['유형', r => `<span class="badge" style="background:${SV.FAC_COLOR[r.type] || '#e04fa0'};color:#fff">${esc(r.type)}</span>`], ['지도', r => `<span class="mono small">${esc(r.map_id.split(':').pop())}</span>`], ['기하', r => `<span class="mono small">${esc(r.geometry?.type)}</span>`], ['접근점', r => `<span class="mono small">${esc(JSON.stringify(r.access_point))}</span>`], ['속성', r => `<span class="small">${esc(r.attributes?.label || '')} ${esc(r.attributes?.note || '')}</span>`], ['검수', r => esc(r.verification)]])}</div>`;
+    else if (tab === 'room_features') B.innerHTML = `<div class="card">${tbl(d.room_features, [['열람실', r => `<span class="mono small">${esc(r.room_id)}</span>`], ['특성', r => `<b>${esc(r.name)}</b>`], ['값', r => fmt(r.value)], ['근거', r => `<span class="small">${esc(r.context?.basis || '')}</span>`], ['한계', r => `<span class="small muted">${esc(r.context?.limitation || '')}</span>`], ['방법', r => esc(r.method)], ['검수', r => esc(r.verification)]])}</div>`;
+    else if (tab === 'sources') B.innerHTML = `<div class="card">${tbl(d.sources, [['source_id', r => `<span class="mono small">${esc(r.source_id)}</span>`], ['유형', r => esc(r.source_type)], ['URL', r => r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener" class="small">${esc(r.url.slice(0, 60))}</a>` : '-'], ['기준일', r => fmt(r.document_date)], ['수집일', r => fmt(r.collected_on)], ['이용조건', r => `<span class="small">${esc(r.license_status)}</span>`], ['비고', r => `<span class="small muted">${esc(r.notes)}</span>`]])}</div>`;
+    else B.innerHTML = `<div class="card">${SV.json(d.build_report)}</div>`;
+  }
+  async function load() {
+    SV.setQs({ lib: $('#lib').value }); SV.loading($('#body'));
+    try { d = await api('/api/libraries/' + $('#lib').value); render(); } catch (e) { SV.err($('#body'), e); }
+  }
+  (async () => {
+    const ov = await api('/api/overview');
+    $('#lib').innerHTML = ['active', 'backup'].map(g => `<optgroup label="${l(g)}">${ov.libraries.filter(x => x.dataset_status === g).map(x => `<option value="${x.library_id}">${esc(x.name)} · 좌석 ${x.seats}</option>`).join('')}</optgroup>`).join('');
+    if ({{ lib|tojson }}) $('#lib').value = {{ lib|tojson }};
+    $('#lib').onchange = load; $$('#tabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; render(); });
+    load();
+  })();
+})();
+</script>
+{% endblock %}

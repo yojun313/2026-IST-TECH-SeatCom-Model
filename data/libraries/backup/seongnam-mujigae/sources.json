@@ -1,0 +1,25 @@
+[
+  {
+    "source_id": "seongnam-mujigae:source:datagokr-15032433",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15032433/fileData.do",
+    "sha256": "ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b",
+    "document_date": "2026-05-19",
+    "collected_on": "2026-11-14",
+    "license_status": "이용허락범위 제한 없음(data.go.kr 표기)",
+    "notes": "경기도 성남시_도서관 열람실 좌석정보_20260519. 열람실명·총좌석수만 사용. 좌석수는 2026-05-19 기준 값이며 현재 정원 확정값이 아님. 저장소 data/source_data/ 하위 로컬 사본 사용.",
+    "local_path": "data/source_data/public_datasets/15032433.csv",
+    "library_id": "seongnam-mujigae"
+  },
+  {
+    "source_id": "seongnam-mujigae:source:snlib-roomstatus-url",
+    "source_type": "official_web",
+    "url": "http://www.snlib.go.kr/mjg/contents/roomStatus.do",
+    "sha256": null,
+    "document_date": null,
+    "collected_on": "2026-11-14",
+    "license_status": "미수집: snlib.go.kr robots.txt 전경로 금지로 접근하지 않음. 이용조건 미확인",
+    "notes": "공개 CSV에 기재된 좌석현황 페이지 URL을 참조용으로만 기록. 내용 미수집.",
+    "library_id": "seongnam-mujigae"
+  }
+]

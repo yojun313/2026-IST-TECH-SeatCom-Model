@@ -1,0 +1,170 @@
+{
+  "candidates": [
+    {
+      "name": "lgbm_b_no_exp",
+      "family": "lgbm",
+      "online": false,
+      "val_mrr": 0.5492295693498362,
+      "A_mrr": 0.5555594709831424,
+      "A_ndcg": 0.8048745273954829
+    },
+    {
+      "name": "clogit_b_no_exp",
+      "family": "clogit",
+      "base": "b_no_exp",
+      "online": false,
+      "val_mrr": 0.5383485570958494,
+      "A_mrr": 0.5459935354073348,
+      "A_ndcg": 0.8040353886483738
+    },
+    {
+      "name": "online_b_no_exp",
+      "family": "clogit",
+      "base": "b_no_exp",
+      "online": true,
+      "val_mrr": 0.5369724422314257,
+      "mode": "neutral",
+      "prior_var": 0.02,
+      "A_mrr": 0.5451822605521721,
+      "A_ndcg": 0.8144603863948343
+    },
+    {
+      "name": "online_h_profile_only",
+      "family": "clogit",
+      "base": "h_profile_only",
+      "online": true,
+      "val_mrr": 0.504600935177302,
+      "mode": "neutral",
+      "prior_var": 0.05,
+      "A_mrr": 0.512429206721115,
+      "A_ndcg": 0.8073540753653131
+    },
+    {
+      "name": "online_a_full",
+      "family": "clogit",
+      "base": "a_full",
+      "online": true,
+      "val_mrr": 0.49760824304516854,
+      "mode": "neutral",
+      "prior_var": 0.02,
+      "A_mrr": 0.5084318362093722,
+      "A_ndcg": 0.8126560282357608
+    },
+    {
+      "name": "clogit_a_full",
+      "family": "clogit",
+      "base": "a_full",
+      "online": false,
+      "val_mrr": 0.49048454682367726,
+      "A_mrr": 0.4987152213694068,
+      "A_ndcg": 0.8138020568821779
+    },
+    {
+      "name": "online_g_no_profile",
+      "family": "clogit",
+      "base": "g_no_profile",
+      "online": true,
+      "val_mrr": 0.4827948710275558,
+      "mode": "neutral",
+      "prior_var": 0.05,
+      "A_mrr": 0.4925768219212622,
+      "A_ndcg": 0.79463712997513
+    },
+    {
+      "name": "lgbm_a_full",
+      "family": "lgbm",
+      "online": false,
+      "val_mrr": 0.4800551577979767,
+      "A_mrr": 0.48798782430543663,
+      "A_ndcg": 0.8190243415849239
+    },
+    {
+      "name": "xgb_a_full",
+      "family": "xgb",
+      "online": false,
+      "val_mrr": 0.4783984914749503,
+      "A_mrr": 0.48867249712459276,
+      "A_ndcg": 0.8208800176687151
+    },
+    {
+      "name": "online_i_population",
+      "family": "clogit",
+      "base": "i_population",
+      "online": true,
+      "val_mrr": 0.47828593993927476,
+      "mode": "neutral",
+      "prior_var": 0.1,
+      "A_mrr": 0.4851360116526418,
+      "A_ndcg": 0.7863720632156176
+    },
+    {
+      "name": "lgbm_g_no_profile",
+      "family": "lgbm",
+      "online": false,
+      "val_mrr": 0.4693888961930075,
+      "A_mrr": 0.47724256619426336,
+      "A_ndcg": 0.8060419171908556
+    },
+    {
+      "name": "clogit_g_no_profile",
+      "family": "clogit",
+      "base": "g_no_profile",
+      "online": false,
+      "val_mrr": 0.46510345216365667,
+      "A_mrr": 0.4767046411007937,
+      "A_ndcg": 0.7970038251836785
+    },
+    {
+      "name": "clogit_h_profile_only",
+      "family": "clogit",
+      "base": "h_profile_only",
+      "online": false,
+      "val_mrr": 0.46270848755171123,
+      "A_mrr": 0.4724238055423927,
+      "A_ndcg": 0.76439876748488
+    },
+    {
+      "name": "lgbm_h_profile_only",
+      "family": "lgbm",
+      "online": false,
+      "val_mrr": 0.4104650742011007,
+      "A_mrr": 0.41911615948688463,
+      "A_ndcg": 0.7145466831354014
+    },
+    {
+      "name": "clogit_i_population",
+      "family": "clogit",
+      "base": "i_population",
+      "online": false,
+      "val_mrr": 0.38690957184225905,
+      "A_mrr": 0.39618812179002993,
+      "A_ndcg": 0.7015426198731904
+    }
+  ],
+  "selected": {
+    "name": "lgbm_b_no_exp",
+    "family": "lgbm",
+    "online": false,
+    "val_mrr": 0.5492295693498362,
+    "A_mrr": 0.5555594709831424,
+    "A_ndcg": 0.8048745273954829
+  },
+  "served": {
+    "name": "clogit_b_no_exp",
+    "family": "clogit",
+    "base": "b_no_exp",
+    "online": false,
+    "val_mrr": 0.5383485570958494,
+    "A_mrr": 0.5459935354073348,
+    "A_ndcg": 0.8040353886483738
+  },
+  "truth_best": {
+    "name": "xgb_a_full",
+    "family": "xgb",
+    "online": false,
+    "val_mrr": 0.4783984914749503,
+    "A_mrr": 0.48867249712459276,
+    "A_ndcg": 0.8208800176687151
+  },
+  "text": "- 규칙(검증 `y_chosen` MRR 최대)으로 고른 모델: **lgbm_b_no_exp** (검증 MRR 0.5492)\n- 서비스 저장 모델: **로짓 b_no_exp + 온라인 개인 계수**(갱신 neutral, τ² 0.02). 추론 모듈과 착석 즉시 갱신을 지원한다.\n- 참 효용 NDCG@5(A)가 가장 높은 모델: xgb_a_full (0.8209) — 보고용이며 선택에 쓰지 않았다.\n- 온라인 상태: 사용자 3,000명, 착석 기록 139,090건 재생(마지막 기록 2026-10-30T19:59:49.846314+09:00).\n\n| 후보 | 검증 MRR | A MRR | A NDCG@5 |\n|---|---:|---:|---:|\n| lgbm_b_no_exp | 0.5492 | 0.5556 | 0.8049 |\n| clogit_b_no_exp | 0.5383 | 0.5460 | 0.8040 |\n| online_b_no_exp | 0.5370 | 0.5452 | 0.8145 |\n| online_h_profile_only | 0.5046 | 0.5124 | 0.8074 |\n| online_a_full | 0.4976 | 0.5084 | 0.8127 |\n| clogit_a_full | 0.4905 | 0.4987 | 0.8138 |\n| online_g_no_profile | 0.4828 | 0.4926 | 0.7946 |\n| lgbm_a_full | 0.4801 | 0.4880 | 0.8190 |\n| xgb_a_full | 0.4784 | 0.4887 | 0.8209 |\n| online_i_population | 0.4783 | 0.4851 | 0.7864 |\n| lgbm_g_no_profile | 0.4694 | 0.4772 | 0.8060 |\n| clogit_g_no_profile | 0.4651 | 0.4767 | 0.7970 |\n| clogit_h_profile_only | 0.4627 | 0.4724 | 0.7644 |\n| lgbm_h_profile_only | 0.4105 | 0.4191 | 0.7145 |"
+}

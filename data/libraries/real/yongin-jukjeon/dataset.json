@@ -1,0 +1,4247 @@
+{
+  "schema_version": "1.1",
+  "libraries": [
+    {
+      "library_id": "yongin-jukjeon",
+      "name": "죽전도서관",
+      "address": "경기도 용인시 수지구 대지로 89(죽전동 1212)",
+      "latitude": null,
+      "longitude": null,
+      "timezone": "Asia/Seoul",
+      "external_ids": {
+        "stdg_cd": null,
+        "pblib_id": null
+      },
+      "source_id": "yongin-jukjeon:source:official-floor-page",
+      "verification": "model_candidate"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "yongin-jukjeon:room:1",
+      "library_id": "yongin-jukjeon",
+      "name": "1열람실",
+      "floor_id": null,
+      "capacity": 180,
+      "assignment": "assigned",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": 14,
+        "maximum_age": null
+      },
+      "opening_hours": {
+        "timezone": "Asia/Seoul",
+        "weekly": [
+          {
+            "day": 0,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 1,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 2,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 3,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 4,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 5,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 6,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          }
+        ],
+        "effective_from": null,
+        "effective_until": null
+      },
+      "source_id": "yongin-jukjeon:source:public-seat-csv",
+      "verification": "model_candidate"
+    },
+    {
+      "room_id": "yongin-jukjeon:room:2",
+      "library_id": "yongin-jukjeon",
+      "name": "2열람실",
+      "floor_id": null,
+      "capacity": 54,
+      "assignment": "assigned",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": 14,
+        "maximum_age": null
+      },
+      "opening_hours": {
+        "timezone": "Asia/Seoul",
+        "weekly": [
+          {
+            "day": 0,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 1,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 2,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 3,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 4,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 5,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 6,
+            "opens": "07:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          }
+        ],
+        "effective_from": null,
+        "effective_until": null
+      },
+      "source_id": "yongin-jukjeon:source:public-seat-csv",
+      "verification": "model_candidate"
+    }
+  ],
+  "maps": [
+    {
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "library_id": "yongin-jukjeon",
+      "floor_id": null,
+      "room_id": "yongin-jukjeon:room:1",
+      "width": 1000,
+      "height": 700,
+      "unit": "pixel",
+      "origin": "top_left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "meters_per_unit": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate",
+      "image_path": null,
+      "map_kind": "seat_button_layout"
+    },
+    {
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "library_id": "yongin-jukjeon",
+      "floor_id": null,
+      "room_id": "yongin-jukjeon:room:2",
+      "width": 1000,
+      "height": 700,
+      "unit": "pixel",
+      "origin": "top_left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "meters_per_unit": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate",
+      "image_path": null,
+      "map_kind": "seat_button_layout"
+    }
+  ],
+  "seats": [
+    {
+      "seat_id": "yongin-jukjeon:seat:1-001",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 892.0,
+        "y": 60.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-002",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 856.0,
+        "y": 60.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-003",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 820.0,
+        "y": 60.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-004",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 892.0,
+        "y": 87.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-005",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 856.0,
+        "y": 87.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-006",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 820.0,
+        "y": 87.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-007",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-008",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-009",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-010",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-011",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-012",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-013",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-014",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-015",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 532.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-016",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 496.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-017",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 460.0,
+        "y": 142.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-018",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 156.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-019",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 156.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-020",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-021",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-022",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-023",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-024",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-025",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-026",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-027",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-028",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 532.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-029",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 496.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-030",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 460.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-031",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 280.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-032",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 244.0,
+        "y": 170.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-033",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 183.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-034",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 183.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-035",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 280.0,
+        "y": 197.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-036",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 244.0,
+        "y": 197.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-037",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 172.0,
+        "y": 197.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-038",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 136.0,
+        "y": 197.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-039",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 211.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-040",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 211.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-041",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-042",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-043",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-044",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-045",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-046",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-047",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-048",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-049",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 532.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-050",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 496.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-051",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 460.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-052",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 280.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-053",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 244.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-054",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 172.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-055",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 136.0,
+        "y": 225.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-056",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-057",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-058",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-059",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-060",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-061",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-062",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-063",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-064",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 532.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-065",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 496.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-066",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 460.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-067",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 280.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-068",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 244.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-069",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 82.0,
+        "y": 280.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-070",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 46.0,
+        "y": 280.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-071",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 892.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-072",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 856.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-073",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 820.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-074",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-075",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-076",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-077",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 586.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-078",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 550.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-079",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 514.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-080",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 478.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-081",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 442.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-082",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-083",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-084",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 82.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-085",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 46.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-086",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 172.0,
+        "y": 321.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-087",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 136.0,
+        "y": 321.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-088",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 892.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-089",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 856.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-090",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 820.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-091",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-092",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-093",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-094",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 586.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-095",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 550.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-096",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 514.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-097",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 478.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-098",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 442.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-099",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-100",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-101",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 82.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-102",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 46.0,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-103",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 172.0,
+        "y": 348.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-104",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 136.0,
+        "y": 348.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-105",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 362.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-106",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 362.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-107",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 82.0,
+        "y": 362.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-108",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 46.0,
+        "y": 362.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-109",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 280.0,
+        "y": 376.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-110",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 244.0,
+        "y": 376.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-111",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 172.0,
+        "y": 376.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-112",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 136.0,
+        "y": 376.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-113",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-114",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-115",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-116",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-117",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-118",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-119",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-120",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-121",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 586.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-122",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 550.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-123",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 514.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-124",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 478.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-125",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 442.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-126",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-127",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-128",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 82.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-129",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 46.0,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-130",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 280.0,
+        "y": 403.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-131",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 244.0,
+        "y": 403.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-132",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 172.0,
+        "y": 403.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-133",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 136.0,
+        "y": 403.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-134",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-135",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-136",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-137",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-138",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-139",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-140",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-141",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-142",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 586.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-143",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 550.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-144",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 514.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-145",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 478.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-146",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 442.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-147",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 388.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-148",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 352.0,
+        "y": 417.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-149",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 172.0,
+        "y": 431.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-150",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 136.0,
+        "y": 431.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-151",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-152",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-153",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-154",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-155",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-156",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-157",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-158",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-159",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 514.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-160",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 478.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-161",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 442.0,
+        "y": 472.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-162",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-163",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-164",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-165",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-166",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-167",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-168",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-169",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-170",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 514.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-171",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 478.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-172",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 442.0,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-173",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 555.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-174",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 555.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-175",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 555.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-176",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 555.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-177",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 910.0,
+        "y": 582.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-178",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 874.0,
+        "y": 582.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-179",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 582.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:1-180",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:1",
+      "map_id": "yongin-jukjeon:map:room1-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 582.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-001",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 104.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-002",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 109.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-003",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 115.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-004",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 766.0,
+        "y": 131.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-005",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 137.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-006",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 153.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-007",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 159.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-008",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 164.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-009",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 823.6,
+        "y": 181.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-010",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 708.4,
+        "y": 186.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-011",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 622.0,
+        "y": 192.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-012",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 208.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-013",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 614.8,
+        "y": 219.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-014",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 230.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-015",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 607.6,
+        "y": 245.9,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-016",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 838.0,
+        "y": 252.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-017",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 258.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-018",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 593.2,
+        "y": 274.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-019",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 823.6,
+        "y": 280.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-020",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 557.2,
+        "y": 291.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-021",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 296.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-022",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 521.2,
+        "y": 302.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-023",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 802.0,
+        "y": 307.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-024",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 658.0,
+        "y": 313.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-025",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 485.2,
+        "y": 313.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-026",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 449.2,
+        "y": 324.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-027",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 766.0,
+        "y": 329.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-028",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 413.2,
+        "y": 329.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-029",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 377.2,
+        "y": 335.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-030",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 730.0,
+        "y": 346.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-031",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 305.2,
+        "y": 346.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-032",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 269.2,
+        "y": 351.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-033",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 694.0,
+        "y": 357.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-034",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 233.2,
+        "y": 357.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-035",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 197.2,
+        "y": 362.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-036",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 359.2,
+        "y": 373.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-037",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 593.2,
+        "y": 379.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-038",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 323.2,
+        "y": 384.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-039",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 557.2,
+        "y": 390.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-040",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 287.2,
+        "y": 395.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-041",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 521.2,
+        "y": 401.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-042",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 380.8,
+        "y": 401.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-043",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 485.2,
+        "y": 412.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-044",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 344.8,
+        "y": 412.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-045",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 308.8,
+        "y": 423.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-046",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 118.0,
+        "y": 428.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-047",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 413.2,
+        "y": 442.25,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-048",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 146.8,
+        "y": 456.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-049",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 377.2,
+        "y": 461.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-050",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 341.2,
+        "y": 480.75,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-051",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 175.6,
+        "y": 483.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-052",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 305.2,
+        "y": 500.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-053",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 204.4,
+        "y": 511.0,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-jukjeon:seat:2-054",
+      "external_seat_id": null,
+      "seat_label": null,
+      "library_id": "yongin-jukjeon",
+      "room_id": "yongin-jukjeon:room:2",
+      "map_id": "yongin-jukjeon:map:room2-seatmate",
+      "bbox": {
+        "x": 233.2,
+        "y": 538.5,
+        "width": 28,
+        "height": 24
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "verification": "model_candidate"
+    }
+  ],
+  "facilities": [],
+  "room_features": [],
+  "seat_features": [],
+  "walkway_nodes": [],
+  "walkway_edges": [],
+  "map_transforms": [],
+  "sources": [
+    {
+      "source_id": "yongin-jukjeon:source:public-seat-csv",
+      "source_type": "public_dataset",
+      "url": "https://www.data.go.kr/data/15154878/fileData.do",
+      "sha256": "5e4a4478e8eced1d21e5828ef66c71e3208089c3a9c9394d93361ee055b61d0a",
+      "document_date": "2025-11-27",
+      "collected_on": "2026-11-14",
+      "license_status": "data.go.kr 파일데이터: 이용허락범위 제한 없음(작업표 기재)",
+      "notes": "죽전도서관 좌석 234행(열람실ID 1:180, 2:54). 좌석ID/좌석명만 있고 좌표·열람실명 없음.",
+      "local_path": "data/source_data/public_datasets/15154878_original.csv",
+      "library_id": "yongin-jukjeon"
+    },
+    {
+      "source_id": "yongin-jukjeon:source:public-room-rules-csv",
+      "source_type": "public_dataset",
+      "url": "https://www.data.go.kr/data/15171450/fileData.do",
+      "sha256": "4bc24f565a38f051e700cb6b014b984a3ca652f9cc9fe45123978018e5d23c5c",
+      "document_date": "2026-10-12",
+      "collected_on": "2026-11-14",
+      "license_status": "data.go.kr 파일데이터; 이용허락범위는 재확인 필요",
+      "notes": "열람실그룹 일반열람실/노트북의 운영시각(07:00-22:00)·최소나이 14. 열람실ID 1,2와 그룹명의 대응은 원본에 없음. 사용자 예약 로그(15171450_2)는 사용하지 않음.",
+      "local_path": "data/source_data/public_datasets/15171450_groups_utf8.csv",
+      "library_id": "yongin-jukjeon"
+    },
+    {
+      "source_id": "yongin-jukjeon:source:seatmate-room1",
+      "source_type": "official_web",
+      "url": "https://lib.yongin.go.kr/seatmate_jj/seatmate.php?classInfo=1",
+      "sha256": "1b5d19232a7ada0328a398b090984e9b76578008a93e13730942a33470667220",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "공개 링크 내 HTML; 서비스 이용조건·재배포 조건 미확인. 현황·색·원본 HTML은 저장하지 않음",
+      "notes": "1열람실 탭. 배경 bg01.jpg 1000x700, #main_contents 1000x700 absolute 프레임. 사각형 180개 기하만 추출(사용상태 제외). 사용 중 좌석은 번호가 숨겨져 표시번호 미확보. 해시는 수집 시점 응답 기준(현황 변화로 달라질 수 있음).",
+      "local_path": null,
+      "library_id": "yongin-jukjeon"
+    },
+    {
+      "source_id": "yongin-jukjeon:source:seatmate-room2",
+      "source_type": "official_web",
+      "url": "https://lib.yongin.go.kr/seatmate_jj/seatmate.php?classInfo=2",
+      "sha256": "05ec6532b4fb8b531608b1ca7ae82699d5cc8934b3d7e29a00b3179250f1e82a",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "공개 링크 내 HTML; 서비스 이용조건·재배포 조건 미확인. 현황·색·원본 HTML은 저장하지 않음",
+      "notes": "2열람실 탭. 배경 bg02.jpg 1000x700. 사각형 54개.",
+      "local_path": null,
+      "library_id": "yongin-jukjeon"
+    },
+    {
+      "source_id": "yongin-jukjeon:source:official-floor-page",
+      "source_type": "official_web",
+      "url": "https://lib.yongin.go.kr/jukjeon/menu/13247/contents/40186/contents.do",
+      "sha256": "cf59b6eb2d75d77aa0564310287bb19b798f0b743c44c5af8e1a4f0b17507dea",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "페이지 문구 열람만; 층별도 이미지(img_floor_F1~F3, B1) 재배포 조건 미확인으로 assets에 복제하지 않음",
+      "notes": "도서관 주소와 층별 안내 문구(3층: 남/여 화장실, 노트북열람실, 열람실 등)를 근거로 함. 최종 수정일 미확인.",
+      "local_path": null,
+      "library_id": "yongin-jukjeon"
+    },
+    {
+      "source_id": "yongin-jukjeon:source:geometry-candidates",
+      "source_type": "public_work",
+      "url": null,
+      "sha256": "87ab98ff804952d0fb8b9c621e1e715c99e4a81ea0785250dfd2259b6ecacac6",
+      "document_date": "2026-11-14",
+      "collected_on": "2026-11-14",
+      "license_status": "저장소 내 파생 후보(상태 제거). 원천은 seatmate 공개 화면",
+      "notes": "candidates/yongin_geometry.json의 죽전 234행(기하객체ID 해시는 공식 좌석 ID 아님). 좌석 레코드의 좌표는 seatmate 소스와 이 후보 파일을 거쳤다.",
+      "local_path": "data/source_data/extracted/yongin_geometry.json",
+      "library_id": "yongin-jukjeon"
+    }
+  ]
+}

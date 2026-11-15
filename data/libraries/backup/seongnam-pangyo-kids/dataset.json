@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.1",
+  "libraries": [
+    {
+      "library_id": "seongnam-pangyo-kids",
+      "name": "판교어린이도서관",
+      "address": null,
+      "latitude": null,
+      "longitude": null,
+      "timezone": "Asia/Seoul",
+      "external_ids": {
+        "stdg_cd": "4113000000",
+        "pblib_id": "PLR013"
+      },
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "verification": "unverified"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "seongnam-pangyo-kids:room:01",
+      "library_id": "seongnam-pangyo-kids",
+      "name": "제1열람실(성인전용/칸막이)",
+      "floor_id": null,
+      "capacity": 80,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": null,
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "verification": "unverified"
+    },
+    {
+      "room_id": "seongnam-pangyo-kids:room:02",
+      "library_id": "seongnam-pangyo-kids",
+      "name": "제1열람실(성인-중고생/칸막이)",
+      "floor_id": null,
+      "capacity": 147,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": null,
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "verification": "unverified"
+    },
+    {
+      "room_id": "seongnam-pangyo-kids:room:03",
+      "library_id": "seongnam-pangyo-kids",
+      "name": "제2열람실(성인-중고생/오픈석)",
+      "floor_id": null,
+      "capacity": 122,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": null,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": null,
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "verification": "unverified"
+    },
+    {
+      "room_id": "seongnam-pangyo-kids:room:04",
+      "library_id": "seongnam-pangyo-kids",
+      "name": "노트북실(성인-중고생/오픈석)",
+      "floor_id": null,
+      "capacity": 45,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": true,
+        "keyboard_allowed": null,
+        "minimum_age": null,
+        "maximum_age": null
+      },
+      "opening_hours": null,
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "verification": "unverified"
+    }
+  ],
+  "maps": [],
+  "seats": [],
+  "facilities": [],
+  "room_features": [
+    {
+      "room_id": "seongnam-pangyo-kids:room:01",
+      "name": "partition",
+      "value": true,
+      "unit": null,
+      "context": {
+        "basis": "열람실 명칭에 직접 표기된 텍스트",
+        "room_name": "제1열람실(성인전용/칸막이)",
+        "reference_date": "2026-05-19",
+        "note": "공개 CSV 명칭 텍스트에서 가져옴; 현장·도면 검증 아님"
+      },
+      "method": "diagram_extraction",
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "confidence": null,
+      "verification": "unverified",
+      "applies_to_all_seats": true,
+      "library_id": "seongnam-pangyo-kids"
+    },
+    {
+      "room_id": "seongnam-pangyo-kids:room:02",
+      "name": "partition",
+      "value": true,
+      "unit": null,
+      "context": {
+        "basis": "열람실 명칭에 직접 표기된 텍스트",
+        "room_name": "제1열람실(성인-중고생/칸막이)",
+        "reference_date": "2026-05-19",
+        "note": "공개 CSV 명칭 텍스트에서 가져옴; 현장·도면 검증 아님"
+      },
+      "method": "diagram_extraction",
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "confidence": null,
+      "verification": "unverified",
+      "applies_to_all_seats": true,
+      "library_id": "seongnam-pangyo-kids"
+    },
+    {
+      "room_id": "seongnam-pangyo-kids:room:04",
+      "name": "laptopAllowed",
+      "value": true,
+      "unit": null,
+      "context": {
+        "basis": "열람실 명칭에 직접 표기된 텍스트",
+        "room_name": "노트북실(성인-중고생/오픈석)",
+        "reference_date": "2026-05-19",
+        "note": "공개 CSV 명칭 텍스트에서 가져옴; 현장·도면 검증 아님"
+      },
+      "method": "diagram_extraction",
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "confidence": null,
+      "verification": "unverified",
+      "applies_to_all_seats": true,
+      "library_id": "seongnam-pangyo-kids"
+    }
+  ],
+  "seat_features": [],
+  "walkway_nodes": [],
+  "walkway_edges": [],
+  "map_transforms": [],
+  "sources": [
+    {
+      "source_id": "seongnam-pangyo-kids:source:datagokr-15032433",
+      "source_type": "public_dataset",
+      "url": "https://www.data.go.kr/data/15032433/fileData.do",
+      "sha256": "ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b",
+      "document_date": "2026-05-19",
+      "collected_on": "2026-11-14",
+      "license_status": "이용제한없음(data.go.kr 파일데이터)",
+      "notes": "성남시 도서관 열람실 CSV 중 판교어린이도서관 4행. 좌석 ID·좌표 없음. sha256은 UTF-8 정리본 기준.",
+      "local_path": "data/source_data/public_datasets/15032433.csv",
+      "library_id": "seongnam-pangyo-kids"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "library_id": "nl-digital",
+  "status": "partial",
+  "dataset_version": "draft-1",
+  "reference_date": "2026-11-14",
+  "scope": "2020-07 배치도(HWP Bindata/source_data/BIN0007, 1116x780) 한 장의 번호 좌석 7개 구역 353석 후보, 화장실·엘리베이터·계단 아이콘, 출입구 표지. 현행(2026) 배치와 대조하지 않았음.",
+  "seat_inventory": {
+    "expected_count": null,
+    "expected_count_source_id": null,
+    "extracted_count": 353,
+    "identity_verified_count": 0,
+    "geometry_verified_count": 0
+  },
+  "seat_inventory_by_zone": {
+    "nl-digital:room:wonmun-db": {
+      "extracted": 20
+    },
+    "nl-digital:room:media-data": {
+      "extracted": 36
+    },
+    "nl-digital:room:digital-left": {
+      "extracted": 84
+    },
+    "nl-digital:room:digital-top-right": {
+      "extracted": 86
+    },
+    "nl-digital:room:curved-desks": {
+      "extracted": 30
+    },
+    "nl-digital:room:media-edit": {
+      "extracted": 12
+    },
+    "nl-digital:room:laptop-bottom": {
+      "extracted": 85
+    }
+  },
+  "reference_counts": [
+    {
+      "item": "미디어편집석",
+      "count": 12,
+      "source_id": "nl-digital:source:press-release-200721",
+      "match": "extracted 12 = 보도자료 12석"
+    },
+    {
+      "item": "스튜디오",
+      "count": 10,
+      "source_id": "nl-digital:source:press-release-200721",
+      "match": "rooms 10개 명칭 등록(좌석 미열거)"
+    }
+  ],
+  "facility_coverage": [
+    {
+      "type": "toilet",
+      "expected_count": null,
+      "mapped_count": 2,
+      "verification": "model_candidate",
+      "missing_reason": "아이콘 위치만. 화장실 문(access_point)·성별 구분·정확한 방 경계는 도면에 없음"
+    },
+    {
+      "type": "entrance",
+      "expected_count": null,
+      "mapped_count": 4,
+      "verification": "model_candidate",
+      "missing_reason": "입구·출구 게이트 2, 1문·2문 화살표 표지 2. 연결처·통행 제한 미확인. 건물 외곽 다른 개구부는 미추출"
+    },
+    {
+      "type": "elevator",
+      "expected_count": null,
+      "mapped_count": 2,
+      "verification": "model_candidate",
+      "missing_reason": "아이콘 2개"
+    },
+    {
+      "type": "stairs",
+      "expected_count": null,
+      "mapped_count": 1,
+      "verification": "model_candidate",
+      "missing_reason": "계단 아이콘 1개. 에스컬레이터 아이콘은 스키마 유형 없어 미저장(약 (427,437) 위치)"
+    },
+    {
+      "type": "wall",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "벽·통로 도형 미추출(전용 벡터 없음, 래스터 도면)"
+    },
+    {
+      "type": "column",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "기둥 미추출"
+    },
+    {
+      "type": "window",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "창문 도면 표시 없음"
+    },
+    {
+      "type": "air_conditioner",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음. 설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "air_diffuser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음. 설비도 또는 현장 확인 필요"
+    },
+    {
+      "type": "outlet",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음"
+    },
+    {
+      "type": "light",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음"
+    },
+    {
+      "type": "water_dispenser",
+      "expected_count": null,
+      "mapped_count": 0,
+      "verification": "unverified",
+      "missing_reason": "도면에 없음"
+    }
+  ],
+  "feature_coverage": [
+    {
+      "name": "laptopAllowed",
+      "observed_seats": 85,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "하단 노트북·모바일이용석 85석만 구역 제목 근거(room_features). 나머지 구역은 근거 없음, 추정 금지. 현행 규정 미확인"
+    },
+    {
+      "name": "keyboardAllowed",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "원본 근거 없음"
+    },
+    {
+      "name": "partition",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "원본 근거 없음"
+    },
+    {
+      "name": "outletAvailable",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "콘센트 도면 표시 없음"
+    },
+    {
+      "name": "windowProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "창문 미표시"
+    },
+    {
+      "name": "toiletProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "통로 그래프·축척 없음(픽셀을 미터로 환산하지 않음)"
+    },
+    {
+      "name": "entranceProximity",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "통로 그래프·축척 없음"
+    },
+    {
+      "name": "brightness",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "측정 없음"
+    },
+    {
+      "name": "airflow",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "에어컨·송풍구 미표시"
+    },
+    {
+      "name": "deskHeight",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "치수 없음"
+    },
+    {
+      "name": "deskWidth",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "치수 없음"
+    },
+    {
+      "name": "viewQuality",
+      "observed_seats": 0,
+      "verified_seats": 0,
+      "target_seats": 353,
+      "missing_reason": "근거 없음"
+    }
+  ],
+  "extraction_method": {
+    "image": "HWP OLE Bindata/source_data/BIN0007.bmp raw DEFLATE 해제 -> PNG",
+    "ocr": "RapidOCR(영역별 크롭, 4x·6x 확대 2회) -> 구역별 기대 번호 집합과 대조해 숫자 병합 토큰 분리, 위치 군집으로 중복 후보 해소",
+    "bbox": "bbox는 도면에 인쇄된 번호 라벨 영역(+1px)이며 책상 셀 경계가 아님. orientation_degrees는 null",
+    "manual_visual_positions": {
+      "count": 9,
+      "seat_ids": [
+        "nl-digital:seat:media-edit-001",
+        "nl-digital:seat:media-edit-004",
+        "nl-digital:seat:media-edit-007",
+        "nl-digital:seat:laptop-bottom-064",
+        "nl-digital:seat:laptop-bottom-065",
+        "nl-digital:seat:laptop-bottom-071",
+        "nl-digital:seat:laptop-bottom-075",
+        "nl-digital:seat:laptop-bottom-078",
+        "nl-digital:seat:laptop-bottom-079"
+      ],
+      "note": "OCR이 놓친 번호는 크롭 이미지를 육안으로 읽어 번호를 확인하고 라벨 중심을 약 ±3px로 수기 지정한 값"
+    },
+    "zone_notes": {
+      "wonmun-db": "도면 번호 1~20(원문DB석 라벨 구역).",
+      "media-data": "점선 구역 번호 1~36.",
+      "digital-left": "초록쉼터 좌측 책상 블록 번호 1~84. 구역 라벨 \"디지털열람석\"과의 대응은 육안 추정.",
+      "digital-top-right": "우측 상단 책상 블록 번호 85~170. 상단 \"노트북·모바일이용석\" 라벨과의 대응이 불명확해 노트북 규정은 null.",
+      "curved-desks": "초록쉼터 우측 곡선형 책상 번호 171~200.",
+      "media-edit": "미디어창작실 편집석 1~12(보도자료 12석과 일치).",
+      "laptop-bottom": "하단 평행사변형 구역 번호 1~85. 구역 제목에 \"노트북·모바일이용석\"이 직접 표기됨. 번호는 다른 구역과 중복되므로 room_id+번호로 식별."
+    }
+  },
+  "checks": [
+    "dataset.json이 target_schema.json v1.1을 통과(jsonschema)",
+    "개별 JSON=dataset 배열 일치",
+    "CSV BOM·행수·값 일치",
+    "seat_id 353 고유, 구역별 번호 연속(누락·중복 없음)",
+    "외래키(room/map/source/facility/node) 무결성",
+    "bbox 1116x780 범위 이내",
+    "robots.txt Allow:/ 확인, 요청 1초 이상 간격, User-Agent 목적 명시"
+  ],
+  "blockers": [
+    "도면은 2020-07-21 시점 배치이며 현행 배치 대조 자료 미확보(현재 좌석 수·번호·구역 변경 가능). 코로나 시기 일부 좌석만 개방된다는 안내도 있었음.",
+    "구역 라벨과 번호 블록의 대응: 상단 우측(85~170)과 곡선(171~200)이 \"노트북·모바일이용석\" 또는 \"디지털열람석\" 중 어디에 속하는지 도면만으로 불명확하여 구역명을 위치 기반 중립 명칭으로 둠. 번호 1~200 연속성은 하나의 번호 체계일 가능성을 시사하나 확정 못함.",
+    "번호 없는 요소 미등록: 상단 원형 곡선 노트북 구역과 미디어창작실의 직사각형 테이블 5개는 번호가 없고 좌석 수·기능이 불명확해 임시 좌석 ID를 만들지 않음.",
+    "번호 좌석 353석 전수 육안 검수 미완(OCR+샘플 오버레이 확인). 공식 좌석 ID·표시번호 없음(external_seat_id null).",
+    "위경도·법정동코드·pblib_id·운영시간·이용규정: 공식 근거 없어 null(주소만 공식 푸터). 거리 추천 비활성.",
+    "화장실 문 위치, 벽·통로, 축척이 없어 walkway_edges·map_transforms는 빈 배열, 거리 특성 모두 비활성.",
+    "에어컨·송풍구·콘센트·조명·창문 도면 표시 없음 -> 미구축.",
+    "이미지 이용조건: 보도자료 페이지의 공공누리 1유형 표시에 근거해 PNG를 assets에 포함. 첨부 개별 표시는 확인 못함."
+  ],
+  "next_actions": [
+    "현행(2026) 디지털도서관 배치도 또는 현장 확인으로 좌석 수·번호 대조",
+    "353석 전수 육안 검수 후 human_checked 전환",
+    "구역 라벨 대응 확정 및 방(구역) 경계·공식 열람실 정보 확보",
+    "화장실 문 위치·벽·통로 라벨링 후 walkway 그래프, 치수 확보 시 meters_per_unit",
+    "설비도/현장 조사로 콘센트·에어컨·조명·창문 확보",
+    "공식 자료에서 위경도·운영시간·이용규정 확보"
+  ]
+}

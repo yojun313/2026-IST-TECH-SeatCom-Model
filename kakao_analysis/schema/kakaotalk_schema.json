@@ -1,0 +1,87 @@
+
+"participant_id": "강민서",
+"behavioral_summary": "TARGET는 문서 작업과 서류 제출에 노트북을 활용하며 전원 공급이 빈번히 필요하고, 밝은 조명과 창가 풍경을 선호합니다. 글램핑 상황에서 추위에 대한 우려를 표시해 따뜻한 온도를 선호하는 경향도 보였습니다.",
+"preferences": {
+"restroom": {
+"preference": "unknown",
+"confidence": 0.0,
+"inference_type": "unknown",
+"reason": "화장실 위치에 대한 언급이 없어 판단 근거가 없습니다."
+},
+"lighting": {
+"preference": "bright",
+"confidence": 0.45,
+"inference_type": "contextual",
+"reason": "바다·야외 활동을 언급한 점에서 밝은 조명을 선호할 가능성이 있습니다."
+},
+"air_conditioning": {
+"preference": "warm",
+"confidence": 0.55,
+"inference_type": "contextual",
+"reason": "글램핑 상황에서 "추울 수도"라고 언급해 따뜻한 온도 선호를 시사합니다."
+},
+"desk": {
+"preference": "unknown",
+"confidence": 0.0,
+"inference_type": "unknown",
+"reason": "작업용 책상 크기에 대한 언급이 없어서 추정이 어렵습니다."
+},
+"laptop_usage": {
+"preference": "yes",
+"confidence": 0.45,
+"inference_type": "contextual",
+"reason": "문서·자료 작업과 회의 중 아이디어 정리를 위해 노트북을 사용할 가능성이 높습니다."
+},
+"outlet": {
+"preference": "required",
+"confidence": 0.65,
+"inference_type": "contextual",
+"reason": "지속적인 서류·파일 작업으로 전원 콘센트가 필요할 것으로 판단됩니다."
+},
+"view": {
+"preference": "window",
+"confidence": 0.55,
+"inference_type": "contextual",
+"reason": "동해 바다와 자연 풍경을 언급한 점에서 창밖 풍경을 선호할 가능성이 있습니다."
+}
+},
+"evidence": [
+{
+"feature": "laptop_usage",
+"message_id": "msg_000090",
+"reason": "‘이방말고’·‘딴방에서’라는 발언으로 작업 환경을 바꾸려는 의도와 노트북 사용을 암시"
+},
+{
+"feature": "outlet",
+"message_id": "msg_000090",
+"reason": "다른 방에서 작업하려는 요구가 전원 사용 가능 좌석 필요성을 시사"
+},
+{
+"feature": "outlet",
+"message_id": "msg_000204",
+"reason": "문서·파일 전달 작업이 지속적으로 언급돼 전원 콘센트가 필요할 것으로 판단"
+},
+{
+"feature": "lighting",
+"message_id": "msg_000362",
+"reason": "동해바다와 ‘이쁘고’ 라는 표현으로 밝은 야외 환경 선호를 추정"
+},
+{
+"feature": "view",
+"message_id": "msg_000362",
+"reason": "동해바다를 언급하며 창밖 풍경을 기대한다는 점에서 창가 좌석 선호"
+},
+{
+"feature": "air_conditioning",
+"message_id": "msg_000761",
+"reason": ""근데 글램핑" 이후 "추울 수도"라고 언급"
+},
+{
+"feature": "air_conditioning",
+"message_id": "msg_000762",
+"reason": "추위에 대한 직접적인 우려 표현"
+}
+],
+"seat_recommendation": "전원 콘센트가 구비된 밝은 조명의 창가 좌석을 선택하고, 난방이 가능한 따뜻한 환경을 제공하는 자리로 안내합니다.",
+"follow_up_question": ""
+}

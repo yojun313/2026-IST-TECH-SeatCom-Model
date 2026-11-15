@@ -1,0 +1,1365 @@
+{
+  "schema_version": "1.1",
+  "libraries": [
+    {
+      "library_id": "yongin-suji",
+      "name": "수지도서관",
+      "address": "경기도 용인시 수지구 문정로7번길 23(풍덕천동 1088)",
+      "latitude": null,
+      "longitude": null,
+      "timezone": "Asia/Seoul",
+      "external_ids": {
+        "stdg_cd": null,
+        "pblib_id": null
+      },
+      "source_id": "yongin-suji:source:official_facility_page",
+      "verification": "model_candidate"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "yongin-suji:room:1",
+      "library_id": "yongin-suji",
+      "name": "2층노트북석",
+      "floor_id": "2F",
+      "capacity": 69,
+      "assignment": "unknown",
+      "usage_rules": {
+        "laptop_allowed": true,
+        "keyboard_allowed": null,
+        "minimum_age": 0,
+        "maximum_age": 100
+      },
+      "opening_hours": {
+        "timezone": "Asia/Seoul",
+        "weekly": [
+          {
+            "day": 0,
+            "opens": "09:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 1,
+            "opens": "09:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 2,
+            "opens": "09:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 3,
+            "opens": "09:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 4,
+            "opens": "09:00",
+            "closes": "22:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 5,
+            "opens": "09:00",
+            "closes": "17:00",
+            "ends_next_day": false
+          },
+          {
+            "day": 6,
+            "opens": "09:00",
+            "closes": "17:00",
+            "ends_next_day": false
+          }
+        ],
+        "effective_from": null,
+        "effective_until": null
+      },
+      "source_id": "yongin-suji:source:data_go_15171450",
+      "verification": "model_candidate"
+    }
+  ],
+  "maps": [
+    {
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "library_id": "yongin-suji",
+      "floor_id": "2F",
+      "room_id": "yongin-suji:room:1",
+      "width": 1000,
+      "height": 701,
+      "unit": "pixel",
+      "origin": "top_left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "meters_per_unit": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate",
+      "image_path": null,
+      "map_kind": "seat_button_layout"
+    }
+  ],
+  "seats": [
+    {
+      "seat_id": "yongin-suji:seat:0001",
+      "external_seat_id": "1",
+      "seat_label": "1",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 762.5,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0002",
+      "external_seat_id": "2",
+      "seat_label": "2",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 762.5,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0003",
+      "external_seat_id": "3",
+      "seat_label": "3",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 762.5,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0004",
+      "external_seat_id": "4",
+      "seat_label": "4",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 762.5,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0005",
+      "external_seat_id": "5",
+      "seat_label": "5",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 725.0,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0006",
+      "external_seat_id": "6",
+      "seat_label": "6",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 725.0,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0007",
+      "external_seat_id": "7",
+      "seat_label": "7",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 725.0,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0008",
+      "external_seat_id": "8",
+      "seat_label": "8",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 725.0,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0009",
+      "external_seat_id": "9",
+      "seat_label": "9",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 650.0,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0010",
+      "external_seat_id": "10",
+      "seat_label": "10",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 650.0,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0011",
+      "external_seat_id": "11",
+      "seat_label": "11",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 650.0,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0012",
+      "external_seat_id": "12",
+      "seat_label": "12",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 650.0,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0013",
+      "external_seat_id": "13",
+      "seat_label": "13",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 612.5,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0014",
+      "external_seat_id": "14",
+      "seat_label": "14",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 612.5,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0015",
+      "external_seat_id": "15",
+      "seat_label": "15",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 612.5,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0016",
+      "external_seat_id": "16",
+      "seat_label": "16",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 612.5,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0017",
+      "external_seat_id": "17",
+      "seat_label": "17",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0018",
+      "external_seat_id": "18",
+      "seat_label": "18",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0019",
+      "external_seat_id": "19",
+      "seat_label": "19",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0020",
+      "external_seat_id": "20",
+      "seat_label": "20",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0021",
+      "external_seat_id": "21",
+      "seat_label": "21",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0022",
+      "external_seat_id": "22",
+      "seat_label": "22",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0023",
+      "external_seat_id": "23",
+      "seat_label": "23",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0024",
+      "external_seat_id": "24",
+      "seat_label": "24",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0025",
+      "external_seat_id": "25",
+      "seat_label": "25",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0026",
+      "external_seat_id": "26",
+      "seat_label": "26",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0027",
+      "external_seat_id": "27",
+      "seat_label": "27",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0028",
+      "external_seat_id": "28",
+      "seat_label": "28",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0029",
+      "external_seat_id": "29",
+      "seat_label": "29",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0030",
+      "external_seat_id": "30",
+      "seat_label": "30",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 411.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0031",
+      "external_seat_id": "31",
+      "seat_label": "31",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0032",
+      "external_seat_id": "32",
+      "seat_label": "32",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0033",
+      "external_seat_id": "33",
+      "seat_label": "33",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 275.0,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0034",
+      "external_seat_id": "34",
+      "seat_label": "34",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 237.5,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0035",
+      "external_seat_id": "35",
+      "seat_label": "35",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 200.0,
+        "y": 481.5,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0036",
+      "external_seat_id": "36",
+      "seat_label": "36",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 200.0,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0037",
+      "external_seat_id": "37",
+      "seat_label": "37",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 237.5,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0038",
+      "external_seat_id": "38",
+      "seat_label": "38",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 275.0,
+        "y": 446.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0039",
+      "external_seat_id": "39",
+      "seat_label": "39",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 275.0,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0040",
+      "external_seat_id": "40",
+      "seat_label": "40",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 237.5,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0041",
+      "external_seat_id": "41",
+      "seat_label": "41",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 200.0,
+        "y": 377.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0042",
+      "external_seat_id": "42",
+      "seat_label": "42",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 200.0,
+        "y": 342.3,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0043",
+      "external_seat_id": "43",
+      "seat_label": "43",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 237.5,
+        "y": 342.3,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0044",
+      "external_seat_id": "44",
+      "seat_label": "44",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 275.0,
+        "y": 342.3,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0045",
+      "external_seat_id": "45",
+      "seat_label": "45",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 275.0,
+        "y": 237.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0046",
+      "external_seat_id": "46",
+      "seat_label": "46",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 237.5,
+        "y": 237.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0047",
+      "external_seat_id": "47",
+      "seat_label": "47",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 200.0,
+        "y": 237.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0048",
+      "external_seat_id": "48",
+      "seat_label": "48",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 200.0,
+        "y": 203.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0049",
+      "external_seat_id": "49",
+      "seat_label": "49",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 237.5,
+        "y": 203.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0050",
+      "external_seat_id": "50",
+      "seat_label": "50",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 275.0,
+        "y": 203.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0051",
+      "external_seat_id": "51",
+      "seat_label": "51",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 168.3,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0052",
+      "external_seat_id": "52",
+      "seat_label": "52",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 203.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0053",
+      "external_seat_id": "53",
+      "seat_label": "53",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 237.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0054",
+      "external_seat_id": "54",
+      "seat_label": "54",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 272.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0055",
+      "external_seat_id": "55",
+      "seat_label": "55",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 272.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0056",
+      "external_seat_id": "56",
+      "seat_label": "56",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 237.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0057",
+      "external_seat_id": "57",
+      "seat_label": "57",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 203.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0058",
+      "external_seat_id": "58",
+      "seat_label": "58",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 425.0,
+        "y": 168.3,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0059",
+      "external_seat_id": "59",
+      "seat_label": "59",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 168.3,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0060",
+      "external_seat_id": "60",
+      "seat_label": "60",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 203.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0061",
+      "external_seat_id": "61",
+      "seat_label": "61",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 237.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0062",
+      "external_seat_id": "62",
+      "seat_label": "62",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 500.0,
+        "y": 272.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0063",
+      "external_seat_id": "63",
+      "seat_label": "63",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 272.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0064",
+      "external_seat_id": "64",
+      "seat_label": "64",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 237.9,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0065",
+      "external_seat_id": "65",
+      "seat_label": "65",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 203.1,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0066",
+      "external_seat_id": "66",
+      "seat_label": "66",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 168.3,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0067",
+      "external_seat_id": "67",
+      "seat_label": "67",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 537.5,
+        "y": 98.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0068",
+      "external_seat_id": "68",
+      "seat_label": "68",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 387.5,
+        "y": 98.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    },
+    {
+      "seat_id": "yongin-suji:seat:0069",
+      "external_seat_id": "69",
+      "seat_label": "69",
+      "library_id": "yongin-suji",
+      "room_id": "yongin-suji:room:1",
+      "map_id": "yongin-suji:map:2F-notebook-seatbutton",
+      "bbox": {
+        "x": 237.5,
+        "y": 98.7,
+        "width": 27.0,
+        "height": 37.0
+      },
+      "orientation_degrees": null,
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "verification": "model_candidate"
+    }
+  ],
+  "facilities": [],
+  "room_features": [
+    {
+      "room_id": "yongin-suji:room:1",
+      "name": "laptopAllowed",
+      "value": true,
+      "unit": null,
+      "context": {
+        "basis": "공개 CSV 열람실그룹명 \"2층노트북석\"에 직접 명시",
+        "observed_on": "2026-10-12"
+      },
+      "method": "diagram_extraction",
+      "source_id": "yongin-suji:source:data_go_15171450",
+      "confidence": null,
+      "verification": "model_candidate",
+      "applies_to_all_seats": true,
+      "library_id": "yongin-suji"
+    }
+  ],
+  "seat_features": [],
+  "walkway_nodes": [],
+  "walkway_edges": [],
+  "map_transforms": [],
+  "sources": [
+    {
+      "source_id": "yongin-suji:source:data_go_15154878",
+      "source_type": "public_dataset",
+      "url": "https://www.data.go.kr/data/15154878/fileData.do",
+      "sha256": "5e4a4478e8eced1d21e5828ef66c71e3208089c3a9c9394d93361ee055b61d0a",
+      "document_date": "2025-11-27",
+      "collected_on": "2026-11-14",
+      "license_status": "CSV는 이용제한 없음(작업표 기재)",
+      "notes": "용인시 도서관 좌석 CSV 수지도서관 69행: 좌석ID 1-69, 열람실ID 1, 좌석명 1-69. 원본은 cp949.",
+      "local_path": "data/source_data/public_datasets/15154878_original.csv",
+      "library_id": "yongin-suji"
+    },
+    {
+      "source_id": "yongin-suji:source:data_go_15171450",
+      "source_type": "public_dataset",
+      "url": "https://www.data.go.kr/data/15171450/fileData.do",
+      "sha256": "4bc24f565a38f051e700cb6b014b984a3ca652f9cc9fe45123978018e5d23c5c",
+      "document_date": "2026-10-12",
+      "collected_on": "2026-11-14",
+      "license_status": "CSV는 이용제한 없음(작업표 기재)",
+      "notes": "열람실그룹 운영정보 연번15 수지도서관 2층노트북석: 평일 09:00-22:00, 주말 09:00-17:00, 나이 0-100, 예약사용 예. 정리본 UTF-8 해시.",
+      "local_path": "data/source_data/public_datasets/15171450_groups_utf8.csv",
+      "library_id": "yongin-suji"
+    },
+    {
+      "source_id": "yongin-suji:source:official_seatmate_sj",
+      "source_type": "official_web",
+      "url": "https://lib.yongin.go.kr/seatmate_sj/seatmate.php?classInfo=1",
+      "sha256": "b17f6f22fbef78d17001598db70f9bea31771a585e8235765bf61429705e8d6c",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "공식 공개 웹페이지. 배경 이미지(note.jpg, 1000x701)는 재배포 조건 미확인이므로 assets에 복제하지 않음. 상태(색/이미지)는 저장하지 않음.",
+      "notes": "좌석 69개의 left/top/width/height와 좌석번호(alt·본문)를 추출. robots.txt 확인(일반 경로 제한 없음). 배경 이미지 sha256=4d1e2458a0e5fd2e388ac200eee1b6344b8816a8016677a7fb9582a82566060a.",
+      "local_path": null,
+      "library_id": "yongin-suji"
+    },
+    {
+      "source_id": "yongin-suji:source:official_floor_page",
+      "source_type": "official_web",
+      "url": "https://lib.yongin.go.kr/suji/menu/12475/contents/40172/contents.do",
+      "sha256": "6cf953a8577bbfeaf65a0897a1c0ba2b4defff9acd2a709874f4d73825e4625f",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "공식 공개 웹페이지. 층별도 이미지 재배포 조건 미확인으로 assets 미포함.",
+      "notes": "층별안내(3층/2층/1층/지하1층) 이미지 alt 텍스트 확인. 이 단계에서 좌표 추출 없음.",
+      "local_path": null,
+      "library_id": "yongin-suji"
+    },
+    {
+      "source_id": "yongin-suji:source:official_facility_page",
+      "source_type": "official_web",
+      "url": "https://lib.yongin.go.kr/suji/menu/12474/contents/40171/contents.do",
+      "sha256": "3491e3a25ee2f91c478d900100eb6c71af6782039ae4d642285bfc2d04c0480d",
+      "document_date": null,
+      "collected_on": "2026-11-14",
+      "license_status": "공식 공개 웹페이지",
+      "notes": "하단 주소 표기 경기도 용인시 수지구 문정로7번길 23(풍덕천동 1088) 확인.",
+      "local_path": null,
+      "library_id": "yongin-suji"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "source_id": "seongnam-central:source:data-go-kr-15032433",
+    "source_type": "public_dataset",
+    "url": "https://www.data.go.kr/data/15032433/fileData.do",
+    "sha256": "ccd1ec0be2f3043a226b63237e8de4af1c7993ed036510d2da67d5d2c098016b",
+    "document_date": "2026-05-19",
+    "collected_on": "2026-11-14",
+    "license_status": "CSV 이용제한 없음(data.go.kr 표기)",
+    "notes": "성남시 열람실 마스터. 총좌석수는 과거(2026-05-19) 값이며 현재 정원이 아님.",
+    "local_path": "data/source_data/public_datasets/15032433.csv",
+    "library_id": "seongnam-central"
+  },
+  {
+    "source_id": "seongnam-central:source:user-capture-A-76e3778271ac",
+    "source_type": "user_supplied",
+    "url": "http://www.snlib.go.kr/ct/contents/roomStatus.do",
+    "sha256": "dc810de5d996e54c28ede7cd16d22ff3cde2f272c94570aaf16dcb043e929d36",
+    "document_date": "2026-11-14",
+    "collected_on": "2026-11-14",
+    "license_status": "사용자 제공 캡처; snlib.go.kr robots.txt가 전 경로 금지이므로 직접 수집하지 않음. 원본 캡처는 assets에 복제하지 않음(현황 색상 포함).",
+    "notes": "3층 제1열람실(A구역) 화면, 4054x2368 px. 표시 영역 x=48,y=582,w=3772,h=1786. 색·사용상태·성별은 저장하지 않음.",
+    "local_path": "/home/stadium/.univdash/uploads/76e3778271ac-pasted-20261114075747.png",
+    "library_id": "seongnam-central"
+  }
+]
