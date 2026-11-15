@@ -259,9 +259,9 @@ def test_preferences_history_and_use_flow(client):
     m = client.get(f"/api/v1/rooms/{laptop_room}/map", headers=tok).json()
     av = {
         s["seatId"]: s["state"]
-        for s in client.get(f"/api/v1/rooms/{laptop_room}/availability", headers=tok).json()[
-            "seatStates"
-        ]
+        for s in client.get(
+            f"/api/v1/rooms/{laptop_room}/availability", headers=tok
+        ).json()["seatStates"]
     }
     outside = next(
         s["seatId"]
@@ -323,9 +323,9 @@ def test_preferences_history_and_use_flow(client):
     )
     av2 = {
         s["seatId"]: s["state"]
-        for s in client.get(f"/api/v1/rooms/{laptop_room}/availability", headers=tok).json()[
-            "seatStates"
-        ]
+        for s in client.get(
+            f"/api/v1/rooms/{laptop_room}/availability", headers=tok
+        ).json()["seatStates"]
     }
     assert av2[outside] == "available", "이용을 끝낸 좌석은 다시 빈자리"
     ins = client.get("/api/v1/users/me/preferences/insights", headers=tok).json()
@@ -486,12 +486,15 @@ def test_reject_reason_corrects_preference(client):
         "/api/v1/recommendations/seats", json={"roomId": ROOM}, headers=tok
     ).json()
     from seat_model.train.userstate import SEAT_KEYS
+
     entrance_index = SEAT_KEYS.index("entranceProximity")
+
     def saved_preference():
         with client.app.state.reco.store.db() as db:
             rows = db.execute("SELECT state_json FROM reco_user_state").fetchall()
         assert len(rows) == 1
         return json.loads(rows[0][0])["mu"][entrance_index]
+
     rejected = set()
 
     for i, x in enumerate(rec["result"]["results"][:2]):

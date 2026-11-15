@@ -30,7 +30,7 @@
     SV.setQs({ arch: $('#arch').value, home: $('#home').value, q: $('#q').value });
     const d = await api('/api/users', { archetype: $('#arch').value, home: $('#home').value, q: $('#q').value, skip, limit });
     $('#tbl').innerHTML = `<table class="tbl"><thead><tr><th>user_id</th><th>유형</th><th>주 이용</th>${PK.map(k => `<th>${l(k)}</th>`).join('')}<th class="num">세션</th><th class="num">평균 만족도</th></tr></thead><tbody>
-      ${d.items.map(u => `<tr class="click" onclick="location.href='/users/${encodeURIComponent(u.user_id)}'"><td class="mono">${esc(u.user_id)}</td><td>${l(u.archetype)}</td><td class="small">${esc(u.home_library_id)}</td>
+      ${d.items.map(u => `<tr class="click" onclick="location.href='{{ base }}/users/${encodeURIComponent(u.user_id)}'"><td class="mono">${esc(u.user_id)}</td><td>${l(u.archetype)}</td><td class="small">${esc(u.home_library_id)}</td>
         ${PK.map(k => `<td>${prefCell(u.kakaotalk_profile.preferences[k], u.latent.preferences[k])}</td>`).join('')}<td class="num">${u.session_count}</td><td class="num">${u.avg_satisfaction ?? '-'}</td></tr>`).join('')}</tbody></table>
       <div class="small muted" style="margin-top:6px">관측 선호 색: <span style="color:var(--ok)">정답과 일치</span> / <span style="color:var(--danger)">오추론</span> / unknown = 대화 근거 부족</div>`;
     SV.pager($('#pager'), d.total, skip, limit, s => { skip = s; load(); });

@@ -3,8 +3,9 @@ const SV = window.SV = {};
 SV.$ = (s, r = document) => r.querySelector(s);
 SV.$$ = (s, r = document) => [...r.querySelectorAll(s)];
 SV.esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+SV.base = window.SV_BASE || '';  // 하위 경로에 붙일 때의 접두사(지금은 / 라서 빈 값)
 SV.api = async (path, params) => {
-  const u = new URL(path, location.origin);
+  const u = new URL(SV.base + path, location.origin);
   if (params) Object.entries(params).forEach(([k, v]) => { if (v !== undefined && v !== null && v !== '') u.searchParams.set(k, v); });
   const r = await fetch(u);
   if (!r.ok) { let m = r.statusText; try { m = (await r.json()).detail || m; } catch (e) {} throw new Error(m); }

@@ -269,7 +269,9 @@ def fig_models(plt, off, out):
 
 def fig_lambda(plt, off, out):
     xs = [0, 0.25, 0.5, 0.75, 1.0]
-    sets = ["base_lowtrust"] + REAL
+    sets = [
+        "base_resim"
+    ] + REAL  # λ = 0: 같은 선택 과정, 추천 신뢰도 100%(신뢰도는 λ에 따라 낮아짐)
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.3))
     for ax, (k, title) in zip(axes, [("ndcg@5", "NDCG@5"), ("hit@3", "HitRate@3")]):
         for mm in MODELS:
@@ -600,15 +602,15 @@ def _interp_models(off):
 
 def _interp_lambda(off):
     a0, a1 = (
-        m(off, "base_lowtrust", SVC, "ndcg@5")["mean"],
+        m(off, "base_resim", SVC, "ndcg@5")["mean"],
         m(off, "real_1.00", SVC, "ndcg@5")["mean"],
     )
     r0, r1 = (
-        m(off, "base_lowtrust", "service_rule", "ndcg@5")["mean"],
+        m(off, "base_resim", "service_rule", "ndcg@5")["mean"],
         m(off, "real_1.00", "service_rule", "ndcg@5")["mean"],
     )
     l0, l1 = (
-        m(off, "base_lowtrust", "lgbm_b_no_exp", "ndcg@5")["mean"],
+        m(off, "base_resim", "lgbm_b_no_exp", "ndcg@5")["mean"],
         m(off, "real_1.00", "lgbm_b_no_exp", "ndcg@5")["mean"],
     )
     return (

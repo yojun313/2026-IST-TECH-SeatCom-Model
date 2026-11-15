@@ -2,6 +2,7 @@
 
 MongoDB is needed only by the one-off export tool, never by this module.
 """
+
 from __future__ import annotations
 
 import json
@@ -10,7 +11,14 @@ import sqlite3
 from pathlib import Path
 
 SEED_DIR = Path(__file__).resolve().parents[1] / "data" / "sqlite_seed"
-INDEX_FIELDS = ("library_id", "room_id", "map_id", "scenario_id", "session_id", "user_id")
+INDEX_FIELDS = (
+    "library_id",
+    "room_id",
+    "map_id",
+    "scenario_id",
+    "session_id",
+    "user_id",
+)
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS catalog_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS catalog_documents (
@@ -42,26 +50,42 @@ def initialize(path: Path, seed_dir: Path = SEED_DIR):
     db = connect(path)
     try:
         db.executescript(SCHEMA)
-        if db.execute("SELECT value FROM catalog_metadata WHERE key='version'").fetchone() == (version,):
+        if db.execute(
+            "SELECT value FROM catalog_metadata WHERE key='version'"
+        ).fetchone() == (version,):
             return
         source = snapshot_file(manifest, seed_dir)
         if source.resolve() == path.resolve():
             raise ValueError("Seed and runtime database must be different files")
         db.execute("BEGIN IMMEDIATE")
-        if db.execute("SELECT value FROM catalog_metadata WHERE key='version'").fetchone() == (version,):
+        if db.execute(
+            "SELECT value FROM catalog_metadata WHERE key='version'"
+        ).fetchone() == (version,):
             db.rollback()
             return
-        db.execute("ATTACH DATABASE ? AS seed", (source.resolve().as_uri() + "?mode=ro",))
+        db.execute(
+            "ATTACH DATABASE ? AS seed", (source.resolve().as_uri() + "?mode=ro",)
+        )
         db.execute("DELETE FROM catalog_documents")
         for field in INDEX_FIELDS:
             db.execute(f"DROP INDEX IF EXISTS main.catalog_{field}")
-        db.execute("INSERT INTO catalog_documents SELECT collection, ordinal, document FROM seed.catalog_documents")
-        counts = dict(db.execute("SELECT collection, count(*) FROM catalog_documents GROUP BY collection"))
+        db.execute(
+            "INSERT INTO catalog_documents SELECT collection, ordinal, document FROM seed.catalog_documents"
+        )
+        counts = dict(
+            db.execute(
+                "SELECT collection, count(*) FROM catalog_documents GROUP BY collection"
+            )
+        )
         if counts != manifest["counts"]:
             raise ValueError("Catalog collection counts do not match Release manifest")
         for field in INDEX_FIELDS:
-            db.execute(f"CREATE INDEX main.catalog_{field} ON catalog_documents(collection, json_extract(document, '$.{field}'))")
-        db.execute("INSERT OR REPLACE INTO catalog_metadata VALUES ('version', ?)", (version,))
+            db.execute(
+                f"CREATE INDEX main.catalog_{field} ON catalog_documents(collection, json_extract(document, '$.{field}'))"
+            )
+        db.execute(
+            "INSERT OR REPLACE INTO catalog_metadata VALUES ('version', ?)", (version,)
+        )
         db.commit()
     except BaseException:
         db.rollback()
@@ -104,6 +128,7 @@ class Collection:
     Supports equality filters and nested inclusive projections, not arbitrary
     MongoDB operators. Values are always bound SQL parameters.
     """
+
     def __init__(self, path, name):
         self.path, self.name = path, name
 
@@ -117,7 +142,12 @@ class Collection:
             values.append(value)
         db = connect(self.path)
         try:
-            rows = db.execute("SELECT document FROM catalog_documents WHERE " + " AND ".join(conditions) + " ORDER BY ordinal", values)
+            rows = db.execute(
+                "SELECT document FROM catalog_documents WHERE "
+                + " AND ".join(conditions)
+                + " ORDER BY ordinal",
+                values,
+            )
             for (document,) in rows:
                 yield project(json.loads(document), projection)
         finally:
@@ -134,9 +164,13 @@ class Collection:
         path = json_path(field)
         db = connect(self.path)
         try:
-            return [r[0] for r in db.execute(
-                f"SELECT DISTINCT json_extract(document, '{path}') FROM catalog_documents WHERE collection=? AND json_type(document, '{path}') IS NOT NULL",
-                (self.name,))]
+            return [
+                r[0]
+                for r in db.execute(
+                    f"SELECT DISTINCT json_extract(document, '{path}') FROM catalog_documents WHERE collection=? AND json_type(document, '{path}') IS NOT NULL",
+                    (self.name,),
+                )
+            ]
         finally:
             db.close()
 
@@ -150,13 +184,14 @@ class Catalog:
         return Collection(self.path, name)
 
     def __getattr__(self, name):
-        if name.startswith('_'):
+        if name.startswith("_"):
             raise AttributeError(name)
         return self[name]
 
 
 if __name__ == "__main__":
     from .config import get_settings
+
     path = get_settings().database_path
     initialize(path)
     print(f"SQLite catalog ready: {path}")

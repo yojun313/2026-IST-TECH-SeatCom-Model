@@ -26,7 +26,7 @@
 </div>
 {% endblock %}
 {% block scripts %}
-<script src="/static/floor.js"></script>
+<script src="{{ base }}/static/floor.js"></script>
 <script>
 (() => {
   const { $, $$, api, esc, l, fmt, bar } = SV;
@@ -99,7 +99,7 @@
         <dt>냉방기</dt><dd>${Object.entries(ac).map(([k, v]) => `${l(k)} ${v}`).join(' · ')}</dd>
         <dt>조명</dt><dd>${lights.length}개 · 어두움/고장 ${dark}</dd>
         <dt>콘센트</dt><dd>벽 ${outlets.filter(o => o.kind === 'wall').length} · 책상 ${outlets.filter(o => o.kind === 'desk').length}</dd>
-        <dt>이 환경의 세션</dt><dd>${SV.num(d.session_count)}건 선택 · <a href="/sessions?scenario=${encodeURIComponent(sc.scenario_id)}">세션 보기</a></dd>
+        <dt>이 환경의 세션</dt><dd>${SV.num(d.session_count)}건 선택 · <a href="{{ base }}/sessions?scenario=${encodeURIComponent(sc.scenario_id)}">세션 보기</a></dd>
       </dl>
       <h3 style="margin-top:12px">책상 유형</h3>${Object.entries(desk).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<div class="frow"><span>${l(k)}</span>${bar(v, sc.seat_count)}<span class="n">${v}</span></div>`).join('')}
       <h3 style="margin-top:12px">좌석 특성 평균</h3>${SV.FEATURES.map(f => { const a = d.seats.reduce((s, x) => s + (f === 'brightness' ? x.brightness_by_slot[slot] : x.features[f]), 0) / d.seats.length; return `<div class="frow"><span>${l(f)}</span>${bar(a)}<span class="n">${a.toFixed(2)}</span></div>`; }).join('')}

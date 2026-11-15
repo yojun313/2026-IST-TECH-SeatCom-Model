@@ -1,13 +1,15 @@
-"""JSON API. 모든 응답은 MongoDB `library` DB에서 읽는다(읽기 전용)."""
+"""JSON API. 모든 응답은 백엔드와 같은 SQLite 카탈로그에서 읽는다(읽기 전용)."""
 
+import bisect
 import json
 import re
+import threading
 import time
 from collections import Counter
 
 from fastapi import APIRouter, HTTPException, Query
 
-from app.db import clean, get_db
+from ..db import clean, get_db, query
 
 router = APIRouter(prefix="/api")
 
@@ -81,41 +83,22 @@ def overview():
                 },
             )
         )
-        seat_n = {
-            r["_id"]: r["n"]
-            for r in db.seats.aggregate(
-                [{"$group": {"_id": "$library_id", "n": {"$sum": 1}}}]
-            )
-        }
-        room_n = {
-            r["_id"]: r["n"]
-            for r in db.rooms.aggregate(
-                [{"$group": {"_id": "$library_id", "n": {"$sum": 1}}}]
-            )
-        }
+        seat_n = {r["_id"]: r["n"] for r in db.seats.group("library_id", n=("count",))}
+        room_n = {r["_id"]: r["n"] for r in db.rooms.group("library_id", n=("count",))}
         fac_n = {
-            r["_id"]: r["n"]
-            for r in db.facilities.aggregate(
-                [{"$group": {"_id": "$library_id", "n": {"$sum": 1}}}]
-            )
+            r["_id"]: r["n"] for r in db.facilities.group("library_id", n=("count",))
         }
         sc_n = {
             r["_id"]: r["n"]
-            for r in db.synth_scenarios.aggregate(
-                [{"$group": {"_id": "$library_id", "n": {"$sum": 1}}}]
-            )
+            for r in db.synth_scenarios.group("library_id", n=("count",))
         }
         ss_n = {
             r["_id"]: r["n"]
-            for r in db.synth_sessions.aggregate(
-                [{"$group": {"_id": "$library_id", "n": {"$sum": 1}}}]
-            )
+            for r in db.synth_sessions.group("library_id", n=("count",))
         }
         us_n = {
             r["_id"]: r["n"]
-            for r in db.synth_users.aggregate(
-                [{"$group": {"_id": "$home_library_id", "n": {"$sum": 1}}}]
-            )
+            for r in db.synth_users.group("home_library_id", n=("count",))
         }
         for l in libs:
             lid = l["library_id"]
@@ -137,7 +120,7 @@ def overview():
         manifest = db.meta.find_one({"_id": "synthetic_manifest"}) or {}
         return {"counts": counts, "libraries": libs, "manifest": clean(manifest)}
 
-    return cached("overview", 60, build)
+    return cached("overview", 86400, build)
 
 
 # ------------------------------------------------------------------ libraries (real)
@@ -152,31 +135,27 @@ def library(lid: str):
     seat_by_room = Counter(s["room_id"] for s in seats)
     for r in rooms:
         r["seat_count"] = seat_by_room.get(r["room_id"], 0)
-    units = list(
-        db.synth_scenarios.aggregate(
-            [
-                {"$match": q},
-                {"$sort": {"scenario_index": 1}},
-                {
-                    "$group": {
-                        "_id": {"map_id": "$map_id", "room_id": "$room_id"},
-                        "room_name": {"$first": "$room_name"},
-                        "seat_count": {"$first": "$seat_count"},
-                        "scenarios": {
-                            "$push": {
-                                "scenario_id": "$scenario_id",
-                                "index": "$scenario_index",
-                                "season": "$conditions.season",
-                                "weather": "$conditions.weather",
-                                "counts": "$counts",
-                            }
-                        },
-                    }
-                },
-                {"$sort": {"_id.room_id": 1}},
-            ]
+    groups = {}
+    for sc in db.synth_scenarios.find(q).sort("scenario_index", 1):
+        g = groups.setdefault(
+            (sc["map_id"], sc["room_id"]),
+            {
+                "_id": {"map_id": sc["map_id"], "room_id": sc["room_id"]},
+                "room_name": sc.get("room_name"),
+                "seat_count": sc.get("seat_count"),
+                "scenarios": [],
+            },
         )
-    )
+        g["scenarios"].append(
+            {
+                "scenario_id": sc.get("scenario_id"),
+                "index": sc.get("scenario_index"),
+                "season": (sc.get("conditions") or {}).get("season"),
+                "weather": (sc.get("conditions") or {}).get("weather"),
+                "counts": sc.get("counts"),
+            }
+        )
+    units = sorted(groups.values(), key=lambda u: u["_id"]["room_id"])
     return clean(
         {
             "library": lib,
@@ -283,8 +262,8 @@ def users(
     archetype: str | None = None,
     home: str | None = None,
     q: str | None = None,
-    skip: int = 0,
-    limit: int = Query(50, le=500),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(50, ge=1, le=500),
 ):
     db = get_db()
     f = {}
@@ -303,17 +282,11 @@ def users(
     )
     sess = {
         r["_id"]: r
-        for r in db.synth_sessions.aggregate(
-            [
-                {"$match": {"user_id": {"$in": [r["_id"] for r in rows]}}},
-                {
-                    "$group": {
-                        "_id": "$user_id",
-                        "n": {"$sum": 1},
-                        "avg_satisfaction": {"$avg": "$satisfaction"},
-                    }
-                },
-            ]
+        for r in db.synth_sessions.group(
+            "user_id",
+            {"user_id": {"$in": [r["_id"] for r in rows]}},
+            n=("count",),
+            avg_satisfaction=("avg", "satisfaction"),
         )
     }
     for r in rows:
@@ -722,8 +695,8 @@ def sessions(
     origin: str | None = None,
     sat: str | None = None,
     scenario: str | None = None,
-    skip: int = 0,
-    limit: int = Query(50, le=500),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(50, ge=1, le=500),
 ):
     db = get_db()
     f = {}
@@ -793,169 +766,162 @@ def session(sid: str):
 
 
 # ------------------------------------------------------------------ stats
-@router.get("/stats")
-def stats(library: str | None = None):
-    def build():
-        db = get_db()
-        m = {"library_id": library} if library else {}
-        hist = {}
-        for fid in FEATURES:
-            rows = db.synth_seat_env.aggregate(
-                [
-                    {"$match": m},
-                    {
-                        "$bucket": {
-                            "groupBy": f"$features.{fid}",
-                            "boundaries": [i / 10 for i in range(11)] + [1.0001],
-                            "default": "other",
-                            "output": {"n": {"$sum": 1}},
-                        }
-                    },
-                ]
-            )
-            b = {r["_id"]: r["n"] for r in rows}
-            hist[fid] = [b.get(i / 10, 0) for i in range(10)]
-            hist[fid][9] += b.get(1.0, 0)
-        by_lib = list(
-            db.synth_seat_env.aggregate(
-                [
-                    {
-                        "$group": {
-                            "_id": "$library_id",
-                            **{f: {"$avg": f"$features.{f}"} for f in FEATURES},
-                            "lux_noon": {"$avg": "$raw.lux.noon"},
-                            "temp": {"$avg": "$raw.temperature_c"},
-                        }
-                    },
-                    {"$sort": {"_id": 1}},
-                ]
-            )
-        )
-        desk = list(
-            db.synth_seat_env.aggregate(
-                [
-                    {"$match": m},
-                    {
-                        "$group": {
-                            "_id": "$raw.desk_type",
-                            "n": {"$sum": 1},
-                            "w": {"$avg": "$raw.width_cm"},
-                            "h": {"$avg": "$raw.height_cm"},
-                        }
-                    },
-                ]
-            )
-        )
-        lux = list(
-            db.synth_seat_env.aggregate(
-                [
-                    {"$match": m},
-                    {
-                        "$group": {
-                            "_id": None,
-                            **{
-                                s: {"$avg": f"$raw.lux.{s}"}
-                                for s in ("morning", "noon", "evening")
-                            },
-                        }
-                    },
-                ]
-            )
-        )
+_stats_lock = threading.Lock()
 
-        def sat_hist(match):
-            rows = db.synth_sessions.aggregate(
-                [
-                    {"$match": {**match, "satisfaction": {"$ne": None}}},
-                    {
-                        "$bucket": {
-                            "groupBy": "$satisfaction",
-                            "boundaries": [i / 10 for i in range(10)] + [1.0001],
-                            "default": "x",
-                        }
-                    },
-                ]
-            )
-            return {f"{r['_id']:.1f}": r["count"] for r in rows if r["_id"] != "x"}
 
-        def grp(coll, field, match=None):
-            return {
-                str(r["_id"]): r["n"]
-                for r in db[coll].aggregate(
-                    [
-                        {"$match": match or {}},
-                        {"$group": {"_id": f"${field}", "n": {"$sum": 1}}},
-                    ]
-                )
+def _bin(v, bounds):
+    """MongoDB $bucket 과 같은 규칙: bounds[i] <= v < bounds[i+1] → i, 범위 밖은 None."""
+    if v is None:
+        return None
+    i = bisect.bisect_right(bounds, v) - 1
+    return i if 0 <= i < len(bounds) - 1 else None
+
+
+def _avg(xs):
+    xs = [x for x in xs if x is not None]
+    return sum(xs) / len(xs) if xs else None
+
+
+def _stats_all():
+    """전체(None)와 도서관별 통계를 데이터를 한 번씩만 훑어 한꺼번에 계산한다(카탈로그는 버전 단위로 고정)."""
+    FB = [i / 10 for i in range(11)] + [
+        1.0001
+    ]  # 특성 히스토그램 경계(1.0 은 마지막 구간에 합침)
+    SB = [i / 10 for i in range(10)] + [1.0001]  # 만족도 경계
+    J = "json_extract(document, '$.{}')".format
+    out = {}
+
+    def bucket(lib):
+        if lib not in out:
+            out[lib] = {
+                "hist": {f: [0] * 10 for f in FEATURES},
+                "desk": {},
+                "lux": {s: [] for s in ("morning", "noon", "evening")},
+                "cond": {k: Counter() for k in ("season", "weather", "laptop_allowed")},
+                "daily": Counter(),
+                "origin": Counter(),
+                "sat": Counter(),
+                "slot": Counter(),
+                "basis": Counter(),
+                "arch": Counter(),
+                "acc": {},
+                "rank": Counter(),
             }
+        return out[lib]
 
-        sm = {"library_id": library} if library else {}
-        cond = {
-            k: grp("synth_scenarios", f"conditions.{k}", m)
-            for k in ("season", "weather", "laptop_allowed")
-        }
-        daily = list(
-            db.synth_sessions.aggregate(
-                [
-                    {"$match": sm},
-                    {
-                        "$group": {
-                            "_id": {"$substr": ["$occurred_at", 0, 10]},
-                            "n": {"$sum": 1},
-                        }
-                    },
-                    {"$sort": {"_id": 1}},
-                ]
-            )
-        )
-        # 카카오톡 관측 프로필 정확도(항목별)
-        acc = {}
-        for u in db.synth_users.find(
-            {"home_library_id": library} if library else {},
-            {"kakaotalk_profile.preferences": 1},
-        ):
-            for f, p in u["kakaotalk_profile"]["preferences"].items():
-                a = acc.setdefault(f, Counter())
-                a[
+    by_lib = {}
+    for lib, feats, lm, ln, le, temp, dt, w, h in query(
+        f"""SELECT {J("library_id")}, {J("features")}, {J("raw.lux.morning")}, {J("raw.lux.noon")}, {J("raw.lux.evening")},
+                   {J("raw.temperature_c")}, {J("raw.desk_type")}, {J("raw.width_cm")}, {J("raw.height_cm")}
+            FROM catalog_documents WHERE collection = 'synth_seat_env'"""
+    ):
+        f = json.loads(feats) if feats else {}
+        acc = by_lib.setdefault(lib, {k: [] for k in FEATURES + ["lux_noon", "temp"]})
+        for k in FEATURES:
+            acc[k].append(f.get(k))
+        acc["lux_noon"].append(ln)
+        acc["temp"].append(temp)
+        for b in (bucket(None), bucket(lib)):
+            for k in FEATURES:
+                i = _bin(f.get(k), FB)
+                if i is not None:
+                    b["hist"][k][min(i, 9)] += 1
+            d = b["desk"].setdefault(dt, {"n": 0, "w": [], "h": []})
+            d["n"] += 1
+            d["w"].append(w)
+            d["h"].append(h)
+            for slot, v in (("morning", lm), ("noon", ln), ("evening", le)):
+                b["lux"][slot].append(v)
+
+    for lib, season, weather, laptop in query(
+        f"""SELECT {J("library_id")}, {J("conditions.season")}, {J("conditions.weather")}, {J("conditions.laptop_allowed")}
+            FROM catalog_documents WHERE collection = 'synth_scenarios'"""
+    ):
+        for b in (bucket(None), bucket(lib)):
+            b["cond"]["season"][str(season)] += 1
+            b["cond"]["weather"][str(weather)] += 1
+            # SQLite JSON 은 true/false 를 1/0 으로 돌려준다 → MongoDB 때와 같은 "True"/"False" 키로
+            b["cond"]["laptop_allowed"][
+                str(bool(laptop)) if laptop in (0, 1) else str(laptop)
+            ] += 1
+
+    for lib, sat, slot, origin, basis, day, rank in query(
+        f"""SELECT {J("library_id")}, {J("satisfaction")}, {J("time_slot")}, {J("choice_origin")}, {J("ranking_basis")},
+                   substr({J("occurred_at")}, 1, 10),
+                   CASE WHEN {J("chosen_seat_id")} IS NULL THEN NULL ELSE coalesce(
+                     (SELECT CAST(e.key AS INTEGER) + 1 FROM json_each(document, '$.exposed') e
+                      WHERE json_extract(e.value, '$.seat_id') = {J("chosen_seat_id")} ORDER BY e.key LIMIT 1), 'outside') END
+            FROM catalog_documents WHERE collection = 'synth_sessions'"""
+    ):
+        for b in (bucket(None), bucket(lib)):
+            b["daily"][day] += 1
+            b["origin"][str(origin)] += 1
+            b["slot"][str(slot)] += 1
+            b["basis"][str(basis)] += 1
+            i = _bin(sat, SB)
+            if i is not None:
+                b["sat"][f"{SB[i]:.1f}"] += 1
+            if rank is not None:
+                b["rank"][str(rank)] += 1
+
+    for home, arch, prefs in query(
+        f"""SELECT {J("home_library_id")}, {J("archetype")}, {J("kakaotalk_profile.preferences")}
+            FROM catalog_documents WHERE collection = 'synth_users'"""
+    ):
+        prefs = json.loads(prefs) if prefs else {}
+        for b in (bucket(None), bucket(home)):
+            b["arch"][str(arch)] += 1
+            for f, p in prefs.items():
+                b["acc"].setdefault(f, Counter())[
                     "unknown"
                     if p["preference"] == "unknown"
                     else ("correct" if p.get("is_correct_vs_latent") else "wrong")
                 ] += 1
-        rank_pos = Counter()
-        for s in db.synth_sessions.find(
-            {**sm, "chosen_seat_id": {"$ne": None}},
-            {"chosen_seat_id": 1, "exposed.seat_id": 1},
-        ):
-            ids = [x["seat_id"] for x in s.get("exposed", [])]
-            rank_pos[
-                str(ids.index(s["chosen_seat_id"]) + 1)
-                if s["chosen_seat_id"] in ids
-                else "outside"
-            ] += 1
-        return clean(
-            {
-                "feature_hist": hist,
-                "by_library": by_lib,
-                "desk_types": desk,
-                "lux_by_slot": lux[0] if lux else {},
-                "conditions": cond,
-                "daily_sessions": daily,
-                "origin": grp("synth_sessions", "choice_origin", sm),
-                "satisfaction": sat_hist(sm),
-                "time_slot": grp("synth_sessions", "time_slot", sm),
-                "ranking_basis": grp("synth_sessions", "ranking_basis", sm),
-                "archetype": grp(
-                    "synth_users",
-                    "archetype",
-                    {"home_library_id": library} if library else {},
-                ),
-                "event_type": grp("synth_events", "type"),
-                "profile_accuracy": acc,
-                "chosen_rank": rank_pos,
-            }
-        )
 
-    return cached(f"stats:{library}", 600, build)
+    event_type = {
+        str(t): n
+        for t, n in query(
+            f"SELECT {J('type')}, count(*) FROM catalog_documents WHERE collection = 'synth_events' GROUP BY 1"
+        )
+    }
+    by_library = [
+        {"_id": lib, **{k: _avg(v) for k, v in acc.items()}}
+        for lib, acc in sorted(by_lib.items(), key=lambda x: str(x[0]))
+    ]
+    result = {}
+    for lib, b in out.items():
+        result[lib] = {
+            "feature_hist": b["hist"],
+            "by_library": by_library,
+            "desk_types": [
+                {"_id": k, "n": d["n"], "w": _avg(d["w"]), "h": _avg(d["h"])}
+                for k, d in sorted(b["desk"].items(), key=lambda x: str(x[0]))
+            ],
+            "lux_by_slot": {"_id": None, **{s: _avg(v) for s, v in b["lux"].items()}},
+            "conditions": {k: dict(v) for k, v in b["cond"].items()},
+            "daily_sessions": [
+                {"_id": d, "n": n}
+                for d, n in sorted(b["daily"].items(), key=lambda x: str(x[0]))
+            ],
+            "origin": dict(b["origin"]),
+            "satisfaction": dict(sorted(b["sat"].items())),
+            "time_slot": dict(b["slot"]),
+            "ranking_basis": dict(b["basis"]),
+            "archetype": dict(b["arch"]),
+            "event_type": event_type,
+            "profile_accuracy": {f: dict(c) for f, c in b["acc"].items()},
+            "chosen_rank": dict(b["rank"]),
+        }
+    return result
+
+
+@router.get("/stats")
+def stats(library: str | None = None):
+    with _stats_lock:  # 동시에 여러 요청이 와도 한 번만 계산
+        allstats = cached("stats", 86400, _stats_all)
+    if library and library not in allstats:
+        raise HTTPException(404, "도서관 없음")
+    return clean(allstats[library or None])
 
 
 # ------------------------------------------------------------------ raw browser
@@ -977,8 +943,8 @@ def collection(
     name: str,
     filter: str = "{}",
     sort: str | None = None,
-    skip: int = 0,
-    limit: int = Query(25, le=200),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(25, ge=1, le=200),
 ):
     if name not in COLLECTIONS:
         raise HTTPException(404, "컬렉션 없음")
@@ -996,6 +962,8 @@ def collection(
     try:
         items = list(cur.skip(skip).limit(limit))
         total = db[name].count_documents(f)
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(400, f"쿼리 오류: {e}")
+        raise HTTPException(400, f"쿼리 오류: {type(e).__name__}")
     return clean({"total": total, "items": items})

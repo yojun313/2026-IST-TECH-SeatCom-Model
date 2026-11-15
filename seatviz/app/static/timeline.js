@@ -50,7 +50,7 @@
         scales: { x: { type: 'linear', min: t0 - 864e5, max: t1 + 864e5, ticks: { callback: v => day(new Date(v + 9 * 36e5).toISOString()), maxTicksLimit: 12 } },
                   y: { min: -0.6, max: rooms.length - 0.4, reverse: true, ticks: { stepSize: 1, callback: v => rooms[v] ? (rooms[v].name || rooms[v].room_id) : '' } } },
         plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => { const s = c.raw.s; return [`${s.occurred_at.slice(0, 16).replace('T', ' ')} ${l(s.time_slot)}`, `좌석 ${s.chosen_seat_id ? s.chosen_seat_id.split(':').pop() : '없음'} · ${l(s.choice_origin ?? 'none')}${s.rank ? ' ' + s.rank + '위' : ''}`, `만족도 ${s.satisfaction ?? '-'} · 점유율 ${(s.occupancy_rate * 100).toFixed(0)}%`]; } } } },
-        onClick: (e, els) => { if (els.length) location.href = '/sessions/' + encodeURIComponent(lanePts[els[0].index].s._id); } },
+        onClick: (e, els) => { if (els.length) location.href = SV.base + '/sessions/' + encodeURIComponent(lanePts[els[0].index].s._id); } },
     });
 
     // 2) 만족도 추이
@@ -126,7 +126,7 @@
         <ol style="padding-left:18px;margin:6px 0;line-height:1.55">${ex.reasons.map(x => `<li style="margin-bottom:4px">${x}</li>`).join('')}</ol>
         ${ex.items?.length ? itemsTable(ex) : ''}
         <div class="muted" style="margin-top:6px;font-size:11px">${esc(ex.note || '')} 기여 = 중요도 × 일치도의 (선택 좌석 − 빈자리 평균).</div>
-        <a href="/sessions/${encodeURIComponent(cur._id)}">세션 상세 →</a>`;
+        <a href="${SV.base}/sessions/${encodeURIComponent(cur._id)}">세션 상세 →</a>`;
       const nxt = list[step + 1]; if (nxt) { getSc(nxt.scenario_id); getEx(nxt._id); }  // 다음 단계 미리 읽기
     }
     slider.oninput = () => { step = +slider.value; draw(); };

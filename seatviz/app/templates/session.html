@@ -1,7 +1,7 @@
 {% extends "_layout.html" %}
 {% block content %}
 <div class="page-head">
-  <div><a href="/sessions" class="small"><i class="fa-solid fa-arrow-left"></i> 세션 목록</a><h1 id="title">세션</h1><div class="muted" id="sub"></div></div>
+  <div><a href="{{ base }}/sessions" class="small"><i class="fa-solid fa-arrow-left"></i> 세션 목록</a><h1 id="title">세션</h1><div class="muted" id="sub"></div></div>
 </div>
 <div class="floor-layout" style="grid-template-columns:minmax(0,1fr) 380px">
   <div>
@@ -16,7 +16,7 @@
 </div>
 {% endblock %}
 {% block scripts %}
-<script src="/static/floor.js"></script>
+<script src="{{ base }}/static/floor.js"></script>
 <script>
 (async () => {
   const { $, api, esc, l, fmt } = SV;
@@ -24,7 +24,7 @@
   try {
     const d = await api('/api/sessions/' + encodeURIComponent(sid)), s = d.session, u = d.user;
     $('#title').innerHTML = `${esc(s.session_id)} <span class="badge b-syn">합성</span>`;
-    $('#sub').innerHTML = `${esc(s.occurred_at.replace('T', ' ').slice(0, 19))} · ${l(s.time_slot)} · <a href="/users/${encodeURIComponent(s.user_id)}">${esc(s.user_id)}</a>`;
+    $('#sub').innerHTML = `${esc(s.occurred_at.replace('T', ' ').slice(0, 19))} · ${l(s.time_slot)} · <a href="{{ base }}/users/${encodeURIComponent(s.user_id)}">${esc(s.user_id)}</a>`;
     const hl = {};
     (s.occupied_seat_ids || []).forEach(id => hl[id] = { kind: 'occupied' });
     (s.negative_seat_ids || []).forEach(id => hl[id] = { kind: 'negative' });
@@ -35,7 +35,7 @@
     floor.legend.hidden = false;
     floor.legend.innerHTML = `<span class="sw"><i style="background:#2fd27a"></i>선택 ★</span><span class="sw"><i style="background:#ffb547"></i>추천 노출(순위)</span><span class="sw"><i style="background:#7fb4ff"></i>선택하지 않은 가용 좌석(샘플)</span><span class="sw"><i style="background:#b8473a"></i>✕ 다른 사람 사용 중</span>`;
     $('#info').innerHTML = `<h2>세션 정보</h2><dl class="kv">
-      <dt>도서관</dt><dd>${esc(s.library_id)}</dd><dt>환경</dt><dd><a href="/floor?scenario=${encodeURIComponent(s.scenario_id)}" class="mono small">${esc(s.scenario_id)}</a></dd>
+      <dt>도서관</dt><dd>${esc(s.library_id)}</dd><dt>환경</dt><dd><a href="{{ base }}/floor?scenario=${encodeURIComponent(s.scenario_id)}" class="mono small">${esc(s.scenario_id)}</a></dd>
       <dt>점유율</dt><dd>${(s.occupancy_rate * 100).toFixed(1)}% · 사용 중 ${(s.occupied_seat_ids || []).length} · 가용 ${s.available_seat_ids_count} · 조건충족 ${s.eligible_count}</dd>
       <dt>추천 방식</dt><dd>${esc(s.ranking_basis)}</dd><dt>선택</dt><dd>${esc(s.chosen_seat_id ?? '없음')}</dd>
       <dt>선택 경로</dt><dd>${l(s.choice_origin ?? 'none')}</dd><dt>잠재 효용</dt><dd>${fmt(s.chosen_true_utility)}</dd><dt>취향 적합도</dt><dd>${fmt(s.chosen_preference_fit)}</dd><dt>만족도</dt><dd>${fmt(s.satisfaction)}</dd></dl>

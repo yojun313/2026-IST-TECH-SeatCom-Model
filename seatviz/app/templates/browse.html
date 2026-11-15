@@ -1,7 +1,7 @@
 {% extends "_layout.html" %}
 {% block content %}
 <div class="page-head">
-  <div><h1>데이터 탐색</h1><div class="muted">모든 컬렉션의 원본 문서를 MongoDB 필터(JSON)로 조회합니다. 행을 누르면 전체 JSON이 펼쳐집니다.</div></div>
+  <div><h1>데이터 탐색</h1><div class="muted">모든 컬렉션의 원본 문서를 필터(JSON: 필드 = 값, $in·$ne·$gt·$gte·$lt·$lte·$regex)로 조회합니다. 행을 누르면 전체 JSON이 펼쳐집니다.</div></div>
 </div>
 <div class="grid" style="grid-template-columns:230px minmax(0,1fr)">
   <div class="card" id="colls" style="align-self:start"></div>

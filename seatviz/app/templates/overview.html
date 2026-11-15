@@ -1,8 +1,8 @@
 {% extends "_layout.html" %}
 {% block content %}
 <div class="page-head">
-  <div><h1>SeatCom 데이터셋 개요</h1><div class="muted">MongoDB <code>library</code> DB의 실데이터 27관과 합성 데이터(환경·사용자·세션·이벤트)를 한곳에서 조회합니다.</div></div>
-  <a class="btn on" href="/floor"><i class="fa-solid fa-building-columns"></i> 도서관 뷰어 열기</a>
+  <div><h1>SeatCom 데이터셋 개요</h1><div class="muted">SQLite 카탈로그(GitHub Release 데이터)의 실데이터 27관과 합성 데이터(환경·사용자·세션·이벤트)를 한곳에서 조회합니다.</div></div>
+  <a class="btn on" href="{{ base }}/floor"><i class="fa-solid fa-building-columns"></i> 도서관 뷰어 열기</a>
 </div>
 <div id="stats" class="grid g6" style="margin-bottom:14px"></div>
 <div class="grid g2" style="margin-bottom:14px">
@@ -33,14 +33,14 @@
       ${d.libraries.map(x => `<tr><td><b>${esc(x.name)}</b><div class="mono muted">${esc(x.library_id)}</div></td>
         <td><span class="badge ${x.dataset_status === 'active' ? 'b-ok' : 'b-mute'}">${l(x.dataset_status)}</span></td>
         <td class="num">${x.rooms}</td><td class="num">${num(x.seats)}</td><td class="num">${x.facilities}</td><td class="num">${x.scenarios}</td><td class="num">${num(x.sessions)}</td>
-        <td class="nowrap">${x.dataset_status === 'active' ? `<a href="/floor?lib=${x.library_id}" title="뷰어"><i class="fa-solid fa-eye"></i></a> ` : ''}<a href="/real?lib=${x.library_id}" title="실데이터"><i class="fa-solid fa-map-location-dot"></i></a></td></tr>`).join('')}</tbody></table>`;
+        <td class="nowrap">${x.dataset_status === 'active' ? `<a href="{{ base }}/floor?lib=${x.library_id}" title="뷰어"><i class="fa-solid fa-eye"></i></a> ` : ''}<a href="{{ base }}/real?lib=${x.library_id}" title="실데이터"><i class="fa-solid fa-map-location-dot"></i></a></td></tr>`).join('')}</tbody></table>`;
     const m = d.manifest;
     $('#manifest').innerHTML = `<h2>합성 데이터 생성 정보 <span class="badge b-syn">합성</span></h2>
       <dl class="kv"><dt>생성기</dt><dd>${esc(m.generator_version)} · seed <code>${m.seed}</code></dd><dt>피처 레지스트리</dt><dd>${esc(m.feature_registry_version)}</dd>
       <dt>파라미터</dt><dd class="mono">${esc(JSON.stringify(m.params))}</dd><dt>열람실 단위</dt><dd>${m.room_units}</dd>
       <dt>가정</dt><dd>좌석 버튼 한 변 ${m.assumptions?.seat_button_side_m}m · ${esc(m.assumptions?.note)}</dd><dt>생성 시각</dt><dd>${esc(m.generated_at)}</dd></dl>`;
     const cols = await api('/api/collections');
-    $('#colls').innerHTML = `<table class="tbl"><thead><tr><th>컬렉션</th><th>구분</th><th class="num">문서</th></tr></thead><tbody>${cols.map(x => `<tr><td><a href="/browse?c=${x.name}" class="mono">${x.name}</a></td><td><span class="badge ${x.kind === 'real' ? 'b-real' : 'b-syn'}">${x.kind === 'real' ? '실데이터' : '합성'}</span></td><td class="num">${num(x.count)}</td></tr>`).join('')}</tbody></table>`;
+    $('#colls').innerHTML = `<table class="tbl"><thead><tr><th>컬렉션</th><th>구분</th><th class="num">문서</th></tr></thead><tbody>${cols.map(x => `<tr><td><a href="{{ base }}/browse?c=${x.name}" class="mono">${x.name}</a></td><td><span class="badge ${x.kind === 'real' ? 'b-real' : 'b-syn'}">${x.kind === 'real' ? '실데이터' : '합성'}</span></td><td class="num">${num(x.count)}</td></tr>`).join('')}</tbody></table>`;
   } catch (e) { SV.err($('#stats'), e); }
 })();
 </script>

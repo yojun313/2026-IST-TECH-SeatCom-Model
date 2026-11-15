@@ -490,9 +490,10 @@ class Room:
                 "geometry": f.get("geometry"),
                 "label": (f.get("attributes") or {}).get("label"),
             }
-            for f in sorted(db.facilities.find(
-                {"map_id": self.map_id, "dataset_status": "active"}
-            ), key=lambda item: item["facility_id"])
+            for f in sorted(
+                db.facilities.find({"map_id": self.map_id, "dataset_status": "active"}),
+                key=lambda item: item["facility_id"],
+            )
         ]
         self._floor_cache = None
 
@@ -626,9 +627,10 @@ class Room:
             y = _clamp((y0 + y1) / 2 - h / 2, 0, 1 - h)
             return {"x": x, "y": y, "width": w, "height": h}
 
-        for f in sorted(db.facilities.find(
-            {"map_id": self.map_id, "dataset_status": "active"}
-        ), key=lambda item: item["facility_id"]):
+        for f in sorted(
+            db.facilities.find({"map_id": self.map_id, "dataset_status": "active"}),
+            key=lambda item: item["facility_id"],
+        ):
             g = f.get("geometry") or {}
             c = g.get("coordinates")
             t = g.get("type")

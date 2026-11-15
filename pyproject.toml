@@ -25,6 +25,7 @@ dependencies = [
     "python-dotenv>=1",
     # data/libraries/scripts/generate_synthetic.py 진행률
     "tqdm>=4.66",
+    "jinja2>=3.1,<4",
 ]
 
 [dependency-groups]

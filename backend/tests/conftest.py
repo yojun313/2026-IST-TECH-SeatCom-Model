@@ -1,9 +1,15 @@
 """Reuse the verified Release seed while keeping each API test DB isolated."""
+
+import os
 import shutil
 
 import pytest
 
 from backend.catalog import SEED_DIR
+
+os.environ.setdefault(
+    "SEATVIZ_WARM", "0"
+)  # 테스트마다 뷰어 통계를 미리 계산하지 않는다
 from backend.seed_download import read_manifest, snapshot_file
 
 

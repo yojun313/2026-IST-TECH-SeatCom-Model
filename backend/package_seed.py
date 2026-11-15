@@ -1,4 +1,5 @@
 """Build catalog-only GitHub Release assets; refuses runtime/user databases."""
+
 from __future__ import annotations
 
 import argparse
@@ -19,13 +20,24 @@ def package(source, output, repository, tag):
     if not re.fullmatch(r"[A-Za-z0-9_.-]+", tag):
         raise ValueError("Invalid release tag")
     with sqlite3.connect(source.as_uri() + "?mode=ro", uri=True) as db:
-        tables = {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        tables = {
+            r[0]
+            for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        }
         if tables != {"catalog_documents", "catalog_metadata"}:
-            raise ValueError("Refusing to publish a database containing non-catalog/user tables")
+            raise ValueError(
+                "Refusing to publish a database containing non-catalog/user tables"
+            )
         if db.execute("PRAGMA integrity_check").fetchone() != ("ok",):
             raise ValueError("SQLite integrity check failed")
-        version = db.execute("SELECT value FROM catalog_metadata WHERE key='version'").fetchone()[0]
-        counts = dict(db.execute("SELECT collection,count(*) FROM catalog_documents GROUP BY collection"))
+        version = db.execute(
+            "SELECT value FROM catalog_metadata WHERE key='version'"
+        ).fetchone()[0]
+        counts = dict(
+            db.execute(
+                "SELECT collection,count(*) FROM catalog_documents GROUP BY collection"
+            )
+        )
     output.mkdir(parents=True, exist_ok=True)
     asset = output / f"seatcom-library-{tag}.sqlite3.gz"
     if asset.exists():
@@ -39,14 +51,21 @@ def package(source, output, repository, tag):
     finally:
         partial.unlink(missing_ok=True)
     manifest = {
-        "format": "sqlite-gzip-v1", "version": version,
-        "repository": repository, "tag": tag, "asset": asset.name,
+        "format": "sqlite-gzip-v1",
+        "version": version,
+        "repository": repository,
+        "tag": tag,
+        "asset": asset.name,
         "url": f"https://github.com/{repository}/releases/download/{tag}/{asset.name}",
-        "bytes": asset.stat().st_size, "sha256": digest(asset),
-        "sqlite_bytes": source.stat().st_size, "sqlite_sha256": digest(source),
+        "bytes": asset.stat().st_size,
+        "sha256": digest(asset),
+        "sqlite_bytes": source.stat().st_size,
+        "sqlite_sha256": digest(source),
         "counts": counts,
     }
-    (output / "release.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+    (output / "release.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+    )
     (output / "SHA256SUMS").write_text(f"{manifest['sha256']}  {asset.name}\n")
     return manifest
 

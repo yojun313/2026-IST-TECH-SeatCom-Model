@@ -11,6 +11,9 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
+import os
+import threading
+
 from .config import get_settings
 from .models import (
     AnswerIn,
@@ -33,7 +36,7 @@ from .security import api_error, claims_from_token
 from .service import SeatComService
 
 
-def create_app(*, settings=None, analyzer=None):
+def create_app(*, settings=None, analyzer=None, viewer=True):
     settings = settings or get_settings()
     service = SeatComService(settings, analyzer=analyzer)
     reco = RecommendationService(settings, service.store)
@@ -41,8 +44,12 @@ def create_app(*, settings=None, analyzer=None):
 
     @asynccontextmanager
     async def lifespan(app):
-        reco.load()
+        reco.load()  # 카탈로그 적재가 끝나야 뷰어도 읽을 수 있다
         reco.preload_rooms()
+        if viewer and os.getenv("SEATVIZ_WARM", "1") != "0":
+            threading.Thread(
+                target=viewer_warm, daemon=True, name="viewer-warm"
+            ).start()
         service.start()
         try:
             yield
@@ -55,6 +62,9 @@ def create_app(*, settings=None, analyzer=None):
         lifespan=lifespan,
         description="회원가입(이메일 인증)·페르소나 4문항·카카오톡 실험실·좌석 추천 API",
     )
+    if viewer:
+        # 데이터셋 뷰어(SeatViz): 같은 프로세스·같은 SQLite(읽기 전용). 맨 끝에서 / 에 붙인다
+        from seatviz.app.main import create_app as create_viewer, warm as viewer_warm
     app.state.service = service
     app.state.reco = reco
     app.state.auth = auth
@@ -267,6 +277,9 @@ def create_app(*, settings=None, analyzer=None):
     def preference_insights(uid: str = Depends(user)):
         return reco.insights(uid)
 
+    if viewer:
+        # 반드시 모든 API 라우트 뒤에 둔다: /api/v1·/health·/docs 가 먼저 매칭되고, 나머지 경로(/, /floor, /api/overview…)가 뷰어로 간다
+        app.mount("/", create_viewer(settings.database_path))
     return app
 
 

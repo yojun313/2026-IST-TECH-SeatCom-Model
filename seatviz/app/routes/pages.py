@@ -1,9 +1,9 @@
-"""HTML 페이지. 각 페이지는 _layout.html 을 상속하고 데이터는 /api 에서 JS 로 불러온다."""
+"""HTML 페이지. 각 페이지는 _layout.html 을 상속하고 데이터는 {base}/api 에서 JS 로 불러온다."""
 
 from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 
-from app.db import APP_DIR
+from ..db import APP_DIR
 
 router = APIRouter()
 templates = Jinja2Templates(directory=str(APP_DIR / "templates"))
@@ -23,7 +23,14 @@ def page(request: Request, name: str, title: str, **ctx):
     return templates.TemplateResponse(
         request=request,
         name=f"{name}.html",
-        context={"active": name, "nav": NAV, "title": title, **ctx},
+        # 하위 경로에 붙여도 동작하도록 모든 링크·API 경로 앞에 base(root_path)를 붙인다. 지금은 / 라서 빈 값
+        context={
+            "active": name,
+            "nav": NAV,
+            "title": title,
+            "base": request.scope.get("root_path", "").rstrip("/"),
+            **ctx,
+        },
     )
 
 

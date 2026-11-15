@@ -26,7 +26,7 @@
     const p = Object.fromEntries(F.map(k => [k, $('#' + k).value.trim()])); SV.setQs(p);
     const d = await api('/api/sessions', { ...p, skip, limit });
     $('#tbl').innerHTML = `<table class="tbl"><thead><tr><th>세션</th><th>사용자</th><th>시각</th><th>도서관 · 환경</th><th>시간대</th><th class="num">점유율</th><th class="num">가용/조건충족</th><th>방식</th><th>추천 Top5</th><th>선택</th><th>경로</th><th class="num">효용</th><th class="num">만족도</th></tr></thead><tbody>
-      ${d.items.map(s => `<tr class="click" onclick="location.href='/sessions/${encodeURIComponent(s.session_id)}'"><td class="mono">${esc(s.session_id.split(':').pop())}</td><td class="mono small">${esc(s.user_id.split(':').pop())}</td>
+      ${d.items.map(s => `<tr class="click" onclick="location.href='{{ base }}/sessions/${encodeURIComponent(s.session_id)}'"><td class="mono">${esc(s.session_id.split(':').pop())}</td><td class="mono small">${esc(s.user_id.split(':').pop())}</td>
         <td class="small nowrap">${esc(s.occurred_at.slice(0, 16).replace('T', ' '))}</td><td class="small">${esc(s.library_id)}<div class="mono muted">${esc(s.scenario_id.split(':synth:').pop())}</div></td><td>${l(s.time_slot)}</td>
         <td class="num">${(s.occupancy_rate * 100).toFixed(0)}%</td><td class="num">${s.available_seat_ids_count}/${s.eligible_count}</td><td class="small">${esc(s.ranking_basis)}</td>
         <td class="mono small">${s.exposed.map(e => `${esc(e.seat_id.split(':').pop())}${e.seat_id === s.chosen_seat_id ? '★' : ''}`).join(', ')}</td><td class="mono small">${esc(s.chosen_seat_id?.split(':').pop() ?? '-')}</td>

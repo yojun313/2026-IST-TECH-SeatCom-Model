@@ -1,8 +1,8 @@
 {% extends "_layout.html" %}
-{% block head %}<script src="/static/vendor/chart.umd.min.js"></script>{% endblock %}
+{% block head %}<script src="{{ base }}/static/vendor/chart.umd.min.js"></script>{% endblock %}
 {% block content %}
 <div class="page-head">
-  <div><h1>통계 <span class="badge b-syn">합성</span></h1><div class="muted">합성 좌석 특성 분포, 환경 조건, 사용자·세션·이벤트 분포입니다. 첫 계산에 몇 초 걸리고 이후 10분간 캐시됩니다.</div></div>
+  <div><h1>통계 <span class="badge b-syn">합성</span></h1><div class="muted">합성 좌석 특성 분포, 환경 조건, 사용자·세션·이벤트 분포입니다. 서버가 시작할 때 미리 계산해 둡니다.</div></div>
   <select id="lib"><option value="">전체 도서관</option></select>
 </div>
 <div id="body"><div class="empty"><span class="spinner"></span> 집계 중…</div></div>
