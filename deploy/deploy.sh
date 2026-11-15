@@ -11,9 +11,8 @@ mkdir -p "$DEPLOY/logs" "$DEPLOY/runtime"
 
 [ -f "$REPO/backend/.env" ] || { echo "backend/.env 없음: backend/.env.example을 복사해 채우세요"; exit 1; }
 
-echo "== 1. 파이썬 환경 (deploy/.venv)"
-[ -x "$DEPLOY/.venv/bin/python" ] || uv venv "$DEPLOY/.venv" --python 3.11 -q
-VIRTUAL_ENV="$DEPLOY/.venv" uv pip install -q -r "$DEPLOY/requirements.txt"
+echo "== 1. 잠금 파일 기반 파이썬 환경 (.venv)"
+(cd "$REPO" && uv sync --frozen --no-dev)
 
 if [ "${1:-}" != "--no-build" ]; then
   echo "== 2. 프론트엔드 빌드 ($FE)"

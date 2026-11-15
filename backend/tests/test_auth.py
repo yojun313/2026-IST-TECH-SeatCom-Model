@@ -31,7 +31,7 @@ class FakeSMTP:
 
 
 @pytest.fixture()
-def c(tmp_path, monkeypatch):
+def c(tmp_path, monkeypatch, sqlite_database):
     monkeypatch.setattr(A.smtplib, "SMTP_SSL", FakeSMTP)
     monkeypatch.setenv("MAIL_SENDER", "sender@example.com")
     monkeypatch.setenv("MAIL_PASSWORD", "app-password")
@@ -39,7 +39,7 @@ def c(tmp_path, monkeypatch):
     FakeSMTP.sent.clear()
     s = replace(
         get_settings(),
-        database_path=tmp_path / "db.sqlite3",
+        database_path=sqlite_database,
         attachment_dir=tmp_path / "att",
         auth_jwt_algorithm="HS256",
         auth_jwt_secret="t" * 40,

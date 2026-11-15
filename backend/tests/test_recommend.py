@@ -1,5 +1,5 @@
-"""좌석 추천 API 통합 테스트(실제 모델 + MongoDB 읽기). 모델·DB가 없으면 건너뛴다.
-deploy/.venv/bin/python -m pytest backend/tests -q   (저장소 루트에서)
+"""좌석 추천 API 통합 테스트(실제 모델 + 임시 SQLite 초기 데이터).
+uv run --frozen python -m pytest backend/tests -q   (저장소 루트에서)
 """
 
 from dataclasses import replace
@@ -16,10 +16,10 @@ ROOM = "yongin-giheung:room:1"
 
 
 @pytest.fixture()
-def client(tmp_path):
+def client(tmp_path, sqlite_database):
     s = replace(
         get_settings(),
-        database_path=tmp_path / "db.sqlite3",
+        database_path=sqlite_database,
         attachment_dir=tmp_path / "att",
         allow_guest_tokens=True,
     )
@@ -209,6 +209,7 @@ def test_libraries_rooms_and_room_recommendation(client):
 
 
 def test_preferences_history_and_use_flow(client):
+    laptop_room = "yongin-dongbaek:room:2"  # 실제 스냅샷에서 노트북 허용
     tok = H("mock-token-bbbbbbbb-3333-4444-8555-966677778888")
     p = client.get("/api/v1/users/me/preferences", headers=tok).json()
     assert p["revision"] == 0 and len(p["catalog"]) == 10
@@ -240,18 +241,25 @@ def test_preferences_history_and_use_flow(client):
         == 422
     )
 
-    rec = client.post(
+    # 기흥 1열람실은 노트북 금지: 필수 조건을 어기며 추천하지 않는다.
+    blocked = client.post(
         "/api/v1/recommendations/seats", json={"roomId": ROOM}, headers=tok
+    )
+    assert blocked.status_code == 200
+    assert blocked.json()["result"]["results"] == []
+
+    rec = client.post(
+        "/api/v1/recommendations/seats", json={"roomId": laptop_room}, headers=tok
     ).json()
     top = rec["result"]["results"]
     assert top and all(
         "칸막이" in [r["text"] for r in x["reasons"]] or x["reasons"] for x in top
     )
     # 지도에서 직접 고른(추천 밖) 좌석
-    m = client.get(f"/api/v1/rooms/{ROOM}/map", headers=tok).json()
+    m = client.get(f"/api/v1/rooms/{laptop_room}/map", headers=tok).json()
     av = {
         s["seatId"]: s["state"]
-        for s in client.get(f"/api/v1/rooms/{ROOM}/availability", headers=tok).json()[
+        for s in client.get(f"/api/v1/rooms/{laptop_room}/availability", headers=tok).json()[
             "seatStates"
         ]
     }
@@ -315,7 +323,7 @@ def test_preferences_history_and_use_flow(client):
     )
     av2 = {
         s["seatId"]: s["state"]
-        for s in client.get(f"/api/v1/rooms/{ROOM}/availability", headers=tok).json()[
+        for s in client.get(f"/api/v1/rooms/{laptop_room}/availability", headers=tok).json()[
             "seatStates"
         ]
     }
@@ -465,7 +473,7 @@ def test_repeated_choices_shift_recommendations(client):
 
 
 def test_reject_reason_corrects_preference(client):
-    """'입구에서 너무 멀어요'로 거절하면 다음 추천은 출입구 쪽으로 간다(착석 기록이 없어도)."""
+    """거절 이유로 출입구 선호를 저장하고 제외한 좌석을 다시 추천하지 않는다."""
     tok = H("mock-token-eeeeeeee-3333-4444-8555-966677778888")
     for q, a in (
         ("outlet", "not_required"),
@@ -477,7 +485,15 @@ def test_reject_reason_corrects_preference(client):
     rec = client.post(
         "/api/v1/recommendations/seats", json={"roomId": ROOM}, headers=tok
     ).json()
-    before, _, _ = _pct(client, rec, "entranceProximity")
+    from seat_model.train.userstate import SEAT_KEYS
+    entrance_index = SEAT_KEYS.index("entranceProximity")
+    def saved_preference():
+        with client.app.state.reco.store.db() as db:
+            rows = db.execute("SELECT state_json FROM reco_user_state").fetchall()
+        assert len(rows) == 1
+        return json.loads(rows[0][0])["mu"][entrance_index]
+    rejected = set()
+
     for i, x in enumerate(rec["result"]["results"][:2]):
         e = client.post(
             f"/api/v1/recommendations/{rec['recommendationId']}/events",
@@ -490,19 +506,22 @@ def test_reject_reason_corrects_preference(client):
             },
             headers=tok,
         ).json()
+        rejected.add(x["targetId"])
         assert e["effect"] == (
             "preferencesUpdated" if i == 0 else "excluded"
         )  # 같은 추천에서는 한 번만 보정
     rec2 = client.post(
         "/api/v1/recommendations/seats", json={"roomId": ROOM}, headers=tok
     ).json()
-    after, _, _ = _pct(client, rec2, "entranceProximity")
-    assert after >= before, (before, after)
-    for i in range(2):  # 다시 두 번 더 거절하면 확실히 출입구 쪽
+    initial_strength = saved_preference()
+    assert initial_strength > 0
+    assert not rejected.intersection(x["targetId"] for x in rec2["result"]["results"])
+    for i in range(2):  # 별도 추천의 거절은 선호를 추가로 갱신한다
         r = client.post(
             "/api/v1/recommendations/seats", json={"roomId": ROOM}, headers=tok
         ).json()
-        client.post(
+        rejected.add(r["result"]["results"][0]["targetId"])
+        response = client.post(
             f"/api/v1/recommendations/{r['recommendationId']}/events",
             json={
                 "eventId": f"rk{i}",
@@ -513,11 +532,11 @@ def test_reject_reason_corrects_preference(client):
             },
             headers=tok,
         )
-    final, _, _ = _pct(
-        client,
-        client.post(
-            "/api/v1/recommendations/seats", json={"roomId": ROOM}, headers=tok
-        ).json(),
-        "entranceProximity",
-    )
-    assert final > before + 0.2, (before, after, final)
+        assert response.status_code == 200
+        assert response.json()["effect"] == "preferencesUpdated"
+    assert saved_preference() > initial_strength
+    final = client.post(
+        "/api/v1/recommendations/seats", json={"roomId": ROOM}, headers=tok
+    ).json()
+    assert final["result"]["results"]
+    assert not rejected.intersection(x["targetId"] for x in final["result"]["results"])

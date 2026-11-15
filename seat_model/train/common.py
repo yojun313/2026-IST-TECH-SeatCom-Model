@@ -154,7 +154,12 @@ class _Reader:
     allow_forbidden = False
 
     def __init__(self, db_name="library"):
-        self._db = _mongo_db(db_name)
+        if db_name != "library":
+            raise ValueError("SQLite snapshot supports the library dataset only")
+        from backend.catalog import Catalog
+        from backend.config import get_settings
+
+        self._db = Catalog(get_settings().database_path)
 
     def find(self, coll, filt=None, fields=None):
         if coll in FORBIDDEN_COLLECTIONS or coll not in self.allowlist:

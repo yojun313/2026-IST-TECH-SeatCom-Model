@@ -309,7 +309,7 @@ def _hours_today(opening_hours, now: datetime):
 
 
 class Room:
-    """열람실 정적 정보(좌석도·환경 특징·규정). Mongo에서 읽기만 한다."""
+    """열람실 정적 정보(좌석도·환경 특징·규정). SQLite에서 읽기만 한다."""
 
     def __init__(self, db, room_id, month):
         scen = list(
@@ -490,9 +490,9 @@ class Room:
                 "geometry": f.get("geometry"),
                 "label": (f.get("attributes") or {}).get("label"),
             }
-            for f in db.facilities.find(
+            for f in sorted(db.facilities.find(
                 {"map_id": self.map_id, "dataset_status": "active"}
-            )
+            ), key=lambda item: item["facility_id"])
         ]
         self._floor_cache = None
 
@@ -626,9 +626,9 @@ class Room:
             y = _clamp((y0 + y1) / 2 - h / 2, 0, 1 - h)
             return {"x": x, "y": y, "width": w, "height": h}
 
-        for f in db.facilities.find(
+        for f in sorted(db.facilities.find(
             {"map_id": self.map_id, "dataset_status": "active"}
-        ):
+        ), key=lambda item: item["facility_id"]):
             g = f.get("geometry") or {}
             c = g.get("coordinates")
             t = g.get("type")
@@ -714,7 +714,7 @@ class RecommendationService:
         self.rec = None
         self.error = None
         self.model_dir = Path(settings.model_dir)
-        self._mongo = None
+        self._catalog = None
         self._room_ids = None
         self._touched: set[str] = (
             set()
@@ -722,6 +722,7 @@ class RecommendationService:
 
     # ---------------------------------------------------------------- 모델·데이터 로드
     def load(self):
+        self._db()  # Seed failures must fail startup, not silently serve empty rooms.
         try:
             from seat_model.train.inference import SeatRecommender
             from seat_model.train.online import OnlineState
@@ -755,11 +756,11 @@ class RecommendationService:
         threading.Thread(target=run, daemon=True, name="room-preload").start()
 
     def _db(self):
-        if self._mongo is None:
-            from seat_model.train.common import _mongo_db
+        if self._catalog is None:
+            from .catalog import Catalog
 
-            self._mongo = _mongo_db("library")
-        return self._mongo
+            self._catalog = Catalog(self.settings.database_path)
+        return self._catalog
 
     def room_ids(self):
         if self._room_ids is None:

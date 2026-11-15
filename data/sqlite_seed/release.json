@@ -1,0 +1,29 @@
+{
+  "format": "sqlite-gzip-v1",
+  "version": "2ed91697e13d7406d65c2ce306b8732dfbf1f1e53fb104e572cbbc1200332927",
+  "repository": "yojun313/2026-IST-TECH-SeatCom-Model",
+  "tag": "sqlite-data-20261115-v1",
+  "asset": "seatcom-library-sqlite-data-20261115-v1.sqlite3.gz",
+  "url": "https://github.com/yojun313/2026-IST-TECH-SeatCom-Model/releases/download/sqlite-data-20261115-v1/seatcom-library-sqlite-data-20261115-v1.sqlite3.gz",
+  "bytes": 97052610,
+  "sha256": "0713cc2a6899f4e494692081b237323051913b6bba184ee16b8a2b945d92e8a4",
+  "sqlite_bytes": 1412169728,
+  "sqlite_sha256": "224c4652b640e3711c270acfc7292d47a34867d6c18e41a754c3983ea3583d04",
+  "counts": {
+    "build_reports": 27,
+    "facilities": 73,
+    "libraries": 27,
+    "maps": 34,
+    "meta": 2,
+    "room_features": 29,
+    "rooms": 94,
+    "seats": 2111,
+    "sources": 109,
+    "synth_events": 444297,
+    "synth_scenarios": 720,
+    "synth_seat_env": 63330,
+    "synth_sessions": 163306,
+    "synth_users": 3000,
+    "walkway_nodes": 6
+  }
+}

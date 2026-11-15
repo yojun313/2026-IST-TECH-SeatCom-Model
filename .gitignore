@@ -33,6 +33,11 @@ kakao_analysis/get_gmail_text_api/token.json
 logs/
 deploy/runtime/
 backend/runtime/
+deploy/artifacts/
+# SQLite snapshots are GitHub Release assets, not Git objects.
+data/sqlite_seed/*.jsonl.gz
+data/sqlite_seed/*.sqlite3
+data/sqlite_seed/*.sqlite3.gz
 # 카카오톡 분석: Gmail 로 받은 대화 원문(개인정보)
 kakao_analysis/get_gmail_text_api/gmail_txt/
 

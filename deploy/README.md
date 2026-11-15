@@ -1,5 +1,10 @@
 # SeatCom 배포 (pm2)
 
+백엔드는 MongoDB 없이 단일 SQLite로 동작한다. 최초 시작 때 `data/sqlite_seed/release.json`에 지정된 GitHub Release의 SQLite를
+다운로드·검증하여 15개 컬렉션을 `DATABASE_PATH`에 적재한다. 기존 사용자 테이블은 유지한다.
+`uv sync --frozen` 후 `uv run --frozen python -m backend`만으로도 실행할 수 있다.
+pm2 배포도 저장소 루트 `.venv`와 `uv.lock`을 사용한다.
+
 | pm2 이름 | 주소 | 내용 |
 |---|---|---|
 | `seatcom-frontend` | `0.0.0.0:8027` | 프론트(`../2026-IST-TECH-SeatCom-FE/dist`) 정적 파일 + `/api`·`/health` → 백엔드 프록시 |
@@ -16,7 +21,7 @@ pm2 logs seatcom-backend          # 로그 (파일: deploy/logs/)
   - `AUTH_JWT_SECRET`: 로그인 토큰 서명 키
   - `OSS_API_KEY`: 카카오톡 분석 LLM. 비어 있으면 실험실 분석이 실패한다
   - `LAB_MAX_CONCURRENT`·`LAB_MAX_PENDING`·`LAB_UPLOADS_PER_HOUR`: 실험실 동시 분석 수·메모리 대기 상한·사용자당 시간당 업로드
-- **실행 데이터:** `deploy/runtime/`(SQLite: 계정, 설문 답, 추천·선택 기록, 사용자별 온라인 학습 상태).
+- **실행 데이터:** `DATABASE_PATH`의 SQLite(기본 `backend/runtime/seatcom.sqlite3`). 기존 배포가 `deploy/runtime/`를 설정했다면 그 경로를 그대로 사용한다. 도서관 데이터와 계정·설문·추천·선택 기록·개인 학습 상태를 같은 DB에 저장한다.
 - **프론트 빌드 값:** `VITE_MOCK_AUTH=false`(실제 로그인), `SEATCOM_ROOM_ID`(기본 `yongin-giheung:room:1`). 빌드할 때 `FE/.env.production.local`에 기록된다.
 
 ## API 흐름

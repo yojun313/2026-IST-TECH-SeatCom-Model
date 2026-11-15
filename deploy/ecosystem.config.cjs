@@ -16,7 +16,7 @@ module.exports = {
       ...common, ...logs('seatcom-backend'),
       name: 'seatcom-backend',
       cwd: REPO,
-      script: path.join(DEPLOY, '.venv', 'bin', 'python'),
+      script: path.join(REPO, '.venv', 'bin', 'python'),
       args: '-m uvicorn backend.main:app --host 127.0.0.1 --port 8028 --workers 1 --proxy-headers --forwarded-allow-ips 127.0.0.1',
       interpreter: 'none',
       env: { PYTHONPATH: REPO, PYTHONUNBUFFERED: '1', TZ: 'Asia/Seoul' },
